@@ -1,0 +1,113 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [],
+      "range": [
+        0,
+        0
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 0
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/",
+      "range": [
+        0,
+        21
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " This is a TOML comment",
+      "range": [
+        23,
+        47
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " This is a multiline",
+      "range": [
+        49,
+        70
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " TOML comment",
+      "range": [
+        71,
+        85
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 14
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    86
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 7,
+      "column": 0
+    }
+  }
+}

@@ -1,0 +1,4 @@
+# https://toml.io/en/v1.0.0#keys
+# THIS WILL NOT WORK
+spelling = "favorite"
+"spelling" = "favourite"

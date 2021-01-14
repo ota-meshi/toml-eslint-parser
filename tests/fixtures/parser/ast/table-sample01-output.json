@@ -1,0 +1,171 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLTable",
+          "kind": "standard",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "table",
+                "range": [
+                  35,
+                  40
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 6
+                  }
+                }
+              }
+            ],
+            "range": [
+              35,
+              40
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 6
+              }
+            }
+          },
+          "body": [],
+          "range": [
+            34,
+            41
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 7
+            }
+          }
+        }
+      ],
+      "range": [
+        34,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 7
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        34,
+        35
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "table",
+      "range": [
+        35,
+        40
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 1
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        40,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 6
+        },
+        "end": {
+          "line": 2,
+          "column": 7
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/v1.0.0#table",
+      "range": [
+        0,
+        33
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 33
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    42
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 3,
+      "column": 0
+    }
+  }
+}

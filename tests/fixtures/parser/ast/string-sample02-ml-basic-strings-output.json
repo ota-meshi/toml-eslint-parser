@@ -1,0 +1,191 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "str1",
+                "range": [
+                  35,
+                  39
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 4
+                  }
+                }
+              }
+            ],
+            "range": [
+              35,
+              39
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 4
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "Roses are red\nViolets are blue",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              42,
+              79
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 19
+              }
+            }
+          },
+          "range": [
+            35,
+            79
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "range": [
+        35,
+        79
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 19
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "str1",
+      "range": [
+        35,
+        39
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        40,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 5
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\nRoses are red\nViolets are blue\"\"\"",
+      "string": "Roses are red\nViolets are blue",
+      "range": [
+        42,
+        79
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 7
+        },
+        "end": {
+          "line": 4,
+          "column": 19
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/v1.0.0#string",
+      "range": [
+        0,
+        34
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 34
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    80
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 0
+    }
+  }
+}

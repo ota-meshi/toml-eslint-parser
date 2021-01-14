@@ -1,0 +1,12 @@
+# https://toml.io/en/v1.0.0#array-of-tables
+# INVALID TOML DOC
+[[fruits]]
+name = "apple"
+
+[fruits.physical]
+color = "red"
+shape = "round"
+
+# INVALID: This array of tables conflicts with the previous table
+[[fruits.physical]]
+color = "green"

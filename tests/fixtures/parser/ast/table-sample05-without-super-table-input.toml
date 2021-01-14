@@ -1,0 +1,7 @@
+# https://toml.io/en/v1.0.0#table
+# [x] you
+# [x.y] don't
+# [x.y.z] need these
+[x.y.z.w] # for this to work
+
+[x] # defining a super-table afterward is ok

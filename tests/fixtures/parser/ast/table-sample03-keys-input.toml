@@ -1,0 +1,3 @@
+# https://toml.io/en/v1.0.0#table
+[dog."tater.man"]
+type.name = "pug"

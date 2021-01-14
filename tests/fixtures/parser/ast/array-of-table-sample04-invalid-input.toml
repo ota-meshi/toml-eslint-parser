@@ -1,0 +1,5 @@
+# https://toml.io/en/v1.0.0#array-of-tables
+# INVALID TOML DOC
+fruits = []
+
+[[fruits]] # Not allowed

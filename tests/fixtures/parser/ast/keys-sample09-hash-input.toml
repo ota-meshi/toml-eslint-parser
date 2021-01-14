@@ -1,0 +1,6 @@
+# https://toml.io/en/v1.0.0#keys
+# This makes the key "fruit" into a table.
+fruit.apple.smooth = true
+
+# So then you can add to the table "fruit" like so:
+fruit.orange = 2

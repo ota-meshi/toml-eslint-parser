@@ -1,0 +1,321 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "re",
+                "range": [
+                  22,
+                  24
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 2
+                  }
+                }
+              }
+            ],
+            "range": [
+              22,
+              24
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 2
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "\\d{2} apps is t[wo]o many",
+            "style": "literal",
+            "multiline": true,
+            "range": [
+              27,
+              58
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 36
+              }
+            }
+          },
+          "range": [
+            22,
+            58
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 36
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "lines",
+                "range": [
+                  59,
+                  64
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 5
+                  }
+                }
+              }
+            ],
+            "range": [
+              59,
+              64
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 5
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "The first newline is\ntrimmed in raw strings.\nAll other whitespace\nis preserved.\n",
+            "style": "literal",
+            "multiline": true,
+            "range": [
+              67,
+              154
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 8
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            }
+          },
+          "range": [
+            59,
+            154
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "range": [
+        22,
+        154
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "re",
+      "range": [
+        22,
+        24
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        25,
+        26
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 3
+        },
+        "end": {
+          "line": 2,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "MultiLineLiteralString",
+      "value": "'''\\d{2} apps is t[wo]o many'''",
+      "string": "\\d{2} apps is t[wo]o many",
+      "range": [
+        27,
+        58
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 5
+        },
+        "end": {
+          "line": 2,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "lines",
+      "range": [
+        59,
+        64
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        65,
+        66
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 6
+        },
+        "end": {
+          "line": 3,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "MultiLineLiteralString",
+      "value": "'''\nThe first newline is\ntrimmed in raw strings.\nAll other whitespace\nis preserved.\n'''",
+      "string": "The first newline is\ntrimmed in raw strings.\nAll other whitespace\nis preserved.\n",
+      "range": [
+        67,
+        154
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 8
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/",
+      "range": [
+        0,
+        21
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 21
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    155
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 0
+    }
+  }
+}

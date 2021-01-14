@@ -1,0 +1,5 @@
+# https://toml.io/en/v1.0.0#integer
+int1 = +99
+int2 = 42
+int3 = 0
+int4 = -17

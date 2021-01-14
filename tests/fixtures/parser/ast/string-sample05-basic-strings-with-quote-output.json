@@ -1,0 +1,617 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "str4",
+                "range": [
+                  35,
+                  39
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 4
+                  }
+                }
+              }
+            ],
+            "range": [
+              35,
+              39
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 4
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "Here are two quotation marks: \"\". Simple enough.",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              42,
+              96
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 61
+              }
+            }
+          },
+          "range": [
+            35,
+            96
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 61
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "str5",
+                "range": [
+                  160,
+                  164
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 4
+                  }
+                }
+              }
+            ],
+            "range": [
+              160,
+              164
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 4
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "Here are three quotation marks: \"\"\".",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              167,
+              210
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 50
+              }
+            }
+          },
+          "range": [
+            160,
+            210
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 50
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "str6",
+                "range": [
+                  211,
+                  215
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 4
+                  }
+                }
+              }
+            ],
+            "range": [
+              211,
+              215
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 4
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "Here are fifteen quotation marks: \"\"\"\"\"\"\"\"\"\"\"\"\"\"\".",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              218,
+              279
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 68
+              }
+            }
+          },
+          "range": [
+            211,
+            279
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 68
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "str7",
+                "range": [
+                  334,
+                  338
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 4
+                  }
+                }
+              }
+            ],
+            "range": [
+              334,
+              338
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 4
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "\"This,\" she said, \"is just a pointless statement.\"",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              341,
+              397
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 7
+              },
+              "end": {
+                "line": 8,
+                "column": 63
+              }
+            }
+          },
+          "range": [
+            334,
+            397
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 63
+            }
+          }
+        }
+      ],
+      "range": [
+        35,
+        397
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 63
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "str4",
+      "range": [
+        35,
+        39
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        40,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 5
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"Here are two quotation marks: \"\". Simple enough.\"\"\"",
+      "string": "Here are two quotation marks: \"\". Simple enough.",
+      "range": [
+        42,
+        96
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 7
+        },
+        "end": {
+          "line": 2,
+          "column": 61
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "str5",
+      "range": [
+        160,
+        164
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        165,
+        166
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 5
+        },
+        "end": {
+          "line": 4,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"Here are three quotation marks: \"\"\\\".\"\"\"",
+      "string": "Here are three quotation marks: \"\"\".",
+      "range": [
+        167,
+        210
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 7
+        },
+        "end": {
+          "line": 4,
+          "column": 50
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "str6",
+      "range": [
+        211,
+        215
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        216,
+        217
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 5
+        },
+        "end": {
+          "line": 5,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"Here are fifteen quotation marks: \"\"\\\"\"\"\\\"\"\"\\\"\"\"\\\"\"\"\\\".\"\"\"",
+      "string": "Here are fifteen quotation marks: \"\"\"\"\"\"\"\"\"\"\"\"\"\"\".",
+      "range": [
+        218,
+        279
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 7
+        },
+        "end": {
+          "line": 5,
+          "column": 68
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "str7",
+      "range": [
+        334,
+        338
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        339,
+        340
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 5
+        },
+        "end": {
+          "line": 8,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\"This,\" she said, \"is just a pointless statement.\"\"\"\"",
+      "string": "\"This,\" she said, \"is just a pointless statement.\"",
+      "range": [
+        341,
+        397
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 7
+        },
+        "end": {
+          "line": 8,
+          "column": 63
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/v1.0.0#string",
+      "range": [
+        0,
+        34
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " str5 = \"\"\"Here are three quotation marks: \"\"\".\"\"\"  # INVALID",
+      "range": [
+        97,
+        159
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 62
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " \"This,\" she said, \"is just a pointless statement.\"",
+      "range": [
+        281,
+        333
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 52
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    398
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 0
+    }
+  }
+}

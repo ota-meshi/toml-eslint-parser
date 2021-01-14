@@ -1,0 +1,9 @@
+# https://toml.io/en/v1.0.0#keys
+# THE FOLLOWING IS INVALID
+
+# This defines the value of fruit.apple to be an integer.
+fruit.apple = 1
+
+# But then this treats fruit.apple like it's a table.
+# You can't turn an integer into a table.
+fruit.apple.smooth = true

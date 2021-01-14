@@ -1,0 +1,4 @@
+# https://toml.io/en/v1.0.0#string
+str1 = """
+Roses are red
+Violets are blue"""

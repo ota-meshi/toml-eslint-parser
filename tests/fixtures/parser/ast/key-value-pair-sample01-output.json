@@ -1,0 +1,191 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "key",
+                "range": [
+                  42,
+                  45
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 3
+                  }
+                }
+              }
+            ],
+            "range": [
+              42,
+              45
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 3
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "value",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              48,
+              55
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 6
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            42,
+            55
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "range": [
+        42,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 13
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "key",
+      "range": [
+        42,
+        45
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        46,
+        47
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 4
+        },
+        "end": {
+          "line": 2,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"value\"",
+      "string": "value",
+      "range": [
+        48,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 6
+        },
+        "end": {
+          "line": 2,
+          "column": 13
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/v1.0.0#keyvalue-pair",
+      "range": [
+        0,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 41
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    56
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 3,
+      "column": 0
+    }
+  }
+}

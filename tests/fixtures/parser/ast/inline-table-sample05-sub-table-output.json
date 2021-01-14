@@ -1,0 +1,374 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLTable",
+          "kind": "standard",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "product",
+                "range": [
+                  42,
+                  49
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 8
+                  }
+                }
+              }
+            ],
+            "range": [
+              42,
+              49
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 8
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "type",
+                    "range": [
+                      51,
+                      55
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 4
+                      }
+                    }
+                  },
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      56,
+                      60
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 9
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  51,
+                  60
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "Nail",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  63,
+                  69
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 18
+                  }
+                }
+              },
+              "range": [
+                51,
+                69
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 0
+                },
+                "end": {
+                  "line": 3,
+                  "column": 18
+                }
+              }
+            }
+          ],
+          "range": [
+            41,
+            69
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "range": [
+        41,
+        69
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 18
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        41,
+        42
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "product",
+      "range": [
+        42,
+        49
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 1
+        },
+        "end": {
+          "line": 2,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        49,
+        50
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 8
+        },
+        "end": {
+          "line": 2,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "type",
+      "range": [
+        51,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        55,
+        56
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 4
+        },
+        "end": {
+          "line": 3,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        56,
+        60
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 5
+        },
+        "end": {
+          "line": 3,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        61,
+        62
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 10
+        },
+        "end": {
+          "line": 3,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"Nail\"",
+      "string": "Nail",
+      "range": [
+        63,
+        69
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 12
+        },
+        "end": {
+          "line": 3,
+          "column": 18
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://toml.io/en/v1.0.0#inline-table",
+      "range": [
+        0,
+        40
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " type = { edible = false }  # INVALID",
+      "range": [
+        70,
+        108
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    109
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 5,
+      "column": 0
+    }
+  }
+}
