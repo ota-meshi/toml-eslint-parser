@@ -9,7 +9,7 @@ A TOML parser that produces output [compatible with ESLint](https://eslint.org/d
 [![NPM downloads](https://img.shields.io/npm/dm/toml-eslint-parser.svg)](http://www.npmtrends.com/toml-eslint-parser)
 [![NPM downloads](https://img.shields.io/npm/dy/toml-eslint-parser.svg)](http://www.npmtrends.com/toml-eslint-parser)
 [![NPM downloads](https://img.shields.io/npm/dt/toml-eslint-parser.svg)](http://www.npmtrends.com/toml-eslint-parser)
-[![Build Status](https://github.com/ota-meshi/toml-eslint-parser/workflows/CI/badge.svg?branch=master)](https://github.com/ota-meshi/toml-eslint-parser/actions?query=workflow%3ACI)
+[![Build Status](https://github.com/ota-meshi/toml-eslint-parser/workflows/CI/badge.svg?branch=main)](https://github.com/ota-meshi/toml-eslint-parser/actions?query=workflow%3ACI)
 
 ## Features
 
@@ -44,5 +44,5 @@ module.exports = {
 ## Usage for Custom Rules / Plugins
 
 - [AST.md](./docs/AST.md) is AST specification.
-<!-- - [block-mapping.ts](https://github.com/ota-meshi/eslint-plugin-yml/blob/master/src/rules/block-mapping.ts) is an example. -->
+<!-- - [block-mapping.ts](https://github.com/ota-meshi/eslint-plugin-yml/blob/main/src/rules/block-mapping.ts) is an example. -->
 - You can see the AST on the [Online DEMO](https://ota-meshi.github.io/toml-eslint-parser/).
