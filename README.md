@@ -13,7 +13,7 @@ A TOML parser that produces output [compatible with ESLint](https://eslint.org/d
 
 ## Features
 
-- Converts TOML text to AST.
+- Converts TOML text to [AST](./docs/AST.md).
 - Support for [TOML 1.0.0](https://toml.io/en/v1.0.0)
 
 ## Installation
@@ -44,5 +44,5 @@ module.exports = {
 ## Usage for Custom Rules / Plugins
 
 - [AST.md](./docs/AST.md) is AST specification.
-<!-- - [block-mapping.ts](https://github.com/ota-meshi/eslint-plugin-yml/blob/main/src/rules/block-mapping.ts) is an example. -->
+- [keys-order.ts](https://github.com/ota-meshi/eslint-plugin-toml/blob/main/src/rules/keys-order.ts) is an example.
 - You can see the AST on the [Online DEMO](https://ota-meshi.github.io/toml-eslint-parser/).
