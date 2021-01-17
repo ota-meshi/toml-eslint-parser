@@ -119,10 +119,10 @@
           "value": {
             "type": "TOMLValue",
             "kind": "float",
-            "value": -1.23e-98,
+            "value": -123000000,
             "range": [
               24,
-              33
+              31
             ],
             "loc": {
               "start": {
@@ -131,13 +131,13 @@
               },
               "end": {
                 "line": 2,
-                "column": 16
+                "column": 14
               }
             }
           },
           "range": [
             17,
-            33
+            31
           ],
           "loc": {
             "start": {
@@ -146,7 +146,7 @@
             },
             "end": {
               "line": 2,
-              "column": 16
+              "column": 14
             }
           }
         },
@@ -159,8 +159,8 @@
                 "type": "TOMLBare",
                 "name": "key3",
                 "range": [
-                  34,
-                  38
+                  32,
+                  36
                 ],
                 "loc": {
                   "start": {
@@ -175,8 +175,8 @@
               }
             ],
             "range": [
-              34,
-              38
+              32,
+              36
             ],
             "loc": {
               "start": {
@@ -194,8 +194,8 @@
             "kind": "float",
             "value": -0.1230001,
             "range": [
-              41,
-              53
+              39,
+              51
             ],
             "loc": {
               "start": {
@@ -209,8 +209,8 @@
             }
           },
           "range": [
-            34,
-            53
+            32,
+            51
           ],
           "loc": {
             "start": {
@@ -232,8 +232,8 @@
                 "type": "TOMLBare",
                 "name": "key4",
                 "range": [
-                  54,
-                  58
+                  52,
+                  56
                 ],
                 "loc": {
                   "start": {
@@ -248,8 +248,8 @@
               }
             ],
             "range": [
-              54,
-              58
+              52,
+              56
             ],
             "loc": {
               "start": {
@@ -267,8 +267,8 @@
             "kind": "float",
             "value": -0.123,
             "range": [
-              61,
-              68
+              59,
+              66
             ],
             "loc": {
               "start": {
@@ -282,8 +282,8 @@
             }
           },
           "range": [
-            54,
-            68
+            52,
+            66
           ],
           "loc": {
             "start": {
@@ -299,7 +299,7 @@
       ],
       "range": [
         0,
-        68
+        66
       ],
       "loc": {
         "start": {
@@ -408,11 +408,11 @@
     },
     {
       "type": "Float",
-      "value": "-123E-100",
-      "number": -1.23e-98,
+      "value": "-123E+6",
+      "number": -123000000,
       "range": [
         24,
-        33
+        31
       ],
       "loc": {
         "start": {
@@ -421,7 +421,7 @@
         },
         "end": {
           "line": 2,
-          "column": 16
+          "column": 14
         }
       }
     },
@@ -429,8 +429,8 @@
       "type": "Bare",
       "value": "key3",
       "range": [
-        34,
-        38
+        32,
+        36
       ],
       "loc": {
         "start": {
@@ -447,8 +447,8 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        39,
-        40
+        37,
+        38
       ],
       "loc": {
         "start": {
@@ -466,8 +466,8 @@
       "value": "-123.0001E-3",
       "number": -0.1230001,
       "range": [
-        41,
-        53
+        39,
+        51
       ],
       "loc": {
         "start": {
@@ -484,8 +484,8 @@
       "type": "Bare",
       "value": "key4",
       "range": [
-        54,
-        58
+        52,
+        56
       ],
       "loc": {
         "start": {
@@ -502,8 +502,8 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        59,
-        60
+        57,
+        58
       ],
       "loc": {
         "start": {
@@ -521,8 +521,8 @@
       "value": "-123E-3",
       "number": -0.123,
       "range": [
-        61,
-        68
+        59,
+        66
       ],
       "loc": {
         "start": {
@@ -539,7 +539,7 @@
   "comments": [],
   "range": [
     0,
-    69
+    67
   ],
   "loc": {
     "start": {
