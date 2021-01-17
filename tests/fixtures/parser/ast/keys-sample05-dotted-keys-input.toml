@@ -1,0 +1,5 @@
+# https://toml.io/en/v1.0.0#keys
+name = "Orange"
+physical.color = "orange"
+physical.shape = "round"
+site."google.com" = true

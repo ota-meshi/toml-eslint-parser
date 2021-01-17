@@ -1,0 +1,3 @@
+# https://toml.io/en/v1.0.0#float
+# INVALID FLOATS
+invalid_float_1 = .7

@@ -1,0 +1,4 @@
+# https://toml.io/en/v1.0.0#comment
+# This is a full-line comment
+key = "value"  # This is a comment at the end of a line
+another = "# This is not a comment"

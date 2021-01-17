@@ -1,0 +1,4 @@
+# https://toml.io/en/
+str1 = "I'm a string."
+str2 = "You can \"quote\" me."
+str3 = "Name\tJos\u00E9\nLoc\tSF."

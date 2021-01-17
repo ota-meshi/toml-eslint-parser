@@ -1,0 +1,8 @@
+# https://toml.io/en/
+re = '''\d{2} apps is t[wo]o many'''
+lines = '''
+The first newline is
+trimmed in raw strings.
+All other whitespace
+is preserved.
+'''
