@@ -24,7 +24,7 @@ export const language = {
             [/@numberDate(?![ \t]*\S+)/, "number.date"],
             // Key=Value pair
             [
-                /(".*?"|'.*?'|.*?)([ \t]*)(=)(\s+|$)/,
+                /(".*?"|'.*?'|.*?)([ \t]*)(=)(\s*|$)/,
                 ["type", "white", "operators", "white"],
             ],
             { include: "@scalars" },
