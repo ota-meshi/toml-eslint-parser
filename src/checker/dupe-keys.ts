@@ -9,6 +9,7 @@ import type {
     TOMLTopLevelTable,
 } from "../ast"
 import { last, toKeyName } from "../internal-utils"
+import type { ParserOptions } from "../parser-options"
 
 type DefineKey = {
     keys: DefineKeys
@@ -30,13 +31,24 @@ type DuplicateKey = {
  */
 export function* iterateDuplicateKeyNodes(
     node: TOMLTopLevelTable,
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     const defineKeys: DefineKeys = new Map()
     for (const body of node.body) {
         if (body.type === "TOMLTable") {
-            yield* iterateDuplicateKeyNodesForTable(body, defineKeys, [])
+            yield* iterateDuplicateKeyNodesForTable(
+                body,
+                defineKeys,
+                [],
+                parserOptions,
+            )
         } else if (body.type === "TOMLKeyValue") {
-            yield* iterateDuplicateKeyNodesForKeyValue(body, defineKeys, [])
+            yield* iterateDuplicateKeyNodesForKeyValue(
+                body,
+                defineKeys,
+                [],
+                parserOptions,
+            )
         }
     }
 }
@@ -48,11 +60,22 @@ function* iterateDuplicateKeyNodesForTable(
     node: TOMLTable,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     if (node.kind === "standard") {
-        yield* iterateDuplicateKeyNodesForStdTable(node, defineKeys, basePath)
+        yield* iterateDuplicateKeyNodesForStdTable(
+            node,
+            defineKeys,
+            basePath,
+            parserOptions,
+        )
     } else {
-        yield* iterateDuplicateKeyNodesForArrayTable(node, defineKeys, basePath)
+        yield* iterateDuplicateKeyNodesForArrayTable(
+            node,
+            defineKeys,
+            basePath,
+            parserOptions,
+        )
     }
 }
 
@@ -63,6 +86,7 @@ function* iterateDuplicateKeyNodesForStdTable(
     node: TOMLTable,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     const path = [...basePath]
 
@@ -78,7 +102,8 @@ function* iterateDuplicateKeyNodesForStdTable(
                     node: keyNode,
                     path: defineKey.path,
                 }
-            } else if (keyNode === lastKey) {
+            }
+            if (keyNode === lastKey) {
                 if (defineKey.keyVal) {
                     // [target]
                     // key.foo = ???
@@ -98,6 +123,8 @@ function* iterateDuplicateKeyNodesForStdTable(
                         path: defineKey.path,
                     }
                 }
+            } else if (defineKey.table === "array") {
+                defineKey = defineKey.keys.get(0)!
             }
         } else {
             defineKey = {
@@ -111,7 +138,12 @@ function* iterateDuplicateKeyNodesForStdTable(
     }
 
     for (const body of node.body) {
-        yield* iterateDuplicateKeyNodesForKeyValue(body, defineKeys, path)
+        yield* iterateDuplicateKeyNodesForKeyValue(
+            body,
+            defineKeys,
+            path,
+            parserOptions,
+        )
     }
 }
 
@@ -122,6 +154,7 @@ function* iterateDuplicateKeyNodesForArrayTable(
     node: TOMLTable,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     const path = [...basePath]
 
@@ -156,6 +189,8 @@ function* iterateDuplicateKeyNodesForArrayTable(
                         path: defineKey.path,
                     }
                 }
+            } else if (defineKey.table === "array") {
+                defineKey = defineKey.keys.get(0)!
             }
         } else {
             defineKey = {
@@ -179,7 +214,12 @@ function* iterateDuplicateKeyNodesForArrayTable(
     }
 
     for (const body of node.body) {
-        yield* iterateDuplicateKeyNodesForKeyValue(body, defineKeys, path)
+        yield* iterateDuplicateKeyNodesForKeyValue(
+            body,
+            defineKeys,
+            path,
+            parserOptions,
+        )
     }
 }
 
@@ -190,6 +230,7 @@ function* iterateDuplicateKeyNodesForKeyValue(
     node: TOMLKeyValue,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     const path = [...basePath]
 
@@ -230,9 +271,15 @@ function* iterateDuplicateKeyNodesForKeyValue(
             node.value,
             defineKeys,
             path,
+            parserOptions,
         )
     } else if (node.value.type === "TOMLArray") {
-        yield* iterateDuplicateKeyNodesForArray(node.value, defineKeys, path)
+        yield* iterateDuplicateKeyNodesForArray(
+            node.value,
+            defineKeys,
+            path,
+            parserOptions,
+        )
     }
 }
 
@@ -243,9 +290,15 @@ function* iterateDuplicateKeyNodesForInlineTable(
     node: TOMLInlineTable,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     for (const body of node.body) {
-        yield* iterateDuplicateKeyNodesForKeyValue(body, defineKeys, basePath)
+        yield* iterateDuplicateKeyNodesForKeyValue(
+            body,
+            defineKeys,
+            basePath,
+            parserOptions,
+        )
     }
 }
 
@@ -256,6 +309,7 @@ function* iterateDuplicateKeyNodesForArray(
     node: TOMLArray,
     defineKeys: DefineKeys,
     basePath: (string | number)[],
+    parserOptions?: ParserOptions,
 ): IterableIterator<DuplicateKey> {
     for (let index = 0; index < node.elements.length; index++) {
         const element = node.elements[index]
@@ -278,12 +332,14 @@ function* iterateDuplicateKeyNodesForArray(
                     element,
                     defineKey.keys,
                     path,
+                    parserOptions,
                 )
             } else if (element.type === "TOMLArray") {
                 yield* iterateDuplicateKeyNodesForArray(
                     element,
                     defineKey.keys,
                     path,
+                    parserOptions,
                 )
             }
         }
