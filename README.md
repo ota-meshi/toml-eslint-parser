@@ -47,6 +47,10 @@ module.exports = {
 - [keys-order.ts](https://github.com/ota-meshi/eslint-plugin-toml/blob/main/src/rules/keys-order.ts) is an example.
 - You can see the AST on the [Online DEMO](https://ota-meshi.github.io/toml-eslint-parser/).
 
+## Testing
+
+This project uses files from [BurntSushi/toml-test](https://github.com/BurntSushi/toml-test) and [iarna/toml-spec-tests](https://github.com/iarna/toml-spec-tests) repositories for testing.
+
 ## Related Packages
 
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc) ... ESLint plugin for JSON, JSON with comments (JSONC) and JSON5.
@@ -54,4 +58,3 @@ module.exports = {
 - [eslint-plugin-toml](https://github.com/ota-meshi/eslint-plugin-toml) ... ESLint plugin for TOML.
 - [jsonc-eslint-parser](https://github.com/ota-meshi/jsonc-eslint-parser) ... JSON, JSONC and JSON5 parser for use with ESLint plugins.
 - [yaml-eslint-parser](https://github.com/ota-meshi/yaml-eslint-parser) ... YAML parser for use with ESLint plugins.
-<!-- - [toml-eslint-parser](https://github.com/ota-meshi/toml-eslint-parser) ... TOML parser for use with ESLint plugins. -->
