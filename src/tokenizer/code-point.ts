@@ -116,3 +116,28 @@ export function isHexDig(cp: number): boolean {
 export function isOctalDig(cp: number): boolean {
     return cp >= DIGIT_0 && cp <= DIGIT_7
 }
+
+/**
+ * Check whether the code point is a high-surrogate code point.
+ */
+export function isHighSurrogate(cp: number): boolean {
+    return cp >= 0xd800 && cp <= 0xdfff
+}
+
+/**
+ * Check whether the code point is a low-surrogate code point.
+ */
+export function isLowSurrogate(cp: number): boolean {
+    return cp >= 0xdc00 && cp <= 0xdfff
+}
+
+/**
+ * Check whether the code point is valid code point.
+ *
+ * see
+ * - https://unicode.org/glossary/#unicode_scalar_value
+ * - https://toml.io/en/v1.0.0#string
+ */
+export function isUnicodeScalarValue(cp: number): boolean {
+    return (cp >= 0 && cp <= 0xd7ff) || (cp >= 0xe000 && cp <= 0x10ffff)
+}

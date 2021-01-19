@@ -1,0 +1,9 @@
+{
+  "lower": 300,
+  "upper": 300,
+  "neg": 0.03,
+  "pos": 300,
+  "zero": 3,
+  "pointlower": 310,
+  "pointupper": 310
+}

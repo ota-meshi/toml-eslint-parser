@@ -6,6 +6,13 @@
             @change="updateShowLocations($event.target.checked)"
         />Locations</label
     >
+    <label class="ast-options"
+        ><input
+            type="checkbox"
+            :checked="modelValue.showValues"
+            @change="updateShowValues($event.target.checked)"
+        />Show Result JSON</label
+    >
 </template>
 
 <script>
@@ -25,6 +32,12 @@ export default {
             this.$emit("update:modelValue", {
                 ...this.modelValue,
                 showLocations: newValue,
+            })
+        },
+        updateShowValues(newValue) {
+            this.$emit("update:modelValue", {
+                ...this.modelValue,
+                showValues: newValue,
             })
         },
     },

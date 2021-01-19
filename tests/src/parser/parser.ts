@@ -1,5 +1,4 @@
 import assert from "assert"
-import path from "path"
 import fs from "fs"
 
 import { KEYS } from "../../../src/visitor-keys"
@@ -8,62 +7,23 @@ import { getStaticTOMLValue } from "../../../src/utils"
 import type { TOMLProgram } from "../../../src/ast"
 import { parseTOML } from "../../../src"
 import * as IarnaTOML from "@iarna/toml"
-
-const AST_FIXTURE_ROOT = path.resolve(__dirname, "../../fixtures/parser/ast")
-
-/**
- * Remove `parent` properties from the given AST.
- */
-function replacer(key: string, value: any) {
-    if (key === "parent" || key === "anchors") {
-        return undefined
-    }
-    if (value instanceof RegExp) {
-        return String(value)
-    }
-    if (typeof value === "bigint") {
-        return null // Make it null so it can be checked on node8.
-        // return `${String(value)}n`
-    }
-    if (typeof value === "number") {
-        if (!isFinite(value)) {
-            return `# ${String(value)} #`
-        }
-    }
-    return value
-}
-
-/**
- * Replacer for NaN and infinity
- */
-function valueReplacer(_key: string, value: any) {
-    if (typeof value === "number") {
-        if (!isFinite(value)) {
-            return `# ${String(value)} #`
-        }
-    }
-    return value
-}
+import { listUpFixtures, stringify } from "./utils"
 
 function parse(code: string, filePath: string) {
     return parseTOML(code, { filePath })
 }
 
 describe("Check for AST.", () => {
-    for (const filename of fs
-        .readdirSync(AST_FIXTURE_ROOT)
-        .filter((f) => f.endsWith("input.toml"))) {
+    for (const {
+        filename,
+        inputFileName,
+        outputFileName,
+        valueFileName,
+        specAssertion,
+        invalid,
+        valid,
+    } of listUpFixtures()) {
         describe(filename, () => {
-            const inputFileName = path.join(AST_FIXTURE_ROOT, filename)
-            const outputFileName = inputFileName.replace(
-                /input\.toml$/u,
-                "output.json",
-            )
-            const valueFileName = inputFileName.replace(
-                /input\.toml$/u,
-                "value.json",
-            )
-
             const input = fs.readFileSync(inputFileName, "utf8")
             const output = fs.readFileSync(outputFileName, "utf8")
 
@@ -71,13 +31,20 @@ describe("Check for AST.", () => {
             it("most to generate the expected AST.", () => {
                 try {
                     ast = parse(input, inputFileName)
+
+                    if (invalid) {
+                        assert.fail("Expected error")
+                    }
                 } catch (e) {
+                    if (valid) {
+                        throw e
+                    }
                     if (
                         typeof e.lineNumber === "number" &&
                         typeof e.column === "number"
                     ) {
                         assert.strictEqual(
-                            JSON.stringify(
+                            stringify(
                                 `${e.message}@line:${e.lineNumber},column:${e.column}`,
                             ),
                             output,
@@ -86,7 +53,7 @@ describe("Check for AST.", () => {
                     }
                     throw e
                 }
-                const astJson = JSON.stringify(ast, replacer, 2)
+                const astJson = stringify(ast, true)
                 assert.strictEqual(astJson, output)
             })
 
@@ -119,12 +86,14 @@ describe("Check for AST.", () => {
                 if (!ast) return
                 // check getStaticTOMLValue
                 const value = fs.readFileSync(valueFileName, "utf8")
-                assert.strictEqual(
-                    JSON.stringify(getStaticTOMLValue(ast), valueReplacer, 2),
-                    value,
-                )
+                assert.strictEqual(stringify(getStaticTOMLValue(ast)), value)
             })
 
+            if (specAssertion) {
+                it("return value of getStaticTOMLValue must pass the assertion.", () => {
+                    specAssertion(getStaticTOMLValue(ast))
+                })
+            }
             it("Compare with IarnaTOML results.", () => {
                 if (!ast) return
 
@@ -137,6 +106,17 @@ describe("Check for AST.", () => {
                         "date01-leading-zero-input.toml",
                         "leap-year01-input.toml",
                         "leap-year02-input.toml",
+                        "spec-time-1.toml",
+                        "spec-time-2.toml",
+                        "spec-date-local-1.toml",
+                        "spec-date-time-local-1.toml",
+                        "spec-date-time-local-2.toml",
+                        // -0
+                        // "spec-float-9.toml",
+                        // big int
+                        "long-integer.toml",
+                        "spec-int-max.toml",
+                        "spec-int-min.toml",
                         // cannot parse
                         "local-time-sample01-input.toml",
                         "sample08-dates-and-times-input.toml",

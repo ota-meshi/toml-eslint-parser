@@ -66,7 +66,14 @@ export class CodePointIterator {
     public *iterateSubCodePoints(): IterableIterator<number> {
         let index = this.end.offset
         while (true) {
-            const cp = this.text.codePointAt(index) ?? EOF
+            let cp = this.text.codePointAt(index) ?? EOF
+            if (cp === CARRIAGE_RETURN) {
+                if (this.text.codePointAt(index) === LINE_FEED) {
+                    cp = this.text.codePointAt(++index) ?? EOF
+                } else {
+                    cp = LINE_FEED
+                }
+            }
             if (cp === EOF) {
                 return
             }

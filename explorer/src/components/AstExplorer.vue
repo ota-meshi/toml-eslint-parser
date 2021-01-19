@@ -33,6 +33,7 @@ export default {
         return {
             options: {
                 showLocations: false,
+                showValues: false,
             },
             tomlValue: `# Welcome to toml-eslint-parser!!
 ["🎉 Hello"]
@@ -84,18 +85,35 @@ role = "backend"
     },
     methods: {
         refresh() {
+            const { showValues } = this.options
             let ast
-            const start = Date.now()
-            try {
-                ast = tomlEslintParser.parseForESLint(this.tomlValue).ast
-            } catch (e) {
-                ast = {
-                    message: e.message,
-                    ...e,
+
+            if (!showValues) {
+                const start = Date.now()
+                try {
+                    ast = tomlEslintParser.parseForESLint(this.tomlValue).ast
+                } catch (e) {
+                    ast = {
+                        message: e.message,
+                        ...e,
+                    }
                 }
+                const time = Date.now() - start
+                this.time = `${time}ms`
+            } else {
+                const start = Date.now()
+                try {
+                    ast = tomlEslintParser.parseForESLint(this.tomlValue).ast
+                    ast = tomlEslintParser.getStaticTOMLValue(ast)
+                } catch (e) {
+                    ast = {
+                        message: e.message,
+                        ...e,
+                    }
+                }
+                const time = Date.now() - start
+                this.time = `${time}ms`
             }
-            const time = Date.now() - start
-            this.time = `${time}ms`
             const json = createAstJson(this.options, ast)
             this.astJson = json
         },

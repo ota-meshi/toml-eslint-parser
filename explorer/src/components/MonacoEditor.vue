@@ -34,6 +34,13 @@ export default {
     },
     async mounted() {
         const monaco = await editorLoaded
+
+        monaco.languages.register({ id: "toml" })
+        monaco.languages.setMonarchTokensProvider(
+            "toml",
+            // eslint-disable-next-line no-undef -- lang
+            require("./languages/toml/toml").language,
+        )
         const vm = this
         const options = Object.assign(
             {

@@ -102,7 +102,10 @@ export class TOMLParser {
             applyEndLoc(node, node.body)
         }
 
-        for (const dupeNode of iterateDuplicateKeyNodes(node)) {
+        for (const dupeNode of iterateDuplicateKeyNodes(
+            node,
+            this.parserOptions,
+        )) {
             ctx.reportParseError("dupe-keys", dupeNode.node)
         }
 
