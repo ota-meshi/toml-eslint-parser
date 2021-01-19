@@ -307,7 +307,7 @@ function schemaToJson(schema: any): any {
 /** Replace values */
 function replaceJSON(
     val: any,
-    replacer: (keu: string, value: any) => any,
+    valReplacer: (keu: string, value: any) => any,
 ): any {
     if (typeof val !== "object") {
         return val
@@ -318,8 +318,8 @@ function replaceJSON(
     const result: any = Array.isArray(val) ? [] : {}
 
     for (const key in val) {
-        const newValue = replacer(key, val[key])
-        result[key] = replaceJSON(newValue, replacer)
+        const newValue = valReplacer(key, val[key])
+        result[key] = replaceJSON(newValue, valReplacer)
     }
 
     return result
