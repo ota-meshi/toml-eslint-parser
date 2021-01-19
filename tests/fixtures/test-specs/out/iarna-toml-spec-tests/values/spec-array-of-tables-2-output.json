@@ -1,0 +1,2014 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  2,
+                  7
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "range": [
+              2,
+              7
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 7
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      12,
+                      16
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 2,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 6
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  12,
+                  16
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 6
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "apple",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  19,
+                  26
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 16
+                  }
+                }
+              },
+              "range": [
+                12,
+                26
+              ],
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 2
+                },
+                "end": {
+                  "line": 2,
+                  "column": 16
+                }
+              }
+            }
+          ],
+          "range": [
+            0,
+            26
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 16
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "standard",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  31,
+                  36
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 8
+                  }
+                }
+              },
+              {
+                "type": "TOMLBare",
+                "name": "physical",
+                "range": [
+                  37,
+                  45
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 17
+                  }
+                }
+              }
+            ],
+            "range": [
+              31,
+              45
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 3
+              },
+              "end": {
+                "line": 4,
+                "column": 17
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "color",
+                    "range": [
+                      51,
+                      56
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 9
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  51,
+                  56
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "red",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  59,
+                  64
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 17
+                  }
+                }
+              },
+              "range": [
+                51,
+                64
+              ],
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 4
+                },
+                "end": {
+                  "line": 5,
+                  "column": 17
+                }
+              }
+            },
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "shape",
+                    "range": [
+                      69,
+                      74
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 6,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 9
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  69,
+                  74
+                ],
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 9
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "round",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  77,
+                  84
+                ],
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 19
+                  }
+                }
+              },
+              "range": [
+                69,
+                84
+              ],
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 4
+                },
+                "end": {
+                  "line": 6,
+                  "column": 19
+                }
+              }
+            }
+          ],
+          "range": [
+            30,
+            84
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 2
+            },
+            "end": {
+              "line": 6,
+              "column": 19
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  90,
+                  95
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 9
+                  }
+                }
+              },
+              {
+                "type": "TOMLBare",
+                "name": "variety",
+                "range": [
+                  96,
+                  103
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 17
+                  }
+                }
+              }
+            ],
+            "range": [
+              90,
+              103
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 4
+              },
+              "end": {
+                "line": 8,
+                "column": 17
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      110,
+                      114
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 8
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  110,
+                  114
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 8
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "red delicious",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  117,
+                  132
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 26
+                  }
+                }
+              },
+              "range": [
+                110,
+                132
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 4
+                },
+                "end": {
+                  "line": 9,
+                  "column": 26
+                }
+              }
+            }
+          ],
+          "range": [
+            88,
+            132
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 2
+            },
+            "end": {
+              "line": 9,
+              "column": 26
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  138,
+                  143
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 9
+                  }
+                }
+              },
+              {
+                "type": "TOMLBare",
+                "name": "variety",
+                "range": [
+                  144,
+                  151
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 17
+                  }
+                }
+              }
+            ],
+            "range": [
+              138,
+              151
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 4
+              },
+              "end": {
+                "line": 11,
+                "column": 17
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      158,
+                      162
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 8
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  158,
+                  162
+                ],
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 8
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "granny smith",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  165,
+                  179
+                ],
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 25
+                  }
+                }
+              },
+              "range": [
+                158,
+                179
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 4
+                },
+                "end": {
+                  "line": 12,
+                  "column": 25
+                }
+              }
+            }
+          ],
+          "range": [
+            136,
+            179
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 2
+            },
+            "end": {
+              "line": 12,
+              "column": 25
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  183,
+                  188
+                ],
+                "loc": {
+                  "start": {
+                    "line": 14,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "range": [
+              183,
+              188
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 2
+              },
+              "end": {
+                "line": 14,
+                "column": 7
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      193,
+                      197
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 6
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  193,
+                  197
+                ],
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 6
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "banana",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  200,
+                  208
+                ],
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 17
+                  }
+                }
+              },
+              "range": [
+                193,
+                208
+              ],
+              "loc": {
+                "start": {
+                  "line": 15,
+                  "column": 2
+                },
+                "end": {
+                  "line": 15,
+                  "column": 17
+                }
+              }
+            }
+          ],
+          "range": [
+            181,
+            208
+          ],
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 15,
+              "column": 17
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "fruit",
+                "range": [
+                  214,
+                  219
+                ],
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 9
+                  }
+                }
+              },
+              {
+                "type": "TOMLBare",
+                "name": "variety",
+                "range": [
+                  220,
+                  227
+                ],
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 17
+                  }
+                }
+              }
+            ],
+            "range": [
+              214,
+              227
+            ],
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 4
+              },
+              "end": {
+                "line": 17,
+                "column": 17
+              }
+            }
+          },
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      234,
+                      238
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 18,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 18,
+                        "column": 8
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  234,
+                  238
+                ],
+                "loc": {
+                  "start": {
+                    "line": 18,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 18,
+                    "column": 8
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "plantain",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  241,
+                  251
+                ],
+                "loc": {
+                  "start": {
+                    "line": 18,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 18,
+                    "column": 21
+                  }
+                }
+              },
+              "range": [
+                234,
+                251
+              ],
+              "loc": {
+                "start": {
+                  "line": 18,
+                  "column": 4
+                },
+                "end": {
+                  "line": 18,
+                  "column": 21
+                }
+              }
+            }
+          ],
+          "range": [
+            212,
+            251
+          ],
+          "loc": {
+            "start": {
+              "line": 17,
+              "column": 2
+            },
+            "end": {
+              "line": 18,
+              "column": 21
+            }
+          }
+        }
+      ],
+      "range": [
+        0,
+        251
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 21
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        0,
+        1
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        1,
+        2
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "line": 1,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        2,
+        7
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 2
+        },
+        "end": {
+          "line": 1,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        7,
+        8
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 7
+        },
+        "end": {
+          "line": 1,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        8,
+        9
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 8
+        },
+        "end": {
+          "line": 1,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        12,
+        16
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 2
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        17,
+        18
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 7
+        },
+        "end": {
+          "line": 2,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"apple\"",
+      "string": "apple",
+      "range": [
+        19,
+        26
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 9
+        },
+        "end": {
+          "line": 2,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        30,
+        31
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 2
+        },
+        "end": {
+          "line": 4,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        31,
+        36
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 3
+        },
+        "end": {
+          "line": 4,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        36,
+        37
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 8
+        },
+        "end": {
+          "line": 4,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "physical",
+      "range": [
+        37,
+        45
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 9
+        },
+        "end": {
+          "line": 4,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        45,
+        46
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 17
+        },
+        "end": {
+          "line": 4,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "color",
+      "range": [
+        51,
+        56
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 4
+        },
+        "end": {
+          "line": 5,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        57,
+        58
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 10
+        },
+        "end": {
+          "line": 5,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"red\"",
+      "string": "red",
+      "range": [
+        59,
+        64
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 12
+        },
+        "end": {
+          "line": 5,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "shape",
+      "range": [
+        69,
+        74
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 4
+        },
+        "end": {
+          "line": 6,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        75,
+        76
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 10
+        },
+        "end": {
+          "line": 6,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"round\"",
+      "string": "round",
+      "range": [
+        77,
+        84
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 12
+        },
+        "end": {
+          "line": 6,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        88,
+        89
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 2
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        89,
+        90
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 3
+        },
+        "end": {
+          "line": 8,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        90,
+        95
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 4
+        },
+        "end": {
+          "line": 8,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        95,
+        96
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 9
+        },
+        "end": {
+          "line": 8,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "variety",
+      "range": [
+        96,
+        103
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 10
+        },
+        "end": {
+          "line": 8,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        103,
+        104
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 17
+        },
+        "end": {
+          "line": 8,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        104,
+        105
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 18
+        },
+        "end": {
+          "line": 8,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        110,
+        114
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 4
+        },
+        "end": {
+          "line": 9,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        115,
+        116
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 9
+        },
+        "end": {
+          "line": 9,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"red delicious\"",
+      "string": "red delicious",
+      "range": [
+        117,
+        132
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 11
+        },
+        "end": {
+          "line": 9,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        136,
+        137
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 2
+        },
+        "end": {
+          "line": 11,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        137,
+        138
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 3
+        },
+        "end": {
+          "line": 11,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        138,
+        143
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 4
+        },
+        "end": {
+          "line": 11,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        143,
+        144
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 9
+        },
+        "end": {
+          "line": 11,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "variety",
+      "range": [
+        144,
+        151
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 10
+        },
+        "end": {
+          "line": 11,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        151,
+        152
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 17
+        },
+        "end": {
+          "line": 11,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        152,
+        153
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 18
+        },
+        "end": {
+          "line": 11,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        158,
+        162
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 4
+        },
+        "end": {
+          "line": 12,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        163,
+        164
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 9
+        },
+        "end": {
+          "line": 12,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"granny smith\"",
+      "string": "granny smith",
+      "range": [
+        165,
+        179
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 11
+        },
+        "end": {
+          "line": 12,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        181,
+        182
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        182,
+        183
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 1
+        },
+        "end": {
+          "line": 14,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        183,
+        188
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 2
+        },
+        "end": {
+          "line": 14,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        188,
+        189
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 7
+        },
+        "end": {
+          "line": 14,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        189,
+        190
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 8
+        },
+        "end": {
+          "line": 14,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        193,
+        197
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 2
+        },
+        "end": {
+          "line": 15,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        198,
+        199
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 7
+        },
+        "end": {
+          "line": 15,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"banana\"",
+      "string": "banana",
+      "range": [
+        200,
+        208
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 9
+        },
+        "end": {
+          "line": 15,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        212,
+        213
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 2
+        },
+        "end": {
+          "line": 17,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        213,
+        214
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 3
+        },
+        "end": {
+          "line": 17,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "fruit",
+      "range": [
+        214,
+        219
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 4
+        },
+        "end": {
+          "line": 17,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        219,
+        220
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 9
+        },
+        "end": {
+          "line": 17,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "variety",
+      "range": [
+        220,
+        227
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 10
+        },
+        "end": {
+          "line": 17,
+          "column": 17
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        227,
+        228
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 17
+        },
+        "end": {
+          "line": 17,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        228,
+        229
+      ],
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 18
+        },
+        "end": {
+          "line": 17,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        234,
+        238
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 4
+        },
+        "end": {
+          "line": 18,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        239,
+        240
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 9
+        },
+        "end": {
+          "line": 18,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"plantain\"",
+      "string": "plantain",
+      "range": [
+        241,
+        251
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 11
+        },
+        "end": {
+          "line": 18,
+          "column": 21
+        }
+      }
+    }
+  ],
+  "comments": [],
+  "range": [
+    0,
+    252
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 19,
+      "column": 0
+    }
+  }
+}

@@ -68,6 +68,7 @@ import {
     COLON,
     LATIN_CAPITAL_Z,
     LATIN_SMALL_Z,
+    isUnicodeScalarValue,
 } from "./code-point"
 
 type Position = {
@@ -185,12 +186,16 @@ export class Tokenizer {
     /**
      * Report an invalid character error.
      */
-    private reportParseError(code: ErrorCode): any {
+    private reportParseError(
+        code: ErrorCode,
+        data?: { [key: string]: any },
+    ): any {
         throw new ParseError(
             code,
             this.codePointIterator.start.offset,
             this.codePointIterator.start.line,
             this.codePointIterator.start.column,
+            data,
         )
     }
 
@@ -555,6 +560,24 @@ export class Tokenizer {
                         cp = this.nextCode()
                     }
                     continue
+                } else if (isWhitespace(cp)) {
+                    let valid = true
+                    for (const nextCp of this.codePointIterator.iterateSubCodePoints()) {
+                        if (nextCp === LINE_FEED) {
+                            break
+                        }
+                        if (!isWhitespace(nextCp)) {
+                            valid = false
+                            break
+                        }
+                    }
+                    if (valid) {
+                        cp = this.nextCode()
+                        while (isWhitespace(cp) || cp === LINE_FEED) {
+                            cp = this.nextCode()
+                        }
+                        continue
+                    }
                 }
                 return this.reportParseError("invalid-char-in-escape-sequence")
             }
@@ -718,7 +741,8 @@ export class Tokenizer {
             }
             if (cp === LATIN_SMALL_E || cp === LATIN_CAPITAL_E) {
                 const data: ExponentData = {
-                    left: 0,
+                    // Float values -0.0 and +0.0 are valid and should map according to IEEE 754.
+                    left: sign === DASH ? -0 : 0,
                 }
                 this.data = data
                 return "EXPONENT_RIGHT"
@@ -731,7 +755,7 @@ export class Tokenizer {
                 this.data = data
                 return "FRACTIONAL_RIGHT"
             }
-
+            // Integer values -0 and +0 are valid and identical to an unprefixed zero.
             this.endToken("Integer", "start", 0)
             return this.back("DATA")
         }
@@ -1144,7 +1168,12 @@ export class Tokenizer {
             }
         }
         this.skip(codePoints.length)
-        return parseInt(String.fromCodePoint(...codePoints), 16)
+        const code = String.fromCodePoint(...codePoints)
+        const codePoint = parseInt(code, 16)
+        if (!isUnicodeScalarValue(codePoint)) {
+            return this.reportParseError("invalid-code-point", { cp: code })
+        }
+        return codePoint
     }
 
     private reportParseErrorControlChar() {

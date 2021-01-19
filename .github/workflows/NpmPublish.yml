@@ -14,6 +14,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         registry-url: 'https://registry.npmjs.org'
+    - name: Setup
+      run: npm run setup
     - name: Install Packages
       run: npm install
     - name: test and build

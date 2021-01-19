@@ -1,0 +1,176 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "ʎǝʞ",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  0,
+                  5
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 5
+                  }
+                }
+              }
+            ],
+            "range": [
+              0,
+              5
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "value",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              8,
+              15
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            0,
+            15
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 15
+            }
+          }
+        }
+      ],
+      "range": [
+        0,
+        15
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 15
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "BasicString",
+      "value": "\"ʎǝʞ\"",
+      "string": "ʎǝʞ",
+      "range": [
+        0,
+        5
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        6,
+        7
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 6
+        },
+        "end": {
+          "line": 1,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"value\"",
+      "string": "value",
+      "range": [
+        8,
+        15
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 8
+        },
+        "end": {
+          "line": 1,
+          "column": 15
+        }
+      }
+    }
+  ],
+  "comments": [],
+  "range": [
+    0,
+    16
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 0
+    }
+  }
+}

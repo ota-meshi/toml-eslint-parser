@@ -1,0 +1,6 @@
+[submodule "tests/fixtures/test-specs/iarna-toml-spec-tests"]
+	path = tests/fixtures/test-specs/iarna-toml-spec-tests
+	url = https://github.com/iarna/toml-spec-tests.git
+[submodule "tests/fixtures/test-specs/BurntSushi-toml-test"]
+	path = tests/fixtures/test-specs/BurntSushi-toml-test
+	url = https://github.com/BurntSushi/toml-test.git

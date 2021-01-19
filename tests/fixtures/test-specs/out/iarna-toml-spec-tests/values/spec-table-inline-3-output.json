@@ -1,0 +1,371 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "animal",
+                "range": [
+                  0,
+                  6
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              }
+            ],
+            "range": [
+              0,
+              6
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLInlineTable",
+            "body": [
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "type",
+                      "range": [
+                        11,
+                        15
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 1,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 1,
+                          "column": 15
+                        }
+                      }
+                    },
+                    {
+                      "type": "TOMLBare",
+                      "name": "name",
+                      "range": [
+                        16,
+                        20
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 1,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 1,
+                          "column": 20
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    11,
+                    20
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 1,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 20
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLValue",
+                  "kind": "string",
+                  "value": "pug",
+                  "style": "basic",
+                  "multiline": false,
+                  "range": [
+                    23,
+                    28
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 1,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 28
+                    }
+                  }
+                },
+                "range": [
+                  11,
+                  28
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 28
+                  }
+                }
+              }
+            ],
+            "range": [
+              9,
+              30
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 30
+              }
+            }
+          },
+          "range": [
+            0,
+            30
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 30
+            }
+          }
+        }
+      ],
+      "range": [
+        0,
+        30
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 30
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "animal",
+      "range": [
+        0,
+        6
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        7,
+        8
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 7
+        },
+        "end": {
+          "line": 1,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "{",
+      "range": [
+        9,
+        10
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 9
+        },
+        "end": {
+          "line": 1,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "type",
+      "range": [
+        11,
+        15
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 11
+        },
+        "end": {
+          "line": 1,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ".",
+      "range": [
+        15,
+        16
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 15
+        },
+        "end": {
+          "line": 1,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        16,
+        20
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 16
+        },
+        "end": {
+          "line": 1,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        21,
+        22
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 21
+        },
+        "end": {
+          "line": 1,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"pug\"",
+      "string": "pug",
+      "range": [
+        23,
+        28
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 23
+        },
+        "end": {
+          "line": 1,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "}",
+      "range": [
+        29,
+        30
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 29
+        },
+        "end": {
+          "line": 1,
+          "column": 30
+        }
+      }
+    }
+  ],
+  "comments": [],
+  "range": [
+    0,
+    32
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 2,
+      "column": 0
+    }
+  }
+}

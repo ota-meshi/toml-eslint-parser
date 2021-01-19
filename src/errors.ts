@@ -16,7 +16,7 @@ const MESSAGES = {
     "invalid-key-value-newline":
         "The key, equals sign, and value must be on the same line",
     "invalid-inline-table-newline":
-        "No newlines are allowed between the curly braces unless they are valid within a value.",
+        "No newlines are allowed between the curly braces unless they are valid within a value",
     "invalid-underscore": "Underscores are allowed between digits",
     "invalid-space": "Unexpected spaces",
     "invalid-three-quotes": "Three or more quotes are not permitted",
@@ -24,9 +24,26 @@ const MESSAGES = {
     "invalid-time": "Unexpected invalid time",
     "invalid-leading-zero": "Leading zeros are not allowed",
     "invalid-trailing-comma-in-inline-table":
-        "Trailing comma is not permitted in an inline table.",
-    "invalid-char-in-escape-sequence": "Invalid character in unicode sequence.",
+        "Trailing comma is not permitted in an inline table",
+    "invalid-char-in-escape-sequence": "Invalid character in escape sequence",
+    "invalid-code-point": "Invalid code point {{cp}}",
 }
+
+/**
+ * Get message from error code
+ */
+function getMessage(code: ErrorCode, data?: { [key: string]: any }) {
+    if (data) {
+        return MESSAGES[code].replace(/\{\{(.*?)\}\}/gu, (_, name) => {
+            if (name in data) {
+                return data[name]
+            }
+            return `{{${name}}}`
+        })
+    }
+    return MESSAGES[code]
+}
+
 /**
  * TOML parse errors.
  */
@@ -39,18 +56,16 @@ export class ParseError extends SyntaxError {
 
     /**
      * Initialize this ParseError instance.
-     * @param code The error message code.
-     * @param offset The offset number of this error.
-     * @param line The line number of this error.
-     * @param column The column number of this error.
+     *
      */
     public constructor(
         code: ErrorCode,
         offset: number,
         line: number,
         column: number,
+        data?: { [key: string]: any },
     ) {
-        super(MESSAGES[code])
+        super(getMessage(code, data))
         this.index = offset
         this.lineNumber = line
         this.column = column
