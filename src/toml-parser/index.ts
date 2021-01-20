@@ -332,13 +332,26 @@ export class TOMLParser {
             return valueContainer.set(node)
         }
         if (isNumber(token)) {
-            const node: TOMLNumberValue = {
-                type: "TOMLValue",
-                kind: token.type === "Integer" ? "integer" : "float",
-                value: token.number,
-                parent: valueContainer.parent,
-                range: clone(token.range),
-                loc: clone(token.loc),
+            let node: TOMLNumberValue
+            if (token.type === "Integer") {
+                node = {
+                    type: "TOMLValue",
+                    kind: "integer",
+                    value: token.number,
+                    bigint: token.bigint,
+                    parent: valueContainer.parent,
+                    range: clone(token.range),
+                    loc: clone(token.loc),
+                }
+            } else {
+                node = {
+                    type: "TOMLValue",
+                    kind: "float",
+                    value: token.number,
+                    parent: valueContainer.parent,
+                    range: clone(token.range),
+                    loc: clone(token.loc),
+                }
             }
             return valueContainer.set(node)
         }

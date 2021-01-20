@@ -4,8 +4,9 @@ import type {
     BooleanToken,
     Comment,
     DateTimeToken,
+    FloatToken,
+    IntegerToken,
     MultiLineStringToken,
-    NumberToken,
     PunctuatorToken,
     Range,
     StringToken,
@@ -101,6 +102,14 @@ type TokenizerState =
     | "TIME_SECOND"
     | "TIME_SEC_FRAC"
     | "TIME_OFFSET"
+
+const HAS_BIGINT = typeof BigInt !== "undefined"
+const RADIX_PREFIXES = {
+    16: "0x",
+    10: "",
+    8: "0o",
+    2: "02",
+}
 
 const ESCAPES: Record<number, number> = {
     [LATIN_SMALL_B]: BACKSPACE,
@@ -291,8 +300,15 @@ export class Tokenizer {
     ): void
 
     private endToken(
+        type: IntegerToken["type"],
+        pos: "start" | "end",
+        codePoints: number[],
+        radix: 16 | 10 | 8 | 2,
+    ): void
+
+    private endToken(
         // eslint-disable-next-line @typescript-eslint/unified-signatures -- ignore
-        type: NumberToken["type"],
+        type: FloatToken["type"],
         pos: "start" | "end",
         value: number,
     ): void
@@ -309,7 +325,8 @@ export class Tokenizer {
     private endToken(
         type: TokenType | Comment["type"],
         pos: "start" | "end",
-        option?: number[] | number | boolean,
+        option1?: number[] | number | boolean,
+        option2?: 16 | 10 | 8 | 2,
     ): void {
         const { tokenStart } = this
         const end = this.codePointIterator[pos]
@@ -336,7 +353,7 @@ export class Tokenizer {
             let token: Token
             const value =
                 type === "Punctuator"
-                    ? String.fromCodePoint(option! as number)
+                    ? String.fromCodePoint(option1! as number)
                     : this.text.slice(tokenStart.offset, end.offset)
             if (
                 type === "BasicString" ||
@@ -347,15 +364,27 @@ export class Tokenizer {
                 token = {
                     type,
                     value,
-                    string: String.fromCodePoint(...(option! as number[])),
+                    string: String.fromCodePoint(...(option1! as number[])),
                     range,
                     loc,
                 }
-            } else if (type === "Integer" || type === "Float") {
+            } else if (type === "Integer") {
+                const text = String.fromCodePoint(...(option1! as number[]))
                 token = {
                     type,
                     value,
-                    number: option! as number,
+                    number: parseInt(text, option2),
+                    bigint: HAS_BIGINT
+                        ? BigInt(RADIX_PREFIXES[option2!] + text)
+                        : (null as any),
+                    range,
+                    loc,
+                }
+            } else if (type === "Float") {
+                token = {
+                    type,
+                    value,
+                    number: option1! as number,
                     range,
                     loc,
                 }
@@ -363,7 +392,7 @@ export class Tokenizer {
                 token = {
                     type,
                     value,
-                    boolean: option! as boolean,
+                    boolean: option1! as boolean,
                     range,
                     loc,
                 }
@@ -756,7 +785,7 @@ export class Tokenizer {
                 return "FRACTIONAL_RIGHT"
             }
             // Integer values -0 and +0 are valid and identical to an unprefixed zero.
-            this.endToken("Integer", "start", 0)
+            this.endToken("Integer", "start", [DIGIT_0], 10)
             return this.back("DATA")
         }
         const { codePoints, nextCp, hasUnderscore } = this.parseDigits(
@@ -764,7 +793,6 @@ export class Tokenizer {
             isDigit,
         )
 
-        const absNum = Number(String.fromCodePoint(...codePoints))
         if (
             nextCp === DASH &&
             sign === NULL &&
@@ -773,7 +801,7 @@ export class Tokenizer {
         ) {
             const data: DateTimeData = {
                 hasDate: true,
-                year: absNum,
+                year: Number(String.fromCodePoint(...codePoints)),
                 month: 0,
                 day: 0,
                 hour: 0,
@@ -794,7 +822,7 @@ export class Tokenizer {
                 year: 0,
                 month: 0,
                 day: 0,
-                hour: absNum,
+                hour: Number(String.fromCodePoint(...codePoints)),
                 minute: 0,
                 second: 0,
             }
@@ -803,6 +831,7 @@ export class Tokenizer {
         }
 
         if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
+            const absNum = Number(String.fromCodePoint(...codePoints))
             const data: ExponentData = {
                 left: sign === DASH ? -absNum : absNum,
             }
@@ -812,26 +841,29 @@ export class Tokenizer {
         if (nextCp === DOT) {
             const data: FractionalData = {
                 minus: sign === DASH,
-                absInt: absNum,
+                absInt: Number(String.fromCodePoint(...codePoints)),
             }
             this.data = data
             return "FRACTIONAL_RIGHT"
         }
-        this.endToken("Integer", "start", sign === DASH ? -absNum : absNum)
+        this.endToken(
+            "Integer",
+            "start",
+            sign === DASH ? [DASH, ...codePoints] : codePoints,
+            10,
+        )
         return this.back("DATA")
     }
 
     private HEX(cp: number): TokenizerState {
         const { codePoints } = this.parseDigits(cp, isHexDig)
-        const num = parseInt(String.fromCodePoint(...codePoints), 16)
-        this.endToken("Integer", "start", num)
+        this.endToken("Integer", "start", codePoints, 16)
         return this.back("DATA")
     }
 
     private OCTAL(cp: number): TokenizerState {
         const { codePoints } = this.parseDigits(cp, isOctalDig)
-        const num = parseInt(String.fromCodePoint(...codePoints), 8)
-        this.endToken("Integer", "start", num)
+        this.endToken("Integer", "start", codePoints, 8)
         return this.back("DATA")
     }
 
@@ -840,8 +872,7 @@ export class Tokenizer {
             cp,
             (c) => c === DIGIT_0 || c === DIGIT_1,
         )
-        const num = parseInt(String.fromCodePoint(...codePoints), 2)
-        this.endToken("Integer", "start", num)
+        this.endToken("Integer", "start", codePoints, 2)
         return this.back("DATA")
     }
 

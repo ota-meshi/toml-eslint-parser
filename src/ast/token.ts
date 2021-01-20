@@ -51,16 +51,18 @@ export interface MultiLineStringToken extends BaseTOMLToken {
     value: string
     string: string
 }
-export interface NumberToken extends BaseTOMLToken {
-    type: "Integer" | "Float"
+export interface IntegerToken extends BaseTOMLToken {
+    type: "Integer"
     value: string
     number: number
+    bigint: bigint
 }
 export interface FloatToken extends BaseTOMLToken {
     type: "Float"
     value: string
     number: number
 }
+export type NumberToken = IntegerToken | FloatToken
 export interface BooleanToken extends BaseTOMLToken {
     type: "Boolean"
     value: string

@@ -86,12 +86,20 @@ export interface TOMLStringValue extends BaseTOMLNode {
     multiline: boolean
     parent: TOMLKeyValue | TOMLArray
 }
-export interface TOMLNumberValue extends BaseTOMLNode {
+export interface TOMLIntegerValue extends BaseTOMLNode {
     type: "TOMLValue"
-    kind: "integer" | "float"
+    kind: "integer"
+    value: number
+    bigint: bigint
+    parent: TOMLKeyValue | TOMLArray
+}
+export interface TOMLFloatValue extends BaseTOMLNode {
+    type: "TOMLValue"
+    kind: "float"
     value: number
     parent: TOMLKeyValue | TOMLArray
 }
+export type TOMLNumberValue = TOMLIntegerValue | TOMLFloatValue
 export interface TOMLBooleanValue extends BaseTOMLNode {
     type: "TOMLValue"
     kind: "boolean"

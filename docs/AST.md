@@ -68,10 +68,33 @@ Literal strings'''
 - `style` ... If `"basic"`, the value was defined as (multi-line) basic string. If `"literal"`, the value was defined as (multi-line) literal string.
 - `multiline` ... If `"basic"`, the value was defined as multi-line basic string or multi-line literal string.
 
-#### TOMLNumberValue
+#### TOMLIntegerValue
 
 ```ts
-interface TOMLNumberValue extends BaseTOMLNode {
+interface TOMLIntegerValue extends BaseTOMLNode {
+    type: "TOMLValue"
+    kind: "integer"
+    value: number
+    bigint: bigint
+    parent: TOMLKeyValue | TOMLArray
+}
+```
+
+This is [Integer](https://toml.io/en/v1.0.0#integer) value.
+
+e.g.
+
+```toml
+int = 42
+```
+
+- `value` ... The integer value defined by TOML. However, it can overflow.
+- `bigint` ... The integer value defined by TOML is stored as BigInt.
+
+#### TOMLFloatValue
+
+```ts
+interface TOMLFloatValue extends BaseTOMLNode {
     type: "TOMLValue"
     kind: "integer" | "float"
     value: number
@@ -79,18 +102,17 @@ interface TOMLNumberValue extends BaseTOMLNode {
 }
 ```
 
-This is [Integer](https://toml.io/en/v1.0.0#integer) or [Float](https://toml.io/en/v1.0.0#float) value.
+This is [Float](https://toml.io/en/v1.0.0#float) value.
 
 e.g.
 
 ```toml
-int = 42
 float = 3.14
 nan = nan
 infinity = inf
 ```
 
-- `kind` ... If `"integer"`, the value was defined as integer. If `"float"`, the value was defined as float. The float contains `NaN` and `Infinity`.
+- `value` ... The float value defined by TOML. The float contains `NaN` and `Infinity`.
 
 #### TOMLBooleanValue
 

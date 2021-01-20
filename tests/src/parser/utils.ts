@@ -7,7 +7,7 @@ import { load as loadYaml } from "js-yaml"
  * Remove `parent` properties from the given AST.
  */
 function replacer(key: string, value: any) {
-    if (key === "parent" || key === "anchors") {
+    if (key === "parent" || key === "bigint") {
         return undefined
     }
     if (value instanceof RegExp) {
