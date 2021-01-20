@@ -4,7 +4,7 @@ import type {
     TOMLContentNode,
     TOMLInlineTable,
     TOMLKeyValue,
-    TOMLStringKey,
+    TOMLQuoted,
     TOMLTable,
     TOMLTopLevelTable,
 } from "../ast"
@@ -22,7 +22,7 @@ type DefineKey = {
 type DefineKeys = Map<string | number, DefineKey>
 
 type DuplicateKey = {
-    node: TOMLBare | TOMLStringKey | TOMLContentNode
+    node: TOMLBare | TOMLQuoted | TOMLContentNode
     path: (string | number)[]
 }
 

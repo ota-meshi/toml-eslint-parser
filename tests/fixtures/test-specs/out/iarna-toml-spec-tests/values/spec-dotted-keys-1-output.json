@@ -289,7 +289,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "google.com",
                 "style": "basic",

@@ -305,7 +305,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "ʞ",
                 "style": "basic",
@@ -326,7 +326,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "l",
                 "style": "literal",
