@@ -10,7 +10,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "127.0.0.1",
                 "style": "basic",
@@ -88,7 +88,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "character encoding",
                 "style": "basic",
@@ -166,7 +166,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "ʎǝʞ",
                 "style": "basic",
@@ -244,7 +244,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "key2",
                 "style": "literal",
@@ -322,7 +322,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "quoted \"value\"",
                 "style": "literal",

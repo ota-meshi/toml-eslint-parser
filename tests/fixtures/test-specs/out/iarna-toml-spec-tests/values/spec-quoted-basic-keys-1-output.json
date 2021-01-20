@@ -10,7 +10,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "ʎǝʞ",
                 "style": "basic",

@@ -11,7 +11,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "a",
                 "style": "literal",
@@ -88,7 +88,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "\"b\"",
                 "style": "literal",
@@ -165,7 +165,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "\"b\"",
                 "style": "literal",

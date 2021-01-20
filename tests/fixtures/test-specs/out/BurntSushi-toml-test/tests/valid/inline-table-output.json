@@ -640,7 +640,7 @@
                   "type": "TOMLKey",
                   "keys": [
                     {
-                      "type": "TOMLValue",
+                      "type": "TOMLQuoted",
                       "kind": "string",
                       "value": "a",
                       "style": "basic",
@@ -792,7 +792,7 @@
                       "type": "TOMLKey",
                       "keys": [
                         {
-                          "type": "TOMLValue",
+                          "type": "TOMLQuoted",
                           "kind": "string",
                           "value": "a",
                           "style": "basic",
@@ -887,7 +887,7 @@
                       "type": "TOMLKey",
                       "keys": [
                         {
-                          "type": "TOMLValue",
+                          "type": "TOMLQuoted",
                           "kind": "string",
                           "value": "b",
                           "style": "basic",

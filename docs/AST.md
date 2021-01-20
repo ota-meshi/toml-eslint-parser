@@ -46,7 +46,7 @@ interface TOMLStringValue extends BaseTOMLNode {
     value: string
     style: "basic" | "literal"
     multiline: boolean
-    parent: TOMLKey | TOMLKeyValue | TOMLArray
+    parent: TOMLKeyValue | TOMLArray
 }
 ```
 
@@ -67,24 +67,6 @@ Literal strings'''
 
 - `style` ... If `"basic"`, the value was defined as (multi-line) basic string. If `"literal"`, the value was defined as (multi-line) literal string.
 - `multiline` ... If `"basic"`, the value was defined as multi-line basic string or multi-line literal string.
-
-#### TOMLStringKey
-
-```ts
-interface TOMLStringKey extends TOMLStringValue {
-    multiline: false
-    parent: TOMLKey
-}
-```
-
-This is the string used for the key.
-
-e.g.
-
-```toml
-"Key1" = 42
-'Key2' = 42
-```
 
 #### TOMLNumberValue
 
@@ -248,6 +230,26 @@ e.g.
 
 ```toml
 bare-key = 42
+```
+
+#### TOMLQuoted
+
+```ts
+interface TOMLQuoted extends BaseTOMLNode {
+    type: "TOMLQuoted"
+    value: string
+    style: "basic" | "literal"
+    parent: TOMLKey
+}
+```
+
+This is [Quoted key](https://toml.io/en/v1.0.0#keys).
+
+e.g.
+
+```toml
+"Key1" = 42
+'Key2' = 42
 ```
 
 ## Table

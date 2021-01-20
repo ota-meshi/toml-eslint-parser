@@ -29,7 +29,7 @@
                 }
               },
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "tater.man",
                 "style": "basic",

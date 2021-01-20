@@ -7,6 +7,7 @@ import type {
     TOMLKeyValue,
     TOMLNode,
     TOMLProgram,
+    TOMLQuoted,
     TOMLStringValue,
     TOMLTable,
     TOMLTopLevelTable,
@@ -31,7 +32,9 @@ export function getStaticTOMLValue(
         | TOMLKeyValue
         | TOMLInlineTable,
 ): TOMLTableValue
-export function getStaticTOMLValue(node: TOMLStringValue | TOMLBare): string
+export function getStaticTOMLValue(
+    node: TOMLStringValue | TOMLBare | TOMLQuoted,
+): string
 export function getStaticTOMLValue(node: TOMLKey): string[]
 
 /**
@@ -92,6 +95,9 @@ const resolver = {
     },
     TOMLBare(node: TOMLBare) {
         return node.name
+    },
+    TOMLQuoted(node: TOMLQuoted) {
+        return node.value
     },
     TOMLValue(node: TOMLValue) {
         return node.value

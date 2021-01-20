@@ -83,7 +83,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "with.dot",
                 "style": "basic",
@@ -273,7 +273,7 @@
                 "type": "TOMLKey",
                 "keys": [
                   {
-                    "type": "TOMLValue",
+                    "type": "TOMLQuoted",
                     "kind": "string",
                     "value": "with.dot",
                     "style": "basic",
@@ -497,7 +497,7 @@
                 "type": "TOMLKey",
                 "keys": [
                   {
-                    "type": "TOMLValue",
+                    "type": "TOMLQuoted",
                     "kind": "string",
                     "value": "key.with.dots",
                     "style": "basic",

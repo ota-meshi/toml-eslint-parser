@@ -11,7 +11,7 @@
             "type": "TOMLKey",
             "keys": [
               {
-                "type": "TOMLValue",
+                "type": "TOMLQuoted",
                 "kind": "string",
                 "value": "valid key",
                 "style": "basic",

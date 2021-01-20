@@ -8,13 +8,13 @@ import type {
     DateTimeToken,
     Token,
     TOMLBare,
+    TOMLQuoted,
     TOMLBooleanValue,
     TOMLNumberValue,
     TOMLKey,
     TOMLKeyValue,
     TOMLNode,
     TOMLProgram,
-    TOMLStringKey,
     TOMLStringValue,
     TOMLTopLevelTable,
     TOMLTable,
@@ -290,8 +290,8 @@ export class TOMLParser {
             }
             keyNode.keys.push(node)
         } else if (isString(token)) {
-            const node: TOMLStringKey = {
-                type: "TOMLValue",
+            const node: TOMLQuoted = {
+                type: "TOMLQuoted",
                 kind: "string",
                 value: token.string,
                 style: token.type === "BasicString" ? "basic" : "literal",

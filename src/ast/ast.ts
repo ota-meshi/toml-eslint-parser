@@ -12,6 +12,7 @@ export type TOMLNode =
     | TOMLKeyValue
     | TOMLKey
     | TOMLBare
+    | TOMLQuoted
     | TOMLContentNode
 
 export type TOMLContentNode = TOMLValue | TOMLArray | TOMLInlineTable
@@ -44,7 +45,7 @@ export interface TOMLKeyValue extends BaseTOMLNode {
 }
 export interface TOMLKey extends BaseTOMLNode {
     type: "TOMLKey"
-    keys: (TOMLBare | TOMLStringKey)[]
+    keys: (TOMLBare | TOMLQuoted)[]
     parent: TOMLKeyValue | TOMLTable
 }
 export interface TOMLArray extends BaseTOMLNode {
@@ -63,6 +64,15 @@ export interface TOMLBare extends BaseTOMLNode {
     name: string
     parent: TOMLKey
 }
+export interface TOMLQuoted extends BaseTOMLNode {
+    type: "TOMLQuoted"
+    value: string
+    style: "basic" | "literal"
+    parent: TOMLKey
+    // The following properties are the same as TOMLStringValue.
+    kind: "string"
+    multiline: false
+}
 export type TOMLValue =
     | TOMLStringValue
     | TOMLNumberValue
@@ -74,11 +84,7 @@ export interface TOMLStringValue extends BaseTOMLNode {
     value: string
     style: "basic" | "literal"
     multiline: boolean
-    parent: TOMLKey | TOMLKeyValue | TOMLArray
-}
-export interface TOMLStringKey extends TOMLStringValue {
-    multiline: false
-    parent: TOMLKey
+    parent: TOMLKeyValue | TOMLArray
 }
 export interface TOMLNumberValue extends BaseTOMLNode {
     type: "TOMLValue"

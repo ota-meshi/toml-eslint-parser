@@ -8,6 +8,7 @@ import type {
     TOMLKeyValue,
     TOMLNode,
     TOMLProgram,
+    TOMLQuoted,
     TOMLTable,
     TOMLTopLevelTable,
     TOMLValue,
@@ -24,6 +25,7 @@ type TomlKeys = {
     TOMLArray: (keyof TOMLArray)[]
     TOMLInlineTable: (keyof TOMLInlineTable)[]
     TOMLBare: (keyof TOMLBare)[]
+    TOMLQuoted: (keyof TOMLQuoted)[]
     TOMLValue: (keyof TOMLValue)[]
 }
 
@@ -36,6 +38,7 @@ const tomlKeys: TomlKeys = {
     TOMLArray: ["elements"],
     TOMLInlineTable: ["body"],
     TOMLBare: [],
+    TOMLQuoted: [],
     TOMLValue: [],
 }
 
