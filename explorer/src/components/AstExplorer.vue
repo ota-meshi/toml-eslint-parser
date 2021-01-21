@@ -278,6 +278,9 @@ function processValue(options, ctx, value) {
     } else if (type === "number") {
         ctx.appendText(isFinite(value) ? JSON.stringify(value) : String(value))
         return
+    } else if (type === "bigint") {
+        ctx.appendText(String(value))
+        return
     } else if (value instanceof Date) {
         ctx.appendText(value.toJSON())
         return
