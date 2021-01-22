@@ -186,7 +186,6 @@ function checkLoc(ast: TOMLProgram, fileName: string, _code: string) {
         )
     }
     traverseNodes(ast, {
-        // eslint-disable-next-line complexity, no-shadow -- test
         enterNode(node, parent) {
             if (node.type !== "Program" && node.type !== "TOMLTopLevelTable") {
                 assert.ok(

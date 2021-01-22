@@ -408,7 +408,6 @@ export class Tokenizer {
         }
     }
 
-    // eslint-disable-next-line complexity -- ignore
     private DATA(cp: number): TokenizerState {
         while (isWhitespace(cp) || isEOL(cp)) {
             cp = this.nextCode()
