@@ -26,7 +26,8 @@
   "keywords": [
     "toml",
     "eslint",
-    "parser"
+    "parser",
+    "ast"
   ],
   "author": "Yosuke Ota",
   "license": "MIT",
