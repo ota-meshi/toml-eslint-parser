@@ -1,5 +1,6 @@
 import assert from "assert"
 import fs from "fs"
+import semver from "semver"
 
 import { KEYS } from "../../../src/visitor-keys"
 import { traverseNodes, getKeys } from "../../../src/traverse"
@@ -8,6 +9,8 @@ import type { TOMLProgram } from "../../../src/ast"
 import { parseTOML } from "../../../src"
 import * as IarnaTOML from "@iarna/toml"
 import { listUpFixtures, stringify } from "./utils"
+
+const isNode8 = !semver.gte(process.version, "9.0.0")
 
 function parse(code: string, filePath: string) {
     return parseTOML(code, { filePath })
@@ -81,6 +84,10 @@ describe("Check for AST.", () => {
 
                 checkLoc(ast, inputFileName, input)
             })
+
+            if (isNode8) {
+                return
+            }
 
             it("return value of getStaticTOMLValue must be correct.", () => {
                 if (!ast) return
