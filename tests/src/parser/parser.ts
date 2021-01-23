@@ -10,7 +10,7 @@ import { parseTOML } from "../../../src"
 import * as IarnaTOML from "@iarna/toml"
 import { listUpFixtures, stringify } from "./utils"
 
-const isNode8 = semver.gte(process.version, "<=8")
+const isNode8 = !semver.gte(process.version, "9.0.0")
 
 function parse(code: string, filePath: string) {
     return parseTOML(code, { filePath })
