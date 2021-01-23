@@ -22,6 +22,10 @@ A TOML parser that produces output [compatible with ESLint](https://eslint.org/d
 npm install --save-dev toml-eslint-parser
 ```
 
+> **Requirements**
+>
+> - Node.js v8.10.0 and above
+
 ## Usage
 
 ### Configuration
