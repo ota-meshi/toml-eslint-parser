@@ -35,3 +35,20 @@ jobs:
       run: npm install
     - name: Test
       run: npm test
+  test-for-node8:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 8.10.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: 8.10.x
+    - name: Setup
+      run: npm run setup
+    - name: Install Target Packages
+      run: |+
+        npm i -D mocha@7
+        npx rimraf node_modules
+        npm install
+    - name: Test
+      run: npm test
