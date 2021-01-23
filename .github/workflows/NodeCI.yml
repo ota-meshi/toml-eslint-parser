@@ -47,7 +47,7 @@ jobs:
       run: npm run setup
     - name: Install Target Packages
       run: |+
-        npm i -D mocha@7
+        npm i -D mocha@7 eslint@6
         npx rimraf node_modules
         npm install
     - name: Test
