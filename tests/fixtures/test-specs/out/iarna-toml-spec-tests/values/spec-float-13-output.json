@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "nan",
             "range": [
               6,
               9

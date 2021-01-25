@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 99,
+            "number": "+99",
             "range": [
               7,
               10

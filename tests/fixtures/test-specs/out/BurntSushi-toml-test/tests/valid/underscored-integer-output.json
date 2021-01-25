@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 1000000,
+            "number": "1000000",
             "range": [
               10,
               19

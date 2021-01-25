@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# Infinity #",
+            "number": "inf",
             "range": [
               51,
               54
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# Infinity #",
+            "number": "+inf",
             "range": [
               82,
               86
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# -Infinity #",
+            "number": "-inf",
             "range": [
               113,
               117
@@ -266,6 +269,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "nan",
             "range": [
               160,
               163
@@ -339,6 +343,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "+nan",
             "range": [
               226,
               230
@@ -412,6 +417,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "-nan",
             "range": [
               253,
               257

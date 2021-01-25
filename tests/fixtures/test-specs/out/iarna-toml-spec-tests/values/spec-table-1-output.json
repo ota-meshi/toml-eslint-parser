@@ -166,6 +166,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 123,
+                "number": "123",
                 "range": [
                   38,
                   41
@@ -374,6 +375,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 456,
+                "number": "456",
                 "range": [
                   84,
                   87

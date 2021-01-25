@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": -9223372036854776000,
+            "number": "-9223372036854775808",
             "range": [
               4,
               30

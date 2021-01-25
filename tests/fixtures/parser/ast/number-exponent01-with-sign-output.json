@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 0,
+            "number": "0E+011",
             "range": [
               7,
               13
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 0,
+            "number": "-0E+011",
             "range": [
               21,
               28
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 0,
+            "number": "+0E+011",
             "range": [
               36,
               43

@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 342391,
+            "number": "0o01234567",
             "range": [
               7,
               17

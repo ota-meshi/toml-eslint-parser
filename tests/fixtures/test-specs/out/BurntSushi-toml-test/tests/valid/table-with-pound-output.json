@@ -94,6 +94,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 42,
+                "number": "42",
                 "range": [
                   23,
                   25

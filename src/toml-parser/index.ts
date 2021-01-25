@@ -328,6 +328,24 @@ export class TOMLParser {
             return valueContainer.set(node)
         }
         if (isNumber(token)) {
+            const text = this.text
+            const [startRange, endRange] = token.range
+            let numberString: string | null = null
+
+            /**
+             * Get the text of number
+             */
+            // eslint-disable-next-line func-style -- ignore
+            const getNumberText = (): string => {
+                return (
+                    numberString ??
+                    (numberString = text.slice(startRange, endRange)).replace(
+                        /_/g,
+                        "",
+                    )
+                )
+            }
+
             let node: TOMLNumberValue
             if (token.type === "Integer") {
                 node = {
@@ -335,6 +353,9 @@ export class TOMLParser {
                     kind: "integer",
                     value: token.number,
                     bigint: token.bigint,
+                    get number() {
+                        return getNumberText()
+                    },
                     parent: valueContainer.parent,
                     range: clone(token.range),
                     loc: clone(token.loc),
@@ -344,6 +365,9 @@ export class TOMLParser {
                     type: "TOMLValue",
                     kind: "float",
                     value: token.number,
+                    get number() {
+                        return getNumberText()
+                    },
                     parent: valueContainer.parent,
                     range: clone(token.range),
                     loc: clone(token.loc),

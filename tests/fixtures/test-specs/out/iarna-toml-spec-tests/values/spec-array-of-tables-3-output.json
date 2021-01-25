@@ -92,6 +92,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 1,
+                      "number": "1",
                       "range": [
                         17,
                         18
@@ -165,6 +166,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 2,
+                      "number": "2",
                       "range": [
                         24,
                         25
@@ -238,6 +240,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 3,
+                      "number": "3",
                       "range": [
                         31,
                         32
@@ -330,6 +333,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 7,
+                      "number": "7",
                       "range": [
                         53,
                         54
@@ -403,6 +407,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 8,
+                      "number": "8",
                       "range": [
                         60,
                         61
@@ -476,6 +481,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 9,
+                      "number": "9",
                       "range": [
                         67,
                         68
@@ -568,6 +574,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 2,
+                      "number": "2",
                       "range": [
                         89,
                         90
@@ -641,6 +648,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 4,
+                      "number": "4",
                       "range": [
                         96,
                         97
@@ -714,6 +722,7 @@
                       "type": "TOMLValue",
                       "kind": "integer",
                       "value": 8,
+                      "number": "8",
                       "range": [
                         103,
                         104

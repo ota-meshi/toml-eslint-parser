@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 99,
+            "number": "+99",
             "range": [
               40,
               43
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 42,
+            "number": "42",
             "range": [
               51,
               53
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 0,
+            "number": "0",
             "range": [
               61,
               62
@@ -266,6 +269,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": -17,
+            "number": "-17",
             "range": [
               70,
               73
@@ -339,6 +343,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xDEADBEEF",
             "range": [
               113,
               123
@@ -412,6 +417,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xdeadbeef",
             "range": [
               131,
               141
@@ -485,6 +491,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xdeadbeef",
             "range": [
               149,
               160
@@ -558,6 +565,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 342391,
+            "number": "0o01234567",
             "range": [
               194,
               204
@@ -631,6 +639,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 493,
+            "number": "0o755",
             "range": [
               212,
               217
@@ -704,6 +713,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 214,
+            "number": "0b11010110",
             "range": [
               252,
               262
@@ -777,6 +787,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 1,
+            "number": "+1.0",
             "range": [
               286,
               290
@@ -850,6 +861,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 3.1415,
+            "number": "3.1415",
             "range": [
               300,
               306
@@ -923,6 +935,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": -0.01,
+            "number": "-0.01",
             "range": [
               316,
               321
@@ -996,6 +1009,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 5e+22,
+            "number": "5e+22",
             "range": [
               343,
               348
@@ -1069,6 +1083,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 1000000,
+            "number": "1e06",
             "range": [
               358,
               362
@@ -1142,6 +1157,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": -0.02,
+            "number": "-2E-2",
             "range": [
               372,
               377
@@ -1215,6 +1231,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 6.626e-34,
+            "number": "6.626e-34",
             "range": [
               395,
               404
@@ -1288,6 +1305,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 224617.445991228,
+            "number": "224617.445991228",
             "range": [
               428,
               447
@@ -1361,6 +1379,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# Infinity #",
+            "number": "inf",
             "range": [
               472,
               475
@@ -1434,6 +1453,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# Infinity #",
+            "number": "+inf",
             "range": [
               508,
               512
@@ -1507,6 +1527,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# -Infinity #",
+            "number": "-inf",
             "range": [
               545,
               549
@@ -1580,6 +1601,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "nan",
             "range": [
               593,
               596
@@ -1653,6 +1675,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "+nan",
             "range": [
               604,
               608
@@ -1726,6 +1749,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# NaN #",
+            "number": "-nan",
             "range": [
               616,
               620

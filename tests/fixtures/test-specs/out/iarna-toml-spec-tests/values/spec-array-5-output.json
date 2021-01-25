@@ -53,6 +53,7 @@
                     "type": "TOMLValue",
                     "kind": "integer",
                     "value": 1,
+                    "number": "1",
                     "range": [
                       25,
                       26
@@ -72,6 +73,7 @@
                     "type": "TOMLValue",
                     "kind": "integer",
                     "value": 2,
+                    "number": "2",
                     "range": [
                       28,
                       29

@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 1,
+            "number": "1",
             "range": [
               8,
               9
@@ -123,6 +124,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 2,
+            "number": "2",
             "range": [
               23,
               24
@@ -240,6 +242,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 3,
+                "number": "3",
                 "range": [
                   48,
                   49
@@ -316,6 +319,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 4,
+                "number": "4",
                 "range": [
                   63,
                   64
@@ -468,6 +472,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 5,
+                "number": "5",
                 "range": [
                   90,
                   91
@@ -544,6 +549,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 6,
+                "number": "6",
                 "range": [
                   110,
                   111

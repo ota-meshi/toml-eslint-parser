@@ -92,12 +92,14 @@ export interface TOMLIntegerValue extends BaseTOMLNode {
     kind: "integer"
     value: number
     bigint: bigint
+    number: string
     parent: TOMLKeyValue | TOMLArray
 }
 export interface TOMLFloatValue extends BaseTOMLNode {
     type: "TOMLValue"
     kind: "float"
     value: number
+    number: string
     parent: TOMLKeyValue | TOMLArray
 }
 export type TOMLNumberValue = TOMLIntegerValue | TOMLFloatValue

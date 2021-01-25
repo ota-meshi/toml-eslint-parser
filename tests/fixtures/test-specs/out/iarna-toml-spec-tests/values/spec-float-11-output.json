@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": "# Infinity #",
+            "number": "+inf",
             "range": [
               6,
               10
