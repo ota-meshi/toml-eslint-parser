@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "products",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -249,6 +253,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "products",
+            1
+          ],
           "body": [],
           "range": [
             90,
@@ -305,6 +313,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "products",
+            2
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

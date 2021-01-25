@@ -80,6 +80,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "g",
+            "h",
+            "i"
+          ],
           "body": [],
           "range": [
             0,

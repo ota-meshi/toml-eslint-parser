@@ -98,6 +98,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "x",
+            "y",
+            "z",
+            "w"
+          ],
           "body": [],
           "range": [
             45,
@@ -154,6 +160,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "x"
+          ],
           "body": [],
           "range": [
             74,

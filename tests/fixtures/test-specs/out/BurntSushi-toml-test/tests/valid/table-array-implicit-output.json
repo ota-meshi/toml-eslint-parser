@@ -62,6 +62,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            "songs",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

@@ -47,6 +47,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "a"
+          ],
           "body": [],
           "range": [
             0,
@@ -124,6 +127,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            "b"
+          ],
           "body": [],
           "range": [
             6,
@@ -219,6 +226,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            "b",
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

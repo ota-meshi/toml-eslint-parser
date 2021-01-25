@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "people",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -251,6 +255,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "people",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -458,6 +466,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "people",
+            2
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

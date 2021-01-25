@@ -119,6 +119,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "owner"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -325,6 +328,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "database"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -976,6 +982,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "servers"
+          ],
           "body": [],
           "range": [
             278,
@@ -1050,6 +1059,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "servers",
+            "alpha"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -1275,6 +1288,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "servers",
+            "beta"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

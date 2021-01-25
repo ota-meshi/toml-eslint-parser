@@ -44,6 +44,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "name"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -251,6 +254,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "point"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -454,6 +460,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "animal"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

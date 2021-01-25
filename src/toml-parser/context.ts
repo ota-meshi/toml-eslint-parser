@@ -12,6 +12,7 @@ import type {
     TOMLTopLevelTable,
 } from "../ast"
 import type { ParserOptions } from "../parser-options"
+import { KeysResolver } from "./keys-resolver"
 
 export type ValueContainer = {
     parent: TOMLKeyValue | TOMLArray
@@ -42,6 +43,8 @@ export class Context {
 
     public table: TOMLTopLevelTable | TOMLTable
 
+    private readonly keysResolver: KeysResolver
+
     private readonly valueContainerStack: ValueContainer[] = []
 
     public constructor(data: {
@@ -52,6 +55,7 @@ export class Context {
         this.tokenizer = new Tokenizer(data.text, data.parserOptions)
         this.topLevelTable = data.topLevelTable
         this.table = data.topLevelTable
+        this.keysResolver = new KeysResolver(this)
     }
 
     public get startPos(): {
@@ -143,6 +147,14 @@ export class Context {
         const valueContainer = this.valueContainerStack.pop()!
         this.tokenizer.valuesEnabled = this.valueContainerStack.length > 0
         return valueContainer
+    }
+
+    public applyResolveKeyForTable(node: TOMLTable): void {
+        this.keysResolver.applyResolveKeyForTable(node)
+    }
+
+    public verifyDuplicateKeys(): void {
+        this.keysResolver.verifyDuplicateKeys(this.topLevelTable)
     }
 
     /**
