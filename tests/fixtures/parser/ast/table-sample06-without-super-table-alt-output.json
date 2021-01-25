@@ -44,6 +44,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "x"
+          ],
           "body": [],
           "range": [
             34,
@@ -118,6 +121,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "x",
+            "y"
+          ],
           "body": [],
           "range": [
             44,
@@ -210,6 +217,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "x",
+            "y",
+            "z"
+          ],
           "body": [],
           "range": [
             58,
@@ -320,6 +332,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "x",
+            "y",
+            "z",
+            "w"
+          ],
           "body": [],
           "range": [
             79,

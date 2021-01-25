@@ -47,6 +47,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "key#group"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

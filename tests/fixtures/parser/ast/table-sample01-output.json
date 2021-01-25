@@ -44,6 +44,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "table"
+          ],
           "body": [],
           "range": [
             34,

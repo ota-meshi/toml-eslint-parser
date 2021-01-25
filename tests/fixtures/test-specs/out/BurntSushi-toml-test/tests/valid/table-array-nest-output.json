@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -194,6 +198,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            0,
+            "songs",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -344,6 +354,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            0,
+            "songs",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -476,6 +492,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -626,6 +646,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            1,
+            "songs",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -776,6 +802,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "albums",
+            1,
+            "songs",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

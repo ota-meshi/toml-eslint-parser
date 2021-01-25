@@ -80,6 +80,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            "b",
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -210,6 +215,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "a"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

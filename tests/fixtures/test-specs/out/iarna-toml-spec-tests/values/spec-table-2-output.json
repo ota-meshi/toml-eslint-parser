@@ -65,6 +65,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "dog",
+            "tater.man"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

@@ -80,6 +80,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            "b",
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

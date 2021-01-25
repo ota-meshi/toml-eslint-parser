@@ -34,6 +34,7 @@ export interface TOMLTable extends BaseTOMLNode {
     type: "TOMLTable"
     kind: "standard" | "array"
     key: TOMLKey
+    resolvedKey: (string | number)[]
     body: TOMLKeyValue[]
     parent: TOMLTopLevelTable
 }

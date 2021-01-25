@@ -193,6 +193,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "plain_table"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -417,6 +420,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "table",
+            "withdot"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

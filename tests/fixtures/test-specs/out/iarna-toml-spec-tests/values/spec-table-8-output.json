@@ -44,6 +44,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruit"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -339,6 +342,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruit",
+            "apple",
+            "texture"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

@@ -44,6 +44,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "a"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -210,6 +213,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            "b",
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

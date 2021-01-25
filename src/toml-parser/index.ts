@@ -22,7 +22,6 @@ import type {
     TOMLArray,
     TOMLInlineTable,
 } from "../ast"
-import { iterateDuplicateKeyNodes } from "../checker/dupe-keys"
 import type { ErrorCode } from "../errors"
 import { last } from "../internal-utils"
 import type { ParserOptions } from "../parser-options"
@@ -102,12 +101,7 @@ export class TOMLParser {
             applyEndLoc(node, node.body)
         }
 
-        for (const dupeNode of iterateDuplicateKeyNodes(
-            node,
-            this.parserOptions,
-        )) {
-            ctx.reportParseError("dupe-keys", dupeNode.node)
-        }
+        ctx.verifyDuplicateKeys()
 
         ast.tokens = ctx.tokens
         ast.comments = ctx.comments
@@ -160,6 +154,7 @@ export class TOMLParser {
             type: "TOMLTable",
             kind: "standard",
             key: null as never,
+            resolvedKey: [],
             body: [],
             parent: topLevelTableNode,
             range: clone(token.range),
@@ -209,6 +204,7 @@ export class TOMLParser {
             }
         }
         applyEndLoc(tableNode, targetToken)
+        ctx.applyResolveKeyForTable(tableNode)
         ctx.needNewLine = true
         return []
     }

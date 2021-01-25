@@ -62,6 +62,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruit",
+            "apple"
+          ],
           "body": [],
           "range": [
             58,
@@ -118,6 +122,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "animal"
+          ],
           "body": [],
           "range": [
             72,
@@ -192,6 +199,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruit",
+            "orange"
+          ],
           "body": [],
           "range": [
             81,

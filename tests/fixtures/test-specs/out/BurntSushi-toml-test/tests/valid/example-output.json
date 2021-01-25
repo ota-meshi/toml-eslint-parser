@@ -118,6 +118,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "numtheory"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

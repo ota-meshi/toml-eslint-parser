@@ -194,6 +194,9 @@
               }
             }
           },
+          "resolvedKey": [
+            "owner"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

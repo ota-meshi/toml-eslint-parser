@@ -283,6 +283,7 @@ interface TOMLTable extends BaseTOMLNode {
     type: "TOMLTable"
     kind: "standard" | "array"
     key: TOMLKey
+    resolvedKey: (string | number)[]
     body: TOMLKeyValue[]
     parent: TOMLTopLevelTable
 }
@@ -306,6 +307,7 @@ sku = 284758393
 ```
 
 - `kind` ... If `"standard"`, the table was defined as `[]`. If `"array"`, the table was defined as `[[]]`.
+- `resolvedKey` ... An array of keys that are actually applied. In the above example, the first `[[array.of.table]]` is resolved as `["array", "of", "table", 0]`, the second `[[array.of.table]]` is resolved as `["array", "of", "table", 1]`.
 
 ## Document
 

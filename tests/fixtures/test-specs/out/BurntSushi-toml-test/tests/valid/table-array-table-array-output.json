@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            0
+          ],
           "body": [],
           "range": [
             0,
@@ -118,6 +122,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            0,
+            "b",
+            0
+          ],
           "body": [],
           "range": [
             10,
@@ -210,6 +220,13 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            0,
+            "b",
+            0,
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -360,6 +377,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            0,
+            "b",
+            1
+          ],
           "body": [],
           "range": [
             61,
@@ -452,6 +475,13 @@
               }
             }
           },
+          "resolvedKey": [
+            "a",
+            0,
+            "b",
+            1,
+            "c"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

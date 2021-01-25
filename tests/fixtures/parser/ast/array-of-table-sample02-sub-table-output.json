@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -194,6 +198,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            0,
+            "physical"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -419,6 +428,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            0,
+            "varieties",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -569,6 +584,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            0,
+            "varieties",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -701,6 +722,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            1
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -851,6 +876,12 @@
               }
             }
           },
+          "resolvedKey": [
+            "fruits",
+            1,
+            "varieties",
+            0
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",

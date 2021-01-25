@@ -44,6 +44,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "the",
+            0
+          ],
           "body": [],
           "range": [
             0,
@@ -118,6 +122,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "the",
+            0,
+            "hard"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
@@ -248,6 +257,10 @@
               }
             }
           },
+          "resolvedKey": [
+            "the",
+            1
+          ],
           "body": [],
           "range": [
             38,
@@ -322,6 +335,11 @@
               }
             }
           },
+          "resolvedKey": [
+            "the",
+            1,
+            "hard"
+          ],
           "body": [
             {
               "type": "TOMLKeyValue",
