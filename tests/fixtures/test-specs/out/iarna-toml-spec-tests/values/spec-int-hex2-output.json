@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xdeadbeef",
             "range": [
               7,
               17

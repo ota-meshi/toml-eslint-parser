@@ -167,6 +167,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 738594937,
+                "number": "738594937",
                 "range": [
                   79,
                   88
@@ -436,6 +437,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 284758393,
+                "number": "284758393",
                 "range": [
                   169,
                   178

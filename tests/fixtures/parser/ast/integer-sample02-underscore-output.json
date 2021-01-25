@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 1000,
+            "number": "1000",
             "range": [
               43,
               48
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 5349221,
+            "number": "5349221",
             "range": [
               56,
               65
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 5349221,
+            "number": "5349221",
             "range": [
               73,
               82
@@ -266,6 +269,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 12345,
+            "number": "12345",
             "range": [
               123,
               132

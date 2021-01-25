@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 1,
+            "number": "+1.0",
             "range": [
               7,
               11

@@ -76,6 +76,7 @@ interface TOMLIntegerValue extends BaseTOMLNode {
     kind: "integer"
     value: number
     bigint: bigint
+    number: string
     parent: TOMLKeyValue | TOMLArray
 }
 ```
@@ -90,6 +91,7 @@ int = 42
 
 - `value` ... The integer value defined by TOML. However, it can overflow.
 - `bigint` ... The integer value defined by TOML is stored as BigInt.
+- `number` ... The integer expressed as a string.
 
 #### TOMLFloatValue
 
@@ -98,6 +100,7 @@ interface TOMLFloatValue extends BaseTOMLNode {
     type: "TOMLValue"
     kind: "integer" | "float"
     value: number
+    number: string
     parent: TOMLKeyValue | TOMLArray
 }
 ```
@@ -113,6 +116,7 @@ infinity = inf
 ```
 
 - `value` ... The float value defined by TOML. The float contains `NaN` and `Infinity`.
+- `number` ... The float expressed as a string.
 
 #### TOMLBooleanValue
 

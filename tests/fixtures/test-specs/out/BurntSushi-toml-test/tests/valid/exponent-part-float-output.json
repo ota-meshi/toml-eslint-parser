@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 1000000,
+            "number": "1e6",
             "range": [
               10,
               13
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": -0.1,
+            "number": "-1E-1",
             "range": [
               27,
               32
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 666,
+            "number": "6.66E2",
             "range": [
               41,
               47

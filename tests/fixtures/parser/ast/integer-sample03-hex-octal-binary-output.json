@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xDEADBEEF",
             "range": [
               74,
               84
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xdeadbeef",
             "range": [
               92,
               102
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 3735928559,
+            "number": "0xdeadbeef",
             "range": [
               110,
               121
@@ -266,6 +269,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 342391,
+            "number": "0o01234567",
             "range": [
               155,
               165
@@ -339,6 +343,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 493,
+            "number": "0o755",
             "range": [
               173,
               178
@@ -412,6 +417,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 214,
+            "number": "0b11010110",
             "range": [
               248,
               258

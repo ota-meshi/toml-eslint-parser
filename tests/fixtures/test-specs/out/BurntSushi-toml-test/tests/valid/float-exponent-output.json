@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 300,
+            "number": "3e2",
             "range": [
               8,
               11
@@ -120,6 +121,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 300,
+            "number": "3E2",
             "range": [
               20,
               23
@@ -193,6 +195,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 0.03,
+            "number": "3e-2",
             "range": [
               30,
               34
@@ -266,6 +269,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 300,
+            "number": "3E+2",
             "range": [
               41,
               45
@@ -339,6 +343,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 3,
+            "number": "3e0",
             "range": [
               53,
               56
@@ -412,6 +417,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 310,
+            "number": "3.1e2",
             "range": [
               70,
               75
@@ -485,6 +491,7 @@
             "type": "TOMLValue",
             "kind": "float",
             "value": 310,
+            "number": "3.1E2",
             "range": [
               89,
               94

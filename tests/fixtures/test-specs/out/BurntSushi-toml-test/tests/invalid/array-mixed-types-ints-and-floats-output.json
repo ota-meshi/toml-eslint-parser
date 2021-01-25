@@ -50,6 +50,7 @@
                 "type": "TOMLValue",
                 "kind": "integer",
                 "value": 1,
+                "number": "1",
                 "range": [
                   19,
                   20
@@ -69,6 +70,7 @@
                 "type": "TOMLValue",
                 "kind": "float",
                 "value": 1.1,
+                "number": "1.1",
                 "range": [
                   22,
                   25

@@ -451,6 +451,7 @@
                     "type": "TOMLValue",
                     "kind": "integer",
                     "value": 8001,
+                    "number": "8001",
                     "range": [
                       179,
                       183
@@ -470,6 +471,7 @@
                     "type": "TOMLValue",
                     "kind": "integer",
                     "value": 8001,
+                    "number": "8001",
                     "range": [
                       185,
                       189
@@ -489,6 +491,7 @@
                     "type": "TOMLValue",
                     "kind": "integer",
                     "value": 8002,
+                    "number": "8002",
                     "range": [
                       191,
                       195
@@ -645,6 +648,7 @@
                         "type": "TOMLValue",
                         "kind": "float",
                         "value": 3.14,
+                        "number": "3.14",
                         "range": [
                           226,
                           230
@@ -792,6 +796,7 @@
                       "type": "TOMLValue",
                       "kind": "float",
                       "value": 79.5,
+                      "number": "79.5",
                       "range": [
                         257,
                         261
@@ -865,6 +870,7 @@
                       "type": "TOMLValue",
                       "kind": "float",
                       "value": 72,
+                      "number": "72.0",
                       "range": [
                         270,
                         274

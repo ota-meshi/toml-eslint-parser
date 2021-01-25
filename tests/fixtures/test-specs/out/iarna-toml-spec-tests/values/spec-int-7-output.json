@@ -47,6 +47,7 @@
             "type": "TOMLValue",
             "kind": "integer",
             "value": 12345,
+            "number": "12345",
             "range": [
               7,
               16
