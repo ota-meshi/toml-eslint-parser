@@ -339,10 +339,9 @@ export class TOMLParser {
             const getNumberText = (): string => {
                 return (
                     numberString ??
-                    (numberString = text.slice(startRange, endRange)).replace(
-                        /_/g,
-                        "",
-                    )
+                    (numberString = text
+                        .slice(startRange, endRange)
+                        .replace(/_/g, ""))
                 )
             }
 
