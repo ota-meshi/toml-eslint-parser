@@ -3,7 +3,10 @@
     "javascript",
     "javascriptreact",
     "vue",
-    "typescript"
+    "typescript",
+    "json",
+    "jsonc",
+    "yaml"
   ],
   "typescript.validate.enable": true,
   "javascript.validate.enable": false,
