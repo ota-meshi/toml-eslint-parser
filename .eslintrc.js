@@ -13,6 +13,7 @@ module.exports = {
         "plugin:@ota-meshi/+typescript",
         "plugin:@ota-meshi/+prettier",
         "plugin:@ota-meshi/+json",
+        "plugin:@ota-meshi/+yaml",
     ],
     rules: {
         "new-cap": "off",
