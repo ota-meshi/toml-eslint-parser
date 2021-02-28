@@ -18,6 +18,7 @@ for (const {
     outputFileName,
     valueFileName,
 } of listUpFixtures()) {
+    // eslint-disable-next-line no-console -- tool
     console.error(filename)
 
     const input = fs.readFileSync(inputFileName, "utf8")
