@@ -393,7 +393,7 @@ export class TOMLParser {
             let dateValue = new Date(textDate)
             if (isNaN(dateValue.getTime())) {
                 // leap seconds?
-                textDate = textDate.replace(/(\d\d:\d\d):60/u, "$1:59")
+                textDate = textDate.replace(/(\d{2}:\d{2}):60/u, "$1:59")
                 dateValue = new Date(textDate)
             }
             const node: TOMLDateTimeValue = {
