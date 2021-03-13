@@ -80,6 +80,7 @@ export class KeysResolver {
             } else if (keyStore.table === "array") {
                 const peekIndex = keyStore.peekIndex
                 node.resolvedKey.push(peekIndex)
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion -- bug?
                 keyStore = keyStore.keys.get(peekIndex)!
             }
             keys = keyStore.keys as never
