@@ -38,7 +38,7 @@ describe("Check for AST.", () => {
                     if (invalid) {
                         assert.fail("Expected error")
                     }
-                } catch (e) {
+                } catch (e: any) {
                     if (valid) {
                         throw e
                     }
