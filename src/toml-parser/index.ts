@@ -21,6 +21,9 @@ import type {
     TOMLDateTimeValue,
     TOMLArray,
     TOMLInlineTable,
+    Range,
+    SourceLocation,
+    Position,
 } from "../ast"
 import type { ErrorCode } from "../errors"
 import { last } from "../internal-utils"
@@ -31,6 +34,22 @@ import { Context } from "./context"
 const STATE_FOR_ERROR: Record<string, ErrorCode> = {
     VALUE: "missing-value",
 }
+const STRING_VALUE_STYLE_MAP = {
+    BasicString: "basic",
+    MultiLineBasicString: "basic",
+    LiteralString: "literal",
+    MultiLineLiteralString: "literal",
+} as const
+const STRING_KEY_STYLE_MAP = {
+    BasicString: "basic",
+    LiteralString: "literal",
+} as const
+const DATETIME_VALUE_KIND_MAP = {
+    OffsetDateTime: "offset-date-time",
+    LocalDateTime: "local-date-time",
+    LocalDate: "local-date",
+    LocalTime: "local-time",
+} as const
 
 export class TOMLParser {
     private readonly text: string
@@ -72,8 +91,8 @@ export class TOMLParser {
             type: "TOMLTopLevelTable",
             body: [],
             parent: ast,
-            range: clone(ast.range),
-            loc: clone(ast.loc),
+            range: cloneRange(ast.range),
+            loc: cloneLoc(ast.loc),
         }
         ast.body = [node]
         const ctx = new Context({
@@ -84,7 +103,7 @@ export class TOMLParser {
         let token = ctx.nextToken()
         if (token) {
             node.range[0] = token.range[0]
-            node.loc.start = clone(token.loc.start)
+            node.loc.start = clonePos(token.loc.start)
 
             while (token) {
                 const state = ctx.stateStack.pop() || "TABLE"
@@ -96,9 +115,9 @@ export class TOMLParser {
                 return ctx.reportParseError(STATE_FOR_ERROR[state], null)
             }
             if (ctx.table.type === "TOMLTable") {
-                applyEndLoc(ctx.table, ctx.table.body)
+                applyEndLoc(ctx.table, last(ctx.table.body))
             }
-            applyEndLoc(node, node.body)
+            applyEndLoc(node, last(node.body))
         }
 
         ctx.verifyDuplicateKeys()
@@ -126,14 +145,17 @@ export class TOMLParser {
     }
 
     private VALUE(token: Token, ctx: Context): ParserState[] {
-        if (
-            isString(token) ||
-            isMultiLineString(token) ||
-            isNumber(token) ||
-            isBoolean(token) ||
-            isDateTime(token)
-        ) {
-            return this.processSimpleValue(token, ctx)
+        if (isString(token) || isMultiLineString(token)) {
+            return this.processStringValue(token, ctx)
+        }
+        if (isNumber(token)) {
+            return this.processNumberValue(token, ctx)
+        }
+        if (isBoolean(token)) {
+            return this.processBooleanValue(token, ctx)
+        }
+        if (isDateTime(token)) {
+            return this.processDateTimeValue(token, ctx)
         }
         if (isLeftBracket(token)) {
             return this.processArray(token, ctx)
@@ -157,11 +179,11 @@ export class TOMLParser {
             resolvedKey: [],
             body: [],
             parent: topLevelTableNode,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
         if (ctx.table.type === "TOMLTable") {
-            applyEndLoc(ctx.table, ctx.table.body)
+            applyEndLoc(ctx.table, last(ctx.table.body))
         }
         topLevelTableNode.body.push(tableNode)
         ctx.table = tableNode
@@ -219,8 +241,8 @@ export class TOMLParser {
             key: null as never,
             value: null as never,
             parent: tableNode,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
         tableNode.body.push(keyValueNode)
         const { nextToken: targetToken } = this.processKeyNode(
@@ -253,13 +275,19 @@ export class TOMLParser {
             type: "TOMLKey",
             keys: [],
             parent,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
         parent.key = keyNode
         let targetToken: Token | null = token
-        while (targetToken && (isBare(targetToken) || isString(targetToken))) {
-            this.processKey(targetToken, keyNode)
+        while (targetToken) {
+            if (isBare(targetToken)) {
+                this.processBareKey(targetToken, keyNode)
+            } else if (isString(targetToken)) {
+                this.processStringKey(targetToken, keyNode)
+            } else {
+                break
+            }
             targetToken = ctx.nextToken({
                 needSameLine: "invalid-key-value-newline",
             })
@@ -271,151 +299,146 @@ export class TOMLParser {
                 break
             }
         }
-        applyEndLoc(keyNode, keyNode.keys)
+        applyEndLoc(keyNode, last(keyNode.keys))
         return { keyNode, nextToken: targetToken }
     }
 
-    private processKey(token: BareToken | StringToken, keyNode: TOMLKey): void {
-        if (isBare(token)) {
-            const node: TOMLBare = {
-                type: "TOMLBare",
-                name: token.value,
-                parent: keyNode,
-                range: clone(token.range),
-                loc: clone(token.loc),
-            }
-            keyNode.keys.push(node)
-        } else if (isString(token)) {
-            const node: TOMLQuoted = {
-                type: "TOMLQuoted",
-                kind: "string",
-                value: token.string,
-                style: token.type === "BasicString" ? "basic" : "literal",
-                multiline: false,
-                parent: keyNode,
-                range: clone(token.range),
-                loc: clone(token.loc),
-            }
-            keyNode.keys.push(node)
+    private processBareKey(token: BareToken, keyNode: TOMLKey): void {
+        const node: TOMLBare = {
+            type: "TOMLBare",
+            name: token.value,
+            parent: keyNode,
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
+        keyNode.keys.push(node)
     }
 
-    private processSimpleValue(
-        token:
-            | StringToken
-            | MultiLineStringToken
-            | NumberToken
-            | BooleanToken
-            | DateTimeToken,
+    private processStringKey(token: StringToken, keyNode: TOMLKey): void {
+        const node: TOMLQuoted = {
+            type: "TOMLQuoted",
+            kind: "string",
+            value: token.string,
+            style: STRING_KEY_STYLE_MAP[token.type],
+            multiline: false,
+            parent: keyNode,
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
+        }
+        keyNode.keys.push(node)
+    }
+
+    private processStringValue(
+        token: StringToken | MultiLineStringToken,
         ctx: Context,
     ): ParserState[] {
         const valueContainer = ctx.consumeValueContainer()
-        if (isString(token) || isMultiLineString(token)) {
-            const node: TOMLStringValue = {
-                type: "TOMLValue",
-                kind: "string",
-                value: token.string,
-                style:
-                    token.type === "BasicString" ||
-                    token.type === "MultiLineBasicString"
-                        ? "basic"
-                        : "literal",
-                multiline: isMultiLineString(token),
-                parent: valueContainer.parent,
-                range: clone(token.range),
-                loc: clone(token.loc),
-            }
-            return valueContainer.set(node)
+        const node: TOMLStringValue = {
+            type: "TOMLValue",
+            kind: "string",
+            value: token.string,
+            style: STRING_VALUE_STYLE_MAP[token.type],
+            multiline: isMultiLineString(token),
+            parent: valueContainer.parent,
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
-        if (isNumber(token)) {
-            const text = this.text
-            const [startRange, endRange] = token.range
-            let numberString: string | null = null
+        return valueContainer.set(node)
+    }
 
-            /**
-             * Get the text of number
-             */
-            // eslint-disable-next-line func-style -- ignore
-            const getNumberText = (): string => {
-                return (
-                    numberString ??
-                    (numberString = text
-                        .slice(startRange, endRange)
-                        .replace(/_/g, ""))
-                )
-            }
+    private processNumberValue(
+        token: NumberToken,
+        ctx: Context,
+    ): ParserState[] {
+        const valueContainer = ctx.consumeValueContainer()
+        const text = this.text
+        const [startRange, endRange] = token.range
+        let numberString: string | null = null
 
-            let node: TOMLNumberValue
-            if (token.type === "Integer") {
-                node = {
-                    type: "TOMLValue",
-                    kind: "integer",
-                    value: token.number,
-                    bigint: token.bigint,
-                    get number() {
-                        return getNumberText()
-                    },
-                    parent: valueContainer.parent,
-                    range: clone(token.range),
-                    loc: clone(token.loc),
-                }
-            } else {
-                node = {
-                    type: "TOMLValue",
-                    kind: "float",
-                    value: token.number,
-                    get number() {
-                        return getNumberText()
-                    },
-                    parent: valueContainer.parent,
-                    range: clone(token.range),
-                    loc: clone(token.loc),
-                }
-            }
-            return valueContainer.set(node)
-        }
-        if (isBoolean(token)) {
-            const node: TOMLBooleanValue = {
-                type: "TOMLValue",
-                kind: "boolean",
-                value: token.boolean,
-                parent: valueContainer.parent,
-                range: clone(token.range),
-                loc: clone(token.loc),
-            }
-            return valueContainer.set(node)
-        }
-        if (isDateTime(token)) {
-            let textDate =
-                token.type !== "LocalTime"
-                    ? token.value
-                    : `0000-01-01T${token.value}Z`
-            let dateValue = new Date(textDate)
-            if (isNaN(dateValue.getTime())) {
-                // leap seconds?
-                textDate = textDate.replace(/(\d{2}:\d{2}):60/u, "$1:59")
-                dateValue = new Date(textDate)
-            }
-            const node: TOMLDateTimeValue = {
-                type: "TOMLValue",
-                kind:
-                    token.type === "OffsetDateTime"
-                        ? "offset-date-time"
-                        : token.type === "LocalDateTime"
-                        ? "local-date-time"
-                        : token.type === "LocalDate"
-                        ? "local-date"
-                        : "local-time",
-                value: dateValue,
-                datetime: token.value,
-                parent: valueContainer.parent,
-                range: clone(token.range),
-                loc: clone(token.loc),
-            }
-            return valueContainer.set(node)
+        /**
+         * Get the text of number
+         */
+        // eslint-disable-next-line func-style -- ignore
+        const getNumberText = (): string => {
+            return (
+                numberString ??
+                (numberString = text
+                    .slice(startRange, endRange)
+                    .replace(/_/g, ""))
+            )
         }
 
-        throw new Error("Illegal argument token")
+        let node: TOMLNumberValue
+        if (token.type === "Integer") {
+            node = {
+                type: "TOMLValue",
+                kind: "integer",
+                value: token.number,
+                bigint: token.bigint,
+                get number() {
+                    return getNumberText()
+                },
+                parent: valueContainer.parent,
+                range: cloneRange(token.range),
+                loc: cloneLoc(token.loc),
+            }
+        } else {
+            node = {
+                type: "TOMLValue",
+                kind: "float",
+                value: token.number,
+                get number() {
+                    return getNumberText()
+                },
+                parent: valueContainer.parent,
+                range: cloneRange(token.range),
+                loc: cloneLoc(token.loc),
+            }
+        }
+        return valueContainer.set(node)
+    }
+
+    private processBooleanValue(
+        token: BooleanToken,
+        ctx: Context,
+    ): ParserState[] {
+        const valueContainer = ctx.consumeValueContainer()
+        const node: TOMLBooleanValue = {
+            type: "TOMLValue",
+            kind: "boolean",
+            value: token.boolean,
+            parent: valueContainer.parent,
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
+        }
+        return valueContainer.set(node)
+    }
+
+    private processDateTimeValue(
+        token: DateTimeToken,
+        ctx: Context,
+    ): ParserState[] {
+        const valueContainer = ctx.consumeValueContainer()
+        let textDate =
+            token.type !== "LocalTime"
+                ? token.value
+                : `0000-01-01T${token.value}Z`
+        let dateValue = new Date(textDate)
+        if (isNaN(dateValue.getTime())) {
+            // leap seconds?
+            textDate = textDate.replace(/(\d{2}:\d{2}):60/u, "$1:59")
+            dateValue = new Date(textDate)
+        }
+        const node: TOMLDateTimeValue = {
+            type: "TOMLValue",
+            kind: DATETIME_VALUE_KIND_MAP[token.type],
+            value: dateValue,
+            datetime: token.value,
+            parent: valueContainer.parent,
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
+        }
+        return valueContainer.set(node)
     }
 
     private processArray(token: PunctuatorToken, ctx: Context): ParserState[] {
@@ -424,8 +447,8 @@ export class TOMLParser {
             type: "TOMLArray",
             elements: [],
             parent: valueContainer.parent,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
         const nextToken = ctx.nextToken({ valuesEnabled: true })
         if (isRightBracket(nextToken)) {
@@ -482,8 +505,8 @@ export class TOMLParser {
             type: "TOMLInlineTable",
             body: [],
             parent: valueContainer.parent,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
 
         const nextToken = ctx.nextToken({
@@ -518,8 +541,8 @@ export class TOMLParser {
             key: null as never,
             value: null as never,
             parent: inlineTableNode,
-            range: clone(token.range),
-            loc: clone(token.loc),
+            range: cloneRange(token.range),
+            loc: cloneLoc(token.loc),
         }
         inlineTableNode.body.push(keyValueNode)
         const { nextToken: targetToken } = this.processKeyNode(
@@ -690,27 +713,36 @@ function isDateTime(token: Token): token is DateTimeToken {
 /**
  * Apply end locations
  */
-function applyEndLoc(node: TOMLNode, child: TOMLNode | TOMLNode[] | Token) {
-    const lastNode = Array.isArray(child) ? last(child) : child
-    if (lastNode) {
-        node.range[1] = lastNode.range[1]
-        node.loc.end = clone(lastNode.loc.end)
+function applyEndLoc(node: TOMLNode, child: TOMLNode | Token | null) {
+    if (child) {
+        node.range[1] = child.range[1]
+        node.loc.end = clonePos(child.loc.end)
     }
 }
 
 /**
  * clone the location.
  */
-function clone<T>(loc: T): T {
-    if (typeof loc !== "object") {
-        return loc
+function cloneRange(range: Range): Range {
+    return [range[0], range[1]]
+}
+
+/**
+ * clone the location.
+ */
+function cloneLoc(loc: SourceLocation): SourceLocation {
+    return {
+        start: clonePos(loc.start),
+        end: clonePos(loc.end),
     }
-    if (Array.isArray(loc)) {
-        return (loc as any).map(clone)
+}
+
+/**
+ * clone the location.
+ */
+function clonePos(pos: Position): Position {
+    return {
+        line: pos.line,
+        column: pos.column,
     }
-    const n: any = {}
-    for (const key in loc) {
-        n[key] = clone(loc[key])
-    }
-    return n
 }
