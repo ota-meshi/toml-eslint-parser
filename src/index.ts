@@ -4,6 +4,7 @@ import { traverseNodes } from "./traverse"
 import { getStaticTOMLValue } from "./utils"
 import { KEYS } from "./visitor-keys"
 import { ParseError } from "./errors"
+import type { ParserOptions } from "./parser-options"
 
 export { AST, ParseError }
 
@@ -19,6 +20,9 @@ export { traverseNodes, getStaticTOMLValue }
 /**
  * Parse TOML source code
  */
-export function parseTOML(code: string, options?: any): AST.TOMLProgram {
+export function parseTOML(
+    code: string,
+    options?: ParserOptions,
+): AST.TOMLProgram {
     return parseForESLint(code, options).ast
 }
