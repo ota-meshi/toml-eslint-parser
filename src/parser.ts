@@ -2,12 +2,13 @@ import { TOMLParser } from "./toml-parser"
 import type { SourceCode } from "eslint"
 import { KEYS } from "./visitor-keys"
 import type { TOMLProgram } from "./ast"
+import type { ParserOptions } from "./parser-options"
 /**
  * Parse source code
  */
 export function parseForESLint(
     code: string,
-    options?: any,
+    options?: ParserOptions,
 ): {
     ast: TOMLProgram
     visitorKeys: SourceCode.VisitorKeys
