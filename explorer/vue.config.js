@@ -1,3 +1,3 @@
 module.exports = {
-    publicPath: "/toml-eslint-parser/",
-}
+  publicPath: "/toml-eslint-parser/",
+};
