@@ -1,3 +1,3 @@
 export interface ParserOptions {
-    filePath?: string
+  filePath?: string;
 }
