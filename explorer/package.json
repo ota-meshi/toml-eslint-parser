@@ -7,11 +7,13 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@iarna/toml": "^3.0.0",
+    "@ota-meshi/site-kit-monaco-editor-vue": "^0.1.2",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "@iarna/toml": "^3.0.0"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.18.6",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "@vue/compiler-sfc": "^3.0.0"
