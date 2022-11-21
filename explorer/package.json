@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@iarna/toml": "^3.0.0",
-    "@ota-meshi/site-kit-monaco-editor-vue": "^0.1.2",
+    "@ota-meshi/site-kit-monaco-editor-vue": "^0.2.0",
     "core-js": "^3.6.5",
     "vue": "^3.0.0"
   },
