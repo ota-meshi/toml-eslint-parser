@@ -8,6 +8,8 @@ import type { ParserOptions } from "./parser-options";
 
 export { AST, ParseError };
 
+export const name = "toml-eslint-parser";
+
 // parser
 export { parseForESLint };
 // Keys
