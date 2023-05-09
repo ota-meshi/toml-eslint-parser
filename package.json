@@ -12,7 +12,9 @@
   "scripts": {
     "setup": "git submodule update --init",
     "prebuild": "npm run -s clean",
-    "build": "tsc --project ./tsconfig.build.json",
+    "build": "npm run build:meta && npm run build:tsc",
+    "build:meta": "ts-node --transpile-only ./tools/update-meta.ts",
+    "build:tsc": "tsc --project ./tsconfig.build.json",
     "clean": "rimraf .nyc_output lib coverage",
     "lint": "eslint . --ext .js,.ts,.json",
     "eslint-fix": "npm run lint -- --fix",
@@ -24,7 +26,7 @@
     "benchmark": "ts-node --transpile-only benchmark/index.ts",
     "prerelease": "npm run clean && npm run build",
     "release": "changeset publish",
-    "version:ci": "changeset version"
+    "version:ci": "env-cmd -e version-ci npm run build:meta && changeset version"
   },
   "repository": {
     "type": "git",
