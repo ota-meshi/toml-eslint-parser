@@ -5,10 +5,10 @@ import { getStaticTOMLValue } from "./utils";
 import { KEYS } from "./visitor-keys";
 import { ParseError } from "./errors";
 import type { ParserOptions } from "./parser-options";
+export * as meta from "./meta";
+export { name } from "./meta";
 
 export { AST, ParseError };
-
-export const name = "toml-eslint-parser";
 
 // parser
 export { parseForESLint };
