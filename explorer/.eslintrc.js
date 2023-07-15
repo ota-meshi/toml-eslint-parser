@@ -9,7 +9,7 @@ module.exports = {
     "plugin:@ota-meshi/+json",
   ],
   rules: {
-    "node/no-unsupported-features/es-syntax": "off",
-    "node/no-missing-import": "off",
+    "n/no-unsupported-features/es-syntax": "off",
+    "n/no-missing-import": "off",
   },
 };
