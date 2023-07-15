@@ -43,5 +43,5 @@ const tomlKeys: TomlKeys = {
 };
 
 export const KEYS: SourceCode.VisitorKeys = unionWith(
-  tomlKeys
+  tomlKeys,
 ) as SourceCode.VisitorKeys;

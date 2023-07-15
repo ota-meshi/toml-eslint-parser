@@ -197,14 +197,14 @@ export class Tokenizer {
    */
   private reportParseError(
     code: ErrorCode,
-    data?: { [key: string]: any }
+    data?: { [key: string]: any },
   ): any {
     throw new ParseError(
       code,
       this.codePointIterator.start.offset,
       this.codePointIterator.start.line,
       this.codePointIterator.start.column,
-      data
+      data,
     );
   }
 
@@ -284,39 +284,39 @@ export class Tokenizer {
 
   private endToken(
     type: BareToken["type"] | Comment["type"] | DateTimeToken["type"],
-    pos: "start" | "end"
+    pos: "start" | "end",
   ): void;
 
   private endToken(
     type: PunctuatorToken["type"],
     pos: "start" | "end",
-    cp: number
+    cp: number,
   ): void;
 
   private endToken(
     type: StringToken["type"] | MultiLineStringToken["type"],
     pos: "start" | "end",
-    codePoints: number[]
+    codePoints: number[],
   ): void;
 
   private endToken(
     type: IntegerToken["type"],
     pos: "start" | "end",
     codePoints: number[],
-    radix: 16 | 10 | 8 | 2
+    radix: 16 | 10 | 8 | 2,
   ): void;
 
   private endToken(
     // eslint-disable-next-line @typescript-eslint/unified-signatures -- ignore
     type: FloatToken["type"],
     pos: "start" | "end",
-    value: number
+    value: number,
   ): void;
 
   private endToken(
     type: BooleanToken["type"],
     pos: "start" | "end",
-    value: boolean
+    value: boolean,
   ): void;
 
   /**
@@ -326,7 +326,7 @@ export class Tokenizer {
     type: TokenType | Comment["type"],
     pos: "start" | "end",
     option1?: number[] | number | boolean,
-    option2?: 16 | 10 | 8 | 2
+    option2?: 16 | 10 | 8 | 2,
   ): void {
     const { tokenStart } = this;
     const end = this.codePointIterator[pos];
@@ -706,7 +706,7 @@ export class Tokenizer {
         this.endToken(
           "Float",
           "end",
-          this.text[this.tokenStart.offset] === "-" ? -Infinity : Infinity
+          this.text[this.tokenStart.offset] === "-" ? -Infinity : Infinity,
         );
         return "DATA";
       }
@@ -840,7 +840,7 @@ export class Tokenizer {
       "Integer",
       "start",
       sign === DASH ? [DASH, ...codePoints] : codePoints,
-      10
+      10,
     );
     return this.back("DATA");
   }
@@ -860,7 +860,7 @@ export class Tokenizer {
   private BINARY(cp: number): TokenizerState {
     const { codePoints } = this.parseDigits(
       cp,
-      (c) => c === DIGIT_0 || c === DIGIT_1
+      (c) => c === DIGIT_0 || c === DIGIT_1,
     );
     this.endToken("Integer", "start", codePoints, 2);
     return this.back("DATA");

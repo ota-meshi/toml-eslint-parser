@@ -31,7 +31,7 @@ for (const {
     fs.writeFileSync(
       outputFileName,
       stringify(`${e.message}@line:${e.lineNumber},column:${e.column}`),
-      "utf8"
+      "utf8",
     );
   }
   if (ast)

@@ -48,7 +48,7 @@ describe("Check for AST.", () => {
           ) {
             assert.strictEqual(
               stringify(`${e.message}@line:${e.lineNumber},column:${e.column}`),
-              output
+              output,
             );
             return;
           }
@@ -148,7 +148,7 @@ describe("Check for AST.", () => {
 
 function checkTokens(ast: TOMLProgram, input: string) {
   const allTokens = [...ast.tokens, ...ast.comments].sort(
-    (a, b) => a.range[0] - b.range[0]
+    (a, b) => a.range[0] - b.range[0],
   );
 
   assert.strictEqual(
@@ -156,7 +156,7 @@ function checkTokens(ast: TOMLProgram, input: string) {
     allTokens
       .map((t) => (t.type === "Block" ? `#${t.value}` : t.value))
       .join("")
-      .replace(/\s/gu, "")
+      .replace(/\s/gu, ""),
   );
 
   // check loc
@@ -165,7 +165,7 @@ function checkTokens(ast: TOMLProgram, input: string) {
 
     assert.strictEqual(
       value,
-      input.slice(...token.range)
+      input.slice(...token.range),
       // .replace(/\r\n/g, "\n"),
     );
   }
@@ -175,13 +175,13 @@ function checkLoc(ast: TOMLProgram, fileName: string, _code: string) {
   for (const token of ast.tokens) {
     assert.ok(
       token.range[0] < token.range[1],
-      `No range on "${token.type} line:${token.loc.start.line} col:${token.loc.start.column}" in ${fileName}`
+      `No range on "${token.type} line:${token.loc.start.line} col:${token.loc.start.column}" in ${fileName}`,
     );
   }
   for (const token of ast.comments) {
     assert.ok(
       token.range[0] < token.range[1],
-      `No range on "${token.type} line:${token.loc.start.line} col:${token.loc.start.column}" in ${fileName}`
+      `No range on "${token.type} line:${token.loc.start.line} col:${token.loc.start.column}" in ${fileName}`,
     );
   }
   traverseNodes(ast, {
@@ -189,7 +189,7 @@ function checkLoc(ast: TOMLProgram, fileName: string, _code: string) {
       if (node.type !== "Program" && node.type !== "TOMLTopLevelTable") {
         assert.ok(
           node.range[0] < node.range[1],
-          `No range on "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`
+          `No range on "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`,
         );
       }
       if (node.type === "TOMLKeyValue") {
@@ -198,32 +198,32 @@ function checkLoc(ast: TOMLProgram, fileName: string, _code: string) {
       if (parent) {
         assert.ok(
           parent.range[0] <= node.range[0],
-          `overlap range[0] on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`
+          `overlap range[0] on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`,
         );
         assert.ok(
           node.range[1] <= parent.range[1],
-          `overlap range[1] on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`
+          `overlap range[1] on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`,
         );
 
         assert.ok(
           parent.loc.start.line <= node.loc.start.line,
-          `overlap loc.start.line on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`
+          `overlap loc.start.line on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`,
         );
         if (parent.loc.start.line === node.loc.start.line) {
           assert.ok(
             parent.loc.start.column <= node.loc.start.column,
-            `overlap loc.start.column on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`
+            `overlap loc.start.column on "${parent.type} line:${parent.loc.start.line} col:${parent.loc.start.column}" > "${node.type} line:${node.loc.start.line} col:${node.loc.start.column}" in ${fileName}`,
           );
         }
 
         assert.ok(
           node.loc.end.line <= parent.loc.end.line,
-          `overlap loc.end.line on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`
+          `overlap loc.end.line on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`,
         );
         if (parent.loc.end.line === node.loc.end.line) {
           assert.ok(
             node.loc.end.column <= parent.loc.end.column,
-            `overlap loc.end.column on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`
+            `overlap loc.end.column on "${parent.type} line:${parent.loc.end.line} col:${parent.loc.end.column}" > "${node.type} line:${node.loc.end.line} col:${node.loc.end.column}" in ${fileName}`,
           );
         }
       }

@@ -9,9 +9,9 @@ import { parseForESLint as parseOld } from "../node_modules/toml-eslint-parser";
 const contents = `${fs.readFileSync(
   path.resolve(
     __dirname,
-    "../tests/fixtures/test-specs/iarna-toml-spec-tests/values/qa-table-inline-1000.toml"
+    "../tests/fixtures/test-specs/iarna-toml-spec-tests/values/qa-table-inline-1000.toml",
   ),
-  "utf-8"
+  "utf-8",
 )}`;
 
 type Result = { name: string; hz: number };
@@ -38,8 +38,8 @@ function onComplete(): void {
   for (const name of Object.keys(map)) {
     console.log(
       `${name.padEnd(15)} ${format(
-        map[name].reduce((p, a) => p + a, 0) / map[name].length
-      )} ops/sec`
+        map[name].reduce((p, a) => p + a, 0) / map[name].length,
+      )} ops/sec`,
     );
   }
   for (let i = 0; i < results.length; ++i) {

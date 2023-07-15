@@ -63,7 +63,7 @@ export class ParseError extends SyntaxError {
     offset: number,
     line: number,
     column: number,
-    data?: { [key: string]: any }
+    data?: { [key: string]: any },
   ) {
     super(getMessage(code, data));
     this.index = offset;

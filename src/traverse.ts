@@ -79,7 +79,7 @@ function isNode(x: any): x is TOMLNode {
 function traverse(
   node: TOMLNode,
   parent: TOMLNode | null,
-  visitor: Visitor<TOMLNode>
+  visitor: Visitor<TOMLNode>,
 ): void {
   visitor.enterNode(node, parent);
 
@@ -111,7 +111,7 @@ export function traverseNodes(node: TOMLNode, visitor: Visitor<TOMLNode>): void;
  */
 export function traverseNodes(
   node: TOMLNode,
-  visitor: Visitor<TOMLNode>
+  visitor: Visitor<TOMLNode>,
 ): void {
   traverse(node, null, visitor);
 }
