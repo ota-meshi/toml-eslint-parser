@@ -8,7 +8,7 @@ import type { ParserOptions } from "./parser-options";
  */
 export function parseForESLint(
   code: string,
-  options?: ParserOptions
+  options?: ParserOptions,
 ): {
   ast: TOMLProgram;
   visitorKeys: SourceCode.VisitorKeys;

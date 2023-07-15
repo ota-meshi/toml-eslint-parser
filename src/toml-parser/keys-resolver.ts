@@ -172,7 +172,7 @@ export class KeysResolver {
 function verifyDuplicateKeysForKeyValue(
   ctx: Context,
   defineKeys: KeyStores,
-  node: TOMLKeyValue
+  node: TOMLKeyValue,
 ): void {
   let keys = defineKeys;
   const lastKey = last(node.key.keys);
@@ -187,12 +187,12 @@ function verifyDuplicateKeysForKeyValue(
         // key.foo = 42
         ctx.reportParseError(
           "dupe-keys",
-          getAfterNode(keyNode, defineKey.node)
+          getAfterNode(keyNode, defineKey.node),
         );
       } else if (lastKey === keyNode) {
         ctx.reportParseError(
           "dupe-keys",
-          getAfterNode(keyNode, defineKey.node)
+          getAfterNode(keyNode, defineKey.node),
         );
       } else if (defineKey.table) {
         // e.g.
@@ -204,7 +204,7 @@ function verifyDuplicateKeysForKeyValue(
         // foo.bar = 42
         ctx.reportParseError(
           "dupe-keys",
-          getAfterNode(keyNode, defineKey.node)
+          getAfterNode(keyNode, defineKey.node),
         );
       }
       defineKey.value = ValueKind.INTERMEDIATE;
@@ -242,7 +242,7 @@ function verifyDuplicateKeysForKeyValue(
 function verifyDuplicateKeysForInlineTable(
   ctx: Context,
   defineKeys: KeyStores,
-  node: TOMLInlineTable
+  node: TOMLInlineTable,
 ): void {
   for (const body of node.body) {
     verifyDuplicateKeysForKeyValue(ctx, defineKeys, body);
@@ -255,7 +255,7 @@ function verifyDuplicateKeysForInlineTable(
 function verifyDuplicateKeysForArray(
   ctx: Context,
   defineKeys: KeyStores,
-  node: TOMLArray
+  node: TOMLArray,
 ): void {
   const keys = defineKeys;
   for (let index = 0; index < node.elements.length; index++) {
@@ -286,7 +286,7 @@ function verifyDuplicateKeysForArray(
  */
 function getAfterNode(
   a: TOMLBare | TOMLQuoted | TOMLContentNode,
-  b: TOMLBare | TOMLQuoted | TOMLContentNode
+  b: TOMLBare | TOMLQuoted | TOMLContentNode,
 ): TOMLBare | TOMLQuoted | TOMLContentNode {
   return a.range[0] <= b.range[0] ? b : a;
 }

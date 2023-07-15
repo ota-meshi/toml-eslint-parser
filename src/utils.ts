@@ -33,10 +33,10 @@ export function getStaticTOMLValue(
     | TOMLTopLevelTable
     | TOMLTable
     | TOMLKeyValue
-    | TOMLInlineTable
+    | TOMLInlineTable,
 ): TOMLTableValue;
 export function getStaticTOMLValue(
-  node: TOMLStringValue | TOMLBare | TOMLQuoted
+  node: TOMLStringValue | TOMLBare | TOMLQuoted,
 ): string;
 export function getStaticTOMLValue(node: TOMLKey): string[];
 
@@ -52,7 +52,7 @@ export function getStaticTOMLValue(node: TOMLNode): TOMLContentValue {
  */
 function resolveValue(
   node: TOMLNode,
-  baseTable?: TOMLTableValue
+  baseTable?: TOMLTableValue,
 ): TOMLContentValue {
   return resolver[node.type](node as never, baseTable);
 }
@@ -76,7 +76,7 @@ const resolver = {
     const table = getTable(
       baseTable,
       getStaticTOMLValue(node.key),
-      node.kind === "array"
+      node.kind === "array",
     );
     for (const body of node.body) {
       resolveValue(body, table);
@@ -153,7 +153,7 @@ function getTable(baseTable: TOMLTableValue, keys: string[], array: boolean) {
   /** Get next target from key */
   function getNextTargetFromKey(
     currTarget: TOMLTableValue,
-    key: string
+    key: string,
   ): TOMLTableValue {
     const nextTarget = currTarget[key];
     if (nextTarget == null) {

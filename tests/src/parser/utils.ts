@@ -73,7 +73,7 @@ function* listUpParserFixtures(): Generator<{
     const inputFileName = path.join(AST_FIXTURE_ROOT, filename);
     const outputFileName = inputFileName.replace(
       /input\.toml$/u,
-      "output.json"
+      "output.json",
     );
     const valueFileName = inputFileName.replace(/input\.toml$/u, "value.json");
 
@@ -99,22 +99,22 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
     {
       in: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/BurntSushi-toml-test/tests/invalid"
+        "../../fixtures/test-specs/BurntSushi-toml-test/tests/invalid",
       ),
       out: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/invalid"
+        "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/invalid",
       ),
       invalid: true,
     },
     {
       in: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/BurntSushi-toml-test/tests/valid"
+        "../../fixtures/test-specs/BurntSushi-toml-test/tests/valid",
       ),
       out: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/valid"
+        "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/valid",
       ),
     },
   ];
@@ -125,11 +125,11 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
       const inputFileName = path.join(rootDir.in, filename);
       const outputFileName = path.join(
         rootDir.out,
-        filename.replace(/\.toml$/u, "-output.json")
+        filename.replace(/\.toml$/u, "-output.json"),
       );
       const valueFileName = path.join(
         rootDir.out,
-        filename.replace(/\.toml$/u, "-value.json")
+        filename.replace(/\.toml$/u, "-value.json"),
       );
 
       let specAssertion: SpecAssertion | undefined;
@@ -185,22 +185,22 @@ function* listUpIarnaTestSpecsFixtures(): Generator<{
     {
       in: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/iarna-toml-spec-tests/errors"
+        "../../fixtures/test-specs/iarna-toml-spec-tests/errors",
       ),
       out: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/out/iarna-toml-spec-tests/errors"
+        "../../fixtures/test-specs/out/iarna-toml-spec-tests/errors",
       ),
       invalid: true,
     },
     {
       in: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/iarna-toml-spec-tests/values"
+        "../../fixtures/test-specs/iarna-toml-spec-tests/values",
       ),
       out: path.resolve(
         __dirname,
-        "../../fixtures/test-specs/out/iarna-toml-spec-tests/values"
+        "../../fixtures/test-specs/out/iarna-toml-spec-tests/values",
       ),
     },
   ];
@@ -211,11 +211,11 @@ function* listUpIarnaTestSpecsFixtures(): Generator<{
       const inputFileName = path.join(rootDir.in, filename);
       const outputFileName = path.join(
         rootDir.out,
-        filename.replace(/\.toml$/u, "-output.json")
+        filename.replace(/\.toml$/u, "-output.json"),
       );
       const valueFileName = path.join(
         rootDir.out,
-        filename.replace(/\.toml$/u, "-value.json")
+        filename.replace(/\.toml$/u, "-value.json"),
       );
 
       let specAssertion: SpecAssertion | undefined;
@@ -292,7 +292,7 @@ function schemaToJson(schema: any): any {
 /** Replace values */
 function replaceJSON(
   val: any,
-  valReplacer: (keu: string, value: any) => any
+  valReplacer: (keu: string, value: any) => any,
 ): any {
   if (typeof val !== "object") {
     return val;

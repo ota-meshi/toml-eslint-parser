@@ -170,7 +170,7 @@ export class TOMLParser {
   private processTable(
     token: PunctuatorToken,
     topLevelTableNode: TOMLTopLevelTable,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const tableNode: TOMLTable = {
       type: "TOMLTable",
@@ -231,7 +231,7 @@ export class TOMLParser {
   private processKeyValue(
     token: BareToken | StringToken,
     tableNode: TOMLTopLevelTable | TOMLTable,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const keyValueNode: TOMLKeyValue = {
       type: "TOMLKeyValue",
@@ -245,7 +245,7 @@ export class TOMLParser {
     const { nextToken: targetToken } = this.processKeyNode(
       token,
       keyValueNode,
-      ctx
+      ctx,
     );
     if (!isEq(targetToken)) {
       return ctx.reportParseError("missing-equals-sign", targetToken);
@@ -266,7 +266,7 @@ export class TOMLParser {
   private processKeyNode(
     token: Token,
     parent: TOMLKey["parent"],
-    ctx: Context
+    ctx: Context,
   ): { keyNode: TOMLKey; nextToken: Token | null } {
     const keyNode: TOMLKey = {
       type: "TOMLKey",
@@ -327,7 +327,7 @@ export class TOMLParser {
 
   private processStringValue(
     token: StringToken | MultiLineStringToken,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const valueContainer = ctx.consumeValueContainer();
     const node: TOMLStringValue = {
@@ -392,7 +392,7 @@ export class TOMLParser {
 
   private processBooleanValue(
     token: BooleanToken,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const valueContainer = ctx.consumeValueContainer();
     const node: TOMLBooleanValue = {
@@ -408,7 +408,7 @@ export class TOMLParser {
 
   private processDateTimeValue(
     token: DateTimeToken,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const valueContainer = ctx.consumeValueContainer();
     let textDate =
@@ -453,7 +453,7 @@ export class TOMLParser {
   private processArrayValue(
     node: TOMLArray,
     valueContainer: ValueContainer,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     ctx.addValueContainer({
       parent: node,
@@ -478,7 +478,7 @@ export class TOMLParser {
         }
         return ctx.reportParseError(
           nextToken ? "missing-comma" : "unterminated-array",
-          nextToken
+          nextToken,
         );
       },
     });
@@ -488,7 +488,7 @@ export class TOMLParser {
 
   private processInlineTable(
     token: PunctuatorToken,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const valueContainer = ctx.consumeValueContainer();
     const node: TOMLInlineTable = {
@@ -509,7 +509,7 @@ export class TOMLParser {
           nextToken,
           node,
           valueContainer,
-          ctx
+          ctx,
         );
       }
       if (isRightBrace(nextToken)) {
@@ -524,7 +524,7 @@ export class TOMLParser {
     token: BareToken | StringToken,
     inlineTableNode: TOMLInlineTable,
     valueContainer: ValueContainer,
-    ctx: Context
+    ctx: Context,
   ): ParserState[] {
     const keyValueNode: TOMLKeyValue = {
       type: "TOMLKeyValue",
@@ -538,7 +538,7 @@ export class TOMLParser {
     const { nextToken: targetToken } = this.processKeyNode(
       token,
       keyValueNode,
-      ctx
+      ctx,
     );
     if (!isEq(targetToken)) {
       return ctx.reportParseError("missing-equals-sign", targetToken);
@@ -562,7 +562,7 @@ export class TOMLParser {
               nextToken,
               inlineTableNode,
               valueContainer,
-              ctx
+              ctx,
             );
           }
           return ctx.reportParseError(
@@ -571,7 +571,7 @@ export class TOMLParser {
               : nextToken
               ? "unexpected-token"
               : "unterminated-inline-table",
-            nextToken
+            nextToken,
           );
         }
         if (isRightBrace(nextToken)) {
@@ -580,7 +580,7 @@ export class TOMLParser {
         }
         return ctx.reportParseError(
           nextToken ? "missing-comma" : "unterminated-inline-table",
-          nextToken
+          nextToken,
         );
       },
     });
@@ -663,7 +663,7 @@ function isString(token: Token): token is StringToken {
  * Check whether the given token is a multi-line string.
  */
 function isMultiLineString(
-  token: Token
+  token: Token,
 ): token is StringToken | MultiLineStringToken {
   return (
     token.type === "MultiLineBasicString" ||

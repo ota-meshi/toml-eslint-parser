@@ -24,7 +24,7 @@ export { traverseNodes, getStaticTOMLValue };
  */
 export function parseTOML(
   code: string,
-  options?: ParserOptions
+  options?: ParserOptions,
 ): AST.TOMLProgram {
   return parseForESLint(code, options).ast;
 }

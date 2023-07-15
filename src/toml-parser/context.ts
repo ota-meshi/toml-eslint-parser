@@ -159,7 +159,7 @@ export class Context {
    */
   public reportParseError(
     code: ErrorCode,
-    token: Token | TOMLNode | null
+    token: Token | TOMLNode | null,
   ): any {
     let offset: number, line: number, column: number;
     if (token) {
