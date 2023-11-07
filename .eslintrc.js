@@ -64,6 +64,10 @@ module.exports = {
             selector: "method",
             format: null,
           },
+          {
+            selector: "import",
+            format: null,
+          },
         ],
         "no-implicit-globals": "off",
         "@typescript-eslint/no-non-null-assertion": "off",

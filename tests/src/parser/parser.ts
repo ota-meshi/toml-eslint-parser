@@ -106,6 +106,7 @@ describe("Check for AST.", () => {
             "local-date-time-sample01-input.toml",
             "table-sample11-top-level-table-input.toml",
             "date01-leading-zero-input.toml",
+            "date-time03-min-input.toml",
             "leap-year01-input.toml",
             "leap-year02-input.toml",
             "spec-time-1.toml",
