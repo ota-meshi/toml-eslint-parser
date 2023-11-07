@@ -46,7 +46,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "offset-date-time",
-            "value": "2001-01-01T00:00:00.000Z",
+            "value": "0001-01-01T00:00:00.000Z",
             "datetime": "0001-01-01 00:00:00Z",
             "range": [
               15,
@@ -120,7 +120,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-date-time",
-            "value": "2000-12-31T15:00:00.000Z",
+            "value": "0000-12-31T14:41:01.000Z",
             "datetime": "0001-01-01 00:00:00",
             "range": [
               51,

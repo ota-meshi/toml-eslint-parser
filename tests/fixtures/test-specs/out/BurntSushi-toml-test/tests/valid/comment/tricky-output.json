@@ -687,7 +687,7 @@
               "value": {
                 "type": "TOMLValue",
                 "kind": "float",
-                "value": 11.100000000000001,
+                "value": 11.1,
                 "number": "1.11e1",
                 "range": [
                   217,
@@ -2038,7 +2038,7 @@
     {
       "type": "Float",
       "value": "1.11e1",
-      "number": 11.100000000000001,
+      "number": 11.1,
       "range": [
         217,
         223

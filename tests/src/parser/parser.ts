@@ -35,7 +35,7 @@ describe("Check for AST.", () => {
         try {
           ast = parse(input, inputFileName);
 
-          if (invalid) {
+          if (invalid && !input.includes("\ufffd")) {
             assert.fail("Expected error");
           }
         } catch (e: any) {

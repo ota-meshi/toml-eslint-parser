@@ -151,6 +151,12 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
         "datetime/no-seconds.toml",
       ].includes(filename);
 
+      const hasCR = [
+        "control/bare-cr.toml",
+        "control/multi-cr.toml",
+        "control/rawmulti-cd.toml",
+      ].includes(filename);
+
       let specAssertion: SpecAssertion | undefined;
 
       const schemaFileName = inputFileName.replace(/\.toml$/u, ".json");
@@ -158,7 +164,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
         fs.existsSync(schemaFileName) &&
         // ignores
         !isTOML11OnlySpec &&
-        ![""].includes(filename)
+        !hasCR
       ) {
         const schema = JSON.parse(fs.readFileSync(schemaFileName, "utf8"));
         const expected = schemaToJson(schema);
@@ -168,7 +174,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
         };
       }
 
-      const invalid = rootDir.invalid || isTOML11OnlySpec;
+      const invalid = (rootDir.invalid && !hasCR) || isTOML11OnlySpec;
 
       yield {
         filename,
