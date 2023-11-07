@@ -15,7 +15,8 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { ParseError } from "../errors";
-import type { ParserOptions } from "../parser-options";
+import type { TOMLVersion } from "../parser-options";
+import { normalizeTOMLVersion, type ParserOptions } from "../parser-options";
 import { CodePointIterator } from "./code-point-iterator";
 import {
   EOF,
@@ -149,8 +150,10 @@ type DateTimeData = {
 export class Tokenizer {
   public readonly text: string;
 
-  // @ts-expect-error -- unused
   private readonly parserOptions: ParserOptions;
+
+  // @ts-expect-error -- unused
+  private readonly tomlVersion: TOMLVersion;
 
   private readonly codePointIterator: CodePointIterator;
 
@@ -187,6 +190,7 @@ export class Tokenizer {
     this.text = text;
     this.parserOptions = parserOptions || {};
     this.codePointIterator = new CodePointIterator(text);
+    this.tomlVersion = normalizeTOMLVersion(this.parserOptions.tomlVersion);
   }
 
   public get positions(): { start: Position; end: Position } {

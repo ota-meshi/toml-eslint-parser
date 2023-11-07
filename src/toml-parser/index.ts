@@ -27,7 +27,8 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { last } from "../internal-utils";
-import type { ParserOptions } from "../parser-options";
+import type { TOMLVersion } from "../parser-options";
+import { type ParserOptions, normalizeTOMLVersion } from "../parser-options";
 import type { ParserState, ValueContainer } from "./context";
 import { Context } from "./context";
 
@@ -56,12 +57,16 @@ export class TOMLParser {
 
   private readonly parserOptions: ParserOptions;
 
+  // @ts-expect-error -- unused
+  private readonly tomlVersion: TOMLVersion;
+
   /**
    * Initialize this parser.
    */
   public constructor(text: string, parserOptions?: ParserOptions) {
     this.text = text;
     this.parserOptions = parserOptions || {};
+    this.tomlVersion = normalizeTOMLVersion(this.parserOptions.tomlVersion);
   }
 
   /**
