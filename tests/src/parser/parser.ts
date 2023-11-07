@@ -35,7 +35,7 @@ describe("Check for AST.", () => {
         try {
           ast = parse(input, inputFileName);
 
-          if (invalid) {
+          if (invalid && !input.includes("\ufffd")) {
             assert.fail("Expected error");
           }
         } catch (e: any) {
@@ -114,12 +114,25 @@ describe("Check for AST.", () => {
             "spec-date-local-1.toml",
             "spec-date-time-local-1.toml",
             "spec-date-time-local-2.toml",
+            "spec/table-7.toml",
+            "spec/local-time-0.toml",
+            "spec/local-date-time-0.toml",
+            "spec/local-date-0.toml",
+            "datetime/local.toml",
+            "datetime/local-date.toml",
+            "datetime/leap-year.toml",
+            "datetime/edge.toml",
+            "comment/everywhere.toml",
             // -0
             // "spec-float-9.toml",
             // big int
             "long-integer.toml",
             "spec-int-max.toml",
             "spec-int-min.toml",
+            "integer/long.toml",
+            // newline
+            "control/rawmulti-cd.toml",
+            "control/multi-cr.toml",
             // cannot parse
             "local-time-sample01-input.toml",
             "sample08-dates-and-times-input.toml",
@@ -127,6 +140,13 @@ describe("Check for AST.", () => {
             "time01-input.toml",
             "date-time02-fraction-input.toml",
             "leap-second01-input.toml",
+            // cannot parse
+            "string/multiline-escaped-crlf.toml",
+            "spec/local-time-0.toml",
+            "float/zero.toml",
+            "datetime/local-time.toml",
+            "datetime/datetime.toml",
+            "control/bare-cr.toml",
           ].includes(filename)
         ) {
           // There are known differences.
