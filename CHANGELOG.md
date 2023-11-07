@@ -1,5 +1,11 @@
 # toml-eslint-parser
 
+## 0.7.0
+
+### Minor Changes
+
+- [#160](https://github.com/ota-meshi/toml-eslint-parser/pull/160) [`4dcf97e`](https://github.com/ota-meshi/toml-eslint-parser/commit/4dcf97e8e0917cb9383253a37532f2aee51c3386) Thanks [@ota-meshi](https://github.com/ota-meshi)! - BREAKING! fix: values of local-datetime, local-date, and local-time to be local datetime
+
 ## 0.6.1
 
 ### Patch Changes
