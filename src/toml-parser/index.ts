@@ -411,18 +411,10 @@ export class TOMLParser {
     ctx: Context,
   ): ParserState[] {
     const valueContainer = ctx.consumeValueContainer();
-    let textDate =
-      token.type !== "LocalTime" ? token.value : `0000-01-01T${token.value}Z`;
-    let dateValue = new Date(textDate);
-    if (isNaN(dateValue.getTime())) {
-      // leap seconds?
-      textDate = textDate.replace(/(\d{2}:\d{2}):60/u, "$1:59");
-      dateValue = new Date(textDate);
-    }
     const node: TOMLDateTimeValue = {
       type: "TOMLValue",
       kind: DATETIME_VALUE_KIND_MAP[token.type],
-      value: dateValue,
+      value: token.date,
       datetime: token.value,
       parent: valueContainer.parent,
       range: cloneRange(token.range),

@@ -71,4 +71,5 @@ export interface BooleanToken extends BaseTOMLToken {
 export interface DateTimeToken extends BaseTOMLToken {
   type: "OffsetDateTime" | "LocalDateTime" | "LocalDate" | "LocalTime";
   value: string;
+  date: Date;
 }

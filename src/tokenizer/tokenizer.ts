@@ -122,11 +122,12 @@ const ESCAPES: Record<number, number> = {
 };
 
 type ExponentData = {
-  left: number;
+  minus: boolean;
+  left: number[];
 };
 type FractionalData = {
   minus: boolean;
-  absInt: number;
+  absInt: number[];
 };
 type DateTimeData = {
   hasDate: boolean;
@@ -137,6 +138,9 @@ type DateTimeData = {
   hour: number;
   minute: number;
   second: number;
+
+  frac?: number[];
+  offsetSign?: number;
 };
 
 /**
@@ -283,7 +287,7 @@ export class Tokenizer {
   }
 
   private endToken(
-    type: BareToken["type"] | Comment["type"] | DateTimeToken["type"],
+    type: BareToken["type"] | Comment["type"],
     pos: "start" | "end",
   ): void;
 
@@ -314,6 +318,12 @@ export class Tokenizer {
   ): void;
 
   private endToken(
+    type: DateTimeToken["type"],
+    pos: "start" | "end",
+    value: Date,
+  ): void;
+
+  private endToken(
     type: BooleanToken["type"],
     pos: "start" | "end",
     value: boolean,
@@ -325,7 +335,7 @@ export class Tokenizer {
   private endToken(
     type: TokenType | Comment["type"],
     pos: "start" | "end",
-    option1?: number[] | number | boolean,
+    option1?: number[] | number | boolean | Date,
     option2?: 16 | 10 | 8 | 2,
   ): void {
     const { tokenStart } = this;
@@ -393,6 +403,19 @@ export class Tokenizer {
           type,
           value,
           boolean: option1! as boolean,
+          range,
+          loc,
+        };
+      } else if (
+        type === "LocalDate" ||
+        type === "LocalTime" ||
+        type === "LocalDateTime" ||
+        type === "OffsetDateTime"
+      ) {
+        token = {
+          type,
+          value,
+          date: option1! as Date,
           range,
           loc,
         };
@@ -764,7 +787,8 @@ export class Tokenizer {
       if (cp === LATIN_SMALL_E || cp === LATIN_CAPITAL_E) {
         const data: ExponentData = {
           // Float values -0.0 and +0.0 are valid and should map according to IEEE 754.
-          left: sign === DASH ? -0 : 0,
+          minus: sign === DASH,
+          left: [DIGIT_0],
         };
         this.data = data;
         return "EXPONENT_RIGHT";
@@ -772,7 +796,7 @@ export class Tokenizer {
       if (cp === DOT) {
         const data: FractionalData = {
           minus: sign === DASH,
-          absInt: 0,
+          absInt: [DIGIT_0],
         };
         this.data = data;
         return "FRACTIONAL_RIGHT";
@@ -821,9 +845,9 @@ export class Tokenizer {
     }
 
     if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
-      const absNum = Number(String.fromCodePoint(...codePoints));
       const data: ExponentData = {
-        left: sign === DASH ? -absNum : absNum,
+        minus: sign === DASH,
+        left: codePoints,
       };
       this.data = data;
       return "EXPONENT_RIGHT";
@@ -831,7 +855,7 @@ export class Tokenizer {
     if (nextCp === DOT) {
       const data: FractionalData = {
         minus: sign === DASH,
-        absInt: Number(String.fromCodePoint(...codePoints)),
+        absInt: codePoints,
       };
       this.data = data;
       return "FRACTIONAL_RIGHT";
@@ -869,34 +893,42 @@ export class Tokenizer {
   private FRACTIONAL_RIGHT(cp: number): TokenizerState {
     const { minus, absInt } = this.data! as FractionalData;
     const { codePoints, nextCp } = this.parseDigits(cp, isDigit);
-    const absNum =
-      absInt +
-      Number(String.fromCodePoint(...codePoints)) *
-        Math.pow(10, -codePoints.length);
+    const absNum = [...absInt, DOT, ...codePoints];
     if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
       const data: ExponentData = {
-        left: minus ? -absNum : absNum,
+        minus,
+        left: absNum,
       };
       this.data = data;
       return "EXPONENT_RIGHT";
     }
-    this.endToken("Float", "start", minus ? -absNum : absNum);
+    const value = Number(
+      minus
+        ? String.fromCodePoint(DASH, ...absNum)
+        : String.fromCodePoint(...absNum),
+    );
+    this.endToken("Float", "start", value);
     return this.back("DATA");
   }
 
   private EXPONENT_RIGHT(cp: number): TokenizerState {
-    const { left } = this.data! as ExponentData;
+    const { left, minus: leftMinus } = this.data! as ExponentData;
     let minus = false;
     if (cp === DASH || cp === PLUS_SIGN) {
       minus = cp === DASH;
       cp = this.nextCode();
     }
     const { codePoints } = this.parseDigits(cp, isDigit);
-    let right = Number(String.fromCodePoint(...codePoints));
+    let right = codePoints;
     if (minus) {
-      right = 0 - right;
+      right = [DASH, ...right];
     }
-    this.endToken("Float", "start", left * Math.pow(10, right));
+    const value = Number(
+      leftMinus
+        ? String.fromCodePoint(DASH, ...left, LATIN_SMALL_E, ...right)
+        : String.fromCodePoint(...left, LATIN_SMALL_E, ...right),
+    );
+    this.endToken("Float", "start", value);
     return this.back("DATA");
   }
 
@@ -990,7 +1022,8 @@ export class Tokenizer {
         return "TIME_HOUR";
       }
     }
-    this.endToken("LocalDate", "start");
+    const dateValue = getDateFromDateTimeData(data, "Z");
+    this.endToken("LocalDate", "start", dateValue);
     return this.back("DATA");
   }
 
@@ -1063,16 +1096,20 @@ export class Tokenizer {
     }
     if (data.hasDate) {
       if (cp === DASH || cp === PLUS_SIGN) {
+        data.offsetSign = cp;
         return "TIME_OFFSET";
       }
       if (cp === LATIN_CAPITAL_Z || cp === LATIN_SMALL_Z) {
-        this.endToken("OffsetDateTime", "end");
+        const dateValue = getDateFromDateTimeData(data, "Z");
+        this.endToken("OffsetDateTime", "end", dateValue);
         return "DATA";
       }
-      this.endToken("LocalDateTime", "start");
+      const dateValue = getDateFromDateTimeData(data, "");
+      this.endToken("LocalDateTime", "start", dateValue);
       return this.back("DATA");
     }
-    this.endToken("LocalTime", "start");
+    const dateValue = getDateFromDateTimeData(data, "Z");
+    this.endToken("LocalTime", "start", dateValue);
     return this.back("DATA");
   }
 
@@ -1080,22 +1117,29 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
+    const codePoints = [];
     while (isDigit(cp)) {
+      codePoints.push(cp);
       cp = this.nextCode();
     }
     const data: DateTimeData = this.data! as DateTimeData;
+    data.frac = codePoints;
     if (data.hasDate) {
       if (cp === DASH || cp === PLUS_SIGN) {
+        data.offsetSign = cp;
         return "TIME_OFFSET";
       }
       if (cp === LATIN_CAPITAL_Z || cp === LATIN_SMALL_Z) {
-        this.endToken("OffsetDateTime", "end");
+        const dateValue = getDateFromDateTimeData(data, "Z");
+        this.endToken("OffsetDateTime", "end", dateValue);
         return "DATA";
       }
-      this.endToken("LocalDateTime", "start");
+      const dateValue = getDateFromDateTimeData(data, "");
+      this.endToken("LocalDateTime", "start", dateValue);
       return this.back("DATA");
     }
-    this.endToken("LocalTime", "start");
+    const dateValue = getDateFromDateTimeData(data, "Z");
+    this.endToken("LocalTime", "start", dateValue);
     return this.back("DATA");
   }
 
@@ -1133,7 +1177,15 @@ export class Tokenizer {
       return this.reportParseError("invalid-time");
     }
 
-    this.endToken("OffsetDateTime", "end");
+    const data: DateTimeData = this.data! as DateTimeData;
+    const dateValue = getDateFromDateTimeData(
+      data,
+      `${String.fromCodePoint(data.offsetSign!)}${padStart(hour, 2)}:${padStart(
+        minute,
+        2,
+      )}`,
+    );
+    this.endToken("OffsetDateTime", "end", dateValue);
     return "DATA";
   }
 
@@ -1232,4 +1284,33 @@ function isValidTime(h: number, m: number, s: number): boolean {
     return false;
   }
   return true;
+}
+
+/**
+ * Get date from DateTimeData
+ */
+function getDateFromDateTimeData(data: DateTimeData, timeZone: string): Date {
+  const year = padStart(data.year, 4);
+  const month = data.month ? padStart(data.month, 2) : "01";
+  const day = data.day ? padStart(data.day, 2) : "01";
+  const hour = padStart(data.hour, 2);
+  const minute = padStart(data.minute, 2);
+  const second = padStart(data.second, 2);
+  const textDate = `${year}-${month}-${day}`;
+  const frac = data.frac ? `.${String.fromCodePoint(...data.frac)}` : "";
+  const dateValue = new Date(
+    `${textDate}T${hour}:${minute}:${second}${frac}${timeZone}`,
+  );
+  if (!isNaN(dateValue.getTime()) || data.second !== 60) {
+    return dateValue;
+  }
+  // leap seconds?
+  return new Date(`${textDate}T${hour}:${minute}:59${frac}${timeZone}`);
+}
+
+/**
+ * Pad with zeros.
+ */
+function padStart(num: number, maxLength: number): string {
+  return String(num).padStart(maxLength, "0");
 }
