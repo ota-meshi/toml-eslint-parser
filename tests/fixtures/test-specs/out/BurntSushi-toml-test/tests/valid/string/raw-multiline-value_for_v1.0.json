@@ -1,0 +1,7 @@
+{
+  "oneline": "This string has a ' quote character.",
+  "firstnl": "This string has a ' quote character.",
+  "multiline": "This string\nhas ' a quote character\nand more than\none newline\nin it.",
+  "multiline_with_tab": "First line\n\t Followed by a tab",
+  "this-str-has-apostrophes": "' there's one already\n'' two more\n''"
+}

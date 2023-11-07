@@ -1,0 +1,1711 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "clap-1",
+                "range": [
+                  52,
+                  58
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 6
+                  }
+                }
+              }
+            ],
+            "range": [
+              52,
+              58
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 6
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLInlineTable",
+            "body": [
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "version",
+                      "range": [
+                        63,
+                        70
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 18
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    63,
+                    70
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 18
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLValue",
+                  "kind": "string",
+                  "value": "4",
+                  "style": "basic",
+                  "multiline": false,
+                  "range": [
+                    73,
+                    76
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2,
+                      "column": 21
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 24
+                    }
+                  }
+                },
+                "range": [
+                  63,
+                  76
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 24
+                  }
+                }
+              },
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "features",
+                      "range": [
+                        80,
+                        88
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 28
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 36
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    80,
+                    88
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2,
+                      "column": 28
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 36
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLArray",
+                  "elements": [
+                    {
+                      "type": "TOMLValue",
+                      "kind": "string",
+                      "value": "derive",
+                      "style": "basic",
+                      "multiline": false,
+                      "range": [
+                        92,
+                        100
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 48
+                        }
+                      }
+                    },
+                    {
+                      "type": "TOMLValue",
+                      "kind": "string",
+                      "value": "cargo",
+                      "style": "basic",
+                      "multiline": false,
+                      "range": [
+                        102,
+                        109
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 2,
+                          "column": 50
+                        },
+                        "end": {
+                          "line": 2,
+                          "column": 57
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    91,
+                    110
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 2,
+                      "column": 39
+                    },
+                    "end": {
+                      "line": 2,
+                      "column": 58
+                    }
+                  }
+                },
+                "range": [
+                  80,
+                  110
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 28
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 58
+                  }
+                }
+              }
+            ],
+            "range": [
+              61,
+              112
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 60
+              }
+            }
+          },
+          "range": [
+            52,
+            112
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 60
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "clap-2",
+                "range": [
+                  144,
+                  150
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 6
+                  }
+                }
+              }
+            ],
+            "range": [
+              144,
+              150
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 6
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLInlineTable",
+            "body": [
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "version",
+                      "range": [
+                        155,
+                        162
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 18
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    155,
+                    162
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 18
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLValue",
+                  "kind": "string",
+                  "value": "4",
+                  "style": "basic",
+                  "multiline": false,
+                  "range": [
+                    165,
+                    168
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 21
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 24
+                    }
+                  }
+                },
+                "range": [
+                  155,
+                  168
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 24
+                  }
+                }
+              },
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "features",
+                      "range": [
+                        178,
+                        186
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 34
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 42
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    178,
+                    186
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 34
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 42
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLArray",
+                  "elements": [
+                    {
+                      "type": "TOMLValue",
+                      "kind": "string",
+                      "value": "derive",
+                      "style": "basic",
+                      "multiline": false,
+                      "range": [
+                        193,
+                        201
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 49
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 57
+                        }
+                      }
+                    },
+                    {
+                      "type": "TOMLValue",
+                      "kind": "string",
+                      "value": "cargo",
+                      "style": "basic",
+                      "multiline": false,
+                      "range": [
+                        211,
+                        218
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 67
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 74
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    189,
+                    222
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 45
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 78
+                    }
+                  }
+                },
+                "range": [
+                  178,
+                  222
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 34
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 78
+                  }
+                }
+              },
+              {
+                "type": "TOMLKeyValue",
+                "key": {
+                  "type": "TOMLKey",
+                  "keys": [
+                    {
+                      "type": "TOMLBare",
+                      "name": "nest",
+                      "range": [
+                        227,
+                        231
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 83
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 87
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    227,
+                    231
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 83
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 87
+                    }
+                  }
+                },
+                "value": {
+                  "type": "TOMLInlineTable",
+                  "body": [
+                    {
+                      "type": "TOMLKeyValue",
+                      "key": {
+                        "type": "TOMLKey",
+                        "keys": [
+                          {
+                            "type": "TOMLQuoted",
+                            "kind": "string",
+                            "value": "a",
+                            "style": "basic",
+                            "multiline": false,
+                            "range": [
+                              244,
+                              247
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 100
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 103
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          244,
+                          247
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 5,
+                            "column": 100
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 103
+                          }
+                        }
+                      },
+                      "value": {
+                        "type": "TOMLValue",
+                        "kind": "string",
+                        "value": "x",
+                        "style": "literal",
+                        "multiline": false,
+                        "range": [
+                          254,
+                          257
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 5,
+                            "column": 110
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 113
+                          }
+                        }
+                      },
+                      "range": [
+                        244,
+                        257
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 100
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 113
+                        }
+                      }
+                    },
+                    {
+                      "type": "TOMLKeyValue",
+                      "key": {
+                        "type": "TOMLKey",
+                        "keys": [
+                          {
+                            "type": "TOMLQuoted",
+                            "kind": "string",
+                            "value": "b",
+                            "style": "literal",
+                            "multiline": false,
+                            "range": [
+                              264,
+                              267
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 120
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 123
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          264,
+                          267
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 5,
+                            "column": 120
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 123
+                          }
+                        }
+                      },
+                      "value": {
+                        "type": "TOMLArray",
+                        "elements": [
+                          {
+                            "type": "TOMLValue",
+                            "kind": "float",
+                            "value": 1.5,
+                            "number": "1.5",
+                            "range": [
+                              274,
+                              277
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 130
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 133
+                              }
+                            }
+                          },
+                          {
+                            "type": "TOMLValue",
+                            "kind": "float",
+                            "value": 9,
+                            "number": "9.0",
+                            "range": [
+                              285,
+                              288
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 141
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 144
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          272,
+                          291
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 5,
+                            "column": 128
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 147
+                          }
+                        }
+                      },
+                      "range": [
+                        264,
+                        291
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 120
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 147
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    238,
+                    294
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 94
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 150
+                    }
+                  }
+                },
+                "range": [
+                  227,
+                  294
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 83
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 150
+                  }
+                }
+              }
+            ],
+            "range": [
+              153,
+              297
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 153
+              }
+            }
+          },
+          "range": [
+            144,
+            297
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 153
+            }
+          }
+        }
+      ],
+      "range": [
+        52,
+        297
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 153
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "clap-1",
+      "range": [
+        52,
+        58
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        59,
+        60
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 7
+        },
+        "end": {
+          "line": 2,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "{",
+      "range": [
+        61,
+        62
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 9
+        },
+        "end": {
+          "line": 2,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "version",
+      "range": [
+        63,
+        70
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 11
+        },
+        "end": {
+          "line": 2,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        71,
+        72
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 19
+        },
+        "end": {
+          "line": 2,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"4\"",
+      "string": "4",
+      "range": [
+        73,
+        76
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 21
+        },
+        "end": {
+          "line": 2,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        78,
+        79
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 26
+        },
+        "end": {
+          "line": 2,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "features",
+      "range": [
+        80,
+        88
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 28
+        },
+        "end": {
+          "line": 2,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        89,
+        90
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 37
+        },
+        "end": {
+          "line": 2,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        91,
+        92
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 39
+        },
+        "end": {
+          "line": 2,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"derive\"",
+      "string": "derive",
+      "range": [
+        92,
+        100
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 40
+        },
+        "end": {
+          "line": 2,
+          "column": 48
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        100,
+        101
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 48
+        },
+        "end": {
+          "line": 2,
+          "column": 49
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"cargo\"",
+      "string": "cargo",
+      "range": [
+        102,
+        109
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 50
+        },
+        "end": {
+          "line": 2,
+          "column": 57
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        109,
+        110
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 57
+        },
+        "end": {
+          "line": 2,
+          "column": 58
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "}",
+      "range": [
+        111,
+        112
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 59
+        },
+        "end": {
+          "line": 2,
+          "column": 60
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "clap-2",
+      "range": [
+        144,
+        150
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        151,
+        152
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 7
+        },
+        "end": {
+          "line": 5,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "{",
+      "range": [
+        153,
+        154
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 9
+        },
+        "end": {
+          "line": 5,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "version",
+      "range": [
+        155,
+        162
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 11
+        },
+        "end": {
+          "line": 5,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        163,
+        164
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 19
+        },
+        "end": {
+          "line": 5,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"4\"",
+      "string": "4",
+      "range": [
+        165,
+        168
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 21
+        },
+        "end": {
+          "line": 5,
+          "column": 24
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        173,
+        174
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 29
+        },
+        "end": {
+          "line": 5,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "features",
+      "range": [
+        178,
+        186
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 34
+        },
+        "end": {
+          "line": 5,
+          "column": 42
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        187,
+        188
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 43
+        },
+        "end": {
+          "line": 5,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        189,
+        190
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 45
+        },
+        "end": {
+          "line": 5,
+          "column": 46
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"derive\"",
+      "string": "derive",
+      "range": [
+        193,
+        201
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 49
+        },
+        "end": {
+          "line": 5,
+          "column": 57
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        205,
+        206
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 61
+        },
+        "end": {
+          "line": 5,
+          "column": 62
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"cargo\"",
+      "string": "cargo",
+      "range": [
+        211,
+        218
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 67
+        },
+        "end": {
+          "line": 5,
+          "column": 74
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        221,
+        222
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 77
+        },
+        "end": {
+          "line": 5,
+          "column": 78
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        225,
+        226
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 81
+        },
+        "end": {
+          "line": 5,
+          "column": 82
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "nest",
+      "range": [
+        227,
+        231
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 83
+        },
+        "end": {
+          "line": 5,
+          "column": 87
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        234,
+        235
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 90
+        },
+        "end": {
+          "line": 5,
+          "column": 91
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "{",
+      "range": [
+        238,
+        239
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 94
+        },
+        "end": {
+          "line": 5,
+          "column": 95
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"a\"",
+      "string": "a",
+      "range": [
+        244,
+        247
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 100
+        },
+        "end": {
+          "line": 5,
+          "column": 103
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        250,
+        251
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 106
+        },
+        "end": {
+          "line": 5,
+          "column": 107
+        }
+      }
+    },
+    {
+      "type": "LiteralString",
+      "value": "'x'",
+      "string": "x",
+      "range": [
+        254,
+        257
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 110
+        },
+        "end": {
+          "line": 5,
+          "column": 113
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        259,
+        260
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 115
+        },
+        "end": {
+          "line": 5,
+          "column": 116
+        }
+      }
+    },
+    {
+      "type": "LiteralString",
+      "value": "'b'",
+      "string": "b",
+      "range": [
+        264,
+        267
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 120
+        },
+        "end": {
+          "line": 5,
+          "column": 123
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        270,
+        271
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 126
+        },
+        "end": {
+          "line": 5,
+          "column": 127
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        272,
+        273
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 128
+        },
+        "end": {
+          "line": 5,
+          "column": 129
+        }
+      }
+    },
+    {
+      "type": "Float",
+      "value": "1.5",
+      "number": 1.5,
+      "range": [
+        274,
+        277
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 130
+        },
+        "end": {
+          "line": 5,
+          "column": 133
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        281,
+        282
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 137
+        },
+        "end": {
+          "line": 5,
+          "column": 138
+        }
+      }
+    },
+    {
+      "type": "Float",
+      "value": "9.0",
+      "number": 9,
+      "range": [
+        285,
+        288
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 141
+        },
+        "end": {
+          "line": 5,
+          "column": 144
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        290,
+        291
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 146
+        },
+        "end": {
+          "line": 5,
+          "column": 147
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "}",
+      "range": [
+        293,
+        294
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 149
+        },
+        "end": {
+          "line": 5,
+          "column": 150
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "}",
+      "range": [
+        296,
+        297
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 152
+        },
+        "end": {
+          "line": 5,
+          "column": 153
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " https://github.com/toml-lang/toml-test/issues/146",
+      "range": [
+        0,
+        51
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 51
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " Contains some literal tabs!",
+      "range": [
+        114,
+        143
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 29
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    298
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 6,
+      "column": 0
+    }
+  }
+}

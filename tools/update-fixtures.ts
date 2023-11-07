@@ -9,35 +9,40 @@ import path from "path";
 /**
  * Parse
  */
-function parse(code: string, filePath: string) {
-  return parseForESLint(code, { filePath });
+function parse(code: string, filePath: string, v: number) {
+  return parseForESLint(code, { filePath, tomlVersion: v });
 }
 
-for (const {
-  filename,
-  inputFileName,
-  outputFileName,
-  valueFileName,
-} of listUpFixtures()) {
+for (const { filename, inputFileName, v1, "v1.1": v1P1 } of listUpFixtures()) {
   // eslint-disable-next-line no-console -- tool
   console.error(filename);
 
   const input = fs.readFileSync(inputFileName, "utf8");
-  let ast: TOMLProgram | null = null;
-  fs.mkdirSync(path.dirname(outputFileName), { recursive: true });
-  try {
-    ast = parse(input, filename).ast;
-    const astJson = stringify(ast, true);
-    fs.writeFileSync(outputFileName, astJson, "utf8");
-  } catch (e: any) {
-    fs.writeFileSync(
-      outputFileName,
-      stringify(`${e.message}@line:${e.lineNumber},column:${e.column}`),
-      "utf8",
-    );
-  }
-  if (ast) {
-    fs.mkdirSync(path.dirname(valueFileName), { recursive: true });
-    fs.writeFileSync(valueFileName, stringify(getStaticTOMLValue(ast)), "utf8");
+  for (const v of [
+    { ...v1, v: 1 },
+    { ...v1P1, v: 1.1 },
+  ]) {
+    let ast: TOMLProgram | null = null;
+
+    fs.mkdirSync(path.dirname(v.outputFileName), { recursive: true });
+    try {
+      ast = parse(input, filename, v.v).ast;
+      const astJson = stringify(ast, true);
+      fs.writeFileSync(v.outputFileName, astJson, "utf8");
+    } catch (e: any) {
+      fs.writeFileSync(
+        v.outputFileName,
+        stringify(`${e.message}@line:${e.lineNumber},column:${e.column}`),
+        "utf8",
+      );
+    }
+    if (ast) {
+      fs.mkdirSync(path.dirname(v.valueFileName), { recursive: true });
+      fs.writeFileSync(
+        v.valueFileName,
+        stringify(getStaticTOMLValue(ast)),
+        "utf8",
+      );
+    }
   }
 }

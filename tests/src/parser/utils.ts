@@ -46,55 +46,53 @@ export function stringify(val: any, isAst?: boolean): string {
 }
 
 type SpecAssertion = (value: any) => void;
-export function* listUpFixtures(): Generator<{
+type Fixture = {
   filename: string;
   inputFileName: string;
-  outputFileName: string;
-  valueFileName: string;
   specAssertion?: SpecAssertion;
-  valid?: boolean;
-  invalid?: boolean;
-}> {
+  v1: {
+    outputFileName: string;
+    valueFileName: string;
+    valid?: boolean;
+    invalid?: boolean;
+  };
+  "v1.1": {
+    outputFileName: string;
+    valueFileName: string;
+    valid?: boolean;
+    invalid?: boolean;
+  };
+};
+export function* listUpFixtures(): Generator<Fixture> {
   yield* listUpParserFixtures();
   yield* listUpBurntSushiTestSpecsFixtures();
   yield* listUpIarnaTestSpecsFixtures();
 }
 
-function* listUpParserFixtures(): Generator<{
-  filename: string;
-  inputFileName: string;
-  outputFileName: string;
-  valueFileName: string;
-}> {
+function* listUpParserFixtures(): Generator<Fixture> {
   const AST_FIXTURE_ROOT = path.resolve(__dirname, "../../fixtures/parser/ast");
   for (const filename of fs
     .readdirSync(AST_FIXTURE_ROOT)
     .filter((f) => f.endsWith("input.toml"))) {
     const inputFileName = path.join(AST_FIXTURE_ROOT, filename);
-    const outputFileName = inputFileName.replace(
-      /input\.toml$/u,
-      "output.json",
-    );
-    const valueFileName = inputFileName.replace(/input\.toml$/u, "value.json");
 
     yield {
       filename,
       inputFileName,
-      outputFileName,
-      valueFileName,
+      v1: getOutputs(inputFileName, {
+        in: AST_FIXTURE_ROOT,
+        out: AST_FIXTURE_ROOT,
+        suffix: "_for_v1.0",
+      }),
+      "v1.1": getOutputs(inputFileName, {
+        in: AST_FIXTURE_ROOT,
+        out: AST_FIXTURE_ROOT,
+      }),
     };
   }
 }
 
-function* listUpBurntSushiTestSpecsFixtures(): Generator<{
-  filename: string;
-  inputFileName: string;
-  outputFileName: string;
-  valueFileName: string;
-  specAssertion?: SpecAssertion;
-  invalid?: boolean;
-  valid?: boolean;
-}> {
+function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
   const BURNTSUSHI_TESTS_ROOTS = [
     {
       in: path.resolve(
@@ -125,18 +123,6 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
       }
       const inputFileName = path.join(d.path, d.name);
       const filename = inputFileName.slice(rootDir.in.length + 1);
-      const outputDir = path.join(
-        rootDir.out,
-        path.relative(rootDir.in, d.path),
-      );
-      const outputFileName = path.join(
-        outputDir,
-        d.name.replace(/\.toml$/u, "-output.json"),
-      );
-      const valueFileName = path.join(
-        outputDir,
-        d.name.replace(/\.toml$/u, "-value.json"),
-      );
 
       const isTOML11OnlySpec = [
         // Spec for TOML 1.1
@@ -159,7 +145,6 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
       if (
         fs.existsSync(schemaFileName) &&
         // ignores
-        !isTOML11OnlySpec &&
         !hasCR
       ) {
         const schema = JSON.parse(fs.readFileSync(schemaFileName, "utf8"));
@@ -170,16 +155,23 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
         };
       }
 
-      const invalid = (rootDir.invalid && !hasCR) || isTOML11OnlySpec;
+      const invalidForV1P0 = (rootDir.invalid && !hasCR) || isTOML11OnlySpec;
+      const invalidForV1P1 = rootDir.invalid && !hasCR;
 
       yield {
         filename,
         inputFileName,
-        outputFileName,
-        valueFileName,
         specAssertion,
-        valid: !invalid,
-        invalid,
+        v1: {
+          ...getOutputs(inputFileName, { ...rootDir, suffix: "_for_v1.0" }),
+          valid: !invalidForV1P0,
+          invalid: invalidForV1P0,
+        },
+        "v1.1": {
+          ...getOutputs(inputFileName, { ...rootDir, suffix: "" }),
+          valid: !invalidForV1P1,
+          invalid: invalidForV1P1,
+        },
       };
     }
   }
@@ -201,15 +193,7 @@ function* recursiveReaddirSync(root: string): Iterable<{
   }
 }
 
-function* listUpIarnaTestSpecsFixtures(): Generator<{
-  filename: string;
-  inputFileName: string;
-  outputFileName: string;
-  valueFileName: string;
-  specAssertion?: SpecAssertion;
-  invalid?: boolean;
-  valid?: boolean;
-}> {
+function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
   const IARNA_TESTS_ROOTS = [
     {
       in: path.resolve(
@@ -238,14 +222,6 @@ function* listUpIarnaTestSpecsFixtures(): Generator<{
       .readdirSync(rootDir.in)
       .filter((f) => f.endsWith(".toml"))) {
       const inputFileName = path.join(rootDir.in, filename);
-      const outputFileName = path.join(
-        rootDir.out,
-        filename.replace(/\.toml$/u, "-output.json"),
-      );
-      const valueFileName = path.join(
-        rootDir.out,
-        filename.replace(/\.toml$/u, "-value.json"),
-      );
 
       let specAssertion: SpecAssertion | undefined;
 
@@ -270,11 +246,17 @@ function* listUpIarnaTestSpecsFixtures(): Generator<{
       yield {
         filename,
         inputFileName,
-        outputFileName,
-        valueFileName,
         specAssertion,
-        valid: !rootDir.invalid,
-        invalid: rootDir.invalid,
+        v1: {
+          ...getOutputs(inputFileName, { ...rootDir, suffix: "_for_v1.0" }),
+          valid: !rootDir.invalid,
+          invalid: rootDir.invalid,
+        },
+        "v1.1": {
+          ...getOutputs(inputFileName, { ...rootDir, suffix: "" }),
+          valid: !rootDir.invalid,
+          invalid: rootDir.invalid,
+        },
       };
     }
   }
@@ -356,4 +338,23 @@ function replaceJSON(
   }
 
   return result;
+}
+
+function getOutputs(
+  inputFileName: string,
+  options: { suffix?: "" | "_for_v1.0"; in: string; out: string },
+) {
+  const base = inputFileName.replace(options.in, options.out);
+  const suffix = options.suffix || "";
+  if (base.endsWith("input.toml")) {
+    const outputFileName = base.replace(
+      /input\.toml$/u,
+      `output${suffix}.json`,
+    );
+    const valueFileName = base.replace(/input\.toml$/u, `value${suffix}.json`);
+    return { outputFileName, valueFileName };
+  }
+  const outputFileName = base.replace(/\.toml$/u, `-output${suffix}.json`);
+  const valueFileName = base.replace(/\.toml$/u, `-value${suffix}.json`);
+  return { outputFileName, valueFileName };
 }

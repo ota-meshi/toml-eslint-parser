@@ -1,0 +1,4 @@
+{
+  "re": "\\d{2} apps is t[wo]o many",
+  "lines": "The first newline is\ntrimmed in raw strings.\nAll other whitespace\nis preserved.\n"
+}
