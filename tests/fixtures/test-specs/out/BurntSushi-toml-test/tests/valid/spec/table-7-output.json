@@ -315,7 +315,7 @@
               "value": {
                 "type": "TOMLValue",
                 "kind": "local-date",
-                "value": "1999-08-04T00:00:00.000Z",
+                "value": "1999-08-03T15:00:00.000Z",
                 "datetime": "1999-08-04",
                 "range": [
                   125,

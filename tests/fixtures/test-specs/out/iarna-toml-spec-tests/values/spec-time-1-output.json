@@ -46,7 +46,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-time",
-            "value": "0000-01-01T07:32:00.000Z",
+            "value": "-000001-12-31T22:13:01.000Z",
             "datetime": "07:32:00",
             "range": [
               6,
@@ -136,6 +136,7 @@
     {
       "type": "LocalTime",
       "value": "07:32:00",
+      "date": "-000001-12-31T22:13:01.000Z",
       "range": [
         6,
         14

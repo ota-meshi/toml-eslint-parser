@@ -194,7 +194,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-date",
-            "value": "0001-01-01T00:00:00.000Z",
+            "value": "0000-12-31T14:41:01.000Z",
             "datetime": "0001-01-01",
             "range": [
               86,

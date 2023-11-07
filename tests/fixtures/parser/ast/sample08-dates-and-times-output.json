@@ -416,7 +416,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-date",
-            "value": "1979-05-27T00:00:00.000Z",
+            "value": "1979-05-26T15:00:00.000Z",
             "datetime": "1979-05-27",
             "range": [
               239,
@@ -490,7 +490,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-time",
-            "value": "0000-01-01T07:32:00.000Z",
+            "value": "-000001-12-31T22:13:01.000Z",
             "datetime": "07:32:00",
             "range": [
               270,
@@ -564,7 +564,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-time",
-            "value": "0000-01-01T00:32:00.999Z",
+            "value": "-000001-12-31T15:13:01.999Z",
             "datetime": "00:32:00.999999",
             "range": [
               285,
@@ -978,6 +978,7 @@
     {
       "type": "LocalTime",
       "value": "07:32:00",
+      "date": "-000001-12-31T22:13:01.000Z",
       "range": [
         270,
         278
@@ -1032,6 +1033,7 @@
     {
       "type": "LocalTime",
       "value": "00:32:00.999999",
+      "date": "-000001-12-31T15:13:01.999Z",
       "range": [
         285,
         300

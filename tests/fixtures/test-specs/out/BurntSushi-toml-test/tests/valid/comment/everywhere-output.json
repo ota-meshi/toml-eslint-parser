@@ -351,7 +351,7 @@
               "value": {
                 "type": "TOMLValue",
                 "kind": "local-date",
-                "value": "1979-05-27T00:00:00.000Z",
+                "value": "1979-05-26T15:00:00.000Z",
                 "datetime": "1979-05-27",
                 "range": [
                   561,
