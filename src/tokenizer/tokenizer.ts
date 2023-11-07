@@ -113,13 +113,23 @@ const RADIX_PREFIXES = {
 };
 
 const ESCAPES: Record<number, number> = {
-  [LATIN_SMALL_B]: BACKSPACE,
-  [LATIN_SMALL_T]: TABULATION,
-  [LATIN_SMALL_N]: LINE_FEED,
-  [LATIN_SMALL_F]: FORM_FEED,
-  [LATIN_SMALL_R]: CARRIAGE_RETURN,
+  // escape-seq-char =  %x22         ; "    quotation mark  U+0022
   [QUOTATION_MARK]: QUOTATION_MARK,
+  // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
   [BACKSLASH]: BACKSLASH,
+  // escape-seq-char =/ %x62         ; b    backspace       U+0008
+  [LATIN_SMALL_B]: BACKSPACE,
+  // escape-seq-char =/ %x65         ; e    escape          U+001B
+  // Added in TOML 1.1
+  // TODO
+  // escape-seq-char =/ %x66         ; f    form feed       U+000C
+  [LATIN_SMALL_F]: FORM_FEED,
+  // escape-seq-char =/ %x6E         ; n    line feed       U+000A
+  [LATIN_SMALL_N]: LINE_FEED,
+  // escape-seq-char =/ %x72         ; r    carriage return U+000D
+  [LATIN_SMALL_R]: CARRIAGE_RETURN,
+  // escape-seq-char =/ %x74         ; t    tab             U+0009
+  [LATIN_SMALL_T]: TABULATION,
 };
 
 type ExponentData = {
@@ -537,11 +547,20 @@ export class Tokenizer {
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
+          // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
+          // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
+          const code = this.parseUnicode(8);
+          codePoints.push(code);
+          cp = this.nextCode();
+          continue;
+        } else if (cp === LATIN_SMALL_X) {
+          // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
+          // Added in TOML 1.1
           const code = this.parseUnicode(8);
           codePoints.push(code);
           cp = this.nextCode();
@@ -1254,7 +1273,23 @@ export class Tokenizer {
  * Check whether the code point is [A-Za-z0-9_-]
  */
 function isBare(cp: number): boolean {
+  // TODO
+
+  // TOML 1.0
+  // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
   return isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH;
+
+  // TOML 1.1
+  // unquoted-key = 1*unquoted-key-char
+  // unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
+  // unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
+  // unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
+  // unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
+  // unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
+  // unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
+  // unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
+  // unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
+  // unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
 }
 
 /**
