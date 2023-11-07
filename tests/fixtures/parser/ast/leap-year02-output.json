@@ -46,7 +46,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-date",
-            "value": "2020-02-29T00:00:00.000Z",
+            "value": "2020-02-28T15:00:00.000Z",
             "datetime": "2020-02-29",
             "range": [
               6,

@@ -22,7 +22,7 @@ function replacer(key: string, value: any) {
       return `# ${String(value)} #`;
     }
   }
-  if (key === "date" && /^\d{4}-\d{2}-\d{2}T/u.test(value)) {
+  if (key === "date" && /^-?\d{4,}-\d{2}-\d{2}T/u.test(value)) {
     // Backward compatibility
     return undefined;
   }
@@ -322,16 +322,14 @@ function schemaToJson(schema: any): any {
               ? false
               : value.value;
           }
-          if (
-            value.type === "datetime" ||
-            value.type === "datetime-local" ||
-            value.type === "date" ||
-            value.type === "date-local"
-          ) {
+          if (value.type === "datetime" || value.type === "datetime-local") {
             return new Date(value.value);
           }
-          if (value.type === "time" || value.type === "time-local") {
-            return new Date(`0000-01-01T${value.value}Z`);
+          if (value.type === "date-local" || value.type === "date") {
+            return new Date(`${value.value}T00:00:00`);
+          }
+          if (value.type === "time-local" || value.type === "time") {
+            return new Date(`0000-01-01T${value.value}`);
           }
 
           return value.value;

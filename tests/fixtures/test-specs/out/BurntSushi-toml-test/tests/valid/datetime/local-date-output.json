@@ -46,7 +46,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "local-date",
-            "value": "1987-07-05T00:00:00.000Z",
+            "value": "1987-07-04T15:00:00.000Z",
             "datetime": "1987-07-05",
             "range": [
               14,

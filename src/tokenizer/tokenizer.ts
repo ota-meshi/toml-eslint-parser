@@ -1022,7 +1022,7 @@ export class Tokenizer {
         return "TIME_HOUR";
       }
     }
-    const dateValue = getDateFromDateTimeData(data, "Z");
+    const dateValue = getDateFromDateTimeData(data, "");
     this.endToken("LocalDate", "start", dateValue);
     return this.back("DATA");
   }
@@ -1108,7 +1108,7 @@ export class Tokenizer {
       this.endToken("LocalDateTime", "start", dateValue);
       return this.back("DATA");
     }
-    const dateValue = getDateFromDateTimeData(data, "Z");
+    const dateValue = getDateFromDateTimeData(data, "");
     this.endToken("LocalTime", "start", dateValue);
     return this.back("DATA");
   }
@@ -1138,7 +1138,7 @@ export class Tokenizer {
       this.endToken("LocalDateTime", "start", dateValue);
       return this.back("DATA");
     }
-    const dateValue = getDateFromDateTimeData(data, "Z");
+    const dateValue = getDateFromDateTimeData(data, "");
     this.endToken("LocalTime", "start", dateValue);
     return this.back("DATA");
   }

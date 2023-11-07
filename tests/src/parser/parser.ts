@@ -115,7 +115,6 @@ describe("Check for AST.", () => {
             "spec-date-time-local-1.toml",
             "spec-date-time-local-2.toml",
             "spec/table-7.toml",
-            "spec/local-time-0.toml",
             "spec/local-date-time-0.toml",
             "spec/local-date-0.toml",
             "datetime/local.toml",
@@ -126,7 +125,6 @@ describe("Check for AST.", () => {
             // -0
             // "spec-float-9.toml",
             // big int
-            "long-integer.toml",
             "spec-int-max.toml",
             "spec-int-min.toml",
             "integer/long.toml",
@@ -140,7 +138,6 @@ describe("Check for AST.", () => {
             "time01-input.toml",
             "date-time02-fraction-input.toml",
             "leap-second01-input.toml",
-            // cannot parse
             "string/multiline-escaped-crlf.toml",
             "spec/local-time-0.toml",
             "float/zero.toml",
