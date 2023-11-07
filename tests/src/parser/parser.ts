@@ -8,9 +8,10 @@ import type { TOMLProgram } from "../../../src/ast";
 import { parseTOML } from "../../../src";
 import * as IarnaTOML from "@iarna/toml";
 import { listUpFixtures, stringify } from "./utils";
+import type { TOMLVersion } from "../../../src/parser-options";
 
-function parse(code: string, filePath: string) {
-  return parseTOML(code, { filePath });
+function parse(code: string, filePath: string, v: TOMLVersion) {
+  return parseTOML(code, { filePath, tomlVersion: v });
 }
 
 describe("Check for AST.", () => {
@@ -24,8 +25,8 @@ describe("Check for AST.", () => {
     describe(filename, () => {
       const input = fs.readFileSync(inputFileName, "utf8");
       for (const v of [
-        { ...v1, v: 1 },
-        { ...v1P1, v: 1.1 },
+        { ...v1, v: "1.0" as const },
+        { ...v1P1, v: "1.1" as const },
       ]) {
         describe(`v${v.v}`, () => {
           const output = fs.readFileSync(v.outputFileName, "utf8");
@@ -33,7 +34,7 @@ describe("Check for AST.", () => {
           let ast: any;
           it("most to generate the expected AST.", () => {
             try {
-              ast = parse(input, inputFileName);
+              ast = parse(input, inputFileName, v.v);
 
               if (v.invalid && !input.includes("\ufffd")) {
                 assert.fail("Expected error");
@@ -95,7 +96,7 @@ describe("Check for AST.", () => {
             });
           }
           it("Compare with IarnaTOML results.", () => {
-            if (!ast || v.v !== 1) return;
+            if (!ast || v.v !== "1.0") return;
 
             if (
               [
@@ -157,7 +158,7 @@ describe("Check for AST.", () => {
             if (!ast) return;
             const inputForWin = input.replace(/\n/g, "\r\n");
             // check
-            const astForWin = parse(inputForWin, inputFileName);
+            const astForWin = parse(inputForWin, inputFileName, v.v);
             // check tokens
             checkTokens(astForWin, inputForWin);
           });

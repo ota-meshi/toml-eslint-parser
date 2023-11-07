@@ -5,11 +5,12 @@ import { getStaticTOMLValue } from "../src/utils";
 import type { TOMLProgram } from "../src/ast";
 import { listUpFixtures, stringify } from "../tests/src/parser/utils";
 import path from "path";
+import type { TOMLVersion } from "../src/parser-options";
 
 /**
  * Parse
  */
-function parse(code: string, filePath: string, v: number) {
+function parse(code: string, filePath: string, v: TOMLVersion) {
   return parseForESLint(code, { filePath, tomlVersion: v });
 }
 
@@ -19,8 +20,8 @@ for (const { filename, inputFileName, v1, "v1.1": v1P1 } of listUpFixtures()) {
 
   const input = fs.readFileSync(inputFileName, "utf8");
   for (const v of [
-    { ...v1, v: 1 },
-    { ...v1P1, v: 1.1 },
+    { ...v1, v: "1.0" as const },
+    { ...v1P1, v: "1.1" as const },
   ]) {
     let ast: TOMLProgram | null = null;
 
