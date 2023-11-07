@@ -22,10 +22,6 @@ function replacer(key: string, value: any) {
       return `# ${String(value)} #`;
     }
   }
-  if (key === "date" && /^-?\d{4,}-\d{2}-\d{2}T/u.test(value)) {
-    // Backward compatibility
-    return undefined;
-  }
   return value;
 }
 
