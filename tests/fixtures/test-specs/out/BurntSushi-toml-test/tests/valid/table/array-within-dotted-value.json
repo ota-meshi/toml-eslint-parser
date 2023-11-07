@@ -1,0 +1,12 @@
+{
+  "fruit": {
+    "apple": {
+      "color": "red",
+      "seeds": [
+        {
+          "size": 2
+        }
+      ]
+    }
+  }
+}

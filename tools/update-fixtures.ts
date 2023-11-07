@@ -4,6 +4,7 @@ import { parseForESLint } from "../src/parser";
 import { getStaticTOMLValue } from "../src/utils";
 import type { TOMLProgram } from "../src/ast";
 import { listUpFixtures, stringify } from "../tests/src/parser/utils";
+import path from "path";
 
 /**
  * Parse
@@ -23,17 +24,20 @@ for (const {
 
   const input = fs.readFileSync(inputFileName, "utf8");
   let ast: TOMLProgram | null = null;
+  fs.mkdirSync(path.dirname(outputFileName), { recursive: true });
   try {
     ast = parse(input, filename).ast;
     const astJson = stringify(ast, true);
     fs.writeFileSync(outputFileName, astJson, "utf8");
-  } catch (e) {
+  } catch (e: any) {
     fs.writeFileSync(
       outputFileName,
       stringify(`${e.message}@line:${e.lineNumber},column:${e.column}`),
       "utf8",
     );
   }
-  if (ast)
+  if (ast) {
+    fs.mkdirSync(path.dirname(valueFileName), { recursive: true });
     fs.writeFileSync(valueFileName, stringify(getStaticTOMLValue(ast)), "utf8");
+  }
 }

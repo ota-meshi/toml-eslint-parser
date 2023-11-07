@@ -123,18 +123,33 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
     },
   ];
   for (const rootDir of BURNTSUSHI_TESTS_ROOTS) {
-    for (const filename of fs
-      .readdirSync(rootDir.in)
-      .filter((f) => f.endsWith(".toml"))) {
-      const inputFileName = path.join(rootDir.in, filename);
-      const outputFileName = path.join(
+    for (const d of recursiveReaddirSync(rootDir.in)) {
+      if (!d.name.endsWith(".toml")) {
+        continue;
+      }
+      const inputFileName = path.join(d.path, d.name);
+      const filename = inputFileName.slice(rootDir.in.length + 1);
+      const outputDir = path.join(
         rootDir.out,
-        filename.replace(/\.toml$/u, "-output.json"),
+        path.relative(rootDir.in, d.path),
+      );
+      const outputFileName = path.join(
+        outputDir,
+        d.name.replace(/\.toml$/u, "-output.json"),
       );
       const valueFileName = path.join(
-        rootDir.out,
-        filename.replace(/\.toml$/u, "-value.json"),
+        outputDir,
+        d.name.replace(/\.toml$/u, "-value.json"),
       );
+
+      const isTOML11OnlySpec = [
+        // Spec for TOML 1.1
+        "string/hex-escape.toml",
+        "string/escape-esc.toml",
+        "key/unicode.toml",
+        "inline-table/newline.toml",
+        "datetime/no-seconds.toml",
+      ].includes(filename);
 
       let specAssertion: SpecAssertion | undefined;
 
@@ -142,11 +157,8 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
       if (
         fs.existsSync(schemaFileName) &&
         // ignores
-        ![
-          // A value that cannot be expressed in JS.
-          "long-integer.toml",
-          "string-bad-codepoint.toml",
-        ].includes(filename)
+        !isTOML11OnlySpec &&
+        ![""].includes(filename)
       ) {
         const schema = JSON.parse(fs.readFileSync(schemaFileName, "utf8"));
         const expected = schemaToJson(schema);
@@ -156,22 +168,33 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<{
         };
       }
 
+      const invalid = rootDir.invalid || isTOML11OnlySpec;
+
       yield {
         filename,
         inputFileName,
         outputFileName,
         valueFileName,
         specAssertion,
-        valid: !rootDir.invalid,
-        invalid:
-          rootDir.invalid &&
-          ![
-            // It is valid in TOML v1.0
-            "array-mixed-types-arrays-and-ints.toml",
-            "array-mixed-types-ints-and-floats.toml",
-            "array-mixed-types-strings-and-ints.toml",
-          ].includes(filename),
+        valid: !invalid,
+        invalid,
       };
+    }
+  }
+}
+
+function* recursiveReaddirSync(root: string): Iterable<{
+  path: string;
+  name: string;
+}> {
+  for (const dirent of fs.readdirSync(root, { withFileTypes: true })) {
+    if (dirent.isFile()) {
+      yield {
+        path: root,
+        name: dirent.name,
+      };
+    } else if (dirent.isDirectory()) {
+      yield* recursiveReaddirSync(path.join(root, dirent.name));
     }
   }
 }
@@ -256,41 +279,62 @@ function* listUpIarnaTestSpecsFixtures(): Generator<{
 }
 
 function schemaToJson(schema: any): any {
-  return replaceJSON(schema, (_key, value) => {
-    if (value && typeof value === "object") {
-      const keys = Object.keys(value);
-      if (
-        keys.length === 2 &&
-        keys.includes("type") &&
-        keys.includes("value")
-      ) {
-        if (value.type === "integer" || value.type === "float") {
-          return Number(value.value);
-        }
-        if (value.type === "bool") {
-          return value.value === "true"
-            ? true
-            : value.value === "false"
-            ? false
-            : value.value;
-        }
+  return replaceJSON(
+    schema,
+    // eslint-disable-next-line complexity -- ignore
+    (_key, value) => {
+      if (value && typeof value === "object") {
+        const keys = Object.keys(value);
         if (
-          value.type === "datetime" ||
-          value.type === "datetime-local" ||
-          value.type === "date"
+          keys.length === 2 &&
+          keys.includes("type") &&
+          keys.includes("value")
         ) {
-          return new Date(value.value);
-        }
-        if (value.type === "time") {
-          return new Date(`0000-01-01T${value.value}Z`);
-        }
+          if (value.type === "integer") {
+            return Number(value.value);
+          }
+          if (value.type === "float") {
+            if (value.value === "+inf" || value.value === "inf") {
+              return Infinity;
+            }
+            if (value.value === "-inf") {
+              return -Infinity;
+            }
+            if (
+              value.value === "nan" ||
+              value.value === "+nan" ||
+              value.value === "-nan"
+            ) {
+              return NaN;
+            }
+            return Number(value.value);
+          }
+          if (value.type === "bool") {
+            return value.value === "true"
+              ? true
+              : value.value === "false"
+              ? false
+              : value.value;
+          }
+          if (
+            value.type === "datetime" ||
+            value.type === "datetime-local" ||
+            value.type === "date" ||
+            value.type === "date-local"
+          ) {
+            return new Date(value.value);
+          }
+          if (value.type === "time" || value.type === "time-local") {
+            return new Date(`0000-01-01T${value.value}Z`);
+          }
 
-        return value.value;
+          return value.value;
+        }
       }
-    }
 
-    return value;
-  });
+      return value;
+    },
+  );
 }
 
 /** Replace values */
