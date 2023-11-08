@@ -27,7 +27,7 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { last } from "../internal-utils";
-import type { TOMLVersion } from "../parser-options";
+import type { TOMLVersionNumber } from "../parser-options";
 import { type ParserOptions, normalizeTOMLVersion } from "../parser-options";
 import type { ParserState, ValueContainer } from "./context";
 import { Context } from "./context";
@@ -58,7 +58,7 @@ export class TOMLParser {
   private readonly parserOptions: ParserOptions;
 
   // @ts-expect-error -- unused
-  private readonly tomlVersion: TOMLVersion;
+  private readonly tomlVersion: TOMLVersionNumber;
 
   /**
    * Initialize this parser.

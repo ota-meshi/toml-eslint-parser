@@ -15,7 +15,7 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { ParseError } from "../errors";
-import type { TOMLVersion } from "../parser-options";
+import type { TOMLVersionNumber } from "../parser-options";
 import { normalizeTOMLVersion, type ParserOptions } from "../parser-options";
 import { CodePointIterator } from "./code-point-iterator";
 import {
@@ -71,6 +71,7 @@ import {
   LATIN_CAPITAL_Z,
   LATIN_SMALL_Z,
   isUnicodeScalarValue,
+  ESCAPE,
 } from "./code-point";
 
 type Position = {
@@ -112,16 +113,13 @@ const RADIX_PREFIXES = {
   2: "02",
 };
 
-const ESCAPES: Record<number, number> = {
+const ESCAPES_1_0: Record<number, number> = {
   // escape-seq-char =  %x22         ; "    quotation mark  U+0022
   [QUOTATION_MARK]: QUOTATION_MARK,
   // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
   [BACKSLASH]: BACKSLASH,
   // escape-seq-char =/ %x62         ; b    backspace       U+0008
   [LATIN_SMALL_B]: BACKSPACE,
-  // escape-seq-char =/ %x65         ; e    escape          U+001B
-  // Added in TOML 1.1
-  // TODO
   // escape-seq-char =/ %x66         ; f    form feed       U+000C
   [LATIN_SMALL_F]: FORM_FEED,
   // escape-seq-char =/ %x6E         ; n    line feed       U+000A
@@ -130,6 +128,13 @@ const ESCAPES: Record<number, number> = {
   [LATIN_SMALL_R]: CARRIAGE_RETURN,
   // escape-seq-char =/ %x74         ; t    tab             U+0009
   [LATIN_SMALL_T]: TABULATION,
+};
+
+const ESCAPES_LATEST: Record<number, number> = {
+  ...ESCAPES_1_0,
+  // escape-seq-char =/ %x65         ; e    escape          U+001B
+  // Added in TOML 1.1
+  [LATIN_SMALL_E]: ESCAPE,
 };
 
 type ExponentData = {
@@ -162,8 +167,9 @@ export class Tokenizer {
 
   private readonly parserOptions: ParserOptions;
 
-  // @ts-expect-error -- unused
-  private readonly tomlVersion: TOMLVersion;
+  private readonly tomlVersion: TOMLVersionNumber;
+
+  private readonly ESCAPES: Record<number, number>;
 
   private readonly codePointIterator: CodePointIterator;
 
@@ -201,6 +207,7 @@ export class Tokenizer {
     this.parserOptions = parserOptions || {};
     this.codePointIterator = new CodePointIterator(text);
     this.tomlVersion = normalizeTOMLVersion(this.parserOptions.tomlVersion);
+    this.ESCAPES = this.tomlVersion >= 1.1 ? ESCAPES_LATEST : ESCAPES_1_0;
   }
 
   public get positions(): { start: Position; end: Position } {
@@ -541,7 +548,7 @@ export class Tokenizer {
       }
       if (cp === BACKSLASH) {
         cp = this.nextCode();
-        const ecp = ESCAPES[cp];
+        const ecp = this.ESCAPES[cp];
         if (ecp) {
           codePoints.push(ecp);
           cp = this.nextCode();
@@ -558,10 +565,10 @@ export class Tokenizer {
           codePoints.push(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X) {
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion >= 1.1) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
-          const code = this.parseUnicode(8);
+          const code = this.parseUnicode(2);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
@@ -611,18 +618,27 @@ export class Tokenizer {
       }
       if (cp === BACKSLASH) {
         cp = this.nextCode();
-        const ecp = ESCAPES[cp];
+        const ecp = this.ESCAPES[cp];
         if (ecp) {
           codePoints.push(ecp);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
+          // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
+          // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
+          codePoints.push(code);
+          cp = this.nextCode();
+          continue;
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion >= 1.1) {
+          // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
+          // Added in TOML 1.1
+          const code = this.parseUnicode(2);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
@@ -1270,7 +1286,7 @@ export class Tokenizer {
 }
 
 /**
- * Check whether the code point is [A-Za-z0-9_-]
+ * Check whether the code point is unquoted-key-char
  */
 function isBare(cp: number): boolean {
   // TODO

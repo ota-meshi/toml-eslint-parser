@@ -5,6 +5,7 @@ export const TABULATION = 0x09;
 export const LINE_FEED = 0x0a;
 export const FORM_FEED = 0x0c;
 export const CARRIAGE_RETURN = 0x0d;
+export const ESCAPE = 0x1b;
 export const US = 0x1f;
 export const SPACE = 0x20;
 export const QUOTATION_MARK = 0x22;
