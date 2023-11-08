@@ -68,7 +68,7 @@ Select the TOML version by setting `"1.0.0"`, `"1.1.0"`, `"1.0"`, `"1.1"`, `"lat
 
 - `"1.0.0"` ... Parsed using [TOML v1.0.0 specifications](https://toml.io/en/v1.0.0).
 - `"1.0"` ... Alias for `"1.0.0"`.
-- `"1.1.0"` ... Parsed using the TOML v1.1.0 specification, which is currently [under developmen](https://github.com/toml-lang/toml/issues/928). TOML 1.1.0 has not been released yet, so `"1.1.0''` is still an experimental feature. Please note that this may be subject to breaking changes in minor version releases of this parser.
+- `"1.1.0"` ... Parsed using the TOML v1.1.0 specification, which is currently [under developmen](https://github.com/toml-lang/toml/issues/928). TOML 1.1.0 has not been released yet, so `"1.1.0"` is still an experimental feature. Please note that this may be subject to breaking changes in minor version releases of this parser.
 - `"1.1"` ... Alias for `"1.1.0"`.
 - `"latest"` ... Currently an alias for `"1.0.0"`. When a new version of TOML is released, we plan to change to that version in a minor version release of this parser.
 - `"next"` ... Currently an alias for `"1.1.0"`.
