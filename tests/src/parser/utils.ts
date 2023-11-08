@@ -124,7 +124,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
       const inputFileName = path.join(d.path, d.name);
       const filename = inputFileName.slice(rootDir.in.length + 1);
 
-      const isTOML11OnlySpec = [
+      const isTOML1P1OnlySpec = [
         // Spec for TOML 1.1
         "string/hex-escape.toml",
         "string/escape-esc.toml",
@@ -132,6 +132,13 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         "inline-table/newline.toml",
         "datetime/no-seconds.toml",
       ].includes(filename);
+
+      const isValidInTOML1P1 =
+        rootDir.invalid &&
+        [
+          "string/basic-byte-escapes.toml",
+          "key/special-character.toml",
+        ].includes(filename);
 
       const hasCR = [
         "control/bare-cr.toml",
@@ -155,8 +162,8 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         };
       }
 
-      const invalidForV1P0 = (rootDir.invalid && !hasCR) || isTOML11OnlySpec;
-      const invalidForV1P1 = rootDir.invalid && !hasCR;
+      const invalidForV1P0 = (rootDir.invalid && !hasCR) || isTOML1P1OnlySpec;
+      const invalidForV1P1 = rootDir.invalid && !hasCR && !isValidInTOML1P1;
 
       yield {
         filename,
