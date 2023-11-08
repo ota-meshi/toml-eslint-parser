@@ -8,9 +8,9 @@ import type { TOMLProgram } from "../../../src/ast";
 import { parseTOML } from "../../../src";
 import * as IarnaTOML from "@iarna/toml";
 import { listUpFixtures, stringify } from "./utils";
-import type { TOMLVersion } from "../../../src/parser-options";
+import type { TOMLVersionString } from "../../../src/parser-options";
 
-function parse(code: string, filePath: string, v: TOMLVersion) {
+function parse(code: string, filePath: string, v: TOMLVersionString) {
   return parseTOML(code, { filePath, tomlVersion: v });
 }
 

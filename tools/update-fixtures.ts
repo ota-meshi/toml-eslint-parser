@@ -5,12 +5,12 @@ import { getStaticTOMLValue } from "../src/utils";
 import type { TOMLProgram } from "../src/ast";
 import { listUpFixtures, stringify } from "../tests/src/parser/utils";
 import path from "path";
-import type { TOMLVersion } from "../src/parser-options";
+import type { TOMLVersionString } from "../src/parser-options";
 
 /**
  * Parse
  */
-function parse(code: string, filePath: string, v: TOMLVersion) {
+function parse(code: string, filePath: string, v: TOMLVersionString) {
   return parseForESLint(code, { filePath, tomlVersion: v });
 }
 

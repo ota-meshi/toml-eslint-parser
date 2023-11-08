@@ -15,8 +15,8 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { ParseError } from "../errors";
-import type { TOMLVersionNumber } from "../parser-options";
-import { normalizeTOMLVersion, type ParserOptions } from "../parser-options";
+import type { TOMLVer } from "../parser-options";
+import { getTOMLVer, type ParserOptions } from "../parser-options";
 import { CodePointIterator } from "./code-point-iterator";
 import {
   EOF,
@@ -198,7 +198,7 @@ export class Tokenizer {
 
   private readonly parserOptions: ParserOptions;
 
-  private readonly tomlVersion: TOMLVersionNumber;
+  private readonly tomlVersion: TOMLVer;
 
   private readonly ESCAPES: Record<number, number>;
 
@@ -237,8 +237,8 @@ export class Tokenizer {
     this.text = text;
     this.parserOptions = parserOptions || {};
     this.codePointIterator = new CodePointIterator(text);
-    this.tomlVersion = normalizeTOMLVersion(this.parserOptions.tomlVersion);
-    this.ESCAPES = this.tomlVersion >= 1.1 ? ESCAPES_LATEST : ESCAPES_1_0;
+    this.tomlVersion = getTOMLVer(this.parserOptions.tomlVersion);
+    this.ESCAPES = this.tomlVersion.gte("1.1") ? ESCAPES_LATEST : ESCAPES_1_0;
   }
 
   public get positions(): { start: Position; end: Position } {
@@ -596,7 +596,7 @@ export class Tokenizer {
           codePoints.push(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion >= 1.1) {
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte("1.1")) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
@@ -666,7 +666,7 @@ export class Tokenizer {
           codePoints.push(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion >= 1.1) {
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte("1.1")) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
@@ -1132,13 +1132,20 @@ export class Tokenizer {
     } else {
       return this.reportParseError("unexpected-char");
     }
-    cp = this.nextCode();
-    if (cp !== COLON) {
-      return this.reportParseError("unexpected-char");
-    }
     const data: DateTimeData = this.data! as DateTimeData;
     data.minute = Number(String.fromCodePoint(...codePoints));
-    return "TIME_SECOND";
+    cp = this.nextCode();
+    if (cp === COLON) {
+      return "TIME_SECOND";
+    }
+    if (this.tomlVersion.lt("1.1")) {
+      return this.reportParseError("unexpected-char");
+    }
+    // Omitted seconds
+    if (!isValidTime(data.hour, data.minute, data.second)) {
+      return this.reportParseError("invalid-time");
+    }
+    return this.processTimeEnd(cp, data);
   }
 
   private TIME_SECOND(cp: number): TokenizerState {
@@ -1164,23 +1171,7 @@ export class Tokenizer {
     if (cp === DOT) {
       return "TIME_SEC_FRAC";
     }
-    if (data.hasDate) {
-      if (cp === DASH || cp === PLUS_SIGN) {
-        data.offsetSign = cp;
-        return "TIME_OFFSET";
-      }
-      if (cp === LATIN_CAPITAL_Z || cp === LATIN_SMALL_Z) {
-        const dateValue = getDateFromDateTimeData(data, "Z");
-        this.endToken("OffsetDateTime", "end", dateValue);
-        return "DATA";
-      }
-      const dateValue = getDateFromDateTimeData(data, "");
-      this.endToken("LocalDateTime", "start", dateValue);
-      return this.back("DATA");
-    }
-    const dateValue = getDateFromDateTimeData(data, "");
-    this.endToken("LocalTime", "start", dateValue);
-    return this.back("DATA");
+    return this.processTimeEnd(cp, data);
   }
 
   private TIME_SEC_FRAC(cp: number): TokenizerState {
@@ -1194,6 +1185,10 @@ export class Tokenizer {
     }
     const data: DateTimeData = this.data! as DateTimeData;
     data.frac = codePoints;
+    return this.processTimeEnd(cp, data);
+  }
+
+  private processTimeEnd(cp: number, data: DateTimeData): TokenizerState {
     if (data.hasDate) {
       if (cp === DASH || cp === PLUS_SIGN) {
         data.offsetSign = cp;
@@ -1319,15 +1314,12 @@ export class Tokenizer {
 /**
  * Check whether the code point is unquoted-key-char
  */
-function isUnquotedKeyChar(
-  cp: number,
-  tomlVersion: TOMLVersionNumber,
-): boolean {
+function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
   // unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
   if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
     return true;
   }
-  if (tomlVersion <= 1.0) {
+  if (tomlVersion.lte("1.0")) {
     // TOML 1.0
     // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
     return false;

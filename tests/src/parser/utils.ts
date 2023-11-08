@@ -138,6 +138,9 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         [
           "string/basic-byte-escapes.toml",
           "key/special-character.toml",
+          "datetime/no-secs.toml",
+          "local-datetime/no-secs.toml",
+          "local-time/no-secs.toml",
         ].includes(filename);
 
       const hasCR = [
