@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-shadow -- bug?
 export const enum CodePoint {
   EOF = -1,
   NULL = 0x00,
