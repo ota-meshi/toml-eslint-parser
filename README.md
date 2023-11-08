@@ -32,14 +32,46 @@ Example **.eslintrc.js**:
 
 ```js
 module.exports = {
-    "overrides": [
-        {
-            "files": ["*.toml"],
-            "parser": "toml-eslint-parser"
-        }
-    ]
-}
+  overrides: [
+    {
+      files: ["*.toml"],
+      parser: "toml-eslint-parser",
+    },
+  ],
+};
 ```
+
+### Advanced Configuration
+
+The following additional configuration options are available by specifying them in [parserOptions](https://eslint.org/docs/latest/user-guide/configuring/language-options#specifying-parser-options) in your ESLint configuration file.
+
+Example **.eslintrc.js**:
+
+```js
+module.exports = {
+  overrides: [
+    {
+      files: ["*.toml"],
+      parser: "toml-eslint-parser",
+      // Additional configuration options
+      parserOptions: {
+        tomlVersion: "1.0.0",
+      },
+    },
+  ],
+};
+```
+
+#### `parserOptions.tomlVersion`
+
+Select the TOML version by setting `"1.0.0"`, `"1.1.0"`, `"1.0"`, `"1.1"`, `"latest"`, or `"next"`. By default `"1.0.0"` is used.
+
+- `"1.0.0"` ... Parsed using [TOML v1.0.0 specifications](https://toml.io/en/v1.0.0).
+- `"1.0"` ... Alias for `"1.0.0"`.
+- `"1.1.0"` ... Parsed using the TOML v1.1.0 specification, which is currently under development. TOML 1.1.0 has not been released yet, so `"1.1.0''` is still an experimental feature. Please note that this may be subject to breaking changes in minor version releases of this parser.
+- `"1.1"` ... Alias for `"1.1.0"`.
+- `"latest"` ... Currently an alias for `"1.0.0"`. When a new version of TOML is released, we plan to change to that version in a minor version release of this parser.
+- `"next"` ... Currently an alias for `"1.1.0"`.
 
 ## Usage for Custom Rules / Plugins
 
@@ -52,8 +84,8 @@ module.exports = {
 Example:
 
 ```ts
-import type { AST } from "toml-eslint-parser"
-import { parseTOML, getStaticTOMLValue } from "toml-eslint-parser"
+import type { AST } from "toml-eslint-parser";
+import { parseTOML, getStaticTOMLValue } from "toml-eslint-parser";
 
 const code = `
 # This is a TOML document
@@ -79,10 +111,10 @@ role = "frontend"
 [servers.beta]
 ip = "10.0.0.2"
 role = "backend"
-`
+`;
 
-const ast: AST.TOMLProgram = parseTOML(code)
-console.log(ast)
+const ast: AST.TOMLProgram = parseTOML(code);
+console.log(ast);
 // {
 //   type: 'Program',
 //   body: [
@@ -117,8 +149,8 @@ console.log(ast)
 //   ],
 // }
 
-const value = getStaticTOMLValue(ast)
-console.log(value)
+const value = getStaticTOMLValue(ast);
+console.log(value);
 // {
 //   title: 'TOML Example',
 //   owner: { name: 'Tom Preston-Werner', dob: 1979-05-27T15:32:00.000Z },
