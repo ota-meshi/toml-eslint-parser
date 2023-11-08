@@ -1,11 +1,13 @@
 export const EOF = -1;
 export const NULL = 0x00;
+export const SOH = 0x01;
 export const BACKSPACE = 0x08;
 export const TABULATION = 0x09;
 export const LINE_FEED = 0x0a;
 export const FORM_FEED = 0x0c;
 export const CARRIAGE_RETURN = 0x0d;
 export const ESCAPE = 0x1b;
+export const SO = 0x0e;
 export const US = 0x1f;
 export const SPACE = 0x20;
 export const QUOTATION_MARK = 0x22;
@@ -50,6 +52,7 @@ export const LATIN_SMALL_Z = 0x7a;
 export const LEFT_BRACE = 0x7b; // {
 export const RIGHT_BRACE = 0x7d; // }
 export const DELETE = 0x7f;
+export const PAD = 0x80;
 export const SUPERSCRIPT_TWO = 0xb2;
 export const SUPERSCRIPT_THREE = 0xb3;
 export const SUPERSCRIPT_ONE = 0xb9;
@@ -75,12 +78,14 @@ export const GLAGOLITIC_CAPITAL_LETTER_AZU = 0x2c00;
 export const CP_2FEF = 0x2fef;
 export const IDEOGRAPHIC_COMMA = 0x3001;
 export const CP_D7FF = 0xd7ff;
+export const CP_E000 = 0xe000;
 export const CJK_COMPATIBILITY_IDEOGRAPH_F900 = 0xf900;
 export const ARABIC_LIGATURE_SALAAMUHU_ALAYNAA = 0xfdcf;
 export const ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM = 0xfdf0;
 export const REPLACEMENT_CHARACTER = 0xfffd;
 export const LINEAR_B_SYLLABLE_B008_A = 0x10000;
 export const CP_EFFFF = 0xeffff;
+export const CP_10FFFF = 0x10ffff;
 
 /**
  * Check whether the code point is a control character.

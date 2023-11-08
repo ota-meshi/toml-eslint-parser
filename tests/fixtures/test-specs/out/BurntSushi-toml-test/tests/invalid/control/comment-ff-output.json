@@ -1,1 +1,1 @@
-"Control characters (codes < 0x1f and 0x7f) are not allowed@line:1,column:26"
+"Invalid code point {{cp}} within comments@line:1,column:26"

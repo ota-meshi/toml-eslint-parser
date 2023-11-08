@@ -146,6 +146,9 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
           "inline-table/linebreak-3.toml",
           "inline-table/linebreak-4.toml",
           "inline-table/trailing-comma.toml",
+          "control/comment-del.toml",
+          "control/comment-lf.toml",
+          "control/comment-us.toml",
         ].includes(filename);
 
       const hasCR = [
@@ -260,7 +263,12 @@ function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
 
       const validInTOML1P1 =
         rootDir.invalid &&
-        ["inline-table-trailing-comma.toml"].includes(filename);
+        [
+          "inline-table-trailing-comma.toml",
+          "comment-control-2.toml",
+          "comment-control-3.toml",
+          "comment-control-4.toml",
+        ].includes(filename);
       const invalidForV1P1 = rootDir.invalid && !validInTOML1P1;
 
       yield {

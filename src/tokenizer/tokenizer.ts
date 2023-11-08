@@ -103,6 +103,11 @@ import {
   REPLACEMENT_CHARACTER,
   LINEAR_B_SYLLABLE_B008_A,
   CP_EFFFF,
+  SOH,
+  SO,
+  CP_10FFFF,
+  CP_E000,
+  PAD,
 } from "./code-point";
 
 type Position = {
@@ -545,10 +550,19 @@ export class Tokenizer {
   }
 
   private COMMENT(cp: number): TokenizerState {
+    const processCommentChar = this.tomlVersion.gte(1, 1)
+      ? (c: number) => {
+          if (!isAllowedCommentCharacter(c)) {
+            this.reportParseError("invalid-comment-character");
+          }
+        }
+      : (c: number) => {
+          if (isControlOtherThanTab(c)) {
+            this.reportParseErrorControlChar();
+          }
+        };
     while (!isEOL(cp) && cp !== EOF) {
-      if (isControlOtherThanTab(cp)) {
-        return this.reportParseErrorControlChar();
-      }
+      processCommentChar(cp);
       cp = this.nextCode();
     }
     this.endToken("Block", "start");
@@ -1391,10 +1405,30 @@ function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
 }
 
 /**
- * Check whether the code point is [A-Za-z0-9_-]
+ * Check whether the code point is control character other than tab
  */
 function isControlOtherThanTab(cp: number): boolean {
   return (isControl(cp) && cp !== TABULATION) || cp === DELETE;
+}
+
+/**
+ * Check whether the code point is allowed-comment-char for TOML 1.1
+ */
+function isAllowedCommentCharacter(cp: number): boolean {
+  // allowed-comment-char = %x01-09 / %x0E-7F / non-ascii
+  return (
+    (SOH <= cp && cp <= TABULATION) ||
+    (SO <= cp && cp <= DELETE) ||
+    isNonAscii(cp)
+  );
+}
+
+/**
+ * Check whether the code point is a non-ascii character.
+ */
+function isNonAscii(cp: number): boolean {
+  //  %x80-D7FF / %xE000-10FFFF
+  return (PAD <= cp && cp <= CP_D7FF) || (CP_E000 <= cp && cp <= CP_10FFFF);
 }
 
 /**

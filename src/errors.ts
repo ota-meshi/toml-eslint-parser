@@ -13,6 +13,7 @@ const MESSAGES = {
   "unexpected-token": "Unexpected token",
   "invalid-control-character":
     "Control characters (codes < 0x1f and 0x7f) are not allowed",
+  "invalid-comment-character": "Invalid code point {{cp}} within comments",
   "invalid-key-value-newline":
     "The key, equals sign, and value must be on the same line",
   "invalid-inline-table-newline":
