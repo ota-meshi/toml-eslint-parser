@@ -5,6 +5,7 @@ import fs from "fs";
 import path from "path";
 import { parseForESLint } from "..";
 import { parseForESLint as parseOld } from "../node_modules/toml-eslint-parser";
+import { parse as parseByIarna } from "@iarna/toml";
 
 const contents = `${fs.readFileSync(
   path.resolve(
@@ -51,28 +52,15 @@ function onComplete(): void {
 
 const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 
-for (const no of [1, 2, 3]) {
+for (const no of [1, 2, 3, 4, 5]) {
   suite.add(`${no} new   toml-eslint-parser`, function () {
-    parseForESLint(contents, {
-      loc: true,
-      range: true,
-      raw: true,
-      tokens: true,
-      comment: true,
-      eslintVisitorKeys: true,
-      eslintScopeManager: true,
-    });
+    parseForESLint(contents, {});
   });
   suite.add(`${no} old   toml-eslint-parser`, function () {
-    parseOld(contents, {
-      loc: true,
-      range: true,
-      raw: true,
-      tokens: true,
-      comment: true,
-      eslintVisitorKeys: true,
-      eslintScopeManager: true,
-    });
+    parseOld(contents, {});
+  });
+  suite.add(`${no}       @iarna/toml       `, function () {
+    parseByIarna(contents);
   });
 }
 

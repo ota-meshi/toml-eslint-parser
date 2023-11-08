@@ -149,37 +149,37 @@ const RADIX_PREFIXES = {
   2: "02",
 };
 
-const ESCAPES_1_0: Record<number, number> = {
+const ESCAPES_1_0: Record<number, string> = {
   // escape-seq-char =  %x22         ; "    quotation mark  U+0022
-  [QUOTATION_MARK]: QUOTATION_MARK,
+  [QUOTATION_MARK]: String.fromCodePoint(QUOTATION_MARK),
   // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
-  [BACKSLASH]: BACKSLASH,
+  [BACKSLASH]: String.fromCodePoint(BACKSLASH),
   // escape-seq-char =/ %x62         ; b    backspace       U+0008
-  [LATIN_SMALL_B]: BACKSPACE,
+  [LATIN_SMALL_B]: String.fromCodePoint(BACKSPACE),
   // escape-seq-char =/ %x66         ; f    form feed       U+000C
-  [LATIN_SMALL_F]: FORM_FEED,
+  [LATIN_SMALL_F]: String.fromCodePoint(FORM_FEED),
   // escape-seq-char =/ %x6E         ; n    line feed       U+000A
-  [LATIN_SMALL_N]: LINE_FEED,
+  [LATIN_SMALL_N]: String.fromCodePoint(LINE_FEED),
   // escape-seq-char =/ %x72         ; r    carriage return U+000D
-  [LATIN_SMALL_R]: CARRIAGE_RETURN,
+  [LATIN_SMALL_R]: String.fromCodePoint(CARRIAGE_RETURN),
   // escape-seq-char =/ %x74         ; t    tab             U+0009
-  [LATIN_SMALL_T]: TABULATION,
+  [LATIN_SMALL_T]: String.fromCodePoint(TABULATION),
 };
 
-const ESCAPES_LATEST: Record<number, number> = {
+const ESCAPES_LATEST: Record<number, string> = {
   ...ESCAPES_1_0,
   // escape-seq-char =/ %x65         ; e    escape          U+001B
   // Added in TOML 1.1
-  [LATIN_SMALL_E]: ESCAPE,
+  [LATIN_SMALL_E]: String.fromCodePoint(ESCAPE),
 };
 
 type ExponentData = {
   minus: boolean;
-  left: number[];
+  left: string;
 };
 type FractionalData = {
   minus: boolean;
-  absInt: number[];
+  absInt: string;
 };
 type DateTimeData = {
   hasDate: boolean;
@@ -191,7 +191,7 @@ type DateTimeData = {
   minute: number;
   second: number;
 
-  frac?: number[];
+  frac?: string;
   offsetSign?: number;
 };
 
@@ -205,7 +205,7 @@ export class Tokenizer {
 
   private readonly tomlVersion: TOMLVer;
 
-  private readonly ESCAPES: Record<number, number>;
+  private readonly ESCAPES: Record<number, string>;
 
   private readonly codePointIterator: CodePointIterator;
 
@@ -332,9 +332,9 @@ export class Tokenizer {
     return state;
   }
 
-  private punctuatorToken(cp: number): void {
+  private punctuatorToken(): void {
     this.startToken();
-    this.endToken("Punctuator", "end", cp);
+    this.endToken("Punctuator", "end");
   }
 
   private startToken(): void {
@@ -349,26 +349,25 @@ export class Tokenizer {
   ): void;
 
   private endToken(
+    // eslint-disable-next-line @typescript-eslint/unified-signatures -- ignore
     type: PunctuatorToken["type"],
     pos: "start" | "end",
-    cp: number,
   ): void;
 
   private endToken(
     type: StringToken["type"] | MultiLineStringToken["type"],
     pos: "start" | "end",
-    codePoints: number[],
+    text: string,
   ): void;
 
   private endToken(
     type: IntegerToken["type"],
     pos: "start" | "end",
-    codePoints: number[],
+    text: string,
     radix: 16 | 10 | 8 | 2,
   ): void;
 
   private endToken(
-    // eslint-disable-next-line @typescript-eslint/unified-signatures -- ignore
     type: FloatToken["type"],
     pos: "start" | "end",
     value: number,
@@ -392,7 +391,7 @@ export class Tokenizer {
   private endToken(
     type: TokenType | Comment["type"],
     pos: "start" | "end",
-    option1?: number[] | number | boolean | Date,
+    option1?: number | boolean | Date | string,
     option2?: 16 | 10 | 8 | 2,
   ): void {
     const { tokenStart } = this;
@@ -418,10 +417,7 @@ export class Tokenizer {
       };
     } else {
       let token: Token;
-      const value =
-        type === "Punctuator"
-          ? String.fromCodePoint(option1! as number)
-          : this.text.slice(tokenStart.offset, end.offset);
+      const value = this.text.slice(tokenStart.offset, end.offset);
       if (
         type === "BasicString" ||
         type === "LiteralString" ||
@@ -431,12 +427,12 @@ export class Tokenizer {
         token = {
           type,
           value,
-          string: String.fromCodePoint(...(option1! as number[])),
+          string: option1! as string,
           range,
           loc,
         };
       } else if (type === "Integer") {
-        const text = String.fromCodePoint(...(option1! as number[]));
+        const text = option1! as string;
         token = {
           type,
           value,
@@ -513,7 +509,7 @@ export class Tokenizer {
       cp === RIGHT_BRACE || // }
       cp === COMMA // ,
     ) {
-      this.punctuatorToken(cp);
+      this.punctuatorToken();
       return "DATA";
     }
 
@@ -583,10 +579,10 @@ export class Tokenizer {
       if (cp === QUOTATION_MARK) {
         return "MULTI_LINE_BASIC_STRING";
       }
-      this.endToken("BasicString", "start", []);
+      this.endToken("BasicString", "start", "");
       return this.back("DATA");
     }
-    const codePoints: number[] = [];
+    let out = "";
     while (cp !== QUOTATION_MARK && cp !== EOF && cp !== LINE_FEED) {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
@@ -595,43 +591,43 @@ export class Tokenizer {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
-          codePoints.push(ecp);
+          out += ecp;
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      codePoints.push(cp);
+      out += this.currChar(cp);
       cp = this.nextCode();
     }
     if (cp !== QUOTATION_MARK) {
       return this.reportParseError("unterminated-string");
     }
-    this.endToken("BasicString", "end", codePoints);
+    this.endToken("BasicString", "end", out);
     return "DATA";
   }
 
   private MULTI_LINE_BASIC_STRING(cp: number): TokenizerState {
-    const codePoints: number[] = [];
+    let out = "";
     if (cp === LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
@@ -647,9 +643,9 @@ export class Tokenizer {
           nextPoints.next() === QUOTATION_MARK
         ) {
           if (nextPoints.next() === QUOTATION_MARK) {
-            codePoints.push(QUOTATION_MARK);
+            out += '"';
             if (nextPoints.next() === QUOTATION_MARK) {
-              codePoints.push(QUOTATION_MARK);
+              out += '"';
               if (nextPoints.next() === QUOTATION_MARK) {
                 return this.reportParseError("invalid-three-quotes");
               }
@@ -657,7 +653,7 @@ export class Tokenizer {
           }
           this.skip(nextPoints.count - 1);
           // end
-          this.endToken("MultiLineBasicString", "end", codePoints);
+          this.endToken("MultiLineBasicString", "end", out);
           return "DATA";
         }
       }
@@ -665,26 +661,26 @@ export class Tokenizer {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
-          codePoints.push(ecp);
+          out += ecp;
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
-          codePoints.push(code);
+          out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LINE_FEED) {
@@ -714,7 +710,7 @@ export class Tokenizer {
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      codePoints.push(cp);
+      out += this.currChar(cp);
       cp = this.nextCode();
     }
 
@@ -727,26 +723,26 @@ export class Tokenizer {
       if (cp === SINGLE_QUOTE) {
         return "MULTI_LINE_LITERAL_STRING";
       }
-      this.endToken("LiteralString", "start", []);
+      this.endToken("LiteralString", "start", "");
       return this.back("DATA");
     }
-    const codePoints: number[] = [];
+    let out = "";
     while (cp !== SINGLE_QUOTE && cp !== EOF && cp !== LINE_FEED) {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      codePoints.push(cp);
+      out += this.currChar(cp);
       cp = this.nextCode();
     }
     if (cp !== SINGLE_QUOTE) {
       return this.reportParseError("unterminated-string");
     }
-    this.endToken("LiteralString", "end", codePoints);
+    this.endToken("LiteralString", "end", out);
     return "DATA";
   }
 
   private MULTI_LINE_LITERAL_STRING(cp: number): TokenizerState {
-    const codePoints: number[] = [];
+    let out = "";
     if (cp === LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
@@ -762,9 +758,9 @@ export class Tokenizer {
           nextPoints.next() === SINGLE_QUOTE
         ) {
           if (nextPoints.next() === SINGLE_QUOTE) {
-            codePoints.push(SINGLE_QUOTE);
+            out += "'";
             if (nextPoints.next() === SINGLE_QUOTE) {
-              codePoints.push(SINGLE_QUOTE);
+              out += "'";
               if (nextPoints.next() === SINGLE_QUOTE) {
                 return this.reportParseError("invalid-three-quotes");
               }
@@ -772,11 +768,11 @@ export class Tokenizer {
           }
           this.skip(nextPoints.count - 1);
           // end
-          this.endToken("MultiLineLiteralString", "end", codePoints);
+          this.endToken("MultiLineLiteralString", "end", out);
           return "DATA";
         }
       }
-      codePoints.push(cp);
+      out += this.currChar(cp);
       cp = this.nextCode();
     }
     return this.reportParseError("unterminated-string");
@@ -872,7 +868,7 @@ export class Tokenizer {
         const data: ExponentData = {
           // Float values -0.0 and +0.0 are valid and should map according to IEEE 754.
           minus: sign === DASH,
-          left: [DIGIT_0],
+          left: "0",
         };
         this.data = data;
         return "EXPONENT_RIGHT";
@@ -880,26 +876,26 @@ export class Tokenizer {
       if (cp === DOT) {
         const data: FractionalData = {
           minus: sign === DASH,
-          absInt: [DIGIT_0],
+          absInt: "0",
         };
         this.data = data;
         return "FRACTIONAL_RIGHT";
       }
       // Integer values -0 and +0 are valid and identical to an unprefixed zero.
-      this.endToken("Integer", "start", [DIGIT_0], 10);
+      this.endToken("Integer", "start", "0", 10);
       return this.back("DATA");
     }
-    const { codePoints, nextCp, hasUnderscore } = this.parseDigits(cp, isDigit);
+    const { out, nextCp, hasUnderscore } = this.parseDigits(cp, isDigit);
 
     if (
       nextCp === DASH &&
       sign === NULL &&
       !hasUnderscore &&
-      codePoints.length === 4
+      out.length === 4
     ) {
       const data: DateTimeData = {
         hasDate: true,
-        year: Number(String.fromCodePoint(...codePoints)),
+        year: Number(out),
         month: 0,
         day: 0,
         hour: 0,
@@ -913,14 +909,14 @@ export class Tokenizer {
       nextCp === COLON &&
       sign === NULL &&
       !hasUnderscore &&
-      codePoints.length === 2
+      out.length === 2
     ) {
       const data: DateTimeData = {
         hasDate: false,
         year: 0,
         month: 0,
         day: 0,
-        hour: Number(String.fromCodePoint(...codePoints)),
+        hour: Number(out),
         minute: 0,
         second: 0,
       };
@@ -931,7 +927,7 @@ export class Tokenizer {
     if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
       const data: ExponentData = {
         minus: sign === DASH,
-        left: codePoints,
+        left: out,
       };
       this.data = data;
       return "EXPONENT_RIGHT";
@@ -939,45 +935,37 @@ export class Tokenizer {
     if (nextCp === DOT) {
       const data: FractionalData = {
         minus: sign === DASH,
-        absInt: codePoints,
+        absInt: out,
       };
       this.data = data;
       return "FRACTIONAL_RIGHT";
     }
-    this.endToken(
-      "Integer",
-      "start",
-      sign === DASH ? [DASH, ...codePoints] : codePoints,
-      10,
-    );
+    this.endToken("Integer", "start", sign === DASH ? `-${out}` : out, 10);
     return this.back("DATA");
   }
 
   private HEX(cp: number): TokenizerState {
-    const { codePoints } = this.parseDigits(cp, isHexDig);
-    this.endToken("Integer", "start", codePoints, 16);
+    const { out } = this.parseDigits(cp, isHexDig);
+    this.endToken("Integer", "start", out, 16);
     return this.back("DATA");
   }
 
   private OCTAL(cp: number): TokenizerState {
-    const { codePoints } = this.parseDigits(cp, isOctalDig);
-    this.endToken("Integer", "start", codePoints, 8);
+    const { out } = this.parseDigits(cp, isOctalDig);
+    this.endToken("Integer", "start", out, 8);
     return this.back("DATA");
   }
 
   private BINARY(cp: number): TokenizerState {
-    const { codePoints } = this.parseDigits(
-      cp,
-      (c) => c === DIGIT_0 || c === DIGIT_1,
-    );
-    this.endToken("Integer", "start", codePoints, 2);
+    const { out } = this.parseDigits(cp, (c) => c === DIGIT_0 || c === DIGIT_1);
+    this.endToken("Integer", "start", out, 2);
     return this.back("DATA");
   }
 
   private FRACTIONAL_RIGHT(cp: number): TokenizerState {
     const { minus, absInt } = this.data! as FractionalData;
-    const { codePoints, nextCp } = this.parseDigits(cp, isDigit);
-    const absNum = [...absInt, DOT, ...codePoints];
+    const { out, nextCp } = this.parseDigits(cp, isDigit);
+    const absNum = `${absInt}.${out}`;
     if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
       const data: ExponentData = {
         minus,
@@ -986,11 +974,7 @@ export class Tokenizer {
       this.data = data;
       return "EXPONENT_RIGHT";
     }
-    const value = Number(
-      minus
-        ? String.fromCodePoint(DASH, ...absNum)
-        : String.fromCodePoint(...absNum),
-    );
+    const value = Number(minus ? `-${absNum}` : absNum);
     this.endToken("Float", "start", value);
     return this.back("DATA");
   }
@@ -1002,16 +986,12 @@ export class Tokenizer {
       minus = cp === DASH;
       cp = this.nextCode();
     }
-    const { codePoints } = this.parseDigits(cp, isDigit);
-    let right = codePoints;
+    const { out } = this.parseDigits(cp, isDigit);
+    let right = out;
     if (minus) {
-      right = [DASH, ...right];
+      right = `-${out}`;
     }
-    const value = Number(
-      leftMinus
-        ? String.fromCodePoint(DASH, ...left, LATIN_SMALL_E, ...right)
-        : String.fromCodePoint(...left, LATIN_SMALL_E, ...right),
-    );
+    const value = Number(leftMinus ? `-${left}e${right}` : `${left}e${right}`);
     this.endToken("Float", "start", value);
     return this.back("DATA");
   }
@@ -1046,52 +1026,47 @@ export class Tokenizer {
     return this.reportParseError("unexpected-char");
   }
 
-  private DATE_YEAR(cp: number): TokenizerState {
+  private DATE_YEAR(): TokenizerState {
     // already checked
-    const codePoints = [cp, this.nextCode(), this.nextCode(), this.nextCode()];
-    this.nextCode(); // hyphen
+    const start = this.codePointIterator.start.offset;
+    this.skip(4);
+    const end = this.codePointIterator.start.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.year = Number(String.fromCodePoint(...codePoints));
+    data.year = Number(this.text.slice(start, end));
     return "DATE_MONTH";
   }
 
   private DATE_MONTH(cp: number): TokenizerState {
-    const codePoints = [];
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    const start = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
     if (cp !== DASH) {
       return this.reportParseError("unexpected-char");
     }
+    const end = this.codePointIterator.start.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.month = Number(String.fromCodePoint(...codePoints));
+    data.month = Number(this.text.slice(start, end));
     return "DATE_DAY";
   }
 
   private DATE_DAY(cp: number): TokenizerState {
-    const codePoints = [];
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    const start = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
+    const end = this.codePointIterator.end.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.day = Number(String.fromCodePoint(...codePoints));
+    data.day = Number(this.text.slice(start, end));
     if (!isValidDate(data.year, data.month, data.day)) {
       return this.reportParseError("invalid-date");
     }
@@ -1112,42 +1087,36 @@ export class Tokenizer {
   }
 
   private TIME_HOUR(cp: number): TokenizerState {
-    const codePoints = [];
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    const start = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
     if (cp !== COLON) {
       return this.reportParseError("unexpected-char");
     }
+    const end = this.codePointIterator.start.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.hour = Number(String.fromCodePoint(...codePoints));
+    data.hour = Number(this.text.slice(start, end));
     return "TIME_MINUTE";
   }
 
   private TIME_MINUTE(cp: number): TokenizerState {
-    const codePoints = [];
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    const start = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
+    const end = this.codePointIterator.end.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.minute = Number(String.fromCodePoint(...codePoints));
+    data.minute = Number(this.text.slice(start, end));
     cp = this.nextCode();
     if (cp === COLON) {
       return "TIME_SECOND";
@@ -1164,20 +1133,17 @@ export class Tokenizer {
   }
 
   private TIME_SECOND(cp: number): TokenizerState {
-    const codePoints = [];
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    const start = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      codePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
+    const end = this.codePointIterator.end.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.second = Number(String.fromCodePoint(...codePoints));
+    data.second = Number(this.text.slice(start, end));
     if (!isValidTime(data.hour, data.minute, data.second)) {
       return this.reportParseError("invalid-time");
     }
@@ -1193,13 +1159,13 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const codePoints = [];
+    const start = this.codePointIterator.start.offset;
     while (isDigit(cp)) {
-      codePoints.push(cp);
       cp = this.nextCode();
     }
+    const end = this.codePointIterator.start.offset;
     const data: DateTimeData = this.data! as DateTimeData;
-    data.frac = codePoints;
+    data.frac = this.text.slice(start, end);
     return this.processTimeEnd(cp, data);
   }
 
@@ -1227,32 +1193,28 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const hourCodePoints = [cp];
+    const hourStart = this.codePointIterator.start.offset;
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      hourCodePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
     if (cp !== COLON) {
       return this.reportParseError("unexpected-char");
     }
-    const minuteCodePoints: number[] = [];
+    const hourEnd = this.codePointIterator.start.offset;
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      minuteCodePoints.push(cp);
-    } else {
+    const minuteStart = this.codePointIterator.start.offset;
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (isDigit(cp)) {
-      minuteCodePoints.push(cp);
-    } else {
+    if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const hour = Number(String.fromCodePoint(...hourCodePoints));
-    const minute = Number(String.fromCodePoint(...minuteCodePoints));
+    const minuteEnd = this.codePointIterator.end.offset;
+    const hour = Number(this.text.slice(hourStart, hourEnd));
+    const minute = Number(this.text.slice(minuteStart, minuteEnd));
     if (!isValidTime(hour, minute, 0)) {
       return this.reportParseError("invalid-time");
     }
@@ -1269,14 +1231,21 @@ export class Tokenizer {
     return "DATA";
   }
 
-  private parseDigits(cp: number, checkDigit: typeof isDigit) {
+  private parseDigits(
+    cp: number,
+    checkDigit: typeof isDigit,
+  ): {
+    out: string;
+    nextCp: number;
+    hasUnderscore: boolean;
+  } {
     if (cp === UNDERSCORE) {
       return this.reportParseError("invalid-underscore");
     }
     if (!checkDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const codePoints: number[] = [];
+    let out = "";
     let before = NULL;
     let hasUnderscore = false;
     while (checkDigit(cp) || cp === UNDERSCORE) {
@@ -1286,7 +1255,7 @@ export class Tokenizer {
           return this.reportParseError("invalid-underscore");
         }
       } else {
-        codePoints.push(cp);
+        out += this.currChar(cp);
       }
       before = cp;
       cp = this.nextCode();
@@ -1295,25 +1264,27 @@ export class Tokenizer {
       return this.reportParseError("invalid-underscore");
     }
     return {
-      codePoints,
+      out,
       nextCp: cp,
       hasUnderscore,
     };
   }
 
   private parseUnicode(count: number): number {
-    const codePoints = [];
+    let charCount = 0;
     for (const cp of this.codePointIterator.iterateSubCodePoints()) {
       if (!isHexDig(cp)) {
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      codePoints.push(cp);
-      if (codePoints.length >= count) {
+      charCount++;
+      if (charCount >= count) {
         break;
       }
     }
-    this.skip(codePoints.length);
-    const code = String.fromCodePoint(...codePoints);
+    const start = this.codePointIterator.end.offset;
+    this.skip(charCount);
+    const end = this.codePointIterator.end.offset;
+    const code = this.text.slice(start, end);
     const codePoint = parseInt(code, 16);
     if (!isUnicodeScalarValue(codePoint)) {
       return this.reportParseError("invalid-code-point", { cp: code });
@@ -1323,6 +1294,15 @@ export class Tokenizer {
 
   private reportParseErrorControlChar() {
     return this.reportParseError("invalid-control-character");
+  }
+
+  private currChar(cp: number): string {
+    if (cp === LINE_FEED) return "\n";
+    if (cp < 0x10000) return this.text[this.codePointIterator.start.offset];
+    return this.text.slice(
+      this.codePointIterator.start.offset,
+      this.codePointIterator.end.offset,
+    );
   }
 }
 
@@ -1468,7 +1448,7 @@ function getDateFromDateTimeData(data: DateTimeData, timeZone: string): Date {
   const minute = padStart(data.minute, 2);
   const second = padStart(data.second, 2);
   const textDate = `${year}-${month}-${day}`;
-  const frac = data.frac ? `.${String.fromCodePoint(...data.frac)}` : "";
+  const frac = data.frac ? `.${data.frac}` : "";
   const dateValue = new Date(
     `${textDate}T${hour}:${minute}:${second}${frac}${timeZone}`,
   );
