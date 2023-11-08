@@ -14,7 +14,8 @@ A TOML parser that produces output [compatible with ESLint](https://eslint.org/d
 ## Features
 
 - Converts TOML text to [AST](./docs/AST.md).
-- Support for [TOML 1.0.0](https://toml.io/en/v1.0.0)
+- Support for [TOML 1.0.0](https://toml.io/en/v1.0.0).
+- Experimental support for TOML 1.1.0. (Specifications for November 2023)
 
 ## Installation
 
