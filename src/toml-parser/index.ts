@@ -57,7 +57,6 @@ export class TOMLParser {
 
   private readonly parserOptions: ParserOptions;
 
-  // @ts-expect-error -- unused
   private readonly tomlVersion: TOMLVer;
 
   /**
@@ -496,8 +495,12 @@ export class TOMLParser {
       loc: cloneLoc(token.loc),
     };
 
+    const needSameLine = this.tomlVersion.gte("1.1")
+      ? undefined
+      : ("invalid-inline-table-newline" as const);
+
     const nextToken = ctx.nextToken({
-      needSameLine: "invalid-inline-table-newline",
+      needSameLine,
     });
 
     if (nextToken) {
@@ -540,19 +543,18 @@ export class TOMLParser {
     if (!isEq(targetToken)) {
       return ctx.reportParseError("missing-equals-sign", targetToken);
     }
+    const needSameLine = this.tomlVersion.gte("1.1")
+      ? undefined
+      : ("invalid-inline-table-newline" as const);
     ctx.addValueContainer({
       parent: keyValueNode,
       set: (valNode) => {
         keyValueNode.value = valNode;
         applyEndLoc(keyValueNode, valNode);
 
-        let nextToken = ctx.nextToken({
-          needSameLine: "invalid-inline-table-newline",
-        });
+        let nextToken = ctx.nextToken({ needSameLine });
         if (isComma(nextToken)) {
-          nextToken = ctx.nextToken({
-            needSameLine: "invalid-inline-table-newline",
-          });
+          nextToken = ctx.nextToken({ needSameLine });
           if (nextToken && (isBare(nextToken) || isString(nextToken))) {
             // setup next value container
             return this.processInlineTableKeyValue(
@@ -562,14 +564,19 @@ export class TOMLParser {
               ctx,
             );
           }
-          return ctx.reportParseError(
-            isRightBrace(nextToken)
-              ? "invalid-trailing-comma-in-inline-table"
-              : nextToken
-              ? "unexpected-token"
-              : "unterminated-inline-table",
-            nextToken,
-          );
+          if (isRightBrace(nextToken)) {
+            if (this.tomlVersion.lt("1.1")) {
+              return ctx.reportParseError(
+                "invalid-trailing-comma-in-inline-table",
+                nextToken,
+              );
+            }
+          } else {
+            return ctx.reportParseError(
+              nextToken ? "unexpected-token" : "unterminated-inline-table",
+              nextToken,
+            );
+          }
         }
         if (isRightBrace(nextToken)) {
           applyEndLoc(inlineTableNode, nextToken);

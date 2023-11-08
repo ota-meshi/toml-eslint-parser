@@ -1,7 +1,9 @@
 type NormalizedTOMLVersion = "1.0" | "1.1";
-export type TOMLVersionString =
+export type TOMLVersionOption =
   | NormalizedTOMLVersion
-  | `${NormalizedTOMLVersion}.0`;
+  | `${NormalizedTOMLVersion}.0`
+  | "latest"
+  | "next";
 export interface TOMLVer {
   lt(when: NormalizedTOMLVersion): boolean;
   lte(when: NormalizedTOMLVersion): boolean;
@@ -39,20 +41,22 @@ class TOMLVerImpl implements TOMLVer {
 const TOML_VERSION_1_0 = new TOMLVerImpl("1.0");
 const TOML_VERSION_1_1 = new TOMLVerImpl("1.1");
 const DEFAULT_TOML_VERSION: TOMLVer = TOML_VERSION_1_0;
-const SUPPORTED_TOML_VERSIONS: Record<string, TOMLVer> = {
+const SUPPORTED_TOML_VERSIONS: Record<TOMLVersionOption, TOMLVer> = {
   "1.0": TOML_VERSION_1_0,
   "1.0.0": TOML_VERSION_1_0,
   "1.1": TOML_VERSION_1_1,
   "1.1.0": TOML_VERSION_1_1,
+  latest: TOML_VERSION_1_0,
+  next: TOML_VERSION_1_1,
 };
 export interface ParserOptions {
   filePath?: string;
-  tomlVersion?: TOMLVersionString;
+  tomlVersion?: TOMLVersionOption;
 }
 
 /**
  * Get TOML version object from given TOML version string.
  */
-export function getTOMLVer(v: TOMLVersionString | undefined | null): TOMLVer {
-  return SUPPORTED_TOML_VERSIONS[v || ""] || DEFAULT_TOML_VERSION;
+export function getTOMLVer(v: TOMLVersionOption | undefined | null): TOMLVer {
+  return SUPPORTED_TOML_VERSIONS[v || "latest"] || DEFAULT_TOML_VERSION;
 }

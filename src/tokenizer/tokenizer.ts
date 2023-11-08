@@ -1319,7 +1319,7 @@ function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
   if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
     return true;
   }
-  if (tomlVersion.lte("1.0")) {
+  if (tomlVersion.lt("1.1")) {
     // TOML 1.0
     // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
     return false;

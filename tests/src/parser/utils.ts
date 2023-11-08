@@ -133,7 +133,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         "datetime/no-seconds.toml",
       ].includes(filename);
 
-      const isValidInTOML1P1 =
+      const validInTOML1P1 =
         rootDir.invalid &&
         [
           "string/basic-byte-escapes.toml",
@@ -141,6 +141,11 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
           "datetime/no-secs.toml",
           "local-datetime/no-secs.toml",
           "local-time/no-secs.toml",
+          "inline-table/linebreak-1.toml",
+          "inline-table/linebreak-2.toml",
+          "inline-table/linebreak-3.toml",
+          "inline-table/linebreak-4.toml",
+          "inline-table/trailing-comma.toml",
         ].includes(filename);
 
       const hasCR = [
@@ -166,7 +171,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
       }
 
       const invalidForV1P0 = (rootDir.invalid && !hasCR) || isTOML1P1OnlySpec;
-      const invalidForV1P1 = rootDir.invalid && !hasCR && !isValidInTOML1P1;
+      const invalidForV1P1 = rootDir.invalid && !hasCR && !validInTOML1P1;
 
       yield {
         filename,
@@ -253,6 +258,11 @@ function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
         }
       }
 
+      const validInTOML1P1 =
+        rootDir.invalid &&
+        ["inline-table-trailing-comma.toml"].includes(filename);
+      const invalidForV1P1 = rootDir.invalid && !validInTOML1P1;
+
       yield {
         filename,
         inputFileName,
@@ -264,8 +274,8 @@ function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
         },
         "v1.1": {
           ...getOutputs(inputFileName, { ...rootDir, suffix: "" }),
-          valid: !rootDir.invalid,
-          invalid: rootDir.invalid,
+          valid: !invalidForV1P1,
+          invalid: invalidForV1P1,
         },
       };
     }
