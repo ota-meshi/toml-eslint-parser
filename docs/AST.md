@@ -66,7 +66,7 @@ Literal strings'''
 ```
 
 - `style` ... If `"basic"`, the value was defined as (multi-line) basic string. If `"literal"`, the value was defined as (multi-line) literal string.
-- `multiline` ... If `"basic"`, the value was defined as multi-line basic string or multi-line literal string.
+- `multiline` ... If `true`, the value was defined as multi-line basic string or multi-line literal string.
 
 #### TOMLIntegerValue
 
