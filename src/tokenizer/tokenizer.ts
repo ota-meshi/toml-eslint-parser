@@ -543,7 +543,7 @@ export class Tokenizer {
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      out += this.currChar(cp);
+      out += this.currChar();
       cp = this.nextCode();
     }
     if (cp !== CodePoint.QUOTATION_MARK) {
@@ -640,7 +640,7 @@ export class Tokenizer {
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      out += this.currChar(cp);
+      out += this.currChar();
       cp = this.nextCode();
     }
 
@@ -665,7 +665,7 @@ export class Tokenizer {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      out += this.currChar(cp);
+      out += this.currChar();
       cp = this.nextCode();
     }
     if (cp !== CodePoint.SINGLE_QUOTE) {
@@ -706,7 +706,7 @@ export class Tokenizer {
           return "DATA";
         }
       }
-      out += this.currChar(cp);
+      out += this.currChar();
       cp = this.nextCode();
     }
     return this.reportParseError("unterminated-string");
@@ -1208,7 +1208,7 @@ export class Tokenizer {
           return this.reportParseError("invalid-underscore");
         }
       } else {
-        out += this.currChar(cp);
+        out += this.currChar();
       }
       before = cp;
       cp = this.nextCode();
@@ -1249,13 +1249,8 @@ export class Tokenizer {
     return this.reportParseError("invalid-control-character");
   }
 
-  private currChar(cp: number): string {
-    if (cp === CodePoint.LINE_FEED) return "\n";
-    if (cp < 0x10000) return this.text[this.codePointIterator.start.offset];
-    return this.text.slice(
-      this.codePointIterator.start.offset,
-      this.codePointIterator.end.offset,
-    );
+  private currChar(): string {
+    return this.codePointIterator.currChar();
   }
 }
 

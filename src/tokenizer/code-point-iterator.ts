@@ -63,6 +63,13 @@ export class CodePointIterator {
     return (this.lastCodePoint = cp);
   }
 
+  public currChar(): string {
+    const cp = this.lastCodePoint;
+    if (cp === CodePoint.LINE_FEED) return "\n";
+    if (cp < 0x10000) return this.text[this.start.offset];
+    return this.text.slice(this.start.offset, this.end.offset);
+  }
+
   public *iterateSubCodePoints(): IterableIterator<number> {
     let index = this.end.offset;
     while (true) {
