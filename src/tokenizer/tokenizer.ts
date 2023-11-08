@@ -72,6 +72,37 @@ import {
   LATIN_SMALL_Z,
   isUnicodeScalarValue,
   ESCAPE,
+  SUPERSCRIPT_TWO,
+  SUPERSCRIPT_THREE,
+  SUPERSCRIPT_ONE,
+  VULGAR_FRACTION_ONE_QUARTER,
+  VULGAR_FRACTION_THREE_QUARTERS,
+  LATIN_CAPITAL_LETTER_A_WITH_GRAVE,
+  LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS,
+  LATIN_SMALL_LETTER_O_WITH_DIAERESIS,
+  LATIN_CAPITAL_LETTER_O_WITH_STROKE,
+  GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL,
+  LATIN_SMALL_LETTER_O_WITH_STROKE,
+  GREEK_CAPITAL_LETTER_YOT,
+  CP_1FFF,
+  ZERO_WIDTH_NON_JOINER,
+  ZERO_WIDTH_JOINER,
+  UNDERTIE,
+  CHARACTER_TIE,
+  SUPERSCRIPT_ZERO,
+  CP_218F,
+  CIRCLED_DIGIT_ONE,
+  NEGATIVE_CIRCLED_DIGIT_ZERO,
+  GLAGOLITIC_CAPITAL_LETTER_AZU,
+  CP_2FEF,
+  IDEOGRAPHIC_COMMA,
+  CP_D7FF,
+  CJK_COMPATIBILITY_IDEOGRAPH_F900,
+  ARABIC_LIGATURE_SALAAMUHU_ALAYNAA,
+  ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM,
+  REPLACEMENT_CHARACTER,
+  LINEAR_B_SYLLABLE_B008_A,
+  CP_EFFFF,
 } from "./code-point";
 
 type Position = {
@@ -499,7 +530,7 @@ export class Tokenizer {
         return this.back("BOOLEAN");
       }
     } else {
-      if (isBare(cp)) {
+      if (isUnquotedKeyChar(cp, this.tomlVersion)) {
         this.startToken();
         return "BARE";
       }
@@ -525,7 +556,7 @@ export class Tokenizer {
   }
 
   private BARE(cp: number): TokenizerState {
-    while (isBare(cp)) {
+    while (isUnquotedKeyChar(cp, this.tomlVersion)) {
       cp = this.nextCode();
     }
     this.endToken("Bare", "start");
@@ -1288,24 +1319,79 @@ export class Tokenizer {
 /**
  * Check whether the code point is unquoted-key-char
  */
-function isBare(cp: number): boolean {
-  // TODO
-
-  // TOML 1.0
-  // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
-  return isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH;
-
-  // TOML 1.1
-  // unquoted-key = 1*unquoted-key-char
+function isUnquotedKeyChar(
+  cp: number,
+  tomlVersion: TOMLVersionNumber,
+): boolean {
   // unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
-  // unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
-  // unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
-  // unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
-  // unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
-  // unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
-  // unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
-  // unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
-  // unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
+  if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
+    return true;
+  }
+  if (tomlVersion <= 1.0) {
+    // TOML 1.0
+    // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
+    return false;
+  }
+  if (
+    cp === SUPERSCRIPT_TWO ||
+    cp === SUPERSCRIPT_THREE ||
+    cp === SUPERSCRIPT_ONE ||
+    (VULGAR_FRACTION_ONE_QUARTER <= cp && cp <= VULGAR_FRACTION_THREE_QUARTERS)
+  ) {
+    // unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
+    return true;
+  }
+  if (
+    (LATIN_CAPITAL_LETTER_A_WITH_GRAVE <= cp &&
+      cp <= LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS) ||
+    (LATIN_CAPITAL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= LATIN_SMALL_LETTER_O_WITH_DIAERESIS) ||
+    (LATIN_SMALL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL)
+  ) {
+    // unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
+    return true;
+  }
+  if (GREEK_CAPITAL_LETTER_YOT <= cp && cp <= CP_1FFF) {
+    // unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
+    return true;
+  }
+  if (
+    (ZERO_WIDTH_NON_JOINER <= cp && cp <= ZERO_WIDTH_JOINER) ||
+    (UNDERTIE <= cp && cp <= CHARACTER_TIE)
+  ) {
+    // unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
+    return true;
+  }
+  if (
+    (SUPERSCRIPT_ZERO <= cp && cp <= CP_218F) ||
+    (CIRCLED_DIGIT_ONE <= cp && cp <= NEGATIVE_CIRCLED_DIGIT_ZERO)
+  ) {
+    // unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
+    return true;
+  }
+  if (
+    (GLAGOLITIC_CAPITAL_LETTER_AZU <= cp && cp <= CP_2FEF) ||
+    (IDEOGRAPHIC_COMMA <= cp && cp <= CP_D7FF)
+  ) {
+    // unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
+    return true;
+  }
+  if (
+    (CJK_COMPATIBILITY_IDEOGRAPH_F900 <= cp &&
+      cp <= ARABIC_LIGATURE_SALAAMUHU_ALAYNAA) ||
+    (ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM <= cp &&
+      cp <= REPLACEMENT_CHARACTER)
+  ) {
+    // unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
+    return true;
+  }
+  if (LINEAR_B_SYLLABLE_B008_A <= cp && cp <= CP_EFFFF) {
+    // unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
+    return true;
+  }
+
+  return false;
 }
 
 /**

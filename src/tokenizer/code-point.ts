@@ -49,8 +49,38 @@ export const LATIN_SMALL_X = 0x78;
 export const LATIN_SMALL_Z = 0x7a;
 export const LEFT_BRACE = 0x7b; // {
 export const RIGHT_BRACE = 0x7d; // }
-
 export const DELETE = 0x7f;
+export const SUPERSCRIPT_TWO = 0xb2;
+export const SUPERSCRIPT_THREE = 0xb3;
+export const SUPERSCRIPT_ONE = 0xb9;
+export const VULGAR_FRACTION_ONE_QUARTER = 0xbc;
+export const VULGAR_FRACTION_THREE_QUARTERS = 0xbe;
+export const LATIN_CAPITAL_LETTER_A_WITH_GRAVE = 0xc0;
+export const LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS = 0xd6;
+export const LATIN_CAPITAL_LETTER_O_WITH_STROKE = 0xd8;
+export const LATIN_SMALL_LETTER_O_WITH_DIAERESIS = 0xf6;
+export const LATIN_SMALL_LETTER_O_WITH_STROKE = 0xf8;
+export const GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL = 0x37b;
+export const GREEK_CAPITAL_LETTER_YOT = 0x37f;
+export const CP_1FFF = 0x1fff;
+export const ZERO_WIDTH_NON_JOINER = 0x200c;
+export const ZERO_WIDTH_JOINER = 0x200d;
+export const UNDERTIE = 0x203f;
+export const CHARACTER_TIE = 0x2040;
+export const SUPERSCRIPT_ZERO = 0x2070;
+export const CP_218F = 0x218f;
+export const CIRCLED_DIGIT_ONE = 0x2460;
+export const NEGATIVE_CIRCLED_DIGIT_ZERO = 0x24ff;
+export const GLAGOLITIC_CAPITAL_LETTER_AZU = 0x2c00;
+export const CP_2FEF = 0x2fef;
+export const IDEOGRAPHIC_COMMA = 0x3001;
+export const CP_D7FF = 0xd7ff;
+export const CJK_COMPATIBILITY_IDEOGRAPH_F900 = 0xf900;
+export const ARABIC_LIGATURE_SALAAMUHU_ALAYNAA = 0xfdcf;
+export const ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM = 0xfdf0;
+export const REPLACEMENT_CHARACTER = 0xfffd;
+export const LINEAR_B_SYLLABLE_B008_A = 0x10000;
+export const CP_EFFFF = 0xeffff;
 
 /**
  * Check whether the code point is a control character.
