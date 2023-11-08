@@ -19,95 +19,15 @@ import type { TOMLVer } from "../parser-options";
 import { getTOMLVer, type ParserOptions } from "../parser-options";
 import { CodePointIterator } from "./code-point-iterator";
 import {
-  EOF,
-  LINE_FEED,
-  NULL,
+  CodePoint,
   isWhitespace,
   isEOL,
-  EQUALS_SIGN,
-  QUOTATION_MARK,
-  LATIN_SMALL_B,
-  BACKSLASH,
-  LATIN_SMALL_T,
-  LATIN_SMALL_N,
-  LATIN_SMALL_F,
-  LATIN_SMALL_R,
-  BACKSPACE,
-  TABULATION,
-  FORM_FEED,
-  CARRIAGE_RETURN,
-  LATIN_SMALL_U,
-  LATIN_CAPITAL_U,
   isHexDig,
   isLetter,
   isDigit,
-  UNDERSCORE,
-  DASH,
   isControl,
-  DELETE,
-  HASH,
-  DOT,
-  SINGLE_QUOTE,
-  LATIN_SMALL_A,
-  LATIN_SMALL_I,
-  PLUS_SIGN,
-  DIGIT_0,
-  LATIN_SMALL_O,
-  LATIN_SMALL_X,
-  LATIN_SMALL_E,
-  LATIN_CAPITAL_E,
-  LATIN_SMALL_S,
-  LATIN_SMALL_L,
-  LEFT_BRACKET,
-  RIGHT_BRACKET,
-  LEFT_BRACE,
-  RIGHT_BRACE,
-  COMMA,
   isOctalDig,
-  DIGIT_1,
-  LATIN_CAPITAL_T,
-  SPACE,
-  COLON,
-  LATIN_CAPITAL_Z,
-  LATIN_SMALL_Z,
   isUnicodeScalarValue,
-  ESCAPE,
-  SUPERSCRIPT_TWO,
-  SUPERSCRIPT_THREE,
-  SUPERSCRIPT_ONE,
-  VULGAR_FRACTION_ONE_QUARTER,
-  VULGAR_FRACTION_THREE_QUARTERS,
-  LATIN_CAPITAL_LETTER_A_WITH_GRAVE,
-  LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS,
-  LATIN_SMALL_LETTER_O_WITH_DIAERESIS,
-  LATIN_CAPITAL_LETTER_O_WITH_STROKE,
-  GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL,
-  LATIN_SMALL_LETTER_O_WITH_STROKE,
-  GREEK_CAPITAL_LETTER_YOT,
-  CP_1FFF,
-  ZERO_WIDTH_NON_JOINER,
-  ZERO_WIDTH_JOINER,
-  UNDERTIE,
-  CHARACTER_TIE,
-  SUPERSCRIPT_ZERO,
-  CP_218F,
-  CIRCLED_DIGIT_ONE,
-  NEGATIVE_CIRCLED_DIGIT_ZERO,
-  GLAGOLITIC_CAPITAL_LETTER_AZU,
-  CP_2FEF,
-  IDEOGRAPHIC_COMMA,
-  CP_D7FF,
-  CJK_COMPATIBILITY_IDEOGRAPH_F900,
-  ARABIC_LIGATURE_SALAAMUHU_ALAYNAA,
-  ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM,
-  REPLACEMENT_CHARACTER,
-  LINEAR_B_SYLLABLE_B008_A,
-  CP_EFFFF,
-  SOH,
-  SO,
-  CP_10FFFF,
-  CP_E000,
-  PAD,
 } from "./code-point";
 
 type Position = {
@@ -151,26 +71,26 @@ const RADIX_PREFIXES = {
 
 const ESCAPES_1_0: Record<number, string> = {
   // escape-seq-char =  %x22         ; "    quotation mark  U+0022
-  [QUOTATION_MARK]: String.fromCodePoint(QUOTATION_MARK),
+  [CodePoint.QUOTATION_MARK]: String.fromCodePoint(CodePoint.QUOTATION_MARK),
   // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
-  [BACKSLASH]: String.fromCodePoint(BACKSLASH),
+  [CodePoint.BACKSLASH]: String.fromCodePoint(CodePoint.BACKSLASH),
   // escape-seq-char =/ %x62         ; b    backspace       U+0008
-  [LATIN_SMALL_B]: String.fromCodePoint(BACKSPACE),
+  [CodePoint.LATIN_SMALL_B]: String.fromCodePoint(CodePoint.BACKSPACE),
   // escape-seq-char =/ %x66         ; f    form feed       U+000C
-  [LATIN_SMALL_F]: String.fromCodePoint(FORM_FEED),
+  [CodePoint.LATIN_SMALL_F]: String.fromCodePoint(CodePoint.FORM_FEED),
   // escape-seq-char =/ %x6E         ; n    line feed       U+000A
-  [LATIN_SMALL_N]: String.fromCodePoint(LINE_FEED),
+  [CodePoint.LATIN_SMALL_N]: String.fromCodePoint(CodePoint.LINE_FEED),
   // escape-seq-char =/ %x72         ; r    carriage return U+000D
-  [LATIN_SMALL_R]: String.fromCodePoint(CARRIAGE_RETURN),
+  [CodePoint.LATIN_SMALL_R]: String.fromCodePoint(CodePoint.CARRIAGE_RETURN),
   // escape-seq-char =/ %x74         ; t    tab             U+0009
-  [LATIN_SMALL_T]: String.fromCodePoint(TABULATION),
+  [CodePoint.LATIN_SMALL_T]: String.fromCodePoint(CodePoint.TABULATION),
 };
 
 const ESCAPES_LATEST: Record<number, string> = {
   ...ESCAPES_1_0,
   // escape-seq-char =/ %x65         ; e    escape          U+001B
   // Added in TOML 1.1
-  [LATIN_SMALL_E]: String.fromCodePoint(ESCAPE),
+  [CodePoint.LATIN_SMALL_E]: String.fromCodePoint(CodePoint.ESCAPE),
 };
 
 type ExponentData = {
@@ -211,7 +131,7 @@ export class Tokenizer {
 
   private backCode = false;
 
-  private lastCodePoint: number = NULL;
+  private lastCodePoint: number = CodePoint.NULL;
 
   private state: TokenizerState = "DATA";
 
@@ -279,7 +199,7 @@ export class Tokenizer {
       return token;
     }
     let cp = this.lastCodePoint;
-    while (cp !== EOF && !this.token) {
+    while (cp !== CodePoint.EOF && !this.token) {
       cp = this.nextCode();
       const nextState = this[this.state](cp);
       if (!nextState) {
@@ -296,8 +216,8 @@ export class Tokenizer {
    * Get the next code point.
    */
   private nextCode(): number {
-    if (this.lastCodePoint === EOF) {
-      return EOF;
+    if (this.lastCodePoint === CodePoint.EOF) {
+      return CodePoint.EOF;
     }
     if (this.backCode) {
       this.backCode = false;
@@ -488,37 +408,37 @@ export class Tokenizer {
     while (isWhitespace(cp) || isEOL(cp)) {
       cp = this.nextCode();
     }
-    if (cp === HASH) {
+    if (cp === CodePoint.HASH) {
       this.startToken();
       return "COMMENT";
     }
-    if (cp === QUOTATION_MARK) {
+    if (cp === CodePoint.QUOTATION_MARK) {
       this.startToken();
       return "BASIC_STRING";
     }
-    if (cp === SINGLE_QUOTE) {
+    if (cp === CodePoint.SINGLE_QUOTE) {
       this.startToken();
       return "LITERAL_STRING";
     }
     if (
-      cp === DOT || // .
-      cp === EQUALS_SIGN || // =
-      cp === LEFT_BRACKET || // [
-      cp === RIGHT_BRACKET || // ]
-      cp === LEFT_BRACE || // {
-      cp === RIGHT_BRACE || // }
-      cp === COMMA // ,
+      cp === CodePoint.DOT || // .
+      cp === CodePoint.EQUALS_SIGN || // =
+      cp === CodePoint.LEFT_BRACKET || // [
+      cp === CodePoint.RIGHT_BRACKET || // ]
+      cp === CodePoint.LEFT_BRACE || // {
+      cp === CodePoint.RIGHT_BRACE || // }
+      cp === CodePoint.COMMA // ,
     ) {
       this.punctuatorToken();
       return "DATA";
     }
 
     if (this.valuesEnabled) {
-      if (cp === DASH || cp === PLUS_SIGN) {
+      if (cp === CodePoint.DASH || cp === CodePoint.PLUS_SIGN) {
         this.startToken();
         return "SIGN";
       }
-      if (cp === LATIN_SMALL_N || cp === LATIN_SMALL_I) {
+      if (cp === CodePoint.LATIN_SMALL_N || cp === CodePoint.LATIN_SMALL_I) {
         this.startToken();
         return this.back("NAN_OR_INF");
       }
@@ -526,7 +446,7 @@ export class Tokenizer {
         this.startToken();
         return this.back("NUMBER");
       }
-      if (cp === LATIN_SMALL_T || cp === LATIN_SMALL_F) {
+      if (cp === CodePoint.LATIN_SMALL_T || cp === CodePoint.LATIN_SMALL_F) {
         this.startToken();
         return this.back("BOOLEAN");
       }
@@ -537,7 +457,7 @@ export class Tokenizer {
       }
     }
 
-    if (cp === EOF) {
+    if (cp === CodePoint.EOF) {
       // end
       return "DATA";
     }
@@ -557,7 +477,7 @@ export class Tokenizer {
             this.reportParseErrorControlChar();
           }
         };
-    while (!isEOL(cp) && cp !== EOF) {
+    while (!isEOL(cp) && cp !== CodePoint.EOF) {
       processCommentChar(cp);
       cp = this.nextCode();
     }
@@ -574,39 +494,46 @@ export class Tokenizer {
   }
 
   private BASIC_STRING(cp: number): TokenizerState {
-    if (cp === QUOTATION_MARK) {
+    if (cp === CodePoint.QUOTATION_MARK) {
       cp = this.nextCode();
-      if (cp === QUOTATION_MARK) {
+      if (cp === CodePoint.QUOTATION_MARK) {
         return "MULTI_LINE_BASIC_STRING";
       }
       this.endToken("BasicString", "start", "");
       return this.back("DATA");
     }
     let out = "";
-    while (cp !== QUOTATION_MARK && cp !== EOF && cp !== LINE_FEED) {
+    while (
+      cp !== CodePoint.QUOTATION_MARK &&
+      cp !== CodePoint.EOF &&
+      cp !== CodePoint.LINE_FEED
+    ) {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      if (cp === BACKSLASH) {
+      if (cp === CodePoint.BACKSLASH) {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
           out += ecp;
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_U) {
+        } else if (cp === CodePoint.LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_CAPITAL_U) {
+        } else if (cp === CodePoint.LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
           out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
+        } else if (
+          cp === CodePoint.LATIN_SMALL_X &&
+          this.tomlVersion.gte(1, 1)
+        ) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
@@ -619,7 +546,7 @@ export class Tokenizer {
       out += this.currChar(cp);
       cp = this.nextCode();
     }
-    if (cp !== QUOTATION_MARK) {
+    if (cp !== CodePoint.QUOTATION_MARK) {
       return this.reportParseError("unterminated-string");
     }
     this.endToken("BasicString", "end", out);
@@ -628,25 +555,25 @@ export class Tokenizer {
 
   private MULTI_LINE_BASIC_STRING(cp: number): TokenizerState {
     let out = "";
-    if (cp === LINE_FEED) {
+    if (cp === CodePoint.LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
     }
-    while (cp !== EOF) {
-      if (cp !== LINE_FEED && isControlOtherThanTab(cp)) {
+    while (cp !== CodePoint.EOF) {
+      if (cp !== CodePoint.LINE_FEED && isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      if (cp === QUOTATION_MARK) {
+      if (cp === CodePoint.QUOTATION_MARK) {
         const nextPoints = this.codePointIterator.subCodePoints();
         if (
-          nextPoints.next() === QUOTATION_MARK &&
-          nextPoints.next() === QUOTATION_MARK
+          nextPoints.next() === CodePoint.QUOTATION_MARK &&
+          nextPoints.next() === CodePoint.QUOTATION_MARK
         ) {
-          if (nextPoints.next() === QUOTATION_MARK) {
+          if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
             out += '"';
-            if (nextPoints.next() === QUOTATION_MARK) {
+            if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
               out += '"';
-              if (nextPoints.next() === QUOTATION_MARK) {
+              if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
                 return this.reportParseError("invalid-three-quotes");
               }
             }
@@ -657,42 +584,45 @@ export class Tokenizer {
           return "DATA";
         }
       }
-      if (cp === BACKSLASH) {
+      if (cp === CodePoint.BACKSLASH) {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
           out += ecp;
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_U) {
+        } else if (cp === CodePoint.LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_CAPITAL_U) {
+        } else if (cp === CodePoint.LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
           out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
+        } else if (
+          cp === CodePoint.LATIN_SMALL_X &&
+          this.tomlVersion.gte(1, 1)
+        ) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
           out += String.fromCodePoint(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LINE_FEED) {
+        } else if (cp === CodePoint.LINE_FEED) {
           cp = this.nextCode();
-          while (isWhitespace(cp) || cp === LINE_FEED) {
+          while (isWhitespace(cp) || cp === CodePoint.LINE_FEED) {
             cp = this.nextCode();
           }
           continue;
         } else if (isWhitespace(cp)) {
           let valid = true;
           for (const nextCp of this.codePointIterator.iterateSubCodePoints()) {
-            if (nextCp === LINE_FEED) {
+            if (nextCp === CodePoint.LINE_FEED) {
               break;
             }
             if (!isWhitespace(nextCp)) {
@@ -702,7 +632,7 @@ export class Tokenizer {
           }
           if (valid) {
             cp = this.nextCode();
-            while (isWhitespace(cp) || cp === LINE_FEED) {
+            while (isWhitespace(cp) || cp === CodePoint.LINE_FEED) {
               cp = this.nextCode();
             }
             continue;
@@ -718,23 +648,27 @@ export class Tokenizer {
   }
 
   private LITERAL_STRING(cp: number): TokenizerState {
-    if (cp === SINGLE_QUOTE) {
+    if (cp === CodePoint.SINGLE_QUOTE) {
       cp = this.nextCode();
-      if (cp === SINGLE_QUOTE) {
+      if (cp === CodePoint.SINGLE_QUOTE) {
         return "MULTI_LINE_LITERAL_STRING";
       }
       this.endToken("LiteralString", "start", "");
       return this.back("DATA");
     }
     let out = "";
-    while (cp !== SINGLE_QUOTE && cp !== EOF && cp !== LINE_FEED) {
+    while (
+      cp !== CodePoint.SINGLE_QUOTE &&
+      cp !== CodePoint.EOF &&
+      cp !== CodePoint.LINE_FEED
+    ) {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
       out += this.currChar(cp);
       cp = this.nextCode();
     }
-    if (cp !== SINGLE_QUOTE) {
+    if (cp !== CodePoint.SINGLE_QUOTE) {
       return this.reportParseError("unterminated-string");
     }
     this.endToken("LiteralString", "end", out);
@@ -743,25 +677,25 @@ export class Tokenizer {
 
   private MULTI_LINE_LITERAL_STRING(cp: number): TokenizerState {
     let out = "";
-    if (cp === LINE_FEED) {
+    if (cp === CodePoint.LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
     }
-    while (cp !== EOF) {
-      if (cp !== LINE_FEED && isControlOtherThanTab(cp)) {
+    while (cp !== CodePoint.EOF) {
+      if (cp !== CodePoint.LINE_FEED && isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      if (cp === SINGLE_QUOTE) {
+      if (cp === CodePoint.SINGLE_QUOTE) {
         const nextPoints = this.codePointIterator.subCodePoints();
         if (
-          nextPoints.next() === SINGLE_QUOTE &&
-          nextPoints.next() === SINGLE_QUOTE
+          nextPoints.next() === CodePoint.SINGLE_QUOTE &&
+          nextPoints.next() === CodePoint.SINGLE_QUOTE
         ) {
-          if (nextPoints.next() === SINGLE_QUOTE) {
+          if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
             out += "'";
-            if (nextPoints.next() === SINGLE_QUOTE) {
+            if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
               out += "'";
-              if (nextPoints.next() === SINGLE_QUOTE) {
+              if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
                 return this.reportParseError("invalid-three-quotes");
               }
             }
@@ -779,7 +713,7 @@ export class Tokenizer {
   }
 
   private SIGN(cp: number): TokenizerState {
-    if (cp === LATIN_SMALL_N || cp === LATIN_SMALL_I) {
+    if (cp === CodePoint.LATIN_SMALL_N || cp === CodePoint.LATIN_SMALL_I) {
       return this.back("NAN_OR_INF");
     }
     if (isDigit(cp)) {
@@ -789,21 +723,21 @@ export class Tokenizer {
   }
 
   private NAN_OR_INF(cp: number): TokenizerState {
-    if (cp === LATIN_SMALL_N) {
+    if (cp === CodePoint.LATIN_SMALL_N) {
       const codePoints = this.codePointIterator.subCodePoints();
       if (
-        codePoints.next() === LATIN_SMALL_A &&
-        codePoints.next() === LATIN_SMALL_N
+        codePoints.next() === CodePoint.LATIN_SMALL_A &&
+        codePoints.next() === CodePoint.LATIN_SMALL_N
       ) {
         this.skip(2);
         this.endToken("Float", "end", NaN);
         return "DATA";
       }
-    } else if (cp === LATIN_SMALL_I) {
+    } else if (cp === CodePoint.LATIN_SMALL_I) {
       const codePoints = this.codePointIterator.subCodePoints();
       if (
-        codePoints.next() === LATIN_SMALL_N &&
-        codePoints.next() === LATIN_SMALL_F
+        codePoints.next() === CodePoint.LATIN_SMALL_N &&
+        codePoints.next() === CodePoint.LATIN_SMALL_F
       ) {
         this.skip(2);
         this.endToken(
@@ -819,9 +753,14 @@ export class Tokenizer {
 
   private NUMBER(cp: number): TokenizerState {
     const start = this.text[this.tokenStart.offset];
-    const sign = start === "+" ? PLUS_SIGN : start === "-" ? DASH : NULL;
-    if (cp === DIGIT_0) {
-      if (sign === NULL) {
+    const sign =
+      start === "+"
+        ? CodePoint.PLUS_SIGN
+        : start === "-"
+        ? CodePoint.DASH
+        : CodePoint.NULL;
+    if (cp === CodePoint.DIGIT_0) {
+      if (sign === CodePoint.NULL) {
         const subCodePoints = this.codePointIterator.subCodePoints();
         const nextCp = subCodePoints.next();
         if (isDigit(nextCp)) {
@@ -829,10 +768,10 @@ export class Tokenizer {
           if (
             (isDigit(nextNextCp) &&
               isDigit(subCodePoints.next()) &&
-              subCodePoints.next() === DASH) ||
-            nextNextCp === COLON
+              subCodePoints.next() === CodePoint.DASH) ||
+            nextNextCp === CodePoint.COLON
           ) {
-            const isDate = nextNextCp !== COLON;
+            const isDate = nextNextCp !== CodePoint.COLON;
             const data: DateTimeData = {
               hasDate: isDate,
               year: 0,
@@ -851,31 +790,31 @@ export class Tokenizer {
 
       cp = this.nextCode();
       if (
-        cp === LATIN_SMALL_X ||
-        cp === LATIN_SMALL_O ||
-        cp === LATIN_SMALL_B
+        cp === CodePoint.LATIN_SMALL_X ||
+        cp === CodePoint.LATIN_SMALL_O ||
+        cp === CodePoint.LATIN_SMALL_B
       ) {
-        if (sign !== NULL) {
+        if (sign !== CodePoint.NULL) {
           return this.reportParseError("unexpected-char");
         }
-        return cp === LATIN_SMALL_X
+        return cp === CodePoint.LATIN_SMALL_X
           ? "HEX"
-          : cp === LATIN_SMALL_O
+          : cp === CodePoint.LATIN_SMALL_O
           ? "OCTAL"
           : "BINARY";
       }
-      if (cp === LATIN_SMALL_E || cp === LATIN_CAPITAL_E) {
+      if (cp === CodePoint.LATIN_SMALL_E || cp === CodePoint.LATIN_CAPITAL_E) {
         const data: ExponentData = {
           // Float values -0.0 and +0.0 are valid and should map according to IEEE 754.
-          minus: sign === DASH,
+          minus: sign === CodePoint.DASH,
           left: "0",
         };
         this.data = data;
         return "EXPONENT_RIGHT";
       }
-      if (cp === DOT) {
+      if (cp === CodePoint.DOT) {
         const data: FractionalData = {
-          minus: sign === DASH,
+          minus: sign === CodePoint.DASH,
           absInt: "0",
         };
         this.data = data;
@@ -888,8 +827,8 @@ export class Tokenizer {
     const { out, nextCp, hasUnderscore } = this.parseDigits(cp, isDigit);
 
     if (
-      nextCp === DASH &&
-      sign === NULL &&
+      nextCp === CodePoint.DASH &&
+      sign === CodePoint.NULL &&
       !hasUnderscore &&
       out.length === 4
     ) {
@@ -906,8 +845,8 @@ export class Tokenizer {
       return "DATE_MONTH";
     }
     if (
-      nextCp === COLON &&
-      sign === NULL &&
+      nextCp === CodePoint.COLON &&
+      sign === CodePoint.NULL &&
       !hasUnderscore &&
       out.length === 2
     ) {
@@ -924,23 +863,31 @@ export class Tokenizer {
       return "TIME_MINUTE";
     }
 
-    if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
+    if (
+      nextCp === CodePoint.LATIN_SMALL_E ||
+      nextCp === CodePoint.LATIN_CAPITAL_E
+    ) {
       const data: ExponentData = {
-        minus: sign === DASH,
+        minus: sign === CodePoint.DASH,
         left: out,
       };
       this.data = data;
       return "EXPONENT_RIGHT";
     }
-    if (nextCp === DOT) {
+    if (nextCp === CodePoint.DOT) {
       const data: FractionalData = {
-        minus: sign === DASH,
+        minus: sign === CodePoint.DASH,
         absInt: out,
       };
       this.data = data;
       return "FRACTIONAL_RIGHT";
     }
-    this.endToken("Integer", "start", sign === DASH ? `-${out}` : out, 10);
+    this.endToken(
+      "Integer",
+      "start",
+      sign === CodePoint.DASH ? `-${out}` : out,
+      10,
+    );
     return this.back("DATA");
   }
 
@@ -957,7 +904,10 @@ export class Tokenizer {
   }
 
   private BINARY(cp: number): TokenizerState {
-    const { out } = this.parseDigits(cp, (c) => c === DIGIT_0 || c === DIGIT_1);
+    const { out } = this.parseDigits(
+      cp,
+      (c) => c === CodePoint.DIGIT_0 || c === CodePoint.DIGIT_1,
+    );
     this.endToken("Integer", "start", out, 2);
     return this.back("DATA");
   }
@@ -966,7 +916,10 @@ export class Tokenizer {
     const { minus, absInt } = this.data! as FractionalData;
     const { out, nextCp } = this.parseDigits(cp, isDigit);
     const absNum = `${absInt}.${out}`;
-    if (nextCp === LATIN_SMALL_E || nextCp === LATIN_CAPITAL_E) {
+    if (
+      nextCp === CodePoint.LATIN_SMALL_E ||
+      nextCp === CodePoint.LATIN_CAPITAL_E
+    ) {
       const data: ExponentData = {
         minus,
         left: absNum,
@@ -982,8 +935,8 @@ export class Tokenizer {
   private EXPONENT_RIGHT(cp: number): TokenizerState {
     const { left, minus: leftMinus } = this.data! as ExponentData;
     let minus = false;
-    if (cp === DASH || cp === PLUS_SIGN) {
-      minus = cp === DASH;
+    if (cp === CodePoint.DASH || cp === CodePoint.PLUS_SIGN) {
+      minus = cp === CodePoint.DASH;
       cp = this.nextCode();
     }
     const { out } = this.parseDigits(cp, isDigit);
@@ -997,25 +950,25 @@ export class Tokenizer {
   }
 
   private BOOLEAN(cp: number): TokenizerState {
-    if (cp === LATIN_SMALL_T) {
+    if (cp === CodePoint.LATIN_SMALL_T) {
       const codePoints = this.codePointIterator.subCodePoints();
       if (
-        codePoints.next() === LATIN_SMALL_R &&
-        codePoints.next() === LATIN_SMALL_U &&
-        codePoints.next() === LATIN_SMALL_E
+        codePoints.next() === CodePoint.LATIN_SMALL_R &&
+        codePoints.next() === CodePoint.LATIN_SMALL_U &&
+        codePoints.next() === CodePoint.LATIN_SMALL_E
       ) {
         // true
         this.skip(codePoints.count);
         this.endToken("Boolean", "end", true);
         return "DATA";
       }
-    } else if (cp === LATIN_SMALL_F) {
+    } else if (cp === CodePoint.LATIN_SMALL_F) {
       const codePoints = this.codePointIterator.subCodePoints();
       if (
-        codePoints.next() === LATIN_SMALL_A &&
-        codePoints.next() === LATIN_SMALL_L &&
-        codePoints.next() === LATIN_SMALL_S &&
-        codePoints.next() === LATIN_SMALL_E
+        codePoints.next() === CodePoint.LATIN_SMALL_A &&
+        codePoints.next() === CodePoint.LATIN_SMALL_L &&
+        codePoints.next() === CodePoint.LATIN_SMALL_S &&
+        codePoints.next() === CodePoint.LATIN_SMALL_E
       ) {
         // false
         this.skip(codePoints.count);
@@ -1046,7 +999,7 @@ export class Tokenizer {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (cp !== DASH) {
+    if (cp !== CodePoint.DASH) {
       return this.reportParseError("unexpected-char");
     }
     const end = this.codePointIterator.start.offset;
@@ -1072,10 +1025,10 @@ export class Tokenizer {
     }
 
     cp = this.nextCode();
-    if (cp === LATIN_CAPITAL_T || cp === LATIN_SMALL_T) {
+    if (cp === CodePoint.LATIN_CAPITAL_T || cp === CodePoint.LATIN_SMALL_T) {
       return "TIME_HOUR";
     }
-    if (cp === SPACE) {
+    if (cp === CodePoint.SPACE) {
       const subCodePoints = this.codePointIterator.subCodePoints();
       if (isDigit(subCodePoints.next()) && isDigit(subCodePoints.next())) {
         return "TIME_HOUR";
@@ -1096,7 +1049,7 @@ export class Tokenizer {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (cp !== COLON) {
+    if (cp !== CodePoint.COLON) {
       return this.reportParseError("unexpected-char");
     }
     const end = this.codePointIterator.start.offset;
@@ -1118,7 +1071,7 @@ export class Tokenizer {
     const data: DateTimeData = this.data! as DateTimeData;
     data.minute = Number(this.text.slice(start, end));
     cp = this.nextCode();
-    if (cp === COLON) {
+    if (cp === CodePoint.COLON) {
       return "TIME_SECOND";
     }
     if (this.tomlVersion.lt(1, 1)) {
@@ -1149,7 +1102,7 @@ export class Tokenizer {
     }
 
     cp = this.nextCode();
-    if (cp === DOT) {
+    if (cp === CodePoint.DOT) {
       return "TIME_SEC_FRAC";
     }
     return this.processTimeEnd(cp, data);
@@ -1171,11 +1124,11 @@ export class Tokenizer {
 
   private processTimeEnd(cp: number, data: DateTimeData): TokenizerState {
     if (data.hasDate) {
-      if (cp === DASH || cp === PLUS_SIGN) {
+      if (cp === CodePoint.DASH || cp === CodePoint.PLUS_SIGN) {
         data.offsetSign = cp;
         return "TIME_OFFSET";
       }
-      if (cp === LATIN_CAPITAL_Z || cp === LATIN_SMALL_Z) {
+      if (cp === CodePoint.LATIN_CAPITAL_Z || cp === CodePoint.LATIN_SMALL_Z) {
         const dateValue = getDateFromDateTimeData(data, "Z");
         this.endToken("OffsetDateTime", "end", dateValue);
         return "DATA";
@@ -1199,7 +1152,7 @@ export class Tokenizer {
       return this.reportParseError("unexpected-char");
     }
     cp = this.nextCode();
-    if (cp !== COLON) {
+    if (cp !== CodePoint.COLON) {
       return this.reportParseError("unexpected-char");
     }
     const hourEnd = this.codePointIterator.start.offset;
@@ -1239,19 +1192,19 @@ export class Tokenizer {
     nextCp: number;
     hasUnderscore: boolean;
   } {
-    if (cp === UNDERSCORE) {
+    if (cp === CodePoint.UNDERSCORE) {
       return this.reportParseError("invalid-underscore");
     }
     if (!checkDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
     let out = "";
-    let before = NULL;
+    let before = CodePoint.NULL;
     let hasUnderscore = false;
-    while (checkDigit(cp) || cp === UNDERSCORE) {
-      if (cp === UNDERSCORE) {
+    while (checkDigit(cp) || cp === CodePoint.UNDERSCORE) {
+      if (cp === CodePoint.UNDERSCORE) {
         hasUnderscore = true;
-        if (before === UNDERSCORE) {
+        if (before === CodePoint.UNDERSCORE) {
           return this.reportParseError("invalid-underscore");
         }
       } else {
@@ -1260,7 +1213,7 @@ export class Tokenizer {
       before = cp;
       cp = this.nextCode();
     }
-    if (before === UNDERSCORE) {
+    if (before === CodePoint.UNDERSCORE) {
       return this.reportParseError("invalid-underscore");
     }
     return {
@@ -1297,7 +1250,7 @@ export class Tokenizer {
   }
 
   private currChar(cp: number): string {
-    if (cp === LINE_FEED) return "\n";
+    if (cp === CodePoint.LINE_FEED) return "\n";
     if (cp < 0x10000) return this.text[this.codePointIterator.start.offset];
     return this.text.slice(
       this.codePointIterator.start.offset,
@@ -1311,7 +1264,12 @@ export class Tokenizer {
  */
 function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
   // unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
-  if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
+  if (
+    isLetter(cp) ||
+    isDigit(cp) ||
+    cp === CodePoint.UNDERSCORE ||
+    cp === CodePoint.DASH
+  ) {
     return true;
   }
   if (tomlVersion.lt(1, 1)) {
@@ -1323,60 +1281,65 @@ function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
   // Other unquoted-key-char
   // Added in TOML 1.1
   if (
-    cp === SUPERSCRIPT_TWO ||
-    cp === SUPERSCRIPT_THREE ||
-    cp === SUPERSCRIPT_ONE ||
-    (VULGAR_FRACTION_ONE_QUARTER <= cp && cp <= VULGAR_FRACTION_THREE_QUARTERS)
+    cp === CodePoint.SUPERSCRIPT_TWO ||
+    cp === CodePoint.SUPERSCRIPT_THREE ||
+    cp === CodePoint.SUPERSCRIPT_ONE ||
+    (CodePoint.VULGAR_FRACTION_ONE_QUARTER <= cp &&
+      cp <= CodePoint.VULGAR_FRACTION_THREE_QUARTERS)
   ) {
     // unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
     return true;
   }
   if (
-    (LATIN_CAPITAL_LETTER_A_WITH_GRAVE <= cp &&
-      cp <= LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS) ||
-    (LATIN_CAPITAL_LETTER_O_WITH_STROKE <= cp &&
-      cp <= LATIN_SMALL_LETTER_O_WITH_DIAERESIS) ||
-    (LATIN_SMALL_LETTER_O_WITH_STROKE <= cp &&
-      cp <= GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL)
+    (CodePoint.LATIN_CAPITAL_LETTER_A_WITH_GRAVE <= cp &&
+      cp <= CodePoint.LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS) ||
+    (CodePoint.LATIN_CAPITAL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= CodePoint.LATIN_SMALL_LETTER_O_WITH_DIAERESIS) ||
+    (CodePoint.LATIN_SMALL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= CodePoint.GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL)
   ) {
     // unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
     return true;
   }
-  if (GREEK_CAPITAL_LETTER_YOT <= cp && cp <= CP_1FFF) {
+  if (CodePoint.GREEK_CAPITAL_LETTER_YOT <= cp && cp <= CodePoint.CP_1FFF) {
     // unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
     return true;
   }
   if (
-    (ZERO_WIDTH_NON_JOINER <= cp && cp <= ZERO_WIDTH_JOINER) ||
-    (UNDERTIE <= cp && cp <= CHARACTER_TIE)
+    (CodePoint.ZERO_WIDTH_NON_JOINER <= cp &&
+      cp <= CodePoint.ZERO_WIDTH_JOINER) ||
+    (CodePoint.UNDERTIE <= cp && cp <= CodePoint.CHARACTER_TIE)
   ) {
     // unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
     return true;
   }
   if (
-    (SUPERSCRIPT_ZERO <= cp && cp <= CP_218F) ||
-    (CIRCLED_DIGIT_ONE <= cp && cp <= NEGATIVE_CIRCLED_DIGIT_ZERO)
+    (CodePoint.SUPERSCRIPT_ZERO <= cp && cp <= CodePoint.CP_218F) ||
+    (CodePoint.CIRCLED_DIGIT_ONE <= cp &&
+      cp <= CodePoint.NEGATIVE_CIRCLED_DIGIT_ZERO)
   ) {
     // unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
     return true;
   }
   if (
-    (GLAGOLITIC_CAPITAL_LETTER_AZU <= cp && cp <= CP_2FEF) ||
-    (IDEOGRAPHIC_COMMA <= cp && cp <= CP_D7FF)
+    (CodePoint.GLAGOLITIC_CAPITAL_LETTER_AZU <= cp &&
+      cp <= CodePoint.CP_2FEF) ||
+    (CodePoint.IDEOGRAPHIC_COMMA <= cp && cp <= CodePoint.CP_D7FF)
   ) {
     // unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
     return true;
   }
   if (
-    (CJK_COMPATIBILITY_IDEOGRAPH_F900 <= cp &&
-      cp <= ARABIC_LIGATURE_SALAAMUHU_ALAYNAA) ||
-    (ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM <= cp &&
-      cp <= REPLACEMENT_CHARACTER)
+    (CodePoint.CJK_COMPATIBILITY_IDEOGRAPH_F900 <= cp &&
+      cp <= CodePoint.ARABIC_LIGATURE_SALAAMUHU_ALAYNAA) ||
+    (CodePoint.ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM <=
+      cp &&
+      cp <= CodePoint.REPLACEMENT_CHARACTER)
   ) {
     // unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
     return true;
   }
-  if (LINEAR_B_SYLLABLE_B008_A <= cp && cp <= CP_EFFFF) {
+  if (CodePoint.LINEAR_B_SYLLABLE_B008_A <= cp && cp <= CodePoint.CP_EFFFF) {
     // unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
     return true;
   }
@@ -1388,7 +1351,9 @@ function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
  * Check whether the code point is control character other than tab
  */
 function isControlOtherThanTab(cp: number): boolean {
-  return (isControl(cp) && cp !== TABULATION) || cp === DELETE;
+  return (
+    (isControl(cp) && cp !== CodePoint.TABULATION) || cp === CodePoint.DELETE
+  );
 }
 
 /**
@@ -1397,8 +1362,8 @@ function isControlOtherThanTab(cp: number): boolean {
 function isAllowedCommentCharacter(cp: number): boolean {
   // allowed-comment-char = %x01-09 / %x0E-7F / non-ascii
   return (
-    (SOH <= cp && cp <= TABULATION) ||
-    (SO <= cp && cp <= DELETE) ||
+    (CodePoint.SOH <= cp && cp <= CodePoint.TABULATION) ||
+    (CodePoint.SO <= cp && cp <= CodePoint.DELETE) ||
     isNonAscii(cp)
   );
 }
@@ -1408,7 +1373,10 @@ function isAllowedCommentCharacter(cp: number): boolean {
  */
 function isNonAscii(cp: number): boolean {
   //  %x80-D7FF / %xE000-10FFFF
-  return (PAD <= cp && cp <= CP_D7FF) || (CP_E000 <= cp && cp <= CP_10FFFF);
+  return (
+    (CodePoint.PAD <= cp && cp <= CodePoint.CP_D7FF) ||
+    (CodePoint.CP_E000 <= cp && cp <= CodePoint.CP_10FFFF)
+  );
 }
 
 /**

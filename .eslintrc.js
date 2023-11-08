@@ -22,6 +22,7 @@ module.exports = {
     "no-warning-comments": "warn",
     "no-lonely-if": "off",
     "no-param-reassign": "off",
+    "no-shadow": "off",
   },
   overrides: [
     {
@@ -32,6 +33,7 @@ module.exports = {
         project: "./tsconfig.json",
       },
       rules: {
+        "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/naming-convention": [
           "error",
           {

@@ -1,4 +1,4 @@
-import { NULL, EOF, LINE_FEED, CARRIAGE_RETURN } from "./code-point";
+import { CodePoint } from "./code-point";
 
 type Position = {
   offset: number;
@@ -9,7 +9,7 @@ type Position = {
 export class CodePointIterator {
   public readonly text: string;
 
-  private lastCodePoint: number = NULL;
+  private lastCodePoint: number = CodePoint.NULL;
 
   public start: Position = {
     offset: -1,
@@ -31,31 +31,31 @@ export class CodePointIterator {
   }
 
   public next(): number {
-    if (this.lastCodePoint === EOF) {
-      return EOF;
+    if (this.lastCodePoint === CodePoint.EOF) {
+      return CodePoint.EOF;
     }
 
     this.start.offset = this.end.offset;
     this.start.line = this.end.line;
     this.start.column = this.end.column;
 
-    const cp = this.text.codePointAt(this.start.offset) ?? EOF;
-    if (cp === EOF) {
+    const cp = this.text.codePointAt(this.start.offset) ?? CodePoint.EOF;
+    if (cp === CodePoint.EOF) {
       this.end = this.start;
       return (this.lastCodePoint = cp);
     }
     const shift = cp >= 0x10000 ? 2 : 1;
     this.end.offset = this.start.offset + shift;
-    if (cp === LINE_FEED) {
+    if (cp === CodePoint.LINE_FEED) {
       this.end.line = this.start.line + 1;
       this.end.column = 0;
-    } else if (cp === CARRIAGE_RETURN) {
-      if (this.text.codePointAt(this.end.offset) === LINE_FEED) {
+    } else if (cp === CodePoint.CARRIAGE_RETURN) {
+      if (this.text.codePointAt(this.end.offset) === CodePoint.LINE_FEED) {
         this.end.offset++;
         this.end.line = this.start.line + 1;
         this.end.column = 0;
       }
-      return (this.lastCodePoint = LINE_FEED);
+      return (this.lastCodePoint = CodePoint.LINE_FEED);
     } else {
       this.end.column = this.start.column + shift;
     }
@@ -66,15 +66,15 @@ export class CodePointIterator {
   public *iterateSubCodePoints(): IterableIterator<number> {
     let index = this.end.offset;
     while (true) {
-      let cp = this.text.codePointAt(index) ?? EOF;
-      if (cp === CARRIAGE_RETURN) {
-        if (this.text.codePointAt(index) === LINE_FEED) {
-          cp = this.text.codePointAt(++index) ?? EOF;
+      let cp = this.text.codePointAt(index) ?? CodePoint.EOF;
+      if (cp === CodePoint.CARRIAGE_RETURN) {
+        if (this.text.codePointAt(index) === CodePoint.LINE_FEED) {
+          cp = this.text.codePointAt(++index) ?? CodePoint.EOF;
         } else {
-          cp = LINE_FEED;
+          cp = CodePoint.LINE_FEED;
         }
       }
-      if (cp === EOF) {
+      if (cp === CodePoint.EOF) {
         return;
       }
       yield cp;
@@ -92,12 +92,12 @@ export class CodePointIterator {
     return {
       next() {
         if (end) {
-          return EOF;
+          return CodePoint.EOF;
         }
         const r = sub.next();
         if (r.done) {
           end = true;
-          return EOF;
+          return CodePoint.EOF;
         }
         count++;
         return r.value;

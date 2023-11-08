@@ -11,7 +11,6 @@ import type {
 import { last, toKeyName } from "../internal-utils";
 import type { Context } from "./context";
 
-// eslint-disable-next-line no-shadow -- ??
 const enum ValueKind {
   VALUE,
   INTERMEDIATE,
