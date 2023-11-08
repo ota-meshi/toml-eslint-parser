@@ -495,8 +495,10 @@ export class TOMLParser {
       loc: cloneLoc(token.loc),
     };
 
-    const needSameLine = this.tomlVersion.gte("1.1")
-      ? undefined
+    const needSameLine = this.tomlVersion.gte(1, 1)
+      ? // Line breaks in inline tables are allowed.
+        // Added in TOML 1.1
+        undefined
       : ("invalid-inline-table-newline" as const);
 
     const nextToken = ctx.nextToken({
@@ -543,8 +545,10 @@ export class TOMLParser {
     if (!isEq(targetToken)) {
       return ctx.reportParseError("missing-equals-sign", targetToken);
     }
-    const needSameLine = this.tomlVersion.gte("1.1")
-      ? undefined
+    const needSameLine = this.tomlVersion.gte(1, 1)
+      ? // Line breaks in inline tables are allowed.
+        // Added in TOML 1.1
+        undefined
       : ("invalid-inline-table-newline" as const);
     ctx.addValueContainer({
       parent: keyValueNode,
@@ -565,12 +569,14 @@ export class TOMLParser {
             );
           }
           if (isRightBrace(nextToken)) {
-            if (this.tomlVersion.lt("1.1")) {
+            if (this.tomlVersion.lt(1, 1)) {
               return ctx.reportParseError(
                 "invalid-trailing-comma-in-inline-table",
                 nextToken,
               );
             }
+            // Trailing commas in inline tables are allowed.
+            // Added in TOML 1.1
           } else {
             return ctx.reportParseError(
               nextToken ? "unexpected-token" : "unterminated-inline-table",

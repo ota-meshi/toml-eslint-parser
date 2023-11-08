@@ -238,7 +238,7 @@ export class Tokenizer {
     this.parserOptions = parserOptions || {};
     this.codePointIterator = new CodePointIterator(text);
     this.tomlVersion = getTOMLVer(this.parserOptions.tomlVersion);
-    this.ESCAPES = this.tomlVersion.gte("1.1") ? ESCAPES_LATEST : ESCAPES_1_0;
+    this.ESCAPES = this.tomlVersion.gte(1, 1) ? ESCAPES_LATEST : ESCAPES_1_0;
   }
 
   public get positions(): { start: Position; end: Position } {
@@ -596,7 +596,7 @@ export class Tokenizer {
           codePoints.push(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte("1.1")) {
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
@@ -666,7 +666,7 @@ export class Tokenizer {
           codePoints.push(code);
           cp = this.nextCode();
           continue;
-        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte("1.1")) {
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
@@ -1138,10 +1138,11 @@ export class Tokenizer {
     if (cp === COLON) {
       return "TIME_SECOND";
     }
-    if (this.tomlVersion.lt("1.1")) {
+    if (this.tomlVersion.lt(1, 1)) {
       return this.reportParseError("unexpected-char");
     }
     // Omitted seconds
+    // Added in TOML 1.1
     if (!isValidTime(data.hour, data.minute, data.second)) {
       return this.reportParseError("invalid-time");
     }
@@ -1319,11 +1320,14 @@ function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
   if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
     return true;
   }
-  if (tomlVersion.lt("1.1")) {
+  if (tomlVersion.lt(1, 1)) {
     // TOML 1.0
     // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
     return false;
   }
+
+  // Other unquoted-key-char
+  // Added in TOML 1.1
   if (
     cp === SUPERSCRIPT_TWO ||
     cp === SUPERSCRIPT_THREE ||

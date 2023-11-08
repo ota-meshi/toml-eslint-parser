@@ -1,45 +1,37 @@
-type NormalizedTOMLVersion = "1.0" | "1.1";
 export type TOMLVersionOption =
-  | NormalizedTOMLVersion
-  | `${NormalizedTOMLVersion}.0`
+  | "1.0"
+  | "1.1"
+  | "1.0.0"
+  | "1.1.0"
   | "latest"
   | "next";
 export interface TOMLVer {
-  lt(when: NormalizedTOMLVersion): boolean;
-  lte(when: NormalizedTOMLVersion): boolean;
-  gt(when: NormalizedTOMLVersion): boolean;
-  gte(when: NormalizedTOMLVersion): boolean;
-  eq(when: NormalizedTOMLVersion): boolean;
+  lt(major: number, minor: number): boolean;
+  // lte(major:number,minor:number): boolean;
+  // gt(major:number,minor:number): boolean;
+  gte(major: number, minor: number): boolean;
+  // eq(major:number,minor:number): boolean;
 }
 class TOMLVerImpl implements TOMLVer {
-  private readonly version: string;
+  private readonly major: number;
 
-  public constructor(version: NormalizedTOMLVersion) {
-    this.version = version;
+  private readonly minor: number;
+
+  public constructor(major: number, minor: number) {
+    this.major = major;
+    this.minor = minor;
   }
 
-  public eq(when: NormalizedTOMLVersion): boolean {
-    return this.version === when;
+  public lt(major: number, minor: number): boolean {
+    return this.major < major || (this.major === major && this.minor < minor);
   }
 
-  public lt(when: NormalizedTOMLVersion): boolean {
-    return this.version < when;
-  }
-
-  public lte(when: NormalizedTOMLVersion): boolean {
-    return this.version <= when;
-  }
-
-  public gt(when: NormalizedTOMLVersion): boolean {
-    return this.version > when;
-  }
-
-  public gte(when: NormalizedTOMLVersion): boolean {
-    return this.version >= when;
+  public gte(major: number, minor: number): boolean {
+    return this.major > major || (this.major === major && this.minor >= minor);
   }
 }
-const TOML_VERSION_1_0 = new TOMLVerImpl("1.0");
-const TOML_VERSION_1_1 = new TOMLVerImpl("1.1");
+const TOML_VERSION_1_0 = new TOMLVerImpl(1, 0);
+const TOML_VERSION_1_1 = new TOMLVerImpl(1, 1);
 const DEFAULT_TOML_VERSION: TOMLVer = TOML_VERSION_1_0;
 const SUPPORTED_TOML_VERSIONS: Record<TOMLVersionOption, TOMLVer> = {
   "1.0": TOML_VERSION_1_0,
