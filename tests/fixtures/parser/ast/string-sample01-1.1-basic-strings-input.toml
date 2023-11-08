@@ -1,0 +1,2 @@
+# https://toml.io/en/v1.1.0#string
+str = "I'm a string. \"You can quote me\". Name\tJos\xE9\nLocation\tSF."

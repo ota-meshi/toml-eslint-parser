@@ -15,7 +15,8 @@ import type {
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { ParseError } from "../errors";
-import type { ParserOptions } from "../parser-options";
+import type { TOMLVer } from "../parser-options";
+import { getTOMLVer, type ParserOptions } from "../parser-options";
 import { CodePointIterator } from "./code-point-iterator";
 import {
   EOF,
@@ -70,6 +71,43 @@ import {
   LATIN_CAPITAL_Z,
   LATIN_SMALL_Z,
   isUnicodeScalarValue,
+  ESCAPE,
+  SUPERSCRIPT_TWO,
+  SUPERSCRIPT_THREE,
+  SUPERSCRIPT_ONE,
+  VULGAR_FRACTION_ONE_QUARTER,
+  VULGAR_FRACTION_THREE_QUARTERS,
+  LATIN_CAPITAL_LETTER_A_WITH_GRAVE,
+  LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS,
+  LATIN_SMALL_LETTER_O_WITH_DIAERESIS,
+  LATIN_CAPITAL_LETTER_O_WITH_STROKE,
+  GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL,
+  LATIN_SMALL_LETTER_O_WITH_STROKE,
+  GREEK_CAPITAL_LETTER_YOT,
+  CP_1FFF,
+  ZERO_WIDTH_NON_JOINER,
+  ZERO_WIDTH_JOINER,
+  UNDERTIE,
+  CHARACTER_TIE,
+  SUPERSCRIPT_ZERO,
+  CP_218F,
+  CIRCLED_DIGIT_ONE,
+  NEGATIVE_CIRCLED_DIGIT_ZERO,
+  GLAGOLITIC_CAPITAL_LETTER_AZU,
+  CP_2FEF,
+  IDEOGRAPHIC_COMMA,
+  CP_D7FF,
+  CJK_COMPATIBILITY_IDEOGRAPH_F900,
+  ARABIC_LIGATURE_SALAAMUHU_ALAYNAA,
+  ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM,
+  REPLACEMENT_CHARACTER,
+  LINEAR_B_SYLLABLE_B008_A,
+  CP_EFFFF,
+  SOH,
+  SO,
+  CP_10FFFF,
+  CP_E000,
+  PAD,
 } from "./code-point";
 
 type Position = {
@@ -111,14 +149,28 @@ const RADIX_PREFIXES = {
   2: "02",
 };
 
-const ESCAPES: Record<number, number> = {
-  [LATIN_SMALL_B]: BACKSPACE,
-  [LATIN_SMALL_T]: TABULATION,
-  [LATIN_SMALL_N]: LINE_FEED,
-  [LATIN_SMALL_F]: FORM_FEED,
-  [LATIN_SMALL_R]: CARRIAGE_RETURN,
+const ESCAPES_1_0: Record<number, number> = {
+  // escape-seq-char =  %x22         ; "    quotation mark  U+0022
   [QUOTATION_MARK]: QUOTATION_MARK,
+  // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
   [BACKSLASH]: BACKSLASH,
+  // escape-seq-char =/ %x62         ; b    backspace       U+0008
+  [LATIN_SMALL_B]: BACKSPACE,
+  // escape-seq-char =/ %x66         ; f    form feed       U+000C
+  [LATIN_SMALL_F]: FORM_FEED,
+  // escape-seq-char =/ %x6E         ; n    line feed       U+000A
+  [LATIN_SMALL_N]: LINE_FEED,
+  // escape-seq-char =/ %x72         ; r    carriage return U+000D
+  [LATIN_SMALL_R]: CARRIAGE_RETURN,
+  // escape-seq-char =/ %x74         ; t    tab             U+0009
+  [LATIN_SMALL_T]: TABULATION,
+};
+
+const ESCAPES_LATEST: Record<number, number> = {
+  ...ESCAPES_1_0,
+  // escape-seq-char =/ %x65         ; e    escape          U+001B
+  // Added in TOML 1.1
+  [LATIN_SMALL_E]: ESCAPE,
 };
 
 type ExponentData = {
@@ -149,8 +201,11 @@ type DateTimeData = {
 export class Tokenizer {
   public readonly text: string;
 
-  // @ts-expect-error -- unused
   private readonly parserOptions: ParserOptions;
+
+  private readonly tomlVersion: TOMLVer;
+
+  private readonly ESCAPES: Record<number, number>;
 
   private readonly codePointIterator: CodePointIterator;
 
@@ -187,6 +242,8 @@ export class Tokenizer {
     this.text = text;
     this.parserOptions = parserOptions || {};
     this.codePointIterator = new CodePointIterator(text);
+    this.tomlVersion = getTOMLVer(this.parserOptions.tomlVersion);
+    this.ESCAPES = this.tomlVersion.gte(1, 1) ? ESCAPES_LATEST : ESCAPES_1_0;
   }
 
   public get positions(): { start: Position; end: Position } {
@@ -478,7 +535,7 @@ export class Tokenizer {
         return this.back("BOOLEAN");
       }
     } else {
-      if (isBare(cp)) {
+      if (isUnquotedKeyChar(cp, this.tomlVersion)) {
         this.startToken();
         return "BARE";
       }
@@ -493,10 +550,19 @@ export class Tokenizer {
   }
 
   private COMMENT(cp: number): TokenizerState {
+    const processCommentChar = this.tomlVersion.gte(1, 1)
+      ? (c: number) => {
+          if (!isAllowedCommentCharacter(c)) {
+            this.reportParseError("invalid-comment-character");
+          }
+        }
+      : (c: number) => {
+          if (isControlOtherThanTab(c)) {
+            this.reportParseErrorControlChar();
+          }
+        };
     while (!isEOL(cp) && cp !== EOF) {
-      if (isControlOtherThanTab(cp)) {
-        return this.reportParseErrorControlChar();
-      }
+      processCommentChar(cp);
       cp = this.nextCode();
     }
     this.endToken("Block", "start");
@@ -504,7 +570,7 @@ export class Tokenizer {
   }
 
   private BARE(cp: number): TokenizerState {
-    while (isBare(cp)) {
+    while (isUnquotedKeyChar(cp, this.tomlVersion)) {
       cp = this.nextCode();
     }
     this.endToken("Bare", "start");
@@ -527,18 +593,27 @@ export class Tokenizer {
       }
       if (cp === BACKSLASH) {
         cp = this.nextCode();
-        const ecp = ESCAPES[cp];
+        const ecp = this.ESCAPES[cp];
         if (ecp) {
           codePoints.push(ecp);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
+          // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
+          // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
+          codePoints.push(code);
+          cp = this.nextCode();
+          continue;
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
+          // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
+          // Added in TOML 1.1
+          const code = this.parseUnicode(2);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
@@ -588,18 +663,27 @@ export class Tokenizer {
       }
       if (cp === BACKSLASH) {
         cp = this.nextCode();
-        const ecp = ESCAPES[cp];
+        const ecp = this.ESCAPES[cp];
         if (ecp) {
           codePoints.push(ecp);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_SMALL_U) {
+          // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === LATIN_CAPITAL_U) {
+          // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
+          codePoints.push(code);
+          cp = this.nextCode();
+          continue;
+        } else if (cp === LATIN_SMALL_X && this.tomlVersion.gte(1, 1)) {
+          // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
+          // Added in TOML 1.1
+          const code = this.parseUnicode(2);
           codePoints.push(code);
           cp = this.nextCode();
           continue;
@@ -1062,13 +1146,21 @@ export class Tokenizer {
     } else {
       return this.reportParseError("unexpected-char");
     }
-    cp = this.nextCode();
-    if (cp !== COLON) {
-      return this.reportParseError("unexpected-char");
-    }
     const data: DateTimeData = this.data! as DateTimeData;
     data.minute = Number(String.fromCodePoint(...codePoints));
-    return "TIME_SECOND";
+    cp = this.nextCode();
+    if (cp === COLON) {
+      return "TIME_SECOND";
+    }
+    if (this.tomlVersion.lt(1, 1)) {
+      return this.reportParseError("unexpected-char");
+    }
+    // Omitted seconds
+    // Added in TOML 1.1
+    if (!isValidTime(data.hour, data.minute, data.second)) {
+      return this.reportParseError("invalid-time");
+    }
+    return this.processTimeEnd(cp, data);
   }
 
   private TIME_SECOND(cp: number): TokenizerState {
@@ -1094,23 +1186,7 @@ export class Tokenizer {
     if (cp === DOT) {
       return "TIME_SEC_FRAC";
     }
-    if (data.hasDate) {
-      if (cp === DASH || cp === PLUS_SIGN) {
-        data.offsetSign = cp;
-        return "TIME_OFFSET";
-      }
-      if (cp === LATIN_CAPITAL_Z || cp === LATIN_SMALL_Z) {
-        const dateValue = getDateFromDateTimeData(data, "Z");
-        this.endToken("OffsetDateTime", "end", dateValue);
-        return "DATA";
-      }
-      const dateValue = getDateFromDateTimeData(data, "");
-      this.endToken("LocalDateTime", "start", dateValue);
-      return this.back("DATA");
-    }
-    const dateValue = getDateFromDateTimeData(data, "");
-    this.endToken("LocalTime", "start", dateValue);
-    return this.back("DATA");
+    return this.processTimeEnd(cp, data);
   }
 
   private TIME_SEC_FRAC(cp: number): TokenizerState {
@@ -1124,6 +1200,10 @@ export class Tokenizer {
     }
     const data: DateTimeData = this.data! as DateTimeData;
     data.frac = codePoints;
+    return this.processTimeEnd(cp, data);
+  }
+
+  private processTimeEnd(cp: number, data: DateTimeData): TokenizerState {
     if (data.hasDate) {
       if (cp === DASH || cp === PLUS_SIGN) {
         data.offsetSign = cp;
@@ -1247,17 +1327,108 @@ export class Tokenizer {
 }
 
 /**
- * Check whether the code point is [A-Za-z0-9_-]
+ * Check whether the code point is unquoted-key-char
  */
-function isBare(cp: number): boolean {
-  return isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH;
+function isUnquotedKeyChar(cp: number, tomlVersion: TOMLVer): boolean {
+  // unquoted-key-char = ALPHA / DIGIT / %x2D / %x5F         ; a-z A-Z 0-9 - _
+  if (isLetter(cp) || isDigit(cp) || cp === UNDERSCORE || cp === DASH) {
+    return true;
+  }
+  if (tomlVersion.lt(1, 1)) {
+    // TOML 1.0
+    // unquoted-key = 1*( ALPHA / DIGIT / %x2D / %x5F ) ; A-Z / a-z / 0-9 / - / _
+    return false;
+  }
+
+  // Other unquoted-key-char
+  // Added in TOML 1.1
+  if (
+    cp === SUPERSCRIPT_TWO ||
+    cp === SUPERSCRIPT_THREE ||
+    cp === SUPERSCRIPT_ONE ||
+    (VULGAR_FRACTION_ONE_QUARTER <= cp && cp <= VULGAR_FRACTION_THREE_QUARTERS)
+  ) {
+    // unquoted-key-char =/ %xB2 / %xB3 / %xB9 / %xBC-BE       ; superscript digits, fractions
+    return true;
+  }
+  if (
+    (LATIN_CAPITAL_LETTER_A_WITH_GRAVE <= cp &&
+      cp <= LATIN_CAPITAL_LETTER_O_WITH_DIAERESIS) ||
+    (LATIN_CAPITAL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= LATIN_SMALL_LETTER_O_WITH_DIAERESIS) ||
+    (LATIN_SMALL_LETTER_O_WITH_STROKE <= cp &&
+      cp <= GREEK_SMALL_REVERSED_DOTTED_LUNATE_SIGMA_SYMBOL)
+  ) {
+    // unquoted-key-char =/ %xC0-D6 / %xD8-F6 / %xF8-37D       ; non-symbol chars in Latin block
+    return true;
+  }
+  if (GREEK_CAPITAL_LETTER_YOT <= cp && cp <= CP_1FFF) {
+    // unquoted-key-char =/ %x37F-1FFF                         ; exclude GREEK QUESTION MARK, which is basically a semi-colon
+    return true;
+  }
+  if (
+    (ZERO_WIDTH_NON_JOINER <= cp && cp <= ZERO_WIDTH_JOINER) ||
+    (UNDERTIE <= cp && cp <= CHARACTER_TIE)
+  ) {
+    // unquoted-key-char =/ %x200C-200D / %x203F-2040          ; from General Punctuation Block, include the two tie symbols and ZWNJ, ZWJ
+    return true;
+  }
+  if (
+    (SUPERSCRIPT_ZERO <= cp && cp <= CP_218F) ||
+    (CIRCLED_DIGIT_ONE <= cp && cp <= NEGATIVE_CIRCLED_DIGIT_ZERO)
+  ) {
+    // unquoted-key-char =/ %x2070-218F / %x2460-24FF          ; include super-/subscripts, letterlike/numberlike forms, enclosed alphanumerics
+    return true;
+  }
+  if (
+    (GLAGOLITIC_CAPITAL_LETTER_AZU <= cp && cp <= CP_2FEF) ||
+    (IDEOGRAPHIC_COMMA <= cp && cp <= CP_D7FF)
+  ) {
+    // unquoted-key-char =/ %x2C00-2FEF / %x3001-D7FF          ; skip arrows, math, box drawing etc, skip 2FF0-3000 ideographic up/down markers and spaces
+    return true;
+  }
+  if (
+    (CJK_COMPATIBILITY_IDEOGRAPH_F900 <= cp &&
+      cp <= ARABIC_LIGATURE_SALAAMUHU_ALAYNAA) ||
+    (ARABIC_LIGATURE_SALLA_USED_AS_KORANIC_STOP_SIGN_ISOLATED_FORM <= cp &&
+      cp <= REPLACEMENT_CHARACTER)
+  ) {
+    // unquoted-key-char =/ %xF900-FDCF / %xFDF0-FFFD          ; skip D800-DFFF surrogate block, E000-F8FF Private Use area, FDD0-FDEF intended for process-internal use (unicode)
+    return true;
+  }
+  if (LINEAR_B_SYLLABLE_B008_A <= cp && cp <= CP_EFFFF) {
+    // unquoted-key-char =/ %x10000-EFFFF                      ; all chars outside BMP range, excluding Private Use planes (F0000-10FFFF)
+    return true;
+  }
+
+  return false;
 }
 
 /**
- * Check whether the code point is [A-Za-z0-9_-]
+ * Check whether the code point is control character other than tab
  */
 function isControlOtherThanTab(cp: number): boolean {
   return (isControl(cp) && cp !== TABULATION) || cp === DELETE;
+}
+
+/**
+ * Check whether the code point is allowed-comment-char for TOML 1.1
+ */
+function isAllowedCommentCharacter(cp: number): boolean {
+  // allowed-comment-char = %x01-09 / %x0E-7F / non-ascii
+  return (
+    (SOH <= cp && cp <= TABULATION) ||
+    (SO <= cp && cp <= DELETE) ||
+    isNonAscii(cp)
+  );
+}
+
+/**
+ * Check whether the code point is a non-ascii character.
+ */
+function isNonAscii(cp: number): boolean {
+  //  %x80-D7FF / %xE000-10FFFF
+  return (PAD <= cp && cp <= CP_D7FF) || (CP_E000 <= cp && cp <= CP_10FFFF);
 }
 
 /**

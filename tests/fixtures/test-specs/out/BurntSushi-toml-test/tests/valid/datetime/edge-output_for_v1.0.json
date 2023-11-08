@@ -1,0 +1,816 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "first-offset",
+                "range": [
+                  0,
+                  12
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 12
+                  }
+                }
+              }
+            ],
+            "range": [
+              0,
+              12
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "offset-date-time",
+            "value": "0001-01-01T00:00:00.000Z",
+            "datetime": "0001-01-01 00:00:00Z",
+            "range": [
+              15,
+              35
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 15
+              },
+              "end": {
+                "line": 1,
+                "column": 35
+              }
+            }
+          },
+          "range": [
+            0,
+            35
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 1,
+              "column": 35
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "first-local",
+                "range": [
+                  36,
+                  47
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              36,
+              47
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 2,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "local-date-time",
+            "value": "0000-12-31T14:41:01.000Z",
+            "datetime": "0001-01-01 00:00:00",
+            "range": [
+              51,
+              70
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 15
+              },
+              "end": {
+                "line": 2,
+                "column": 34
+              }
+            }
+          },
+          "range": [
+            36,
+            70
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 2,
+              "column": 34
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "first-date",
+                "range": [
+                  71,
+                  81
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 10
+                  }
+                }
+              }
+            ],
+            "range": [
+              71,
+              81
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 10
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "local-date",
+            "value": "0000-12-31T14:41:01.000Z",
+            "datetime": "0001-01-01",
+            "range": [
+              86,
+              96
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 15
+              },
+              "end": {
+                "line": 3,
+                "column": 25
+              }
+            }
+          },
+          "range": [
+            71,
+            96
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 25
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "last-offset",
+                "range": [
+                  98,
+                  109
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              98,
+              109
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "offset-date-time",
+            "value": "9999-12-31T23:59:59.000Z",
+            "datetime": "9999-12-31 23:59:59Z",
+            "range": [
+              112,
+              132
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 14
+              },
+              "end": {
+                "line": 5,
+                "column": 34
+              }
+            }
+          },
+          "range": [
+            98,
+            132
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 34
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "last-local",
+                "range": [
+                  133,
+                  143
+                ],
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 10
+                  }
+                }
+              }
+            ],
+            "range": [
+              133,
+              143
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 10
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "local-date-time",
+            "value": "9999-12-31T14:59:59.000Z",
+            "datetime": "9999-12-31 23:59:59",
+            "range": [
+              147,
+              166
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 14
+              },
+              "end": {
+                "line": 6,
+                "column": 33
+              }
+            }
+          },
+          "range": [
+            133,
+            166
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 33
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "last-date",
+                "range": [
+                  167,
+                  176
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 9
+                  }
+                }
+              }
+            ],
+            "range": [
+              167,
+              176
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 9
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "local-date",
+            "value": "9999-12-30T15:00:00.000Z",
+            "datetime": "9999-12-31",
+            "range": [
+              181,
+              191
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 14
+              },
+              "end": {
+                "line": 7,
+                "column": 24
+              }
+            }
+          },
+          "range": [
+            167,
+            191
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 24
+            }
+          }
+        }
+      ],
+      "range": [
+        0,
+        191
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 24
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "first-offset",
+      "range": [
+        0,
+        12
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        13,
+        14
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 13
+        },
+        "end": {
+          "line": 1,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "OffsetDateTime",
+      "value": "0001-01-01 00:00:00Z",
+      "date": "0001-01-01T00:00:00.000Z",
+      "range": [
+        15,
+        35
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 15
+        },
+        "end": {
+          "line": 1,
+          "column": 35
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "first-local",
+      "range": [
+        36,
+        47
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        49,
+        50
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 13
+        },
+        "end": {
+          "line": 2,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "LocalDateTime",
+      "value": "0001-01-01 00:00:00",
+      "date": "0000-12-31T14:41:01.000Z",
+      "range": [
+        51,
+        70
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 15
+        },
+        "end": {
+          "line": 2,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "first-date",
+      "range": [
+        71,
+        81
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        84,
+        85
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 13
+        },
+        "end": {
+          "line": 3,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "LocalDate",
+      "value": "0001-01-01",
+      "date": "0000-12-31T14:41:01.000Z",
+      "range": [
+        86,
+        96
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 15
+        },
+        "end": {
+          "line": 3,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "last-offset",
+      "range": [
+        98,
+        109
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        110,
+        111
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 12
+        },
+        "end": {
+          "line": 5,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "OffsetDateTime",
+      "value": "9999-12-31 23:59:59Z",
+      "date": "9999-12-31T23:59:59.000Z",
+      "range": [
+        112,
+        132
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 14
+        },
+        "end": {
+          "line": 5,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "last-local",
+      "range": [
+        133,
+        143
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        145,
+        146
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 12
+        },
+        "end": {
+          "line": 6,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "LocalDateTime",
+      "value": "9999-12-31 23:59:59",
+      "date": "9999-12-31T14:59:59.000Z",
+      "range": [
+        147,
+        166
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 14
+        },
+        "end": {
+          "line": 6,
+          "column": 33
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "last-date",
+      "range": [
+        167,
+        176
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        179,
+        180
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 12
+        },
+        "end": {
+          "line": 7,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "LocalDate",
+      "value": "9999-12-31",
+      "date": "9999-12-30T15:00:00.000Z",
+      "range": [
+        181,
+        191
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 14
+        },
+        "end": {
+          "line": 7,
+          "column": 24
+        }
+      }
+    }
+  ],
+  "comments": [],
+  "range": [
+    0,
+    192
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 8,
+      "column": 0
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "1234": "value",
+  "key": "value",
+  "bare_key": "value",
+  "bare-key": "value"
+}

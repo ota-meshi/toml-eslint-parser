@@ -1,0 +1,1823 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "multiline_empty_one",
+                "range": [
+                  57,
+                  76
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 19
+                  }
+                }
+              }
+            ],
+            "range": [
+              57,
+              76
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 0
+              },
+              "end": {
+                "line": 3,
+                "column": 19
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              79,
+              85
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 22
+              },
+              "end": {
+                "line": 3,
+                "column": 28
+              }
+            }
+          },
+          "range": [
+            57,
+            85
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 28
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "multiline_empty_two",
+                "range": [
+                  160,
+                  179
+                ],
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 19
+                  }
+                }
+              }
+            ],
+            "range": [
+              160,
+              179
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 19
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              182,
+              189
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 22
+              },
+              "end": {
+                "line": 7,
+                "column": 3
+              }
+            }
+          },
+          "range": [
+            160,
+            189
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 3
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "multiline_empty_three",
+                "range": [
+                  303,
+                  324
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 21
+                  }
+                }
+              }
+            ],
+            "range": [
+              303,
+              324
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 0
+              },
+              "end": {
+                "line": 11,
+                "column": 21
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              327,
+              339
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 24
+              },
+              "end": {
+                "line": 12,
+                "column": 7
+              }
+            }
+          },
+          "range": [
+            303,
+            339
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 7
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "multiline_empty_four",
+                "range": [
+                  340,
+                  360
+                ],
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 20
+                  }
+                }
+              }
+            ],
+            "range": [
+              340,
+              360
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 0
+              },
+              "end": {
+                "line": 13,
+                "column": 20
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              363,
+              386
+            ],
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 23
+              },
+              "end": {
+                "line": 16,
+                "column": 6
+              }
+            }
+          },
+          "range": [
+            340,
+            386
+          ],
+          "loc": {
+            "start": {
+              "line": 13,
+              "column": 0
+            },
+            "end": {
+              "line": 16,
+              "column": 6
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "equivalent_one",
+                "range": [
+                  388,
+                  402
+                ],
+                "loc": {
+                  "start": {
+                    "line": 18,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 18,
+                    "column": 14
+                  }
+                }
+              }
+            ],
+            "range": [
+              388,
+              402
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 0
+              },
+              "end": {
+                "line": 18,
+                "column": 14
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "The quick brown fox jumps over the lazy dog.",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              405,
+              451
+            ],
+            "loc": {
+              "start": {
+                "line": 18,
+                "column": 17
+              },
+              "end": {
+                "line": 18,
+                "column": 63
+              }
+            }
+          },
+          "range": [
+            388,
+            451
+          ],
+          "loc": {
+            "start": {
+              "line": 18,
+              "column": 0
+            },
+            "end": {
+              "line": 18,
+              "column": 63
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "equivalent_two",
+                "range": [
+                  452,
+                  466
+                ],
+                "loc": {
+                  "start": {
+                    "line": 19,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 19,
+                    "column": 14
+                  }
+                }
+              }
+            ],
+            "range": [
+              452,
+              466
+            ],
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 14
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "The quick brown fox jumps over the lazy dog.",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              469,
+              532
+            ],
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 17
+              },
+              "end": {
+                "line": 24,
+                "column": 20
+              }
+            }
+          },
+          "range": [
+            452,
+            532
+          ],
+          "loc": {
+            "start": {
+              "line": 19,
+              "column": 0
+            },
+            "end": {
+              "line": 24,
+              "column": 20
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "equivalent_three",
+                "range": [
+                  534,
+                  550
+                ],
+                "loc": {
+                  "start": {
+                    "line": 26,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 16
+                  }
+                }
+              }
+            ],
+            "range": [
+              534,
+              550
+            ],
+            "loc": {
+              "start": {
+                "line": 26,
+                "column": 0
+              },
+              "end": {
+                "line": 26,
+                "column": 16
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "The quick brown fox jumps over the lazy dog.",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              553,
+              639
+            ],
+            "loc": {
+              "start": {
+                "line": 26,
+                "column": 19
+              },
+              "end": {
+                "line": 30,
+                "column": 10
+              }
+            }
+          },
+          "range": [
+            534,
+            639
+          ],
+          "loc": {
+            "start": {
+              "line": 26,
+              "column": 0
+            },
+            "end": {
+              "line": 30,
+              "column": 10
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "whitespace-after-bs",
+                "range": [
+                  641,
+                  660
+                ],
+                "loc": {
+                  "start": {
+                    "line": 32,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 32,
+                    "column": 19
+                  }
+                }
+              }
+            ],
+            "range": [
+              641,
+              660
+            ],
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 0
+              },
+              "end": {
+                "line": 32,
+                "column": 19
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "The quick brown fox jumps over the lazy dog.",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              663,
+              753
+            ],
+            "loc": {
+              "start": {
+                "line": 32,
+                "column": 22
+              },
+              "end": {
+                "line": 36,
+                "column": 10
+              }
+            }
+          },
+          "range": [
+            641,
+            753
+          ],
+          "loc": {
+            "start": {
+              "line": 32,
+              "column": 0
+            },
+            "end": {
+              "line": 36,
+              "column": 10
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "no-space",
+                "range": [
+                  755,
+                  763
+                ],
+                "loc": {
+                  "start": {
+                    "line": 38,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 38,
+                    "column": 8
+                  }
+                }
+              }
+            ],
+            "range": [
+              755,
+              763
+            ],
+            "loc": {
+              "start": {
+                "line": 38,
+                "column": 0
+              },
+              "end": {
+                "line": 38,
+                "column": 8
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "ab",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              766,
+              780
+            ],
+            "loc": {
+              "start": {
+                "line": 38,
+                "column": 11
+              },
+              "end": {
+                "line": 39,
+                "column": 8
+              }
+            }
+          },
+          "range": [
+            755,
+            780
+          ],
+          "loc": {
+            "start": {
+              "line": 38,
+              "column": 0
+            },
+            "end": {
+              "line": 39,
+              "column": 8
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "keep-ws-before",
+                "range": [
+                  803,
+                  817
+                ],
+                "loc": {
+                  "start": {
+                    "line": 42,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 42,
+                    "column": 14
+                  }
+                }
+              }
+            ],
+            "range": [
+              803,
+              817
+            ],
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 0
+              },
+              "end": {
+                "line": 42,
+                "column": 14
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "a   \tb",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              820,
+              837
+            ],
+            "loc": {
+              "start": {
+                "line": 42,
+                "column": 17
+              },
+              "end": {
+                "line": 43,
+                "column": 7
+              }
+            }
+          },
+          "range": [
+            803,
+            837
+          ],
+          "loc": {
+            "start": {
+              "line": 42,
+              "column": 0
+            },
+            "end": {
+              "line": 43,
+              "column": 7
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "escape-bs-1",
+                "range": [
+                  839,
+                  850
+                ],
+                "loc": {
+                  "start": {
+                    "line": 45,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 45,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              839,
+              850
+            ],
+            "loc": {
+              "start": {
+                "line": 45,
+                "column": 0
+              },
+              "end": {
+                "line": 45,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "a \\\nb",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              853,
+              865
+            ],
+            "loc": {
+              "start": {
+                "line": 45,
+                "column": 14
+              },
+              "end": {
+                "line": 46,
+                "column": 4
+              }
+            }
+          },
+          "range": [
+            839,
+            865
+          ],
+          "loc": {
+            "start": {
+              "line": 45,
+              "column": 0
+            },
+            "end": {
+              "line": 46,
+              "column": 4
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "escape-bs-2",
+                "range": [
+                  867,
+                  878
+                ],
+                "loc": {
+                  "start": {
+                    "line": 48,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 48,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              867,
+              878
+            ],
+            "loc": {
+              "start": {
+                "line": 48,
+                "column": 0
+              },
+              "end": {
+                "line": 48,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "a \\b",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              881,
+              894
+            ],
+            "loc": {
+              "start": {
+                "line": 48,
+                "column": 14
+              },
+              "end": {
+                "line": 49,
+                "column": 4
+              }
+            }
+          },
+          "range": [
+            867,
+            894
+          ],
+          "loc": {
+            "start": {
+              "line": 48,
+              "column": 0
+            },
+            "end": {
+              "line": 49,
+              "column": 4
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "escape-bs-3",
+                "range": [
+                  896,
+                  907
+                ],
+                "loc": {
+                  "start": {
+                    "line": 51,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 51,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              896,
+              907
+            ],
+            "loc": {
+              "start": {
+                "line": 51,
+                "column": 0
+              },
+              "end": {
+                "line": 51,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "a \\\\\n  b",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              910,
+              926
+            ],
+            "loc": {
+              "start": {
+                "line": 51,
+                "column": 14
+              },
+              "end": {
+                "line": 52,
+                "column": 6
+              }
+            }
+          },
+          "range": [
+            896,
+            926
+          ],
+          "loc": {
+            "start": {
+              "line": 51,
+              "column": 0
+            },
+            "end": {
+              "line": 52,
+              "column": 6
+            }
+          }
+        }
+      ],
+      "range": [
+        57,
+        926
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 52,
+          "column": 6
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "multiline_empty_one",
+      "range": [
+        57,
+        76
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        77,
+        78
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 20
+        },
+        "end": {
+          "line": 3,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\"\"\"",
+      "string": "",
+      "range": [
+        79,
+        85
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 22
+        },
+        "end": {
+          "line": 3,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "multiline_empty_two",
+      "range": [
+        160,
+        179
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        180,
+        181
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 20
+        },
+        "end": {
+          "line": 6,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\n\"\"\"",
+      "string": "",
+      "range": [
+        182,
+        189
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 22
+        },
+        "end": {
+          "line": 7,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "multiline_empty_three",
+      "range": [
+        303,
+        324
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        325,
+        326
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 22
+        },
+        "end": {
+          "line": 11,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\\n    \"\"\"",
+      "string": "",
+      "range": [
+        327,
+        339
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 24
+        },
+        "end": {
+          "line": 12,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "multiline_empty_four",
+      "range": [
+        340,
+        360
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        361,
+        362
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 21
+        },
+        "end": {
+          "line": 13,
+          "column": 22
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\\n   \\\n   \\  \n   \"\"\"",
+      "string": "",
+      "range": [
+        363,
+        386
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 23
+        },
+        "end": {
+          "line": 16,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "equivalent_one",
+      "range": [
+        388,
+        402
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 0
+        },
+        "end": {
+          "line": 18,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        403,
+        404
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 15
+        },
+        "end": {
+          "line": 18,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"The quick brown fox jumps over the lazy dog.\"",
+      "string": "The quick brown fox jumps over the lazy dog.",
+      "range": [
+        405,
+        451
+      ],
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 17
+        },
+        "end": {
+          "line": 18,
+          "column": 63
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "equivalent_two",
+      "range": [
+        452,
+        466
+      ],
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        467,
+        468
+      ],
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 15
+        },
+        "end": {
+          "line": 19,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\nThe quick brown \\\n\n\n  fox jumps over \\\n    the lazy dog.\"\"\"",
+      "string": "The quick brown fox jumps over the lazy dog.",
+      "range": [
+        469,
+        532
+      ],
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 17
+        },
+        "end": {
+          "line": 24,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "equivalent_three",
+      "range": [
+        534,
+        550
+      ],
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 0
+        },
+        "end": {
+          "line": 26,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        551,
+        552
+      ],
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 17
+        },
+        "end": {
+          "line": 26,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\\n       The quick brown \\\n       fox jumps over \\\n       the lazy dog.\\\n       \"\"\"",
+      "string": "The quick brown fox jumps over the lazy dog.",
+      "range": [
+        553,
+        639
+      ],
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 19
+        },
+        "end": {
+          "line": 30,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "whitespace-after-bs",
+      "range": [
+        641,
+        660
+      ],
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 0
+        },
+        "end": {
+          "line": 32,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        661,
+        662
+      ],
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 20
+        },
+        "end": {
+          "line": 32,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\\n       The quick brown \\\n       fox jumps over \\   \n       the lazy dog.\\\t\n       \"\"\"",
+      "string": "The quick brown fox jumps over the lazy dog.",
+      "range": [
+        663,
+        753
+      ],
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 22
+        },
+        "end": {
+          "line": 36,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "no-space",
+      "range": [
+        755,
+        763
+      ],
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 0
+        },
+        "end": {
+          "line": 38,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        764,
+        765
+      ],
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 9
+        },
+        "end": {
+          "line": 38,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"a\\\n    b\"\"\"",
+      "string": "ab",
+      "range": [
+        766,
+        780
+      ],
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 11
+        },
+        "end": {
+          "line": 39,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "keep-ws-before",
+      "range": [
+        803,
+        817
+      ],
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 0
+        },
+        "end": {
+          "line": 42,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        818,
+        819
+      ],
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 15
+        },
+        "end": {
+          "line": 42,
+          "column": 16
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"a   \t\\\n   b\"\"\"",
+      "string": "a   \tb",
+      "range": [
+        820,
+        837
+      ],
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 17
+        },
+        "end": {
+          "line": 43,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "escape-bs-1",
+      "range": [
+        839,
+        850
+      ],
+      "loc": {
+        "start": {
+          "line": 45,
+          "column": 0
+        },
+        "end": {
+          "line": 45,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        851,
+        852
+      ],
+      "loc": {
+        "start": {
+          "line": 45,
+          "column": 12
+        },
+        "end": {
+          "line": 45,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"a \\\\\nb\"\"\"",
+      "string": "a \\\nb",
+      "range": [
+        853,
+        865
+      ],
+      "loc": {
+        "start": {
+          "line": 45,
+          "column": 14
+        },
+        "end": {
+          "line": 46,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "escape-bs-2",
+      "range": [
+        867,
+        878
+      ],
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 0
+        },
+        "end": {
+          "line": 48,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        879,
+        880
+      ],
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 12
+        },
+        "end": {
+          "line": 48,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"a \\\\\\\nb\"\"\"",
+      "string": "a \\b",
+      "range": [
+        881,
+        894
+      ],
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 14
+        },
+        "end": {
+          "line": 49,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "escape-bs-3",
+      "range": [
+        896,
+        907
+      ],
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 0
+        },
+        "end": {
+          "line": 51,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        908,
+        909
+      ],
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 12
+        },
+        "end": {
+          "line": 51,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"a \\\\\\\\\n  b\"\"\"",
+      "string": "a \\\\\n  b",
+      "range": [
+        910,
+        926
+      ],
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 14
+        },
+        "end": {
+          "line": 52,
+          "column": 6
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " NOTE: this file includes some literal tab characters.",
+      "range": [
+        0,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 55
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " A newline immediately following the opening delimiter will be trimmed.",
+      "range": [
+        87,
+        159
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 72
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " \\ at the end of line trims newlines as well; note that last \\ is followed by",
+      "range": [
+        191,
+        269
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 78
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " two spaces, which are ignored.",
+      "range": [
+        270,
+        302
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " Has tab character.",
+      "range": [
+        782,
+        802
+      ],
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 0
+        },
+        "end": {
+          "line": 41,
+          "column": 20
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    927
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 53,
+      "column": 0
+    }
+  }
+}
