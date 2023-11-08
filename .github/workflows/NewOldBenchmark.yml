@@ -1,0 +1,20 @@
+name: NewOldBenchmark
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+    - name: Install Packages
+      run: npm install -f
+    - name: Build
+      run: npm run build
+    - name: Benchmark
+      run: npm run benchmark
