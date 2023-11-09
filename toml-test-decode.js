@@ -3,6 +3,7 @@
 "use strict"; // eslint-disable-line n/shebang -- test
 
 const fs = require("fs");
+/* eslint n/no-missing-require: off -- ignore */
 const toml = require("./lib/index.js");
 
 /**
@@ -80,7 +81,13 @@ const resolver = {
     if (node.kind === "local-time") {
       return {
         type: "time-local",
-        value: node.value.toISOString().slice(11, -1),
+        value: node.datetime.toISOString().slice(11, -1),
+      };
+    }
+    if (node.kind === "float" || node.kind === "integer") {
+      return {
+        type: node.kind,
+        value: node.number,
       };
     }
     return { type: node.kind, value: node.value };

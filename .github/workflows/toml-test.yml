@@ -25,4 +25,4 @@ jobs:
       - name: Install toml-test
         run: go install -v github.com/toml-lang/toml-test/cmd/toml-test@latest
       - name: Test
-        run: node ./toml-test-decode.js
+        run: zsh run-toml-test.zsh
