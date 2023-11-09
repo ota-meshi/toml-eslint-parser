@@ -17,6 +17,7 @@ skip=(
 	# The latest specs allow it.
 	-skip='invalid/control/comment-del'
 	-skip='invalid/control/comment-lf'
+	-skip='invalid/control/comment-us'
 
 	# Debug
 	# -run 'valid/table/with-single-quotes'
