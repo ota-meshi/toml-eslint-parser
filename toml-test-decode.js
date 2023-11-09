@@ -39,7 +39,14 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
   if (node.kind === "float") {
     return {
       type: node.kind,
-      value: String(node.value),
+      value:
+        node.value === Infinity
+          ? "+inf"
+          : node.value === -Infinity
+          ? "-inf"
+          : Number.isNaN(node.value)
+          ? "nan"
+          : String(node.value),
     };
   }
   if (node.kind === "integer") {
