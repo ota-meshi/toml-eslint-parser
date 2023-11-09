@@ -26,8 +26,8 @@ jobs:
         run: npm run build
       - name: Install toml-test
         run: go install -v github.com/toml-lang/toml-test/cmd/toml-test@latest
-      - name: Setup PATH
-        run: export PATH="$(go env GOPATH)/bin:$PATH"
       - name: Test
-        run: ./run-toml-test.zsh
+        run: |
+          export PATH="$(go env GOPATH)/bin:$PATH"
+          ./run-toml-test.zsh
         shell: zsh {0}
