@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env sh
 #
 # Requires toml-test from https://github.com/toml-lang/toml-test
 
@@ -13,6 +13,9 @@ skip=(
 	-skip='invalid/control/rawmulti-cd'
 	-skip='invalid/control/multi-cr'
 	-skip='invalid/control/bare-cr'
+
+	# Debug
+	# -run 'valid/table/with-single-quotes'
 )
 
 e=0

@@ -4,3 +4,4 @@
 /node_modules
 /tests/fixtures/**/*.json
 !/.github
+/toml-test-decode-last-result.json

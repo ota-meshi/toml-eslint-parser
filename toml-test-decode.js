@@ -46,4 +46,6 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
 });
 
 const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"));
-process.stdout.write(`${JSON.stringify(convertTomlTestValue(ast), null, 4)}\n`);
+const result = `${JSON.stringify(convertTomlTestValue(ast), null, 4)}\n`;
+process.stdout.write(result);
+fs.writeFileSync("toml-test-decode-last-result.json", result);
