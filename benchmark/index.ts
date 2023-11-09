@@ -4,6 +4,7 @@ import * as Benchmark from "benchmark";
 import fs from "fs";
 import { parseForESLint } from "..";
 import { parseForESLint as parseOld } from "../node_modules/toml-eslint-parser";
+import { version as oldV } from "../node_modules/toml-eslint-parser/package.json";
 import { parse as parseByIarna } from "@iarna/toml";
 import { listUpFixtures } from "../tests/src/parser/utils";
 
@@ -49,6 +50,9 @@ function onComplete(): void {
     console.log(`${result.name.padEnd(15)} ${format(result.hz)} ops/sec`);
   }
 }
+
+console.log("Benchmarking...");
+console.log("Old toml-eslint-parser version:", oldV);
 
 const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 

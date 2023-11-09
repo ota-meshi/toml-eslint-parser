@@ -69,37 +69,37 @@ const RADIX_PREFIXES = {
   2: "0b",
 };
 
-const ESCAPES_1_0: Record<number, string> = {
+const ESCAPES_1_0: Record<number, number> = {
   // escape-seq-char =  %x22         ; "    quotation mark  U+0022
-  [CodePoint.QUOTATION_MARK]: String.fromCodePoint(CodePoint.QUOTATION_MARK),
+  [CodePoint.QUOTATION_MARK]: CodePoint.QUOTATION_MARK,
   // escape-seq-char =/ %x5C         ; \    reverse solidus U+005C
-  [CodePoint.BACKSLASH]: String.fromCodePoint(CodePoint.BACKSLASH),
+  [CodePoint.BACKSLASH]: CodePoint.BACKSLASH,
   // escape-seq-char =/ %x62         ; b    backspace       U+0008
-  [CodePoint.LATIN_SMALL_B]: String.fromCodePoint(CodePoint.BACKSPACE),
+  [CodePoint.LATIN_SMALL_B]: CodePoint.BACKSPACE,
   // escape-seq-char =/ %x66         ; f    form feed       U+000C
-  [CodePoint.LATIN_SMALL_F]: String.fromCodePoint(CodePoint.FORM_FEED),
+  [CodePoint.LATIN_SMALL_F]: CodePoint.FORM_FEED,
   // escape-seq-char =/ %x6E         ; n    line feed       U+000A
-  [CodePoint.LATIN_SMALL_N]: String.fromCodePoint(CodePoint.LINE_FEED),
+  [CodePoint.LATIN_SMALL_N]: CodePoint.LINE_FEED,
   // escape-seq-char =/ %x72         ; r    carriage return U+000D
-  [CodePoint.LATIN_SMALL_R]: String.fromCodePoint(CodePoint.CARRIAGE_RETURN),
+  [CodePoint.LATIN_SMALL_R]: CodePoint.CARRIAGE_RETURN,
   // escape-seq-char =/ %x74         ; t    tab             U+0009
-  [CodePoint.LATIN_SMALL_T]: String.fromCodePoint(CodePoint.TABULATION),
+  [CodePoint.LATIN_SMALL_T]: CodePoint.TABULATION,
 };
 
-const ESCAPES_LATEST: Record<number, string> = {
+const ESCAPES_LATEST: Record<number, number> = {
   ...ESCAPES_1_0,
   // escape-seq-char =/ %x65         ; e    escape          U+001B
   // Added in TOML 1.1
-  [CodePoint.LATIN_SMALL_E]: String.fromCodePoint(CodePoint.ESCAPE),
+  [CodePoint.LATIN_SMALL_E]: CodePoint.ESCAPE,
 };
 
 type ExponentData = {
   minus: boolean;
-  left: string;
+  left: number[];
 };
 type FractionalData = {
   minus: boolean;
-  absInt: string;
+  absInt: number[];
 };
 type DateTimeData = {
   hasDate: boolean;
@@ -125,7 +125,7 @@ export class Tokenizer {
 
   private readonly tomlVersion: TOMLVer;
 
-  private readonly ESCAPES: Record<number, string>;
+  private readonly ESCAPES: Record<number, number>;
 
   private readonly codePointIterator: CodePointIterator;
 
@@ -502,7 +502,7 @@ export class Tokenizer {
       this.endToken("BasicString", "start", "");
       return this.back("DATA");
     }
-    let out = "";
+    const out: number[] = [];
     while (
       cp !== CodePoint.QUOTATION_MARK &&
       cp !== CodePoint.EOF &&
@@ -515,19 +515,19 @@ export class Tokenizer {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
-          out += ecp;
+          out.push(ecp);
           cp = this.nextCode();
           continue;
         } else if (cp === CodePoint.LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === CodePoint.LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         } else if (
@@ -537,24 +537,24 @@ export class Tokenizer {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      out += this.currChar();
+      out.push(cp);
       cp = this.nextCode();
     }
     if (cp !== CodePoint.QUOTATION_MARK) {
       return this.reportParseError("unterminated-string");
     }
-    this.endToken("BasicString", "end", out);
+    this.endToken("BasicString", "end", String.fromCodePoint(...out));
     return "DATA";
   }
 
   private MULTI_LINE_BASIC_STRING(cp: number): TokenizerState {
-    let out = "";
+    const out: number[] = [];
     if (cp === CodePoint.LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
@@ -570,9 +570,9 @@ export class Tokenizer {
           nextPoints.next() === CodePoint.QUOTATION_MARK
         ) {
           if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
-            out += '"';
+            out.push(CodePoint.QUOTATION_MARK);
             if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
-              out += '"';
+              out.push(CodePoint.QUOTATION_MARK);
               if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
                 return this.reportParseError("invalid-three-quotes");
               }
@@ -580,7 +580,11 @@ export class Tokenizer {
           }
           this.skip(nextPoints.count - 1);
           // end
-          this.endToken("MultiLineBasicString", "end", out);
+          this.endToken(
+            "MultiLineBasicString",
+            "end",
+            String.fromCodePoint(...out),
+          );
           return "DATA";
         }
       }
@@ -588,19 +592,19 @@ export class Tokenizer {
         cp = this.nextCode();
         const ecp = this.ESCAPES[cp];
         if (ecp) {
-          out += ecp;
+          out.push(ecp);
           cp = this.nextCode();
           continue;
         } else if (cp === CodePoint.LATIN_SMALL_U) {
           // escape-seq-char =/ %x75 4HEXDIG ; uHHHH                U+HHHH
           const code = this.parseUnicode(4);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === CodePoint.LATIN_CAPITAL_U) {
           // escape-seq-char =/ %x55 8HEXDIG ; UHHHHHHHH            U+HHHHHHHH
           const code = this.parseUnicode(8);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         } else if (
@@ -610,7 +614,7 @@ export class Tokenizer {
           // escape-seq-char =/ %x78 2HEXDIG ; xHH                  U+00HH
           // Added in TOML 1.1
           const code = this.parseUnicode(2);
-          out += String.fromCodePoint(code);
+          out.push(code);
           cp = this.nextCode();
           continue;
         } else if (cp === CodePoint.LINE_FEED) {
@@ -640,7 +644,7 @@ export class Tokenizer {
         }
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
-      out += this.currChar();
+      out.push(cp);
       cp = this.nextCode();
     }
 
@@ -656,7 +660,7 @@ export class Tokenizer {
       this.endToken("LiteralString", "start", "");
       return this.back("DATA");
     }
-    let out = "";
+    const out: number[] = [];
     while (
       cp !== CodePoint.SINGLE_QUOTE &&
       cp !== CodePoint.EOF &&
@@ -665,18 +669,18 @@ export class Tokenizer {
       if (isControlOtherThanTab(cp)) {
         return this.reportParseErrorControlChar();
       }
-      out += this.currChar();
+      out.push(cp);
       cp = this.nextCode();
     }
     if (cp !== CodePoint.SINGLE_QUOTE) {
       return this.reportParseError("unterminated-string");
     }
-    this.endToken("LiteralString", "end", out);
+    this.endToken("LiteralString", "end", String.fromCodePoint(...out));
     return "DATA";
   }
 
   private MULTI_LINE_LITERAL_STRING(cp: number): TokenizerState {
-    let out = "";
+    const out: number[] = [];
     if (cp === CodePoint.LINE_FEED) {
       // A newline immediately following the opening delimiter will be trimmed.
       cp = this.nextCode();
@@ -692,9 +696,9 @@ export class Tokenizer {
           nextPoints.next() === CodePoint.SINGLE_QUOTE
         ) {
           if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
-            out += "'";
+            out.push(CodePoint.SINGLE_QUOTE);
             if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
-              out += "'";
+              out.push(CodePoint.SINGLE_QUOTE);
               if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
                 return this.reportParseError("invalid-three-quotes");
               }
@@ -702,11 +706,15 @@ export class Tokenizer {
           }
           this.skip(nextPoints.count - 1);
           // end
-          this.endToken("MultiLineLiteralString", "end", out);
+          this.endToken(
+            "MultiLineLiteralString",
+            "end",
+            String.fromCodePoint(...out),
+          );
           return "DATA";
         }
       }
-      out += this.currChar();
+      out.push(cp);
       cp = this.nextCode();
     }
     return this.reportParseError("unterminated-string");
@@ -807,7 +815,7 @@ export class Tokenizer {
         const data: ExponentData = {
           // Float values -0.0 and +0.0 are valid and should map according to IEEE 754.
           minus: sign === CodePoint.DASH,
-          left: "0",
+          left: [CodePoint.DIGIT_0],
         };
         this.data = data;
         return "EXPONENT_RIGHT";
@@ -815,7 +823,7 @@ export class Tokenizer {
       if (cp === CodePoint.DOT) {
         const data: FractionalData = {
           minus: sign === CodePoint.DASH,
-          absInt: "0",
+          absInt: [CodePoint.DIGIT_0],
         };
         this.data = data;
         return "FRACTIONAL_RIGHT";
@@ -885,7 +893,9 @@ export class Tokenizer {
     this.endToken(
       "Integer",
       "start",
-      sign === CodePoint.DASH ? `-${out}` : out,
+      sign === CodePoint.DASH
+        ? String.fromCodePoint(CodePoint.DASH, ...out)
+        : String.fromCodePoint(...out),
       10,
     );
     return this.back("DATA");
@@ -893,13 +903,13 @@ export class Tokenizer {
 
   private HEX(cp: number): TokenizerState {
     const { out } = this.parseDigits(cp, isHexDig);
-    this.endToken("Integer", "start", out, 16);
+    this.endToken("Integer", "start", String.fromCodePoint(...out), 16);
     return this.back("DATA");
   }
 
   private OCTAL(cp: number): TokenizerState {
     const { out } = this.parseDigits(cp, isOctalDig);
-    this.endToken("Integer", "start", out, 8);
+    this.endToken("Integer", "start", String.fromCodePoint(...out), 8);
     return this.back("DATA");
   }
 
@@ -908,14 +918,14 @@ export class Tokenizer {
       cp,
       (c) => c === CodePoint.DIGIT_0 || c === CodePoint.DIGIT_1,
     );
-    this.endToken("Integer", "start", out, 2);
+    this.endToken("Integer", "start", String.fromCodePoint(...out), 2);
     return this.back("DATA");
   }
 
   private FRACTIONAL_RIGHT(cp: number): TokenizerState {
     const { minus, absInt } = this.data! as FractionalData;
     const { out, nextCp } = this.parseDigits(cp, isDigit);
-    const absNum = `${absInt}.${out}`;
+    const absNum = [...absInt, CodePoint.DOT, ...out];
     if (
       nextCp === CodePoint.LATIN_SMALL_E ||
       nextCp === CodePoint.LATIN_CAPITAL_E
@@ -927,7 +937,11 @@ export class Tokenizer {
       this.data = data;
       return "EXPONENT_RIGHT";
     }
-    const value = Number(minus ? `-${absNum}` : absNum);
+    const value = Number(
+      minus
+        ? String.fromCodePoint(CodePoint.DASH, ...absNum)
+        : String.fromCodePoint(...absNum),
+    );
     this.endToken("Float", "start", value);
     return this.back("DATA");
   }
@@ -940,11 +954,20 @@ export class Tokenizer {
       cp = this.nextCode();
     }
     const { out } = this.parseDigits(cp, isDigit);
-    let right = out;
+    const right = out;
     if (minus) {
-      right = `-${out}`;
+      right.unshift(CodePoint.DASH);
     }
-    const value = Number(leftMinus ? `-${left}e${right}` : `${left}e${right}`);
+    const value = Number(
+      leftMinus
+        ? String.fromCodePoint(
+            CodePoint.DASH,
+            ...left,
+            CodePoint.LATIN_SMALL_E,
+            ...right,
+          )
+        : String.fromCodePoint(...left, CodePoint.LATIN_SMALL_E, ...right),
+    );
     this.endToken("Float", "start", value);
     return this.back("DATA");
   }
@@ -1188,7 +1211,7 @@ export class Tokenizer {
     cp: number,
     checkDigit: typeof isDigit,
   ): {
-    out: string;
+    out: number[];
     nextCp: number;
     hasUnderscore: boolean;
   } {
@@ -1198,7 +1221,7 @@ export class Tokenizer {
     if (!checkDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    let out = "";
+    const out: number[] = [];
     let before = CodePoint.NULL;
     let hasUnderscore = false;
     while (checkDigit(cp) || cp === CodePoint.UNDERSCORE) {
@@ -1208,7 +1231,7 @@ export class Tokenizer {
           return this.reportParseError("invalid-underscore");
         }
       } else {
-        out += this.currChar();
+        out.push(cp);
       }
       before = cp;
       cp = this.nextCode();
@@ -1247,10 +1270,6 @@ export class Tokenizer {
 
   private reportParseErrorControlChar() {
     return this.reportParseError("invalid-control-character");
-  }
-
-  private currChar(): string {
-    return this.codePointIterator.currChar();
   }
 }
 
