@@ -2,18 +2,18 @@
 /* eslint-disable require-jsdoc, no-console -- ignore */
 import * as Benchmark from "benchmark";
 import fs from "fs";
-import path from "path";
 import { parseForESLint } from "..";
 import { parseForESLint as parseOld } from "../node_modules/toml-eslint-parser";
 import { parse as parseByIarna } from "@iarna/toml";
+import { listUpFixtures } from "../tests/src/parser/utils";
 
-const contents = `${fs.readFileSync(
-  path.resolve(
-    __dirname,
-    "../tests/fixtures/test-specs/iarna-toml-spec-tests/values/qa-table-inline-1000.toml",
-  ),
-  "utf-8",
-)}`;
+const files5m = [...listUpFixtures()]
+  .filter((fixture) => {
+    return fs.statSync(fixture.inputFileName).size > 10000;
+  })
+  .map((fixture) => {
+    return `${fs.readFileSync(fixture.inputFileName, "utf-8")}`;
+  });
 
 type Result = { name: string; hz: number };
 const results: Result[] = [];
@@ -54,13 +54,19 @@ const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 
 for (const no of [1, 2, 3, 4, 5]) {
   suite.add(`${no} new   toml-eslint-parser`, function () {
-    parseForESLint(contents, {});
+    files5m.forEach((contents) => {
+      parseForESLint(contents, {});
+    });
   });
   suite.add(`${no} old   toml-eslint-parser`, function () {
-    parseOld(contents, {});
+    files5m.forEach((contents) => {
+      parseOld(contents, {});
+    });
   });
   suite.add(`${no}       @iarna/toml       `, function () {
-    parseByIarna(contents);
+    files5m.forEach((contents) => {
+      parseByIarna(contents);
+    });
   });
 }
 
