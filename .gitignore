@@ -104,3 +104,4 @@ dist
 .tern-port
 
 /lib
+/toml-test-decode-last-result.json
