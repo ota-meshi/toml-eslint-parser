@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-#
 # Requires toml-test from https://github.com/toml-lang/toml-test
 
 skip=(
