@@ -36,16 +36,22 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
       value: node.value.toISOString().slice(11, -1),
     };
   }
-  if (node.kind === "float" || node.kind === "integer") {
+  if (node.kind === "float") {
     return {
       type: node.kind,
-      value: node.number,
+      value: String(node.value),
+    };
+  }
+  if (node.kind === "integer") {
+    return {
+      type: node.kind,
+      value: String(node.bigint),
     };
   }
   return { type: node.kind, value: node.value };
 });
 
 const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"));
-const result = `${JSON.stringify(convertTomlTestValue(ast), null, 4)}\n`;
+const result = `${JSON.stringify(convertTomlTestValue(ast), null, 2)}\n`;
 process.stdout.write(result);
-fs.writeFileSync("toml-test-decode-last-result.json", result);
+// fs.writeFileSync("toml-test-decode-last-result.json", result);

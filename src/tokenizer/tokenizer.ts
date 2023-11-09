@@ -66,7 +66,7 @@ const RADIX_PREFIXES = {
   16: "0x",
   10: "",
   8: "0o",
-  2: "02",
+  2: "0b",
 };
 
 const ESCAPES_1_0: Record<number, string> = {
