@@ -121,7 +121,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "",
+            "value": "\u007f",
             "style": "basic",
             "multiline": false,
             "range": [
@@ -421,7 +421,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "  \t \u001b \r\n\n\n\u0000\nhello\n\nSørmirbæren\n",
+            "value": "  \t \u001b \r\n\n\u007f\n\u0000\nhello\n\nSørmirbæren\n",
             "style": "basic",
             "multiline": true,
             "range": [
@@ -717,7 +717,7 @@
     {
       "type": "BasicString",
       "value": "\"\\x7f\"",
-      "string": "",
+      "string": "\u007f",
       "range": [
         97,
         103
@@ -937,7 +937,7 @@
     {
       "type": "MultiLineBasicString",
       "value": "\"\"\"\n\\x20 \\x09 \\x1b \\x0d\\x0a\n\\x7f\n\\x00\n\\x68\\x65\\x6c\\x6c\\x6f\\x0a\n\\x53\\xF8\\x72\\x6D\\x69\\x72\\x62\\xE6\\x72\\x65\\x6E\n\"\"\"",
-      "string": "  \t \u001b \r\n\n\n\u0000\nhello\n\nSørmirbæren\n",
+      "string": "  \t \u001b \r\n\n\u007f\n\u0000\nhello\n\nSørmirbæren\n",
       "range": [
         225,
         336

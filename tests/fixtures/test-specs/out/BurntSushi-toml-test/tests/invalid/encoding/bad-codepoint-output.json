@@ -25,7 +25,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": " Invalid codepoint U+D800 : ���",
+      "value": " Invalid codepoint U+D800 : \ufffd\ufffd\ufffd",
       "range": [
         0,
         32

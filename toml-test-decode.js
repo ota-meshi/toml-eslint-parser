@@ -58,6 +58,8 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
   return { type: node.kind, value: node.value };
 });
 
+module.exports = { convertTomlTestValue };
+
 const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"));
 const result = `${JSON.stringify(convertTomlTestValue(ast), null, 2)}\n`;
 process.stdout.write(result);

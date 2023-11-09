@@ -14,10 +14,14 @@ skip=(
 	-skip='invalid/control/multi-cr'
 	-skip='invalid/control/bare-cr'
 
+	# The latest specs allow it.
+	-skip='invalid/control/comment-del'
+	-skip='invalid/control/comment-lf'
+
 	# Debug
 	# -run 'valid/table/with-single-quotes'
 )
 
 e=0
-toml-test ${skip[@]} ./toml-test-decode.js || e=1
+toml-test -toml '1.1.0' ${skip[@]} ./toml-1.1-test-decode.js || e=1
 exit $e

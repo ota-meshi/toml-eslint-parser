@@ -196,7 +196,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": " ",
+            "value": "\u00a0",
             "style": "basic",
             "multiline": true,
             "range": [
@@ -697,7 +697,7 @@
     {
       "type": "MultiLineBasicString",
       "value": "\"\"\"\n\\u00a0\"\"\"",
-      "string": " ",
+      "string": "\u00a0",
       "range": [
         110,
         123

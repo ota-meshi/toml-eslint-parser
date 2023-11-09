@@ -25,7 +25,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": " ~  ÿ ퟿  ￿ 𐀀 􏿿",
+      "value": " ~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
       "range": [
         0,
         19

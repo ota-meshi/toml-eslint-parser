@@ -10,6 +10,6 @@
   "notunicode2": "This string does not have a unicode \\u escape.",
   "notunicode3": "This string does not have a unicode \\u0075 escape.",
   "notunicode4": "This string does not have a unicode \\u escape.",
-  "delete": "This string has a  delete control code.",
+  "delete": "This string has a \u007f delete control code.",
   "unitseparator": "This string has a \u001f unit separator control code."
 }
