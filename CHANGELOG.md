@@ -1,5 +1,15 @@
 # toml-eslint-parser
 
+## 0.9.0
+
+### Minor Changes
+
+- [#169](https://github.com/ota-meshi/toml-eslint-parser/pull/169) [`89c7596`](https://github.com/ota-meshi/toml-eslint-parser/commit/89c7596e918b421c3ed55147d523d5308e81024d) Thanks [@ota-meshi](https://github.com/ota-meshi)! - refactor for getStaticTOMLValue
+
+### Patch Changes
+
+- [#169](https://github.com/ota-meshi/toml-eslint-parser/pull/169) [`89c7596`](https://github.com/ota-meshi/toml-eslint-parser/commit/89c7596e918b421c3ed55147d523d5308e81024d) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: wrong value of `bigint` in binary `TOMLIntegerValue`
+
 ## 0.8.1
 
 ### Patch Changes
