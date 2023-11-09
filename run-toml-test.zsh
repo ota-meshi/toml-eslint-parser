@@ -20,4 +20,5 @@ skip=(
 
 e=0
 toml-test ${skip[@]} ./toml-test-decode.js || e=1
+toml-test -toml '1.1' ${skip[@]} ./toml-1.1-test-decode.js || e=1
 exit $e
