@@ -842,7 +842,7 @@ export class Tokenizer {
     ) {
       const data: DateTimeData = {
         hasDate: true,
-        year: Number(out),
+        year: Number(String.fromCodePoint(...out)),
         month: 0,
         day: 0,
         hour: 0,
@@ -863,7 +863,7 @@ export class Tokenizer {
         year: 0,
         month: 0,
         day: 0,
-        hour: Number(out),
+        hour: Number(String.fromCodePoint(...out)),
         minute: 0,
         second: 0,
       };
