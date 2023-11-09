@@ -1,5 +1,6 @@
 "use strict";
 
+/* eslint n/no-missing-require: off -- ignore */
 const { generateConvertTOMLValue } = require("./lib/utils.js");
 
 /** Converter for toml-test (https://github.com/toml-lang/toml-test). */
