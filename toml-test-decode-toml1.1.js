@@ -7,7 +7,7 @@ const fs = require("fs");
 const toml = require("./lib/index.js");
 const { convertTomlTestValue } = require("./toml-test-decode-util.js");
 
-const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"));
+const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"), { tomlVersion: "1.1" });
 const result = `${JSON.stringify(convertTomlTestValue(ast), null, 2)}\n`;
 process.stdout.write(result);
 // fs.writeFileSync("toml-test-decode-last-result.json", result);

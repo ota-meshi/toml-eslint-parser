@@ -168,7 +168,7 @@
               {
                 "type": "TOMLQuoted",
                 "kind": "string",
-                "value": "\b \f A   ÿ ퟿  ￿ 𐀀 􏿿",
+                "value": "\b \f A \u007f \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
                 "style": "basic",
                 "multiline": false,
                 "range": [
@@ -246,7 +246,7 @@
               {
                 "type": "TOMLQuoted",
                 "kind": "string",
-                "value": "~  ÿ ퟿  ￿ 𐀀 􏿿",
+                "value": "~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
                 "style": "basic",
                 "multiline": false,
                 "range": [
@@ -324,7 +324,7 @@
               {
                 "type": "TOMLQuoted",
                 "kind": "string",
-                "value": "l ~  ÿ ퟿  ￿ 𐀀 􏿿",
+                "value": "l ~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
                 "style": "literal",
                 "multiline": false,
                 "range": [
@@ -528,7 +528,7 @@
     {
       "type": "BasicString",
       "value": "\"\\u0008 \\u000c \\U00000041 \\u007f \\u0080 \\u00ff \\ud7ff \\ue000 \\uffff \\U00010000 \\U0010ffff\"",
-      "string": "\b \f A   ÿ ퟿  ￿ 𐀀 􏿿",
+      "string": "\b \f A \u007f \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
       "range": [
         46,
         136
@@ -583,8 +583,8 @@
     },
     {
       "type": "BasicString",
-      "value": "\"~  ÿ ퟿  ￿ 𐀀 􏿿\"",
-      "string": "~  ÿ ퟿  ￿ 𐀀 􏿿",
+      "value": "\"~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff\"",
+      "string": "~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
       "range": [
         154,
         173
@@ -639,8 +639,8 @@
     },
     {
       "type": "LiteralString",
-      "value": "'l ~  ÿ ퟿  ￿ 𐀀 􏿿'",
-      "string": "l ~  ÿ ퟿  ￿ 𐀀 􏿿",
+      "value": "'l ~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff'",
+      "string": "l ~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff",
       "range": [
         188,
         209

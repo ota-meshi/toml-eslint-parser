@@ -157,7 +157,7 @@
   "comments": [
     {
       "type": "Block",
-      "value": " ",
+      "value": " \u007f",
       "range": [
         11,
         14

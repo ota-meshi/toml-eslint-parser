@@ -46,7 +46,7 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "�",
+            "value": "\ufffd",
             "style": "literal",
             "multiline": true,
             "range": [
@@ -136,8 +136,8 @@
     },
     {
       "type": "MultiLineLiteralString",
-      "value": "'''�'''",
-      "string": "�",
+      "value": "'''\ufffd'''",
+      "string": "\ufffd",
       "range": [
         63,
         70

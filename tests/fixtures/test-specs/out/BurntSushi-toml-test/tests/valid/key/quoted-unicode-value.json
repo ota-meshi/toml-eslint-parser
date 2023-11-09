@@ -1,7 +1,7 @@
 {
   "\u0000": "null",
   "\\u0000": "different key",
-  "\b \f A   ÿ ퟿  ￿ 𐀀 􏿿": "escaped key",
-  "~  ÿ ퟿  ￿ 𐀀 􏿿": "basic key",
-  "l ~  ÿ ퟿  ￿ 𐀀 􏿿": "literal key"
+  "\b \f A \u007f \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff": "escaped key",
+  "~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff": "basic key",
+  "l ~ \u0080 ÿ \ud7ff \ue000 \uffff 𐀀 \udbff\udfff": "literal key"
 }

@@ -1,10 +1,10 @@
 {
   "whitespace": "  \t \u001b \r\n",
-  "bs": "",
+  "bs": "\u007f",
   "nul": "\u0000",
   "hello": "hello\n",
   "higher-than-127": "Sørmirbæren",
-  "multiline": "  \t \u001b \r\n\n\n\u0000\nhello\n\nSørmirbæren\n",
+  "multiline": "  \t \u001b \r\n\n\u007f\n\u0000\nhello\n\nSørmirbæren\n",
   "literal": "\\x20 \\x09 \\x0d\\x0a",
   "multiline-literal": "\\x20 \\x09 \\x0d\\x0a\n"
 }

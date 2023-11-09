@@ -38,11 +38,33 @@ function valueReplacer(_key: string, value: any) {
 }
 
 export function stringify(val: any, isAst?: boolean): string {
-  let str = JSON.stringify(val, isAst ? replacer : valueReplacer, 2);
+  let str = normalizeStr(
+    JSON.stringify(val, isAst ? replacer : valueReplacer, 2),
+  );
   if (str.length >= 100_000_000) {
-    str = JSON.stringify(val, isAst ? replacer : valueReplacer);
+    str = normalizeStr(JSON.stringify(val, isAst ? replacer : valueReplacer));
   }
   return str;
+}
+
+function normalizeStr(s: string) {
+  return s.replace(
+    // eslint-disable-next-line no-control-regex -- ignore
+    /[\x00-\x08\v\f\x0e-\x1f\x7f-\xa0\ud7a4-\ud7ff\u{d800}-\u{dfff}\ue000-\uefff\uf000-\uf8f8\uffef-\uffff\u{10fffe}\u{10ffff}]/gu,
+    (c) => {
+      const cp = c.codePointAt(0)!;
+      const codes =
+        cp <= 0xffff
+          ? [cp]
+          : [
+              0xd800 | ((cp - 0x10000) >> 10),
+              0xdc00 | ((cp - 0x10000) & 0x3ff),
+            ];
+      return codes
+        .map((code) => `\\u${code.toString(16).padStart(4, "0")}`)
+        .join("");
+    },
+  );
 }
 
 type SpecAssertion = (value: any) => void;
