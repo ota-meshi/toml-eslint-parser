@@ -8,7 +8,7 @@ import { version as oldV } from "../node_modules/toml-eslint-parser/package.json
 import { parse as parseByIarna } from "@iarna/toml";
 import { listUpFixtures } from "../tests/src/parser/utils";
 
-const files5m = [...listUpFixtures()]
+const files10k = [...listUpFixtures()]
   .filter((fixture) => {
     return fs.statSync(fixture.inputFileName).size > 10000;
   })
@@ -58,18 +58,18 @@ const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 
 for (const no of [1, 2, 3, 4, 5]) {
   suite.add(`${no} new   toml-eslint-parser`, function () {
-    files5m.forEach((contents) => {
-      parseForESLint(contents, {});
+    files10k.forEach((content) => {
+      parseForESLint(content, {});
     });
   });
   suite.add(`${no} old   toml-eslint-parser`, function () {
-    files5m.forEach((contents) => {
-      parseOld(contents, {});
+    files10k.forEach((content) => {
+      parseOld(content, {});
     });
   });
   suite.add(`${no}       @iarna/toml       `, function () {
-    files5m.forEach((contents) => {
-      parseByIarna(contents);
+    files10k.forEach((content) => {
+      parseByIarna(content);
     });
   });
 }
