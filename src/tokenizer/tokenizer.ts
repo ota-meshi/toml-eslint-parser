@@ -1397,16 +1397,16 @@ function isNonAscii(cp: number): boolean {
  * Check whether the given values is valid date
  */
 function isValidDate(y: number, m: number, d: number): boolean {
-  if (y <= 0 || m > 12 || m <= 0 || d <= 0) {
-    return false;
+  if (y >= 0 && m <= 12 && m >= 1 && d >= 1) {
+    const maxDayOfMonth =
+      m === 2
+        ? y & 3 || (!(y % 25) && y & 15)
+          ? 28
+          : 29
+        : 30 + ((m + (m >> 3)) & 1);
+    return d <= maxDayOfMonth;
   }
-  const maxDayOfMonth =
-    m === 2
-      ? y & 3 || (!(y % 25) && y & 15)
-        ? 28
-        : 29
-      : 30 + ((m + (m >> 3)) & 1);
-  return d <= maxDayOfMonth;
+  return false;
 }
 
 /**
