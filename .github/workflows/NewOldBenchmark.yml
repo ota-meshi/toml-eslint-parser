@@ -21,9 +21,9 @@ jobs:
         run: npm run setup
       - name: Install Packages
         run: npm install -f
-      - name: Install target
+      - name: Install target toml-eslint-parser@${{ github.event.inputs.compare_version }}
         run: npm install -f toml-eslint-parser@${{ github.event.inputs.compare_version }}
-        if: ${{ github.event.inputs.compare_version != null }}
+        if: ${{ github.event.inputs.compare_version }}
       - name: Build
         run: npm run build
       - name: Benchmark
