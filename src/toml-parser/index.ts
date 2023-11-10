@@ -24,6 +24,7 @@ import type {
   Range,
   SourceLocation,
   Position,
+  TOMLContentNode,
 } from "../ast";
 import type { ErrorCode } from "../errors";
 import { last } from "../internal-utils";
@@ -66,6 +67,13 @@ export class TOMLParser {
     this.text = text;
     this.parserOptions = parserOptions || {};
     this.tomlVersion = getTOMLVer(this.parserOptions.tomlVersion);
+
+    this.processSetValueForKeyValue =
+      this.processSetValueForKeyValue.bind(this);
+    this.processSetValueForArrayValue =
+      this.processSetValueForArrayValue.bind(this);
+    this.processSetValueForInlineTableKeyValue =
+      this.processSetValueForInlineTableKeyValue.bind(this);
   }
 
   /**
@@ -256,15 +264,22 @@ export class TOMLParser {
     }
     ctx.addValueContainer({
       parent: keyValueNode,
-      set: (valNode): ParserState[] => {
-        keyValueNode.value = valNode;
-        applyEndLoc(keyValueNode, valNode);
-        ctx.needNewLine = true;
-        return [];
-      },
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- it have already done `.bind(this)` in the constructor.
+      set: this.processSetValueForKeyValue,
     });
     ctx.needSameLine = "invalid-key-value-newline";
     return ["VALUE"];
+  }
+
+  private processSetValueForKeyValue(
+    keyValueNode: TOMLKeyValue,
+    valNode: TOMLContentNode,
+    ctx: Context,
+  ): ParserState[] {
+    keyValueNode.value = valNode;
+    applyEndLoc(keyValueNode, valNode);
+    ctx.needNewLine = true;
+    return [];
   }
 
   private processKeyNode(
@@ -344,7 +359,12 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(node);
+    return valueContainer.set(
+      valueContainer.parent,
+      node,
+      ctx,
+      valueContainer.prop,
+    );
   }
 
   private processNumberValue(token: NumberToken, ctx: Context): ParserState[] {
@@ -391,7 +411,12 @@ export class TOMLParser {
         loc: cloneLoc(token.loc),
       };
     }
-    return valueContainer.set(node);
+    return valueContainer.set(
+      valueContainer.parent,
+      node,
+      ctx,
+      valueContainer.prop,
+    );
   }
 
   private processBooleanValue(
@@ -407,7 +432,12 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(node);
+    return valueContainer.set(
+      valueContainer.parent,
+      node,
+      ctx,
+      valueContainer.prop,
+    );
   }
 
   private processDateTimeValue(
@@ -424,7 +454,12 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(node);
+    return valueContainer.set(
+      valueContainer.parent,
+      node,
+      ctx,
+      valueContainer.prop,
+    );
   }
 
   private processArray(token: PunctuatorToken, ctx: Context): ParserState[] {
@@ -439,7 +474,12 @@ export class TOMLParser {
     const nextToken = ctx.nextToken({ valuesEnabled: true });
     if (isRightBracket(nextToken)) {
       applyEndLoc(node, nextToken);
-      return valueContainer.set(node);
+      return valueContainer.set(
+        valueContainer.parent,
+        node,
+        ctx,
+        valueContainer.prop,
+      );
     }
     // Back token
     ctx.backToken();
@@ -453,33 +493,47 @@ export class TOMLParser {
   ): ParserState[] {
     ctx.addValueContainer({
       parent: node,
-      set: (valNode) => {
-        node.elements.push(valNode);
-
-        let nextToken = ctx.nextToken({ valuesEnabled: true });
-        const hasComma = isComma(nextToken);
-        if (hasComma) {
-          nextToken = ctx.nextToken({ valuesEnabled: true });
-        }
-        if (isRightBracket(nextToken)) {
-          applyEndLoc(node, nextToken);
-          return valueContainer.set(node);
-        }
-        if (hasComma) {
-          // Back token
-          ctx.backToken();
-
-          // setup next value container
-          return this.processArrayValue(node, valueContainer, ctx);
-        }
-        return ctx.reportParseError(
-          nextToken ? "missing-comma" : "unterminated-array",
-          nextToken,
-        );
-      },
+      prop: valueContainer,
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- it have already done `.bind(this)` in the constructor.
+      set: this.processSetValueForArrayValue,
     });
 
     return ["VALUE"];
+  }
+
+  private processSetValueForArrayValue(
+    node: TOMLArray,
+    valNode: TOMLContentNode,
+    ctx: Context,
+    valueContainer: ValueContainer,
+  ): ParserState[] {
+    node.elements.push(valNode);
+
+    let nextToken = ctx.nextToken({ valuesEnabled: true });
+    const hasComma = isComma(nextToken);
+    if (hasComma) {
+      nextToken = ctx.nextToken({ valuesEnabled: true });
+    }
+    if (isRightBracket(nextToken)) {
+      applyEndLoc(node, nextToken);
+      return valueContainer.set(
+        valueContainer.parent,
+        node,
+        ctx,
+        valueContainer.prop,
+      );
+    }
+    if (hasComma) {
+      // Back token
+      ctx.backToken();
+
+      // setup next value container
+      return this.processArrayValue(node, valueContainer, ctx);
+    }
+    return ctx.reportParseError(
+      nextToken ? "missing-comma" : "unterminated-array",
+      nextToken,
+    );
   }
 
   private processInlineTable(
@@ -516,7 +570,12 @@ export class TOMLParser {
       }
       if (isRightBrace(nextToken)) {
         applyEndLoc(node, nextToken);
-        return valueContainer.set(node);
+        return valueContainer.set(
+          valueContainer.parent,
+          node,
+          ctx,
+          valueContainer.prop,
+        );
       }
     }
     return ctx.reportParseError("unexpected-token", nextToken);
@@ -552,50 +611,72 @@ export class TOMLParser {
       : ("invalid-inline-table-newline" as const);
     ctx.addValueContainer({
       parent: keyValueNode,
-      set: (valNode) => {
-        keyValueNode.value = valNode;
-        applyEndLoc(keyValueNode, valNode);
-
-        let nextToken = ctx.nextToken({ needSameLine });
-        if (isComma(nextToken)) {
-          nextToken = ctx.nextToken({ needSameLine });
-          if (nextToken && (isBare(nextToken) || isString(nextToken))) {
-            // setup next value container
-            return this.processInlineTableKeyValue(
-              nextToken,
-              inlineTableNode,
-              valueContainer,
-              ctx,
-            );
-          }
-          if (isRightBrace(nextToken)) {
-            if (this.tomlVersion.lt(1, 1)) {
-              return ctx.reportParseError(
-                "invalid-trailing-comma-in-inline-table",
-                nextToken,
-              );
-            }
-            // Trailing commas in inline tables are allowed.
-            // Added in TOML 1.1
-          } else {
-            return ctx.reportParseError(
-              nextToken ? "unexpected-token" : "unterminated-inline-table",
-              nextToken,
-            );
-          }
-        }
-        if (isRightBrace(nextToken)) {
-          applyEndLoc(inlineTableNode, nextToken);
-          return valueContainer.set(inlineTableNode);
-        }
-        return ctx.reportParseError(
-          nextToken ? "missing-comma" : "unterminated-inline-table",
-          nextToken,
-        );
-      },
+      prop: { inlineTableNode, valueContainer, needSameLine },
+      // eslint-disable-next-line @typescript-eslint/unbound-method -- it have already done `.bind(this)` in the constructor.
+      set: this.processSetValueForInlineTableKeyValue,
     });
     ctx.needSameLine = "invalid-key-value-newline";
     return ["VALUE"];
+  }
+
+  private processSetValueForInlineTableKeyValue(
+    keyValueNode: TOMLKeyValue,
+    valNode: TOMLContentNode,
+    ctx: Context,
+    {
+      inlineTableNode,
+      valueContainer,
+      needSameLine,
+    }: {
+      inlineTableNode: TOMLInlineTable;
+      valueContainer: ValueContainer;
+      needSameLine: "invalid-inline-table-newline" | undefined;
+    },
+  ): ParserState[] {
+    keyValueNode.value = valNode;
+    applyEndLoc(keyValueNode, valNode);
+
+    let nextToken = ctx.nextToken({ needSameLine });
+    if (isComma(nextToken)) {
+      nextToken = ctx.nextToken({ needSameLine });
+      if (nextToken && (isBare(nextToken) || isString(nextToken))) {
+        // setup next value container
+        return this.processInlineTableKeyValue(
+          nextToken,
+          inlineTableNode,
+          valueContainer,
+          ctx,
+        );
+      }
+      if (isRightBrace(nextToken)) {
+        if (this.tomlVersion.lt(1, 1)) {
+          return ctx.reportParseError(
+            "invalid-trailing-comma-in-inline-table",
+            nextToken,
+          );
+        }
+        // Trailing commas in inline tables are allowed.
+        // Added in TOML 1.1
+      } else {
+        return ctx.reportParseError(
+          nextToken ? "unexpected-token" : "unterminated-inline-table",
+          nextToken,
+        );
+      }
+    }
+    if (isRightBrace(nextToken)) {
+      applyEndLoc(inlineTableNode, nextToken);
+      return valueContainer.set(
+        valueContainer.parent,
+        inlineTableNode,
+        ctx,
+        valueContainer.prop,
+      );
+    }
+    return ctx.reportParseError(
+      nextToken ? "missing-comma" : "unterminated-inline-table",
+      nextToken,
+    );
   }
 }
 

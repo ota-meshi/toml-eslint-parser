@@ -14,9 +14,18 @@ import type {
 import type { ParserOptions } from "../parser-options";
 import { KeysResolver } from "./keys-resolver";
 
-export type ValueContainer = {
-  parent: TOMLKeyValue | TOMLArray;
-  set(valueNode: TOMLContentNode): ParserState[];
+export type ValueContainer<
+  PROP = unknown,
+  P extends TOMLKeyValue | TOMLArray = TOMLKeyValue | TOMLArray,
+> = {
+  parent: P;
+  prop?: PROP;
+  set(
+    parent: P,
+    valueNode: TOMLContentNode,
+    ctx: Context,
+    prop?: PROP,
+  ): ParserState[];
 };
 
 export type ParserState = "TABLE" | "VALUE";
@@ -135,7 +144,7 @@ export class Context {
     this.currToken = this.prevToken;
   }
 
-  public addValueContainer(valueContainer: ValueContainer): void {
+  public addValueContainer<PROP>(valueContainer: ValueContainer<PROP>): void {
     this.valueContainerStack.push(valueContainer);
     this.tokenizer.valuesEnabled = true;
   }
