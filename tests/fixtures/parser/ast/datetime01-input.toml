@@ -1,0 +1,7 @@
+[datetime-list]
+first-date = 0000-12-31
+first-local = 0000-12-31T15:00:00
+first-offset = 0001-01-01T00:00:00Z
+last-date = 9999-12-30
+last-local = 9999-12-31T14:59:59
+last-offset = 9999-12-31T23:59:59Z
