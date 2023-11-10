@@ -359,12 +359,7 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(
-      valueContainer.parent,
-      node,
-      ctx,
-      valueContainer.prop,
-    );
+    return callValueContainerSet(valueContainer, node, ctx);
   }
 
   private processNumberValue(token: NumberToken, ctx: Context): ParserState[] {
@@ -411,12 +406,7 @@ export class TOMLParser {
         loc: cloneLoc(token.loc),
       };
     }
-    return valueContainer.set(
-      valueContainer.parent,
-      node,
-      ctx,
-      valueContainer.prop,
-    );
+    return callValueContainerSet(valueContainer, node, ctx);
   }
 
   private processBooleanValue(
@@ -432,12 +422,7 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(
-      valueContainer.parent,
-      node,
-      ctx,
-      valueContainer.prop,
-    );
+    return callValueContainerSet(valueContainer, node, ctx);
   }
 
   private processDateTimeValue(
@@ -454,12 +439,7 @@ export class TOMLParser {
       range: cloneRange(token.range),
       loc: cloneLoc(token.loc),
     };
-    return valueContainer.set(
-      valueContainer.parent,
-      node,
-      ctx,
-      valueContainer.prop,
-    );
+    return callValueContainerSet(valueContainer, node, ctx);
   }
 
   private processArray(token: PunctuatorToken, ctx: Context): ParserState[] {
@@ -474,12 +454,7 @@ export class TOMLParser {
     const nextToken = ctx.nextToken({ valuesEnabled: true });
     if (isRightBracket(nextToken)) {
       applyEndLoc(node, nextToken);
-      return valueContainer.set(
-        valueContainer.parent,
-        node,
-        ctx,
-        valueContainer.prop,
-      );
+      return callValueContainerSet(valueContainer, node, ctx);
     }
     // Back token
     ctx.backToken();
@@ -516,12 +491,7 @@ export class TOMLParser {
     }
     if (isRightBracket(nextToken)) {
       applyEndLoc(node, nextToken);
-      return valueContainer.set(
-        valueContainer.parent,
-        node,
-        ctx,
-        valueContainer.prop,
-      );
+      return callValueContainerSet(valueContainer, node, ctx);
     }
     if (hasComma) {
       // Back token
@@ -570,12 +540,7 @@ export class TOMLParser {
       }
       if (isRightBrace(nextToken)) {
         applyEndLoc(node, nextToken);
-        return valueContainer.set(
-          valueContainer.parent,
-          node,
-          ctx,
-          valueContainer.prop,
-        );
+        return callValueContainerSet(valueContainer, node, ctx);
       }
     }
     return ctx.reportParseError("unexpected-token", nextToken);
@@ -666,18 +631,27 @@ export class TOMLParser {
     }
     if (isRightBrace(nextToken)) {
       applyEndLoc(inlineTableNode, nextToken);
-      return valueContainer.set(
-        valueContainer.parent,
-        inlineTableNode,
-        ctx,
-        valueContainer.prop,
-      );
+      return callValueContainerSet(valueContainer, inlineTableNode, ctx);
     }
     return ctx.reportParseError(
       nextToken ? "missing-comma" : "unterminated-inline-table",
       nextToken,
     );
   }
+}
+
+/** Call ValueContainer.set */
+function callValueContainerSet(
+  valueContainer: ValueContainer,
+  valueNode: TOMLContentNode,
+  ctx: Context,
+) {
+  return valueContainer.set(
+    valueContainer.parent,
+    valueNode,
+    ctx,
+    valueContainer.prop,
+  );
 }
 
 /**
