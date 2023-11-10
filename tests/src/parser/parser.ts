@@ -101,6 +101,7 @@ describe("Check for AST.", () => {
             if (
               [
                 // There are DateTime-related differences.
+                "datetime01-input.toml",
                 "local-date-sample01-input.toml",
                 "local-date-time-sample01-input.toml",
                 "table-sample11-top-level-table-input.toml",
