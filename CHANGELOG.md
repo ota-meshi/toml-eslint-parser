@@ -1,5 +1,11 @@
 # toml-eslint-parser
 
+## 0.9.3
+
+### Patch Changes
+
+- [#182](https://github.com/ota-meshi/toml-eslint-parser/pull/182) [`4cab5da`](https://github.com/ota-meshi/toml-eslint-parser/commit/4cab5da39eb94c7d0a13c1a9b18e81c6d1d15d83) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: parsing error in EOF after 4 quotes
+
 ## 0.9.2
 
 ### Patch Changes
