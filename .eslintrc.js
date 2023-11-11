@@ -5,7 +5,7 @@
 module.exports = {
   parserOptions: {
     sourceType: "script",
-    ecmaVersion: 2020,
+    ecmaVersion: "latest",
   },
   extends: [
     "plugin:@ota-meshi/recommended",
@@ -25,6 +25,12 @@ module.exports = {
     "no-shadow": "off",
   },
   overrides: [
+    {
+      files: ["*.mjs"],
+      parserOptions: {
+        sourceType: "module",
+      },
+    },
     {
       files: ["*.ts"],
       parser: "@typescript-eslint/parser",
