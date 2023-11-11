@@ -20,7 +20,7 @@
     "eslint-fix": "npm run lint -- --fix",
     "test": "env-cmd -e tz mocha --require ts-node/register \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "cover": "nyc --reporter=lcov npm run test",
-    "debug": "env-cmd -e tz mocha --require ts-node/register/transpile-only --inspect \"tests/src/**/*.ts\" --reporter dot",
+    "debug": "env-cmd -e tz mocha --require ts-node/register/transpile-only \"tests/src/**/*.ts\" --reporter dot",
     "preversion": "npm run lint && npm test",
     "update-fixtures": "env-cmd -e tz ts-node --transpile-only ./tools/update-fixtures.ts",
     "benchmark": "ts-node --transpile-only benchmark/index.ts",

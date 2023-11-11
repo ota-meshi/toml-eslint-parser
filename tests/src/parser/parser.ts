@@ -5,7 +5,7 @@ import { KEYS } from "../../../src/visitor-keys";
 import { traverseNodes, getKeys } from "../../../src/traverse";
 import { getStaticTOMLValue } from "../../../src/utils";
 import type { TOMLProgram } from "../../../src/ast";
-import { parseTOML } from "../../../src";
+import { ParseError, parseTOML } from "../../../src";
 import * as IarnaTOML from "@iarna/toml";
 import { listUpFixtures, stringify } from "./utils";
 import type { TOMLVersionOption } from "../../../src/parser-options";
@@ -41,6 +41,9 @@ describe("Check for AST.", () => {
               }
             } catch (e: any) {
               if (v.valid) {
+                if (e instanceof ParseError) {
+                  e.message = `${e.message}@line:${e.lineNumber},column:${e.column}`;
+                }
                 throw e;
               }
               if (

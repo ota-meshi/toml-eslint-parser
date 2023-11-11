@@ -227,6 +227,23 @@ export class Tokenizer {
   }
 
   /**
+   * Eat the next code point.
+   */
+  private eatCode(cp: number): boolean {
+    if (this.lastCodePoint === CodePoint.EOF) {
+      return false;
+    }
+    if (this.backCode) {
+      if (this.lastCodePoint === cp) {
+        this.backCode = false;
+        return true;
+      }
+      return false;
+    }
+    return this.codePointIterator.eat(cp);
+  }
+
+  /**
    * Skip code point iterator.
    */
   private skip(count: number): void {
@@ -242,6 +259,16 @@ export class Tokenizer {
       this.codePointIterator.next();
     }
     this.lastCodePoint = this.codePointIterator.next();
+  }
+
+  /**
+   * move offset
+   */
+  private moveAt(loc: Position): void {
+    if (this.backCode) {
+      this.backCode = false;
+    }
+    this.lastCodePoint = this.codePointIterator.moveAt(loc);
   }
 
   /**
@@ -564,21 +591,21 @@ export class Tokenizer {
         return this.reportParseErrorControlChar();
       }
       if (cp === CodePoint.QUOTATION_MARK) {
-        const nextPoints = this.codePointIterator.subCodePoints();
+        const startPos = { ...this.codePointIterator.start };
         if (
-          nextPoints.next() === CodePoint.QUOTATION_MARK &&
-          nextPoints.next() === CodePoint.QUOTATION_MARK
+          this.eatCode(CodePoint.QUOTATION_MARK) &&
+          this.eatCode(CodePoint.QUOTATION_MARK)
         ) {
-          if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
+          if (this.eatCode(CodePoint.QUOTATION_MARK)) {
             out.push(CodePoint.QUOTATION_MARK);
-            if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
+            if (this.eatCode(CodePoint.QUOTATION_MARK)) {
               out.push(CodePoint.QUOTATION_MARK);
-              if (nextPoints.next() === CodePoint.QUOTATION_MARK) {
+              if (this.eatCode(CodePoint.QUOTATION_MARK)) {
+                this.moveAt(startPos);
                 return this.reportParseError("invalid-three-quotes");
               }
             }
           }
-          this.skip(nextPoints.count - 1);
           // end
           this.endToken(
             "MultiLineBasicString",
@@ -587,6 +614,7 @@ export class Tokenizer {
           );
           return "DATA";
         }
+        this.moveAt(startPos);
       }
       if (cp === CodePoint.BACKSLASH) {
         cp = this.nextCode();
@@ -625,11 +653,14 @@ export class Tokenizer {
           continue;
         } else if (isWhitespace(cp)) {
           let valid = true;
-          for (const nextCp of this.codePointIterator.iterateSubCodePoints()) {
+          const startPos = { ...this.codePointIterator.start };
+          let nextCp: number;
+          while ((nextCp = this.nextCode()) !== CodePoint.EOF) {
             if (nextCp === CodePoint.LINE_FEED) {
               break;
             }
             if (!isWhitespace(nextCp)) {
+              this.moveAt(startPos);
               valid = false;
               break;
             }
@@ -690,21 +721,21 @@ export class Tokenizer {
         return this.reportParseErrorControlChar();
       }
       if (cp === CodePoint.SINGLE_QUOTE) {
-        const nextPoints = this.codePointIterator.subCodePoints();
+        const startPos = { ...this.codePointIterator.start };
         if (
-          nextPoints.next() === CodePoint.SINGLE_QUOTE &&
-          nextPoints.next() === CodePoint.SINGLE_QUOTE
+          this.eatCode(CodePoint.SINGLE_QUOTE) &&
+          this.eatCode(CodePoint.SINGLE_QUOTE)
         ) {
-          if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
+          if (this.eatCode(CodePoint.SINGLE_QUOTE)) {
             out.push(CodePoint.SINGLE_QUOTE);
-            if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
+            if (this.eatCode(CodePoint.SINGLE_QUOTE)) {
               out.push(CodePoint.SINGLE_QUOTE);
-              if (nextPoints.next() === CodePoint.SINGLE_QUOTE) {
+              if (this.eatCode(CodePoint.SINGLE_QUOTE)) {
+                this.moveAt(startPos);
                 return this.reportParseError("invalid-three-quotes");
               }
             }
           }
-          this.skip(nextPoints.count - 1);
           // end
           this.endToken(
             "MultiLineLiteralString",
@@ -713,6 +744,7 @@ export class Tokenizer {
           );
           return "DATA";
         }
+        this.moveAt(startPos);
       }
       out.push(cp);
       cp = this.nextCode();
@@ -732,22 +764,21 @@ export class Tokenizer {
 
   private NAN_OR_INF(cp: number): TokenizerState {
     if (cp === CodePoint.LATIN_SMALL_N) {
-      const codePoints = this.codePointIterator.subCodePoints();
+      const startPos = { ...this.codePointIterator.start };
       if (
-        codePoints.next() === CodePoint.LATIN_SMALL_A &&
-        codePoints.next() === CodePoint.LATIN_SMALL_N
+        this.eatCode(CodePoint.LATIN_SMALL_A) &&
+        this.eatCode(CodePoint.LATIN_SMALL_N)
       ) {
-        this.skip(2);
         this.endToken("Float", "end", NaN);
         return "DATA";
       }
+      this.moveAt(startPos);
     } else if (cp === CodePoint.LATIN_SMALL_I) {
-      const codePoints = this.codePointIterator.subCodePoints();
+      const startPos = { ...this.codePointIterator.start };
       if (
-        codePoints.next() === CodePoint.LATIN_SMALL_N &&
-        codePoints.next() === CodePoint.LATIN_SMALL_F
+        this.eatCode(CodePoint.LATIN_SMALL_N) &&
+        this.eatCode(CodePoint.LATIN_SMALL_F)
       ) {
-        this.skip(2);
         this.endToken(
           "Float",
           "end",
@@ -755,6 +786,7 @@ export class Tokenizer {
         );
         return "DATA";
       }
+      this.moveAt(startPos);
     }
     return this.reportParseError("unexpected-char");
   }
@@ -769,14 +801,14 @@ export class Tokenizer {
         : CodePoint.NULL;
     if (cp === CodePoint.DIGIT_0) {
       if (sign === CodePoint.NULL) {
-        const subCodePoints = this.codePointIterator.subCodePoints();
-        const nextCp = subCodePoints.next();
+        const startPos = { ...this.codePointIterator.start };
+        const nextCp = this.nextCode();
         if (isDigit(nextCp)) {
-          const nextNextCp = subCodePoints.next();
+          const nextNextCp = this.nextCode();
           if (
             (isDigit(nextNextCp) &&
-              isDigit(subCodePoints.next()) &&
-              subCodePoints.next() === CodePoint.DASH) ||
+              isDigit(this.nextCode()) &&
+              this.eatCode(CodePoint.DASH)) ||
             nextNextCp === CodePoint.COLON
           ) {
             const isDate = nextNextCp !== CodePoint.COLON;
@@ -790,10 +822,13 @@ export class Tokenizer {
               second: 0,
             };
             this.data = data;
+            this.moveAt(startPos);
             return this.back(isDate ? "DATE_YEAR" : "TIME_HOUR");
           }
+          this.moveAt(startPos);
           return this.reportParseError("invalid-leading-zero");
         }
+        this.moveAt(startPos);
       }
 
       cp = this.nextCode();
@@ -974,30 +1009,30 @@ export class Tokenizer {
 
   private BOOLEAN(cp: number): TokenizerState {
     if (cp === CodePoint.LATIN_SMALL_T) {
-      const codePoints = this.codePointIterator.subCodePoints();
+      const startPos = { ...this.codePointIterator.start };
       if (
-        codePoints.next() === CodePoint.LATIN_SMALL_R &&
-        codePoints.next() === CodePoint.LATIN_SMALL_U &&
-        codePoints.next() === CodePoint.LATIN_SMALL_E
+        this.eatCode(CodePoint.LATIN_SMALL_R) &&
+        this.eatCode(CodePoint.LATIN_SMALL_U) &&
+        this.eatCode(CodePoint.LATIN_SMALL_E)
       ) {
         // true
-        this.skip(codePoints.count);
         this.endToken("Boolean", "end", true);
         return "DATA";
       }
+      this.moveAt(startPos);
     } else if (cp === CodePoint.LATIN_SMALL_F) {
-      const codePoints = this.codePointIterator.subCodePoints();
+      const startPos = { ...this.codePointIterator.start };
       if (
-        codePoints.next() === CodePoint.LATIN_SMALL_A &&
-        codePoints.next() === CodePoint.LATIN_SMALL_L &&
-        codePoints.next() === CodePoint.LATIN_SMALL_S &&
-        codePoints.next() === CodePoint.LATIN_SMALL_E
+        this.eatCode(CodePoint.LATIN_SMALL_A) &&
+        this.eatCode(CodePoint.LATIN_SMALL_L) &&
+        this.eatCode(CodePoint.LATIN_SMALL_S) &&
+        this.eatCode(CodePoint.LATIN_SMALL_E)
       ) {
         // false
-        this.skip(codePoints.count);
         this.endToken("Boolean", "end", false);
         return "DATA";
       }
+      this.moveAt(startPos);
     }
     return this.reportParseError("unexpected-char");
   }
@@ -1052,10 +1087,12 @@ export class Tokenizer {
       return "TIME_HOUR";
     }
     if (cp === CodePoint.SPACE) {
-      const subCodePoints = this.codePointIterator.subCodePoints();
-      if (isDigit(subCodePoints.next()) && isDigit(subCodePoints.next())) {
+      const startPos = { ...this.codePointIterator.start };
+      if (isDigit(this.nextCode()) && isDigit(this.nextCode())) {
+        this.moveAt(startPos);
         return "TIME_HOUR";
       }
+      this.moveAt(startPos);
     }
     const dateValue = getDateFromDateTimeData(data, "");
     this.endToken("LocalDate", "start", dateValue);
@@ -1247,9 +1284,13 @@ export class Tokenizer {
   }
 
   private parseUnicode(count: number): number {
+    const startLoc = { ...this.codePointIterator.start };
+    const start = this.codePointIterator.end.offset;
     let charCount = 0;
-    for (const cp of this.codePointIterator.iterateSubCodePoints()) {
+    let cp: number;
+    while ((cp = this.nextCode()) !== CodePoint.EOF) {
       if (!isHexDig(cp)) {
+        this.moveAt(startLoc);
         return this.reportParseError("invalid-char-in-escape-sequence");
       }
       charCount++;
@@ -1257,8 +1298,6 @@ export class Tokenizer {
         break;
       }
     }
-    const start = this.codePointIterator.end.offset;
-    this.skip(charCount);
     const end = this.codePointIterator.end.offset;
     const code = this.text.slice(start, end);
     const codePoint = parseInt(code, 16);
