@@ -1,20 +1,47 @@
+/* eslint n/no-missing-import: off -- ignore */
 // eslint-disable-next-line eslint-comments/disable-enable-pair -- ignore
 /* eslint-disable require-jsdoc, no-console -- ignore */
-import * as Benchmark from "benchmark";
+import Benchmark from "benchmark";
 import fs from "fs";
-import { parseForESLint } from "..";
-import { parseForESLint as parseOld } from "../node_modules/toml-eslint-parser";
-import { version as oldV } from "../node_modules/toml-eslint-parser/package.json";
+import { parseForESLint } from "../lib/index.js";
+import {
+  parseForESLint as parseOld,
+  meta as oldMeta,
+} from "../node_modules/toml-eslint-parser/lib/index.js";
 import { parse as parseByIarna } from "@iarna/toml";
 import { listUpFixtures } from "../tests/src/parser/utils";
+const { version: oldV } = oldMeta;
 
-const files10k = [...listUpFixtures()]
-  .filter((fixture) => {
-    return fs.statSync(fixture.inputFileName).size > 10000;
-  })
-  .map((fixture) => {
-    return `${fs.readFileSync(fixture.inputFileName, "utf-8")}`;
-  });
+const files: string[] = [];
+let targetLength = 100;
+let content = "";
+for (const fixture of listUpFixtures()) {
+  const k = fixture.filename.replace(/\//gu, "_");
+  const appended = `${content}[${k}]
+foo-bar = "baz"
+${fs
+  .readFileSync(fixture.inputFileName, "utf-8")
+  .replace(/^(\s*\[\[?)/gmu, `$1${k}.`)
+  .replace(/\r/gu, "\n")}
+`;
+  try {
+    parseByIarna(appended);
+    parseForESLint(appended);
+    parseOld(appended);
+  } catch {
+    continue;
+  }
+  content = appended;
+  if (content.length >= targetLength) {
+    files.push(content);
+    console.log(`Generated File Length: ${content.length}`);
+    content = "";
+    targetLength = Math.max(targetLength * 10, 50000);
+  }
+}
+files.push(content);
+console.log(`Generated File Length: ${content.length}`);
+console.log(`Generated ${files.length} files`);
 
 type Result = { name: string; hz: number };
 const results: Result[] = [];
@@ -56,20 +83,20 @@ console.log("Old toml-eslint-parser version:", oldV);
 
 const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 
-for (const no of [1, 2, 3, 4, 5]) {
+for (const no of [1, 2, 3]) {
   suite.add(`${no} new   toml-eslint-parser`, function () {
-    files10k.forEach((content) => {
-      parseForESLint(content, {});
+    files.forEach((c) => {
+      parseForESLint(c, {});
     });
   });
   suite.add(`${no} old   toml-eslint-parser`, function () {
-    files10k.forEach((content) => {
-      parseOld(content, {});
+    files.forEach((c) => {
+      parseOld(c, {});
     });
   });
   suite.add(`${no}       @iarna/toml       `, function () {
-    files10k.forEach((content) => {
-      parseByIarna(content);
+    files.forEach((c) => {
+      parseByIarna(c);
     });
   });
 }
