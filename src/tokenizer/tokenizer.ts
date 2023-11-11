@@ -52,7 +52,6 @@ type TokenizerState =
   | "FRACTIONAL_RIGHT"
   | "NAN_OR_INF"
   | "BOOLEAN"
-  | "DATE_YEAR"
   | "DATE_MONTH"
   | "DATE_DAY"
   | "TIME_HOUR"
@@ -244,25 +243,7 @@ export class Tokenizer {
   }
 
   /**
-   * Skip code point iterator.
-   */
-  private skip(count: number): void {
-    if (this.backCode) {
-      this.backCode = false;
-      count--;
-    }
-    if (!count) {
-      return;
-    }
-    count--;
-    for (let index = 0; index < count; index++) {
-      this.codePointIterator.next();
-    }
-    this.lastCodePoint = this.codePointIterator.next();
-  }
-
-  /**
-   * move offset
+   * Moves the character position to the given position.
    */
   private moveAt(loc: Position): void {
     if (this.backCode) {
@@ -805,25 +786,41 @@ export class Tokenizer {
         const nextCp = this.nextCode();
         if (isDigit(nextCp)) {
           const nextNextCp = this.nextCode();
-          if (
-            (isDigit(nextNextCp) &&
-              isDigit(this.nextCode()) &&
-              this.eatCode(CodePoint.DASH)) ||
-            nextNextCp === CodePoint.COLON
-          ) {
-            const isDate = nextNextCp !== CodePoint.COLON;
+          if (nextNextCp === CodePoint.COLON) {
             const data: DateTimeData = {
-              hasDate: isDate,
+              hasDate: false,
               year: 0,
               month: 0,
               day: 0,
-              hour: 0,
+              hour: Number(String.fromCodePoint(CodePoint.DIGIT_0, nextCp)),
               minute: 0,
               second: 0,
             };
             this.data = data;
-            this.moveAt(startPos);
-            return this.back(isDate ? "DATE_YEAR" : "TIME_HOUR");
+            return "TIME_MINUTE";
+          }
+          if (isDigit(nextNextCp)) {
+            const nextNextNextCp = this.nextCode();
+            if (isDigit(nextNextNextCp) && this.eatCode(CodePoint.DASH)) {
+              const data: DateTimeData = {
+                hasDate: true,
+                year: Number(
+                  String.fromCodePoint(
+                    CodePoint.DIGIT_0,
+                    nextCp,
+                    nextNextCp,
+                    nextNextNextCp,
+                  ),
+                ),
+                month: 0,
+                day: 0,
+                hour: 0,
+                minute: 0,
+                second: 0,
+              };
+              this.data = data;
+              return "DATE_MONTH";
+            }
           }
           this.moveAt(startPos);
           return this.reportParseError("invalid-leading-zero");
@@ -1035,16 +1032,6 @@ export class Tokenizer {
       this.moveAt(startPos);
     }
     return this.reportParseError("unexpected-char");
-  }
-
-  private DATE_YEAR(): TokenizerState {
-    // already checked
-    const start = this.codePointIterator.start.offset;
-    this.skip(4);
-    const end = this.codePointIterator.start.offset;
-    const data: DateTimeData = this.data! as DateTimeData;
-    data.year = Number(this.text.slice(start, end));
-    return "DATE_MONTH";
   }
 
   private DATE_MONTH(cp: number): TokenizerState {
