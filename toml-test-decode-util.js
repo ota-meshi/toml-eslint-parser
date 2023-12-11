@@ -39,10 +39,10 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
         node.value === Infinity
           ? "+inf"
           : node.value === -Infinity
-          ? "-inf"
-          : Number.isNaN(node.value)
-          ? "nan"
-          : String(node.value),
+            ? "-inf"
+            : Number.isNaN(node.value)
+              ? "nan"
+              : String(node.value),
     };
   }
   if (node.kind === "integer") {

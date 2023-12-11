@@ -778,8 +778,8 @@ export class Tokenizer {
       start === "+"
         ? CodePoint.PLUS_SIGN
         : start === "-"
-        ? CodePoint.DASH
-        : CodePoint.NULL;
+          ? CodePoint.DASH
+          : CodePoint.NULL;
     if (cp === CodePoint.DIGIT_0) {
       if (sign === CodePoint.NULL) {
         const startPos = { ...this.codePointIterator.start };
@@ -840,8 +840,8 @@ export class Tokenizer {
         return cp === CodePoint.LATIN_SMALL_X
           ? "HEX"
           : cp === CodePoint.LATIN_SMALL_O
-          ? "OCTAL"
-          : "BINARY";
+            ? "OCTAL"
+            : "BINARY";
       }
       if (cp === CodePoint.LATIN_SMALL_E || cp === CodePoint.LATIN_CAPITAL_E) {
         const data: ExponentData = {

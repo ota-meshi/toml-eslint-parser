@@ -347,8 +347,8 @@ function schemaToJson(schema: any): any {
             return value.value === "true"
               ? true
               : value.value === "false"
-              ? false
-              : value.value;
+                ? false
+                : value.value;
           }
           if (value.type === "datetime" || value.type === "datetime-local") {
             return new Date(value.value);
