@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-"use strict"; // eslint-disable-line n/shebang -- test
+"use strict";
 
 const fs = require("fs");
 /* eslint n/no-missing-require: off -- ignore */
