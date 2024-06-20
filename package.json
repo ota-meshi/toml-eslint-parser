@@ -52,7 +52,7 @@
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.24.2",
     "@iarna/toml": "^3.0.0",
-    "@ota-meshi/eslint-plugin": "^0.15.0",
+    "@ota-meshi/eslint-plugin": "^0.17.0",
     "@types/benchmark": "^2.1.1",
     "@types/eslint": "^8.0.0",
     "@types/eslint-visitor-keys": "^3.0.0",
