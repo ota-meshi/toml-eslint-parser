@@ -18,11 +18,11 @@ module.exports = {
   ],
   rules: {
     "new-cap": "off",
-    "require-jsdoc": "error",
     "no-warning-comments": "warn",
     "no-lonely-if": "off",
     "no-param-reassign": "off",
     "no-shadow": "off",
+    "n/hashbang": "off",
   },
   overrides: [
     {
