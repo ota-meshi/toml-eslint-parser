@@ -136,15 +136,7 @@ export class Tokenizer {
 
   private token: Token | Comment | null = null;
 
-  private tokenStart: {
-    offset: number;
-    line: number;
-    column: number;
-  } = {
-    offset: -1,
-    line: 1,
-    column: -1,
-  };
+  private tokenStart = -1;
 
   private data?: ExponentData | FractionalData | DateTimeData;
 
@@ -167,8 +159,14 @@ export class Tokenizer {
 
   public get positions(): { start: Position; end: Position } {
     return {
-      start: this.codePointIterator.start,
-      end: this.codePointIterator.end,
+      start: {
+        ...this.codePointIterator.getStartLoc(),
+        offset: this.codePointIterator.start,
+      },
+      end: {
+        ...this.codePointIterator.getEndLoc(),
+        offset: this.codePointIterator.end,
+      },
     };
   }
 
@@ -179,11 +177,12 @@ export class Tokenizer {
     code: ErrorCode,
     data?: { [key: string]: any },
   ): any {
+    const loc = this.codePointIterator.getStartLoc();
     throw new ParseError(
       code,
-      this.codePointIterator.start.offset,
-      this.codePointIterator.start.line,
-      this.codePointIterator.start.column,
+      this.codePointIterator.start,
+      loc.line,
+      loc.column,
       data,
     );
   }
@@ -245,7 +244,7 @@ export class Tokenizer {
   /**
    * Moves the character position to the given position.
    */
-  private moveAt(loc: Position): void {
+  private moveAt(loc: number): void {
     if (this.backCode) {
       this.backCode = false;
     }
@@ -266,9 +265,7 @@ export class Tokenizer {
   }
 
   private startToken(): void {
-    this.tokenStart = {
-      ...this.codePointIterator.start,
-    };
+    this.tokenStart = this.codePointIterator.start;
   }
 
   private endToken(
@@ -325,27 +322,21 @@ export class Tokenizer {
     const { tokenStart } = this;
     const end = this.codePointIterator[pos];
 
-    const range: Range = [tokenStart.offset, end.offset];
+    const range: Range = [tokenStart, end];
     const loc = {
-      start: {
-        line: tokenStart.line,
-        column: tokenStart.column,
-      },
-      end: {
-        line: end.line,
-        column: end.column,
-      },
+      start: this.codePointIterator.getLocFromIndex(tokenStart),
+      end: this.codePointIterator.getLocFromIndex(end),
     };
     if (type === "Block") {
       this.token = {
         type,
-        value: this.text.slice(tokenStart.offset + 1, end.offset),
+        value: this.text.slice(tokenStart + 1, end),
         range,
         loc,
       };
     } else {
       let token: Token;
-      const value = this.text.slice(tokenStart.offset, end.offset);
+      const value = this.text.slice(tokenStart, end);
       if (
         type === "BasicString" ||
         type === "LiteralString" ||
@@ -572,7 +563,7 @@ export class Tokenizer {
         return this.reportParseErrorControlChar();
       }
       if (cp === CodePoint.QUOTATION_MARK) {
-        const startPos = { ...this.codePointIterator.start };
+        const startPos = this.codePointIterator.start;
         if (
           this.eatCode(CodePoint.QUOTATION_MARK) &&
           this.eatCode(CodePoint.QUOTATION_MARK)
@@ -634,7 +625,7 @@ export class Tokenizer {
           continue;
         } else if (isWhitespace(cp)) {
           let valid = true;
-          const startPos = { ...this.codePointIterator.start };
+          const startPos = this.codePointIterator.start;
           let nextCp: number;
           while ((nextCp = this.nextCode()) !== CodePoint.EOF) {
             if (nextCp === CodePoint.LINE_FEED) {
@@ -702,7 +693,7 @@ export class Tokenizer {
         return this.reportParseErrorControlChar();
       }
       if (cp === CodePoint.SINGLE_QUOTE) {
-        const startPos = { ...this.codePointIterator.start };
+        const startPos = this.codePointIterator.start;
         if (
           this.eatCode(CodePoint.SINGLE_QUOTE) &&
           this.eatCode(CodePoint.SINGLE_QUOTE)
@@ -745,7 +736,7 @@ export class Tokenizer {
 
   private NAN_OR_INF(cp: number): TokenizerState {
     if (cp === CodePoint.LATIN_SMALL_N) {
-      const startPos = { ...this.codePointIterator.start };
+      const startPos = this.codePointIterator.start;
       if (
         this.eatCode(CodePoint.LATIN_SMALL_A) &&
         this.eatCode(CodePoint.LATIN_SMALL_N)
@@ -755,7 +746,7 @@ export class Tokenizer {
       }
       this.moveAt(startPos);
     } else if (cp === CodePoint.LATIN_SMALL_I) {
-      const startPos = { ...this.codePointIterator.start };
+      const startPos = this.codePointIterator.start;
       if (
         this.eatCode(CodePoint.LATIN_SMALL_N) &&
         this.eatCode(CodePoint.LATIN_SMALL_F)
@@ -763,7 +754,7 @@ export class Tokenizer {
         this.endToken(
           "Float",
           "end",
-          this.text[this.tokenStart.offset] === "-" ? -Infinity : Infinity,
+          this.text[this.tokenStart] === "-" ? -Infinity : Infinity,
         );
         return "DATA";
       }
@@ -773,7 +764,7 @@ export class Tokenizer {
   }
 
   private NUMBER(cp: number): TokenizerState {
-    const start = this.text[this.tokenStart.offset];
+    const start = this.text[this.tokenStart];
     const sign =
       start === "+"
         ? CodePoint.PLUS_SIGN
@@ -782,7 +773,7 @@ export class Tokenizer {
           : CodePoint.NULL;
     if (cp === CodePoint.DIGIT_0) {
       if (sign === CodePoint.NULL) {
-        const startPos = { ...this.codePointIterator.start };
+        const startPos = this.codePointIterator.start;
         const nextCp = this.nextCode();
         if (isDigit(nextCp)) {
           const nextNextCp = this.nextCode();
@@ -1006,7 +997,7 @@ export class Tokenizer {
 
   private BOOLEAN(cp: number): TokenizerState {
     if (cp === CodePoint.LATIN_SMALL_T) {
-      const startPos = { ...this.codePointIterator.start };
+      const startPos = this.codePointIterator.start;
       if (
         this.eatCode(CodePoint.LATIN_SMALL_R) &&
         this.eatCode(CodePoint.LATIN_SMALL_U) &&
@@ -1018,7 +1009,7 @@ export class Tokenizer {
       }
       this.moveAt(startPos);
     } else if (cp === CodePoint.LATIN_SMALL_F) {
-      const startPos = { ...this.codePointIterator.start };
+      const startPos = this.codePointIterator.start;
       if (
         this.eatCode(CodePoint.LATIN_SMALL_A) &&
         this.eatCode(CodePoint.LATIN_SMALL_L) &&
@@ -1035,7 +1026,7 @@ export class Tokenizer {
   }
 
   private DATE_MONTH(cp: number): TokenizerState {
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1047,14 +1038,14 @@ export class Tokenizer {
     if (cp !== CodePoint.DASH) {
       return this.reportParseError("unexpected-char");
     }
-    const end = this.codePointIterator.start.offset;
+    const end = this.codePointIterator.start;
     const data: DateTimeData = this.data! as DateTimeData;
     data.month = Number(this.text.slice(start, end));
     return "DATE_DAY";
   }
 
   private DATE_DAY(cp: number): TokenizerState {
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1062,7 +1053,7 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const end = this.codePointIterator.end.offset;
+    const end = this.codePointIterator.end;
     const data: DateTimeData = this.data! as DateTimeData;
     data.day = Number(this.text.slice(start, end));
     if (!isValidDate(data.year, data.month, data.day)) {
@@ -1074,7 +1065,7 @@ export class Tokenizer {
       return "TIME_HOUR";
     }
     if (cp === CodePoint.SPACE) {
-      const startPos = { ...this.codePointIterator.start };
+      const startPos = this.codePointIterator.start;
       if (isDigit(this.nextCode()) && isDigit(this.nextCode())) {
         this.moveAt(startPos);
         return "TIME_HOUR";
@@ -1087,7 +1078,7 @@ export class Tokenizer {
   }
 
   private TIME_HOUR(cp: number): TokenizerState {
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1099,14 +1090,14 @@ export class Tokenizer {
     if (cp !== CodePoint.COLON) {
       return this.reportParseError("unexpected-char");
     }
-    const end = this.codePointIterator.start.offset;
+    const end = this.codePointIterator.start;
     const data: DateTimeData = this.data! as DateTimeData;
     data.hour = Number(this.text.slice(start, end));
     return "TIME_MINUTE";
   }
 
   private TIME_MINUTE(cp: number): TokenizerState {
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1114,7 +1105,7 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const end = this.codePointIterator.end.offset;
+    const end = this.codePointIterator.end;
     const data: DateTimeData = this.data! as DateTimeData;
     data.minute = Number(this.text.slice(start, end));
     cp = this.nextCode();
@@ -1133,7 +1124,7 @@ export class Tokenizer {
   }
 
   private TIME_SECOND(cp: number): TokenizerState {
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1141,7 +1132,7 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const end = this.codePointIterator.end.offset;
+    const end = this.codePointIterator.end;
     const data: DateTimeData = this.data! as DateTimeData;
     data.second = Number(this.text.slice(start, end));
     if (!isValidTime(data.hour, data.minute, data.second)) {
@@ -1159,11 +1150,11 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const start = this.codePointIterator.start.offset;
+    const start = this.codePointIterator.start;
     while (isDigit(cp)) {
       cp = this.nextCode();
     }
-    const end = this.codePointIterator.start.offset;
+    const end = this.codePointIterator.start;
     const data: DateTimeData = this.data! as DateTimeData;
     data.frac = this.text.slice(start, end);
     return this.processTimeEnd(cp, data);
@@ -1193,7 +1184,7 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const hourStart = this.codePointIterator.start.offset;
+    const hourStart = this.codePointIterator.start;
     cp = this.nextCode();
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
@@ -1202,9 +1193,9 @@ export class Tokenizer {
     if (cp !== CodePoint.COLON) {
       return this.reportParseError("unexpected-char");
     }
-    const hourEnd = this.codePointIterator.start.offset;
+    const hourEnd = this.codePointIterator.start;
     cp = this.nextCode();
-    const minuteStart = this.codePointIterator.start.offset;
+    const minuteStart = this.codePointIterator.start;
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
@@ -1212,7 +1203,7 @@ export class Tokenizer {
     if (!isDigit(cp)) {
       return this.reportParseError("unexpected-char");
     }
-    const minuteEnd = this.codePointIterator.end.offset;
+    const minuteEnd = this.codePointIterator.end;
     const hour = Number(this.text.slice(hourStart, hourEnd));
     const minute = Number(this.text.slice(minuteStart, minuteEnd));
     if (!isValidTime(hour, minute, 0)) {
@@ -1271,8 +1262,8 @@ export class Tokenizer {
   }
 
   private parseUnicode(count: number): number {
-    const startLoc = { ...this.codePointIterator.start };
-    const start = this.codePointIterator.end.offset;
+    const startLoc = this.codePointIterator.start;
+    const start = this.codePointIterator.end;
     let charCount = 0;
     let cp: number;
     while ((cp = this.nextCode()) !== CodePoint.EOF) {
@@ -1285,7 +1276,7 @@ export class Tokenizer {
         break;
       }
     }
-    const end = this.codePointIterator.end.offset;
+    const end = this.codePointIterator.end;
     const code = this.text.slice(start, end);
     const codePoint = parseInt(code, 16);
     if (!isUnicodeScalarValue(codePoint)) {
