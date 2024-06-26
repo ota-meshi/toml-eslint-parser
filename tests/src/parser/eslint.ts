@@ -1,9 +1,10 @@
-import { Linter } from "eslint";
 import assert from "assert";
 import * as parser from "../../../src/index";
 
-function createLinter() {
-  const linter = new Linter();
+async function createLinter() {
+  // eslint-disable-next-line @typescript-eslint/naming-convention -- OK
+  const { Linter } = await import("eslint");
+  const linter = new Linter({ configType: "eslintrc" });
 
   linter.defineParser("toml-eslint-parser", parser as any);
   linter.defineRule("test", {
@@ -27,10 +28,11 @@ function createLinter() {
 //------------------------------------------------------------------------------
 
 describe("eslint custom parser", () => {
-  it("should work with eslint.", () => {
+  it("should work with eslint.", async () => {
+    if (parseInt(process.version, 10) < 18) return;
     const code = `Hello="TOML"`;
 
-    const linter = createLinter();
+    const linter = await createLinter();
     const messages = linter.verify(code, {
       parser: "toml-eslint-parser",
       rules: {

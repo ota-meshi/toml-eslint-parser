@@ -7,7 +7,7 @@
     "json",
     "jsonc",
     "yaml",
-    "github-actions-workflow",
+    "github-actions-workflow"
   ],
   "typescript.validate.enable": true,
   "javascript.validate.enable": false,
