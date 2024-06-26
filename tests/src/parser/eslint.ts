@@ -3,7 +3,7 @@ import assert from "assert";
 import * as parser from "../../../src/index";
 
 function createLinter() {
-  const linter = new Linter();
+  const linter = new Linter({ configType: "eslintrc" });
 
   linter.defineParser("toml-eslint-parser", parser as any);
   linter.defineRule("test", {
@@ -28,6 +28,7 @@ function createLinter() {
 
 describe("eslint custom parser", () => {
   it("should work with eslint.", () => {
+    if (parseInt(process.version, 10) < 18) return;
     const code = `Hello="TOML"`;
 
     const linter = createLinter();

@@ -30,6 +30,6 @@ jobs:
       - name: Setup
         run: npm run setup
       - name: Install Packages
-        run: npm install --legacy-peer-deps
+        run: npm install
       - name: Test
         run: npm test
