@@ -83,7 +83,7 @@
     "semver": "^7.3.4",
     "toml-eslint-parser": "^0.10.0",
     "ts-node": "^10.0.0",
-    "typescript": "~5.0.0",
+    "typescript": "~5.5.0",
     "typescript-eslint": "^7.14.1",
     "vue-eslint-parser": "^9.0.0"
   },
