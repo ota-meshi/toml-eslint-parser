@@ -142,16 +142,15 @@ role = "backend"
         }
       }
 
-      // eslint-disable-next-line require-jsdoc -- demo
       function findLoc(astJson, locName) {
         let locData = astJson.locations.find((l) =>
-          locInPoint(l[locName], position)
+          locInPoint(l[locName], position),
         );
         let nextLocData;
         while (
           locData &&
           (nextLocData = locData.locations.find((l) =>
-            locInPoint(l[locName], position)
+            locInPoint(l[locName], position),
           ))
         ) {
           locData = nextLocData;
@@ -159,7 +158,6 @@ role = "backend"
         return locData;
       }
 
-      // eslint-disable-next-line require-jsdoc -- demo
       function locInPoint(loc, pos) {
         if (loc.start.line < pos.lineNumber && pos.lineNumber < loc.end.line) {
           return true;
@@ -264,7 +262,7 @@ function createAstJson(options, value) {
   return ctx;
 }
 
-// eslint-disable-next-line require-jsdoc, complexity -- ignore
+// eslint-disable-next-line complexity -- ignore
 function processValue(options, ctx, value) {
   const type = typeof value;
   if (type === "string" || type === "boolean" || value === null) {
@@ -307,7 +305,10 @@ function processValue(options, ctx, value) {
         : [];
       entries = entries.filter(
         ([key]) =>
-          key !== "type" && key !== "loc" && key !== "range" && key !== "parent"
+          key !== "type" &&
+          key !== "loc" &&
+          key !== "range" &&
+          key !== "parent",
       );
       if (typeEntry) entries.unshift(typeEntry);
       entries.push(...locEntries);
