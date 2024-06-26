@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import assert from "assert";
 import { load as loadYaml } from "js-yaml";
+import { toJSON } from "./to-json";
 
 /**
  * Remove `parent` properties from the given AST.
@@ -38,13 +39,15 @@ function valueReplacer(_key: string, value: any) {
 }
 
 export function stringify(val: any, isAst?: boolean): string {
-  let str = normalizeStr(
-    JSON.stringify(val, isAst ? replacer : valueReplacer, 2),
-  );
-  if (str.length >= 100_000_000) {
-    str = normalizeStr(JSON.stringify(val, isAst ? replacer : valueReplacer));
+  try {
+    const str = normalizeStr(
+      JSON.stringify(val, isAst ? replacer : valueReplacer, 2),
+    );
+    if (str.length < 100_000_000) return str;
+    return normalizeStr(toJSON(val, isAst ? replacer : valueReplacer));
+  } catch {
+    return normalizeStr(toJSON(val, isAst ? replacer : valueReplacer));
   }
-  return str;
 }
 
 function normalizeStr(s: string) {
