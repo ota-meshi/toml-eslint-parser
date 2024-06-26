@@ -1,6 +1,6 @@
 {
   "name": "toml-eslint-parser",
-  "version": "0.9.3",
+  "version": "0.10.0",
   "description": "A TOML parser that produces output compatible with ESLint",
   "main": "lib/index.js",
   "files": [
@@ -51,6 +51,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.24.2",
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.3.0",
     "@iarna/toml": "^3.0.0",
     "@ota-meshi/eslint-plugin": "^0.17.0",
     "@types/benchmark": "^2.1.1",
