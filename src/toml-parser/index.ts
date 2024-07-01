@@ -128,8 +128,9 @@ export class TOMLParser {
 
     ast.tokens = ctx.tokens;
     ast.comments = ctx.comments;
-    const endPos = ctx.endPos;
-    ast.range[1] = endPos.offset;
+    const endOffset = ctx.tokenizer.end;
+    const endPos = ctx.tokenizer.getLocFromIndex(endOffset);
+    ast.range[1] = endOffset;
     ast.loc.end = {
       line: endPos.line,
       column: endPos.column,

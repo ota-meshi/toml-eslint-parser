@@ -27,14 +27,6 @@ export class CodePointIterator {
     return (this.lastCodePoint = this.moveAt(this.end));
   }
 
-  public getStartLoc(): { line: number; column: number } {
-    return this.getLocFromIndex(this.start);
-  }
-
-  public getEndLoc(): { line: number; column: number } {
-    return this.getLocFromIndex(this.end);
-  }
-
   public getLocFromIndex(index: number): { line: number; column: number } {
     return this.locs.getLocFromIndex(index);
   }

@@ -30,11 +30,6 @@ import {
   isUnicodeScalarValue,
 } from "./code-point";
 
-type Position = {
-  offset: number;
-  line: number;
-  column: number;
-};
 type TokenizerState =
   | "DATA"
   | "COMMENT"
@@ -157,17 +152,16 @@ export class Tokenizer {
     this.ESCAPES = this.tomlVersion.gte(1, 1) ? ESCAPES_LATEST : ESCAPES_1_0;
   }
 
-  public get positions(): { start: Position; end: Position } {
-    return {
-      start: {
-        ...this.codePointIterator.getStartLoc(),
-        offset: this.codePointIterator.start,
-      },
-      end: {
-        ...this.codePointIterator.getEndLoc(),
-        offset: this.codePointIterator.end,
-      },
-    };
+  public get start(): number {
+    return this.codePointIterator.start;
+  }
+
+  public get end(): number {
+    return this.codePointIterator.end;
+  }
+
+  public getLocFromIndex(index: number): { line: number; column: number } {
+    return this.codePointIterator.getLocFromIndex(index);
   }
 
   /**
@@ -177,14 +171,9 @@ export class Tokenizer {
     code: ErrorCode,
     data?: { [key: string]: any },
   ): any {
-    const loc = this.codePointIterator.getStartLoc();
-    throw new ParseError(
-      code,
-      this.codePointIterator.start,
-      loc.line,
-      loc.column,
-      data,
-    );
+    const offset = this.codePointIterator.start;
+    const loc = this.codePointIterator.getLocFromIndex(offset);
+    throw new ParseError(code, offset, loc.line, loc.column, data);
   }
 
   /**

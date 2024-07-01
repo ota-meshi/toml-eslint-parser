@@ -21,7 +21,7 @@ export type ValueContainer = {
 
 export type ParserState = "TABLE" | "VALUE";
 export class Context {
-  private readonly tokenizer: Tokenizer;
+  public readonly tokenizer: Tokenizer;
 
   public readonly tokens: Token[] = [];
 
@@ -56,22 +56,6 @@ export class Context {
     this.topLevelTable = data.topLevelTable;
     this.table = data.topLevelTable;
     this.keysResolver = new KeysResolver(this);
-  }
-
-  public get startPos(): {
-    offset: number;
-    line: number;
-    column: number;
-  } {
-    return this.tokenizer.positions.start;
-  }
-
-  public get endPos(): {
-    offset: number;
-    line: number;
-    column: number;
-  } {
-    return this.tokenizer.positions.end;
   }
 
   /**
@@ -167,8 +151,8 @@ export class Context {
       line = token.loc.start.line;
       column = token.loc.start.column;
     } else {
-      const startPos = this.startPos;
-      offset = startPos.offset;
+      offset = this.tokenizer.start;
+      const startPos = this.tokenizer.getLocFromIndex(offset);
       line = startPos.line;
       column = startPos.column;
     }
