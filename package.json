@@ -55,7 +55,7 @@
     "@iarna/toml": "^3.0.0",
     "@ota-meshi/eslint-plugin": "^0.17.5",
     "@types/benchmark": "^2.1.1",
-    "@types/eslint": "^8.0.0",
+    "@types/eslint": "^9.0.0",
     "@types/eslint-visitor-keys": "^3.0.0",
     "@types/js-yaml": "^4.0.0",
     "@types/mocha": "^10.0.0",
