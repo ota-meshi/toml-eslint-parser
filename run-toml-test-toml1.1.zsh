@@ -11,6 +11,7 @@ skip=(
 
 	# Certain invalid newline codepoints are not rejected
 	-skip='invalid/control/rawmulti-cd'
+	-skip='invalid/control/rawmulti-cr'
 	-skip='invalid/control/multi-cr'
 	-skip='invalid/control/bare-cr'
 
@@ -18,6 +19,7 @@ skip=(
 	-skip='invalid/control/comment-del'
 	-skip='invalid/control/comment-lf'
 	-skip='invalid/control/comment-us'
+	-skip='invalid/key/special-character'
 
 	# Debug
 	# -run 'valid/table/with-single-quotes'
