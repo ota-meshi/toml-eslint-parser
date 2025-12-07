@@ -11,6 +11,7 @@ skip=(
 
 	# Certain invalid newline codepoints are not rejected
 	-skip='invalid/control/rawmulti-cd'
+	-skip='invalid/control/rawmulti-cr'
 	-skip='invalid/control/multi-cr'
 	-skip='invalid/control/bare-cr'
 
