@@ -38,7 +38,7 @@ const SUPPORTED_TOML_VERSIONS: Record<TOMLVersionOption, TOMLVer> = {
   "1.0.0": TOML_VERSION_1_0,
   "1.1": TOML_VERSION_1_1,
   "1.1.0": TOML_VERSION_1_1,
-  latest: TOML_VERSION_1_0,
+  latest: TOML_VERSION_1_1,
   next: TOML_VERSION_1_1,
 };
 export interface ParserOptions {
