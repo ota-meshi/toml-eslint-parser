@@ -52,6 +52,7 @@ export const enum CodePoint {
   LATIN_SMALL_Z = 0x7a,
   LEFT_BRACE = 0x7b, // {
   RIGHT_BRACE = 0x7d, // }
+  TILDE = 0x7e,
   DELETE = 0x7f,
   PAD = 0x80,
   SUPERSCRIPT_TWO = 0xb2,

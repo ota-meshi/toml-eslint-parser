@@ -27,7 +27,10 @@ const MESSAGES = {
   "invalid-trailing-comma-in-inline-table":
     "Trailing comma is not permitted in an inline table",
   "invalid-char-in-escape-sequence": "Invalid character in escape sequence",
+  "invalid-consecutive-dots-in-key":
+    "Consecutive dots are not permitted in keys",
   "invalid-code-point": "Invalid code point {{cp}}",
+  "invalid-trailing-dot-in-key": "Keys cannot end with a dot",
 };
 
 /**

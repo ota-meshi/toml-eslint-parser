@@ -362,12 +362,7 @@ function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
 
       const validInTOML1P1 =
         rootDir.invalid &&
-        [
-          "inline-table-trailing-comma.toml",
-          "comment-control-2.toml",
-          "comment-control-3.toml",
-          "comment-control-4.toml",
-        ].includes(filename);
+        ["inline-table-trailing-comma.toml"].includes(filename);
       const invalidForV1P1 = rootDir.invalid && !validInTOML1P1;
 
       yield {

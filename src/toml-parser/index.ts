@@ -282,11 +282,14 @@ export class TOMLParser {
     };
     parent.key = keyNode;
     let targetToken: Token | null = token;
+    let dotToken: Token | null = null;
     while (targetToken) {
       if (isBare(targetToken)) {
         this.processBareKey(targetToken, keyNode);
+        dotToken = null;
       } else if (isString(targetToken)) {
         this.processStringKey(targetToken, keyNode);
+        dotToken = null;
       } else {
         break;
       }
@@ -294,12 +297,22 @@ export class TOMLParser {
         needSameLine: "invalid-key-value-newline",
       });
       if (isDot(targetToken)) {
+        dotToken = targetToken;
         targetToken = ctx.nextToken({
           needSameLine: "invalid-key-value-newline",
         });
       } else {
+        dotToken = null;
         break;
       }
+    }
+    if (dotToken) {
+      ctx.reportParseError(
+        isDot(targetToken)
+          ? "invalid-consecutive-dots-in-key"
+          : "invalid-trailing-dot-in-key",
+        dotToken,
+      );
     }
     applyEndLoc(keyNode, last(keyNode.keys));
     return { keyNode, nextToken: targetToken };
