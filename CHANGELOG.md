@@ -1,5 +1,17 @@
 # toml-eslint-parser
 
+## 0.11.0
+
+### Minor Changes
+
+- [#248](https://github.com/ota-meshi/toml-eslint-parser/pull/248) [`08b356b`](https://github.com/ota-meshi/toml-eslint-parser/commit/08b356b2db32ba65111e00f4673b8ed9068ec6ca) Thanks [@ota-meshi](https://github.com/ota-meshi)! - changed `tomlVersion=latest` to an alias for `1.1.0`.
+
+- [#248](https://github.com/ota-meshi/toml-eslint-parser/pull/248) [`08b356b`](https://github.com/ota-meshi/toml-eslint-parser/commit/08b356b2db32ba65111e00f4673b8ed9068ec6ca) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: support for TOML v1.1
+
+### Patch Changes
+
+- [#248](https://github.com/ota-meshi/toml-eslint-parser/pull/248) [`08b356b`](https://github.com/ota-meshi/toml-eslint-parser/commit/08b356b2db32ba65111e00f4673b8ed9068ec6ca) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: issue where a trailing dot in a table key would not cause a parsing error.
+
 ## 0.10.1
 
 ### Patch Changes
