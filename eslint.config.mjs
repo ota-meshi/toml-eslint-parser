@@ -1,4 +1,5 @@
 import myPlugin from "@ota-meshi/eslint-plugin";
+import globals from "globals";
 
 export default [
   {
@@ -108,6 +109,9 @@ export default [
     files: ["explorer/**/*.{ts,mts,js,mjs,vue}"],
     languageOptions: {
       sourceType: "module",
+      globals: {
+        ...globals.browser,
+      },
     },
     rules: {
       "n/no-unsupported-features/es-syntax": "off",
