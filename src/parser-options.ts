@@ -50,5 +50,5 @@ export interface ParserOptions {
  * Get TOML version object from given TOML version string.
  */
 export function getTOMLVer(v: TOMLVersionOption | undefined | null): TOMLVer {
-  return SUPPORTED_TOML_VERSIONS[v || "latest"] || DEFAULT_TOML_VERSION;
+  return (v && SUPPORTED_TOML_VERSIONS[v]) || DEFAULT_TOML_VERSION;
 }
