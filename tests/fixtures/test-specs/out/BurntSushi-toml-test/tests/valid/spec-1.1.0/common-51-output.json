@@ -1,0 +1,1161 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "product",
+                "range": [
+                  2,
+                  9
+                ],
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 9
+                  }
+                }
+              }
+            ],
+            "range": [
+              2,
+              9
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          },
+          "resolvedKey": [
+            "product",
+            0
+          ],
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      12,
+                      16
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 2,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 4
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  12,
+                  16
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 4
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "Hammer",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  19,
+                  27
+                ],
+                "loc": {
+                  "start": {
+                    "line": 2,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 15
+                  }
+                }
+              },
+              "range": [
+                12,
+                27
+              ],
+              "loc": {
+                "start": {
+                  "line": 2,
+                  "column": 0
+                },
+                "end": {
+                  "line": 2,
+                  "column": 15
+                }
+              }
+            },
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "sku",
+                    "range": [
+                      28,
+                      31
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 3
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  28,
+                  31
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 3
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "integer",
+                "value": 738594937,
+                "number": "738594937",
+                "range": [
+                  34,
+                  43
+                ],
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 15
+                  }
+                }
+              },
+              "range": [
+                28,
+                43
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 0
+                },
+                "end": {
+                  "line": 3,
+                  "column": 15
+                }
+              }
+            }
+          ],
+          "range": [
+            0,
+            43
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 15
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "product",
+                "range": [
+                  47,
+                  54
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 9
+                  }
+                }
+              }
+            ],
+            "range": [
+              47,
+              54
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 2
+              },
+              "end": {
+                "line": 5,
+                "column": 9
+              }
+            }
+          },
+          "resolvedKey": [
+            "product",
+            1
+          ],
+          "body": [],
+          "range": [
+            45,
+            56
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 11
+            }
+          }
+        },
+        {
+          "type": "TOMLTable",
+          "kind": "array",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "product",
+                "range": [
+                  92,
+                  99
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 9
+                  }
+                }
+              }
+            ],
+            "range": [
+              92,
+              99
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "line": 7,
+                "column": 9
+              }
+            }
+          },
+          "resolvedKey": [
+            "product",
+            2
+          ],
+          "body": [
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "name",
+                    "range": [
+                      102,
+                      106
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 4
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  102,
+                  106
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 4
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "Nail",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  109,
+                  115
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 13
+                  }
+                }
+              },
+              "range": [
+                102,
+                115
+              ],
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 0
+                },
+                "end": {
+                  "line": 8,
+                  "column": 13
+                }
+              }
+            },
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "sku",
+                    "range": [
+                      116,
+                      119
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 3
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  116,
+                  119
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 3
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "integer",
+                "value": 284758393,
+                "number": "284758393",
+                "range": [
+                  122,
+                  131
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 15
+                  }
+                }
+              },
+              "range": [
+                116,
+                131
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 0
+                },
+                "end": {
+                  "line": 9,
+                  "column": 15
+                }
+              }
+            },
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLBare",
+                    "name": "color",
+                    "range": [
+                      133,
+                      138
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 5
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  133,
+                  138
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 5
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "string",
+                "value": "gray",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  141,
+                  147
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 14
+                  }
+                }
+              },
+              "range": [
+                133,
+                147
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 0
+                },
+                "end": {
+                  "line": 11,
+                  "column": 14
+                }
+              }
+            }
+          ],
+          "range": [
+            90,
+            147
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 11,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "range": [
+        0,
+        147
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 14
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        0,
+        1
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        1,
+        2
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "line": 1,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "product",
+      "range": [
+        2,
+        9
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 2
+        },
+        "end": {
+          "line": 1,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        9,
+        10
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 9
+        },
+        "end": {
+          "line": 1,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        10,
+        11
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 10
+        },
+        "end": {
+          "line": 1,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        12,
+        16
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        17,
+        18
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 5
+        },
+        "end": {
+          "line": 2,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"Hammer\"",
+      "string": "Hammer",
+      "range": [
+        19,
+        27
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 7
+        },
+        "end": {
+          "line": 2,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "sku",
+      "range": [
+        28,
+        31
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        32,
+        33
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 4
+        },
+        "end": {
+          "line": 3,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Integer",
+      "value": "738594937",
+      "number": 738594937,
+      "range": [
+        34,
+        43
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 6
+        },
+        "end": {
+          "line": 3,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        45,
+        46
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        46,
+        47
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 1
+        },
+        "end": {
+          "line": 5,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "product",
+      "range": [
+        47,
+        54
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 2
+        },
+        "end": {
+          "line": 5,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        54,
+        55
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 9
+        },
+        "end": {
+          "line": 5,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        55,
+        56
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 10
+        },
+        "end": {
+          "line": 5,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        90,
+        91
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 1
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        91,
+        92
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 1
+        },
+        "end": {
+          "line": 7,
+          "column": 2
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "product",
+      "range": [
+        92,
+        99
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 2
+        },
+        "end": {
+          "line": 7,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        99,
+        100
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 9
+        },
+        "end": {
+          "line": 7,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "]",
+      "range": [
+        100,
+        101
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 10
+        },
+        "end": {
+          "line": 7,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "name",
+      "range": [
+        102,
+        106
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 4
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        107,
+        108
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 5
+        },
+        "end": {
+          "line": 8,
+          "column": 6
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"Nail\"",
+      "string": "Nail",
+      "range": [
+        109,
+        115
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 7
+        },
+        "end": {
+          "line": 8,
+          "column": 13
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "sku",
+      "range": [
+        116,
+        119
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        120,
+        121
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 4
+        },
+        "end": {
+          "line": 9,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Integer",
+      "value": "284758393",
+      "number": 284758393,
+      "range": [
+        122,
+        131
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 6
+        },
+        "end": {
+          "line": 9,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "color",
+      "range": [
+        133,
+        138
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        139,
+        140
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 6
+        },
+        "end": {
+          "line": 11,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"gray\"",
+      "string": "gray",
+      "range": [
+        141,
+        147
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 8
+        },
+        "end": {
+          "line": 11,
+          "column": 14
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " empty table within the array",
+      "range": [
+        58,
+        88
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 13
+        },
+        "end": {
+          "line": 5,
+          "column": 43
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    148
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 12,
+      "column": 0
+    }
+  }
+}

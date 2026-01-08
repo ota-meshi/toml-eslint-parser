@@ -1,0 +1,617 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "TOMLTopLevelTable",
+      "body": [
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "basic-1",
+                "range": [
+                  59,
+                  66
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "range": [
+              59,
+              66
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 7
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "ɑ € 𐫱 ɑ€𐫱",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              72,
+              121
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 13
+              },
+              "end": {
+                "line": 4,
+                "column": 62
+              }
+            }
+          },
+          "range": [
+            59,
+            121
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 62
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "ml-basic-1",
+                "range": [
+                  122,
+                  132
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 10
+                  }
+                }
+              }
+            ],
+            "range": [
+              122,
+              132
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 10
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "ɑ € 𐫱 ɑ€𐫱",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              135,
+              188
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 66
+              }
+            }
+          },
+          "range": [
+            122,
+            188
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 66
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "basic-2",
+                "range": [
+                  217,
+                  224
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "range": [
+              217,
+              224
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 7
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "ɑ € 𐫱 ɑ€𐫱",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              230,
+              295
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 13
+              },
+              "end": {
+                "line": 8,
+                "column": 78
+              }
+            }
+          },
+          "range": [
+            217,
+            295
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 78
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "ml-basic-2",
+                "range": [
+                  296,
+                  306
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 10
+                  }
+                }
+              }
+            ],
+            "range": [
+              296,
+              306
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 10
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "ɑ € 𐫱 ɑ€𐫱",
+            "style": "basic",
+            "multiline": true,
+            "range": [
+              309,
+              378
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 13
+              },
+              "end": {
+                "line": 9,
+                "column": 82
+              }
+            }
+          },
+          "range": [
+            296,
+            378
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 82
+            }
+          }
+        }
+      ],
+      "range": [
+        59,
+        378
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 82
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "tokens": [
+    {
+      "type": "Bare",
+      "value": "basic-1",
+      "range": [
+        59,
+        66
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        70,
+        71
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 11
+        },
+        "end": {
+          "line": 4,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"\\u0251 \\u20ac \\U00010AF1 \\u0251\\u20ac\\U00010AF1\"",
+      "string": "ɑ € 𐫱 ɑ€𐫱",
+      "range": [
+        72,
+        121
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 13
+        },
+        "end": {
+          "line": 4,
+          "column": 62
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "ml-basic-1",
+      "range": [
+        122,
+        132
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        133,
+        134
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 11
+        },
+        "end": {
+          "line": 5,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\u0251 \\u20ac \\U00010AF1 \\u0251\\u20ac\\U00010AF1\"\"\"",
+      "string": "ɑ € 𐫱 ɑ€𐫱",
+      "range": [
+        135,
+        188
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 13
+        },
+        "end": {
+          "line": 5,
+          "column": 66
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "basic-2",
+      "range": [
+        217,
+        224
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 7
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        228,
+        229
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 11
+        },
+        "end": {
+          "line": 8,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"\\U00000251 \\U000020ac \\U00010AF1 \\U00000251\\U000020ac\\U00010AF1\"",
+      "string": "ɑ € 𐫱 ɑ€𐫱",
+      "range": [
+        230,
+        295
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 13
+        },
+        "end": {
+          "line": 8,
+          "column": 78
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "ml-basic-2",
+      "range": [
+        296,
+        306
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 10
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        307,
+        308
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 11
+        },
+        "end": {
+          "line": 9,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "MultiLineBasicString",
+      "value": "\"\"\"\\U00000251 \\U000020ac \\U00010AF1 \\U00000251\\U000020ac\\U00010AF1\"\"\"",
+      "string": "ɑ € 𐫱 ɑ€𐫱",
+      "range": [
+        309,
+        378
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 13
+        },
+        "end": {
+          "line": 9,
+          "column": 82
+        }
+      }
+    }
+  ],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " Test each multibyte length: 2, 3, and 4 bytes:",
+      "range": [
+        0,
+        48
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 48
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " ɑ € 𐫱",
+      "range": [
+        49,
+        57
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 8
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": " Again, but only using \\U",
+      "range": [
+        190,
+        216
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 26
+        }
+      }
+    }
+  ],
+  "range": [
+    0,
+    379
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 10,
+      "column": 0
+    }
+  }
+}

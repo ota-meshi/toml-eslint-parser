@@ -454,64 +454,84 @@
                 "value": "1987-07-05T17:45:00.000Z",
                 "datetime": "1987-07-05T17:45:00Z",
                 "range": [
-                  82,
-                  102
+                  81,
+                  101
                 ],
                 "loc": {
                   "start": {
                     "line": 5,
-                    "column": 2
+                    "column": 1
                   },
                   "end": {
                     "line": 5,
-                    "column": 22
+                    "column": 21
                   }
                 }
               },
               {
                 "type": "TOMLValue",
-                "kind": "offset-date-time",
-                "value": "1979-05-27T07:32:00.000Z",
-                "datetime": "1979-05-27T07:32:00Z",
+                "kind": "local-date-time",
+                "value": "1979-05-26T22:32:00.000Z",
+                "datetime": "1979-05-27T07:32:00",
                 "range": [
-                  106,
-                  126
+                  104,
+                  123
                 ],
                 "loc": {
                   "start": {
                     "line": 6,
-                    "column": 2
+                    "column": 1
                   },
                   "end": {
                     "line": 6,
-                    "column": 22
+                    "column": 20
                   }
                 }
               },
               {
                 "type": "TOMLValue",
-                "kind": "offset-date-time",
-                "value": "2006-06-01T11:00:00.000Z",
-                "datetime": "2006-06-01T11:00:00Z",
+                "kind": "local-date",
+                "value": "2006-05-31T15:00:00.000Z",
+                "datetime": "2006-06-01",
                 "range": [
-                  130,
-                  150
+                  126,
+                  136
                 ],
                 "loc": {
                   "start": {
                     "line": 7,
-                    "column": 2
+                    "column": 1
                   },
                   "end": {
                     "line": 7,
-                    "column": 22
+                    "column": 11
+                  }
+                }
+              },
+              {
+                "type": "TOMLValue",
+                "kind": "local-time",
+                "value": "0000-01-01T01:41:01.000Z",
+                "datetime": "11:00:00",
+                "range": [
+                  139,
+                  147
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 9
                   }
                 }
               }
             ],
             "range": [
               78,
-              153
+              150
             ],
             "loc": {
               "start": {
@@ -519,14 +539,14 @@
                 "column": 8
               },
               "end": {
-                "line": 8,
+                "line": 9,
                 "column": 1
               }
             }
           },
           "range": [
             70,
-            153
+            150
           ],
           "loc": {
             "start": {
@@ -534,7 +554,7 @@
               "column": 0
             },
             "end": {
-              "line": 8,
+              "line": 9,
               "column": 1
             }
           }
@@ -548,32 +568,32 @@
                 "type": "TOMLBare",
                 "name": "comments",
                 "range": [
-                  154,
-                  162
+                  151,
+                  159
                 ],
                 "loc": {
                   "start": {
-                    "line": 9,
+                    "line": 10,
                     "column": 0
                   },
                   "end": {
-                    "line": 9,
+                    "line": 10,
                     "column": 8
                   }
                 }
               }
             ],
             "range": [
-              154,
-              162
+              151,
+              159
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 10,
                 "column": 0
               },
               "end": {
-                "line": 9,
+                "line": 10,
                 "column": 8
               }
             }
@@ -587,16 +607,16 @@
                 "value": 1,
                 "number": "1",
                 "range": [
-                  176,
-                  177
+                  173,
+                  174
                 ],
                 "loc": {
                   "start": {
-                    "line": 10,
+                    "line": 11,
                     "column": 9
                   },
                   "end": {
-                    "line": 10,
+                    "line": 11,
                     "column": 10
                   }
                 }
@@ -607,47 +627,47 @@
                 "value": 2,
                 "number": "2",
                 "range": [
-                  188,
-                  189
+                  185,
+                  186
                 ],
                 "loc": {
                   "start": {
-                    "line": 11,
+                    "line": 12,
                     "column": 9
                   },
                   "end": {
-                    "line": 11,
+                    "line": 12,
                     "column": 10
                   }
                 }
               }
             ],
             "range": [
-              165,
-              204
+              162,
+              201
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 10,
                 "column": 11
               },
               "end": {
-                "line": 12,
+                "line": 13,
                 "column": 1
               }
             }
           },
           "range": [
-            154,
-            204
+            151,
+            201
           ],
           "loc": {
             "start": {
-              "line": 9,
+              "line": 10,
               "column": 0
             },
             "end": {
-              "line": 12,
+              "line": 13,
               "column": 1
             }
           }
@@ -655,7 +675,7 @@
       ],
       "range": [
         0,
-        204
+        201
       ],
       "loc": {
         "start": {
@@ -663,7 +683,7 @@
           "column": 0
         },
         "end": {
-          "line": 12,
+          "line": 13,
           "column": 1
         }
       }
@@ -1243,17 +1263,54 @@
       "value": "1987-07-05T17:45:00Z",
       "date": "1987-07-05T17:45:00.000Z",
       "range": [
-        82,
+        81,
+        101
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 1
+        },
+        "end": {
+          "line": 5,
+          "column": 21
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        101,
         102
       ],
       "loc": {
         "start": {
           "line": 5,
-          "column": 2
+          "column": 21
         },
         "end": {
           "line": 5,
           "column": 22
+        }
+      }
+    },
+    {
+      "type": "LocalDateTime",
+      "value": "1979-05-27T07:32:00",
+      "date": "1979-05-26T22:32:00.000Z",
+      "range": [
+        104,
+        123
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 1
+        },
+        "end": {
+          "line": 6,
+          "column": 20
         }
       }
     },
@@ -1261,73 +1318,36 @@
       "type": "Punctuator",
       "value": ",",
       "range": [
-        102,
-        103
-      ],
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 22
-        },
-        "end": {
-          "line": 5,
-          "column": 23
-        }
-      }
-    },
-    {
-      "type": "OffsetDateTime",
-      "value": "1979-05-27T07:32:00Z",
-      "date": "1979-05-27T07:32:00.000Z",
-      "range": [
-        106,
-        126
+        123,
+        124
       ],
       "loc": {
         "start": {
           "line": 6,
-          "column": 2
+          "column": 20
         },
         "end": {
           "line": 6,
-          "column": 22
+          "column": 21
         }
       }
     },
     {
-      "type": "Punctuator",
-      "value": ",",
+      "type": "LocalDate",
+      "value": "2006-06-01",
+      "date": "2006-05-31T15:00:00.000Z",
       "range": [
         126,
-        127
-      ],
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 22
-        },
-        "end": {
-          "line": 6,
-          "column": 23
-        }
-      }
-    },
-    {
-      "type": "OffsetDateTime",
-      "value": "2006-06-01T11:00:00Z",
-      "date": "2006-06-01T11:00:00.000Z",
-      "range": [
-        130,
-        150
+        136
       ],
       "loc": {
         "start": {
           "line": 7,
-          "column": 2
+          "column": 1
         },
         "end": {
           "line": 7,
-          "column": 22
+          "column": 11
         }
       }
     },
@@ -1335,17 +1355,54 @@
       "type": "Punctuator",
       "value": ",",
       "range": [
-        150,
-        151
+        136,
+        137
       ],
       "loc": {
         "start": {
           "line": 7,
-          "column": 22
+          "column": 11
         },
         "end": {
           "line": 7,
-          "column": 23
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "LocalTime",
+      "value": "11:00:00",
+      "date": "0000-01-01T01:41:01.000Z",
+      "range": [
+        139,
+        147
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 1
+        },
+        "end": {
+          "line": 8,
+          "column": 9
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": ",",
+      "range": [
+        147,
+        148
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 9
+        },
+        "end": {
+          "line": 8,
+          "column": 10
         }
       }
     },
@@ -1353,16 +1410,16 @@
       "type": "Punctuator",
       "value": "]",
       "range": [
-        152,
-        153
+        149,
+        150
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 9,
           "column": 1
         }
       }
@@ -1371,16 +1428,16 @@
       "type": "Bare",
       "value": "comments",
       "range": [
-        154,
-        162
+        151,
+        159
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 10,
           "column": 8
         }
       }
@@ -1389,16 +1446,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        163,
-        164
+        160,
+        161
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 10,
           "column": 9
         },
         "end": {
-          "line": 9,
+          "line": 10,
           "column": 10
         }
       }
@@ -1407,16 +1464,16 @@
       "type": "Punctuator",
       "value": "[",
       "range": [
-        165,
-        166
+        162,
+        163
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 10,
           "column": 11
         },
         "end": {
-          "line": 9,
+          "line": 10,
           "column": 12
         }
       }
@@ -1426,16 +1483,16 @@
       "value": "1",
       "number": 1,
       "range": [
-        176,
-        177
+        173,
+        174
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 9
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 10
         }
       }
@@ -1444,16 +1501,16 @@
       "type": "Punctuator",
       "value": ",",
       "range": [
-        177,
-        178
+        174,
+        175
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 11,
           "column": 10
         },
         "end": {
-          "line": 10,
+          "line": 11,
           "column": 11
         }
       }
@@ -1463,16 +1520,16 @@
       "value": "2",
       "number": 2,
       "range": [
-        188,
-        189
+        185,
+        186
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 12,
           "column": 9
         },
         "end": {
-          "line": 11,
+          "line": 12,
           "column": 10
         }
       }
@@ -1481,16 +1538,16 @@
       "type": "Punctuator",
       "value": ",",
       "range": [
-        189,
-        190
+        186,
+        187
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 12,
           "column": 10
         },
         "end": {
-          "line": 11,
+          "line": 12,
           "column": 11
         }
       }
@@ -1499,16 +1556,16 @@
       "type": "Punctuator",
       "value": "]",
       "range": [
-        203,
-        204
+        200,
+        201
       ],
       "loc": {
         "start": {
-          "line": 12,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 12,
+          "line": 13,
           "column": 1
         }
       }
@@ -1519,16 +1576,16 @@
       "type": "Block",
       "value": "this is ok",
       "range": [
-        191,
-        202
+        188,
+        199
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 12,
           "column": 12
         },
         "end": {
-          "line": 11,
+          "line": 12,
           "column": 23
         }
       }
@@ -1536,7 +1593,7 @@
   ],
   "range": [
     0,
-    205
+    202
   ],
   "loc": {
     "start": {
@@ -1544,7 +1601,7 @@
       "column": 0
     },
     "end": {
-      "line": 13,
+      "line": 14,
       "column": 0
     }
   }

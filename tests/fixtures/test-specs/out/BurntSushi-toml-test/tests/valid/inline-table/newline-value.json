@@ -19,5 +19,13 @@
   },
   "tbl-2": {
     "k": "\tHello\n\t"
+  },
+  "no-newline-before-brace": {
+    "a": 1,
+    "b": 2
+  },
+  "no-newline-before-brace-with-comma": {
+    "a": 1,
+    "b": 2
   }
 }

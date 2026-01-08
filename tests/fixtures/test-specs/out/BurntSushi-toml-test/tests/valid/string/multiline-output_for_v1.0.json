@@ -11,334 +11,34 @@
             "keys": [
               {
                 "type": "TOMLBare",
-                "name": "multiline_empty_one",
-                "range": [
-                  57,
-                  76
-                ],
-                "loc": {
-                  "start": {
-                    "line": 3,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 19
-                  }
-                }
-              }
-            ],
-            "range": [
-              57,
-              76
-            ],
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 0
-              },
-              "end": {
-                "line": 3,
-                "column": 19
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "",
-            "style": "basic",
-            "multiline": true,
-            "range": [
-              79,
-              85
-            ],
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 22
-              },
-              "end": {
-                "line": 3,
-                "column": 28
-              }
-            }
-          },
-          "range": [
-            57,
-            85
-          ],
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 0
-            },
-            "end": {
-              "line": 3,
-              "column": 28
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "multiline_empty_two",
-                "range": [
-                  160,
-                  179
-                ],
-                "loc": {
-                  "start": {
-                    "line": 6,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 6,
-                    "column": 19
-                  }
-                }
-              }
-            ],
-            "range": [
-              160,
-              179
-            ],
-            "loc": {
-              "start": {
-                "line": 6,
-                "column": 0
-              },
-              "end": {
-                "line": 6,
-                "column": 19
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "",
-            "style": "basic",
-            "multiline": true,
-            "range": [
-              182,
-              189
-            ],
-            "loc": {
-              "start": {
-                "line": 6,
-                "column": 22
-              },
-              "end": {
-                "line": 7,
-                "column": 3
-              }
-            }
-          },
-          "range": [
-            160,
-            189
-          ],
-          "loc": {
-            "start": {
-              "line": 6,
-              "column": 0
-            },
-            "end": {
-              "line": 7,
-              "column": 3
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "multiline_empty_three",
-                "range": [
-                  303,
-                  324
-                ],
-                "loc": {
-                  "start": {
-                    "line": 11,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 11,
-                    "column": 21
-                  }
-                }
-              }
-            ],
-            "range": [
-              303,
-              324
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 0
-              },
-              "end": {
-                "line": 11,
-                "column": 21
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "",
-            "style": "basic",
-            "multiline": true,
-            "range": [
-              327,
-              339
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 24
-              },
-              "end": {
-                "line": 12,
-                "column": 7
-              }
-            }
-          },
-          "range": [
-            303,
-            339
-          ],
-          "loc": {
-            "start": {
-              "line": 11,
-              "column": 0
-            },
-            "end": {
-              "line": 12,
-              "column": 7
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "multiline_empty_four",
-                "range": [
-                  340,
-                  360
-                ],
-                "loc": {
-                  "start": {
-                    "line": 13,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 13,
-                    "column": 20
-                  }
-                }
-              }
-            ],
-            "range": [
-              340,
-              360
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 0
-              },
-              "end": {
-                "line": 13,
-                "column": 20
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "",
-            "style": "basic",
-            "multiline": true,
-            "range": [
-              363,
-              386
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 23
-              },
-              "end": {
-                "line": 16,
-                "column": 6
-              }
-            }
-          },
-          "range": [
-            340,
-            386
-          ],
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 0
-            },
-            "end": {
-              "line": 16,
-              "column": 6
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
                 "name": "equivalent_one",
                 "range": [
-                  388,
-                  402
+                  57,
+                  71
                 ],
                 "loc": {
                   "start": {
-                    "line": 18,
+                    "line": 3,
                     "column": 0
                   },
                   "end": {
-                    "line": 18,
+                    "line": 3,
                     "column": 14
                   }
                 }
               }
             ],
             "range": [
-              388,
-              402
+              57,
+              71
             ],
             "loc": {
               "start": {
-                "line": 18,
+                "line": 3,
                 "column": 0
               },
               "end": {
-                "line": 18,
+                "line": 3,
                 "column": 14
               }
             }
@@ -350,31 +50,31 @@
             "style": "basic",
             "multiline": false,
             "range": [
-              405,
-              451
+              74,
+              120
             ],
             "loc": {
               "start": {
-                "line": 18,
+                "line": 3,
                 "column": 17
               },
               "end": {
-                "line": 18,
+                "line": 3,
                 "column": 63
               }
             }
           },
           "range": [
-            388,
-            451
+            57,
+            120
           ],
           "loc": {
             "start": {
-              "line": 18,
+              "line": 3,
               "column": 0
             },
             "end": {
-              "line": 18,
+              "line": 3,
               "column": 63
             }
           }
@@ -388,32 +88,32 @@
                 "type": "TOMLBare",
                 "name": "equivalent_two",
                 "range": [
-                  452,
-                  466
+                  121,
+                  135
                 ],
                 "loc": {
                   "start": {
-                    "line": 19,
+                    "line": 4,
                     "column": 0
                   },
                   "end": {
-                    "line": 19,
+                    "line": 4,
                     "column": 14
                   }
                 }
               }
             ],
             "range": [
-              452,
-              466
+              121,
+              135
             ],
             "loc": {
               "start": {
-                "line": 19,
+                "line": 4,
                 "column": 0
               },
               "end": {
-                "line": 19,
+                "line": 4,
                 "column": 14
               }
             }
@@ -425,31 +125,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              469,
-              532
+              138,
+              201
             ],
             "loc": {
               "start": {
-                "line": 19,
+                "line": 4,
                 "column": 17
               },
               "end": {
-                "line": 24,
+                "line": 9,
                 "column": 20
               }
             }
           },
           "range": [
-            452,
-            532
+            121,
+            201
           ],
           "loc": {
             "start": {
-              "line": 19,
+              "line": 4,
               "column": 0
             },
             "end": {
-              "line": 24,
+              "line": 9,
               "column": 20
             }
           }
@@ -463,32 +163,32 @@
                 "type": "TOMLBare",
                 "name": "equivalent_three",
                 "range": [
-                  534,
-                  550
+                  203,
+                  219
                 ],
                 "loc": {
                   "start": {
-                    "line": 26,
+                    "line": 11,
                     "column": 0
                   },
                   "end": {
-                    "line": 26,
+                    "line": 11,
                     "column": 16
                   }
                 }
               }
             ],
             "range": [
-              534,
-              550
+              203,
+              219
             ],
             "loc": {
               "start": {
-                "line": 26,
+                "line": 11,
                 "column": 0
               },
               "end": {
-                "line": 26,
+                "line": 11,
                 "column": 16
               }
             }
@@ -500,31 +200,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              553,
-              639
+              222,
+              308
             ],
             "loc": {
               "start": {
-                "line": 26,
+                "line": 11,
                 "column": 19
               },
               "end": {
-                "line": 30,
+                "line": 15,
                 "column": 10
               }
             }
           },
           "range": [
-            534,
-            639
+            203,
+            308
           ],
           "loc": {
             "start": {
-              "line": 26,
+              "line": 11,
               "column": 0
             },
             "end": {
-              "line": 30,
+              "line": 15,
               "column": 10
             }
           }
@@ -538,32 +238,32 @@
                 "type": "TOMLBare",
                 "name": "whitespace-after-bs",
                 "range": [
-                  641,
-                  660
+                  310,
+                  329
                 ],
                 "loc": {
                   "start": {
-                    "line": 32,
+                    "line": 17,
                     "column": 0
                   },
                   "end": {
-                    "line": 32,
+                    "line": 17,
                     "column": 19
                   }
                 }
               }
             ],
             "range": [
-              641,
-              660
+              310,
+              329
             ],
             "loc": {
               "start": {
-                "line": 32,
+                "line": 17,
                 "column": 0
               },
               "end": {
-                "line": 32,
+                "line": 17,
                 "column": 19
               }
             }
@@ -575,31 +275,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              663,
-              753
+              332,
+              422
             ],
             "loc": {
               "start": {
-                "line": 32,
+                "line": 17,
                 "column": 22
               },
               "end": {
-                "line": 36,
+                "line": 21,
                 "column": 10
               }
             }
           },
           "range": [
-            641,
-            753
+            310,
+            422
           ],
           "loc": {
             "start": {
-              "line": 32,
+              "line": 17,
               "column": 0
             },
             "end": {
-              "line": 36,
+              "line": 21,
               "column": 10
             }
           }
@@ -613,32 +313,32 @@
                 "type": "TOMLBare",
                 "name": "no-space",
                 "range": [
-                  755,
-                  763
+                  424,
+                  432
                 ],
                 "loc": {
                   "start": {
-                    "line": 38,
+                    "line": 23,
                     "column": 0
                   },
                   "end": {
-                    "line": 38,
+                    "line": 23,
                     "column": 8
                   }
                 }
               }
             ],
             "range": [
-              755,
-              763
+              424,
+              432
             ],
             "loc": {
               "start": {
-                "line": 38,
+                "line": 23,
                 "column": 0
               },
               "end": {
-                "line": 38,
+                "line": 23,
                 "column": 8
               }
             }
@@ -650,31 +350,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              766,
-              780
+              435,
+              449
             ],
             "loc": {
               "start": {
-                "line": 38,
+                "line": 23,
                 "column": 11
               },
               "end": {
-                "line": 39,
+                "line": 24,
                 "column": 8
               }
             }
           },
           "range": [
-            755,
-            780
+            424,
+            449
           ],
           "loc": {
             "start": {
-              "line": 38,
+              "line": 23,
               "column": 0
             },
             "end": {
-              "line": 39,
+              "line": 24,
               "column": 8
             }
           }
@@ -688,32 +388,32 @@
                 "type": "TOMLBare",
                 "name": "keep-ws-before",
                 "range": [
-                  803,
-                  817
+                  472,
+                  486
                 ],
                 "loc": {
                   "start": {
-                    "line": 42,
+                    "line": 27,
                     "column": 0
                   },
                   "end": {
-                    "line": 42,
+                    "line": 27,
                     "column": 14
                   }
                 }
               }
             ],
             "range": [
-              803,
-              817
+              472,
+              486
             ],
             "loc": {
               "start": {
-                "line": 42,
+                "line": 27,
                 "column": 0
               },
               "end": {
-                "line": 42,
+                "line": 27,
                 "column": 14
               }
             }
@@ -725,31 +425,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              820,
-              837
+              489,
+              506
             ],
             "loc": {
               "start": {
-                "line": 42,
+                "line": 27,
                 "column": 17
               },
               "end": {
-                "line": 43,
+                "line": 28,
                 "column": 7
               }
             }
           },
           "range": [
-            803,
-            837
+            472,
+            506
           ],
           "loc": {
             "start": {
-              "line": 42,
+              "line": 27,
               "column": 0
             },
             "end": {
-              "line": 43,
+              "line": 28,
               "column": 7
             }
           }
@@ -763,32 +463,32 @@
                 "type": "TOMLBare",
                 "name": "escape-bs-1",
                 "range": [
-                  839,
-                  850
+                  508,
+                  519
                 ],
                 "loc": {
                   "start": {
-                    "line": 45,
+                    "line": 30,
                     "column": 0
                   },
                   "end": {
-                    "line": 45,
+                    "line": 30,
                     "column": 11
                   }
                 }
               }
             ],
             "range": [
-              839,
-              850
+              508,
+              519
             ],
             "loc": {
               "start": {
-                "line": 45,
+                "line": 30,
                 "column": 0
               },
               "end": {
-                "line": 45,
+                "line": 30,
                 "column": 11
               }
             }
@@ -800,31 +500,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              853,
-              865
+              522,
+              534
             ],
             "loc": {
               "start": {
-                "line": 45,
+                "line": 30,
                 "column": 14
               },
               "end": {
-                "line": 46,
+                "line": 31,
                 "column": 4
               }
             }
           },
           "range": [
-            839,
-            865
+            508,
+            534
           ],
           "loc": {
             "start": {
-              "line": 45,
+              "line": 30,
               "column": 0
             },
             "end": {
-              "line": 46,
+              "line": 31,
               "column": 4
             }
           }
@@ -838,32 +538,32 @@
                 "type": "TOMLBare",
                 "name": "escape-bs-2",
                 "range": [
-                  867,
-                  878
+                  536,
+                  547
                 ],
                 "loc": {
                   "start": {
-                    "line": 48,
+                    "line": 33,
                     "column": 0
                   },
                   "end": {
-                    "line": 48,
+                    "line": 33,
                     "column": 11
                   }
                 }
               }
             ],
             "range": [
-              867,
-              878
+              536,
+              547
             ],
             "loc": {
               "start": {
-                "line": 48,
+                "line": 33,
                 "column": 0
               },
               "end": {
-                "line": 48,
+                "line": 33,
                 "column": 11
               }
             }
@@ -875,31 +575,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              881,
-              894
+              550,
+              563
             ],
             "loc": {
               "start": {
-                "line": 48,
+                "line": 33,
                 "column": 14
               },
               "end": {
-                "line": 49,
+                "line": 34,
                 "column": 4
               }
             }
           },
           "range": [
-            867,
-            894
+            536,
+            563
           ],
           "loc": {
             "start": {
-              "line": 48,
+              "line": 33,
               "column": 0
             },
             "end": {
-              "line": 49,
+              "line": 34,
               "column": 4
             }
           }
@@ -913,32 +613,32 @@
                 "type": "TOMLBare",
                 "name": "escape-bs-3",
                 "range": [
-                  896,
-                  907
+                  565,
+                  576
                 ],
                 "loc": {
                   "start": {
-                    "line": 51,
+                    "line": 36,
                     "column": 0
                   },
                   "end": {
-                    "line": 51,
+                    "line": 36,
                     "column": 11
                   }
                 }
               }
             ],
             "range": [
-              896,
-              907
+              565,
+              576
             ],
             "loc": {
               "start": {
-                "line": 51,
+                "line": 36,
                 "column": 0
               },
               "end": {
-                "line": 51,
+                "line": 36,
                 "column": 11
               }
             }
@@ -950,31 +650,31 @@
             "style": "basic",
             "multiline": true,
             "range": [
-              910,
-              926
+              579,
+              595
             ],
             "loc": {
               "start": {
-                "line": 51,
+                "line": 36,
                 "column": 14
               },
               "end": {
-                "line": 52,
+                "line": 37,
                 "column": 6
               }
             }
           },
           "range": [
-            896,
-            926
+            565,
+            595
           ],
           "loc": {
             "start": {
-              "line": 51,
+              "line": 36,
               "column": 0
             },
             "end": {
-              "line": 52,
+              "line": 37,
               "column": 6
             }
           }
@@ -982,7 +682,7 @@
       ],
       "range": [
         57,
-        926
+        595
       ],
       "loc": {
         "start": {
@@ -990,7 +690,7 @@
           "column": 0
         },
         "end": {
-          "line": 52,
+          "line": 37,
           "column": 6
         }
       }
@@ -1000,238 +700,18 @@
   "tokens": [
     {
       "type": "Bare",
-      "value": "multiline_empty_one",
-      "range": [
-        57,
-        76
-      ],
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 19
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        77,
-        78
-      ],
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 20
-        },
-        "end": {
-          "line": 3,
-          "column": 21
-        }
-      }
-    },
-    {
-      "type": "MultiLineBasicString",
-      "value": "\"\"\"\"\"\"",
-      "string": "",
-      "range": [
-        79,
-        85
-      ],
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 22
-        },
-        "end": {
-          "line": 3,
-          "column": 28
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "multiline_empty_two",
-      "range": [
-        160,
-        179
-      ],
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 0
-        },
-        "end": {
-          "line": 6,
-          "column": 19
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        180,
-        181
-      ],
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 20
-        },
-        "end": {
-          "line": 6,
-          "column": 21
-        }
-      }
-    },
-    {
-      "type": "MultiLineBasicString",
-      "value": "\"\"\"\n\"\"\"",
-      "string": "",
-      "range": [
-        182,
-        189
-      ],
-      "loc": {
-        "start": {
-          "line": 6,
-          "column": 22
-        },
-        "end": {
-          "line": 7,
-          "column": 3
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "multiline_empty_three",
-      "range": [
-        303,
-        324
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 0
-        },
-        "end": {
-          "line": 11,
-          "column": 21
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        325,
-        326
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 22
-        },
-        "end": {
-          "line": 11,
-          "column": 23
-        }
-      }
-    },
-    {
-      "type": "MultiLineBasicString",
-      "value": "\"\"\"\\\n    \"\"\"",
-      "string": "",
-      "range": [
-        327,
-        339
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 24
-        },
-        "end": {
-          "line": 12,
-          "column": 7
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "multiline_empty_four",
-      "range": [
-        340,
-        360
-      ],
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 13,
-          "column": 20
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        361,
-        362
-      ],
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 21
-        },
-        "end": {
-          "line": 13,
-          "column": 22
-        }
-      }
-    },
-    {
-      "type": "MultiLineBasicString",
-      "value": "\"\"\"\\\n   \\\n   \\  \n   \"\"\"",
-      "string": "",
-      "range": [
-        363,
-        386
-      ],
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 23
-        },
-        "end": {
-          "line": 16,
-          "column": 6
-        }
-      }
-    },
-    {
-      "type": "Bare",
       "value": "equivalent_one",
       "range": [
-        388,
-        402
+        57,
+        71
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 3,
           "column": 0
         },
         "end": {
-          "line": 18,
+          "line": 3,
           "column": 14
         }
       }
@@ -1240,16 +720,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        403,
-        404
+        72,
+        73
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 3,
           "column": 15
         },
         "end": {
-          "line": 18,
+          "line": 3,
           "column": 16
         }
       }
@@ -1259,16 +739,16 @@
       "value": "\"The quick brown fox jumps over the lazy dog.\"",
       "string": "The quick brown fox jumps over the lazy dog.",
       "range": [
-        405,
-        451
+        74,
+        120
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 3,
           "column": 17
         },
         "end": {
-          "line": 18,
+          "line": 3,
           "column": 63
         }
       }
@@ -1277,16 +757,16 @@
       "type": "Bare",
       "value": "equivalent_two",
       "range": [
-        452,
-        466
+        121,
+        135
       ],
       "loc": {
         "start": {
-          "line": 19,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 19,
+          "line": 4,
           "column": 14
         }
       }
@@ -1295,16 +775,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        467,
-        468
+        136,
+        137
       ],
       "loc": {
         "start": {
-          "line": 19,
+          "line": 4,
           "column": 15
         },
         "end": {
-          "line": 19,
+          "line": 4,
           "column": 16
         }
       }
@@ -1314,16 +794,16 @@
       "value": "\"\"\"\nThe quick brown \\\n\n\n  fox jumps over \\\n    the lazy dog.\"\"\"",
       "string": "The quick brown fox jumps over the lazy dog.",
       "range": [
-        469,
-        532
+        138,
+        201
       ],
       "loc": {
         "start": {
-          "line": 19,
+          "line": 4,
           "column": 17
         },
         "end": {
-          "line": 24,
+          "line": 9,
           "column": 20
         }
       }
@@ -1332,16 +812,16 @@
       "type": "Bare",
       "value": "equivalent_three",
       "range": [
-        534,
-        550
+        203,
+        219
       ],
       "loc": {
         "start": {
-          "line": 26,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 26,
+          "line": 11,
           "column": 16
         }
       }
@@ -1350,16 +830,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        551,
-        552
+        220,
+        221
       ],
       "loc": {
         "start": {
-          "line": 26,
+          "line": 11,
           "column": 17
         },
         "end": {
-          "line": 26,
+          "line": 11,
           "column": 18
         }
       }
@@ -1369,16 +849,16 @@
       "value": "\"\"\"\\\n       The quick brown \\\n       fox jumps over \\\n       the lazy dog.\\\n       \"\"\"",
       "string": "The quick brown fox jumps over the lazy dog.",
       "range": [
-        553,
-        639
+        222,
+        308
       ],
       "loc": {
         "start": {
-          "line": 26,
+          "line": 11,
           "column": 19
         },
         "end": {
-          "line": 30,
+          "line": 15,
           "column": 10
         }
       }
@@ -1387,16 +867,16 @@
       "type": "Bare",
       "value": "whitespace-after-bs",
       "range": [
-        641,
-        660
+        310,
+        329
       ],
       "loc": {
         "start": {
-          "line": 32,
+          "line": 17,
           "column": 0
         },
         "end": {
-          "line": 32,
+          "line": 17,
           "column": 19
         }
       }
@@ -1405,16 +885,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        661,
-        662
+        330,
+        331
       ],
       "loc": {
         "start": {
-          "line": 32,
+          "line": 17,
           "column": 20
         },
         "end": {
-          "line": 32,
+          "line": 17,
           "column": 21
         }
       }
@@ -1424,16 +904,16 @@
       "value": "\"\"\"\\\n       The quick brown \\\n       fox jumps over \\   \n       the lazy dog.\\\t\n       \"\"\"",
       "string": "The quick brown fox jumps over the lazy dog.",
       "range": [
-        663,
-        753
+        332,
+        422
       ],
       "loc": {
         "start": {
-          "line": 32,
+          "line": 17,
           "column": 22
         },
         "end": {
-          "line": 36,
+          "line": 21,
           "column": 10
         }
       }
@@ -1442,16 +922,16 @@
       "type": "Bare",
       "value": "no-space",
       "range": [
-        755,
-        763
+        424,
+        432
       ],
       "loc": {
         "start": {
-          "line": 38,
+          "line": 23,
           "column": 0
         },
         "end": {
-          "line": 38,
+          "line": 23,
           "column": 8
         }
       }
@@ -1460,16 +940,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        764,
-        765
+        433,
+        434
       ],
       "loc": {
         "start": {
-          "line": 38,
+          "line": 23,
           "column": 9
         },
         "end": {
-          "line": 38,
+          "line": 23,
           "column": 10
         }
       }
@@ -1479,16 +959,16 @@
       "value": "\"\"\"a\\\n    b\"\"\"",
       "string": "ab",
       "range": [
-        766,
-        780
+        435,
+        449
       ],
       "loc": {
         "start": {
-          "line": 38,
+          "line": 23,
           "column": 11
         },
         "end": {
-          "line": 39,
+          "line": 24,
           "column": 8
         }
       }
@@ -1497,16 +977,16 @@
       "type": "Bare",
       "value": "keep-ws-before",
       "range": [
-        803,
-        817
+        472,
+        486
       ],
       "loc": {
         "start": {
-          "line": 42,
+          "line": 27,
           "column": 0
         },
         "end": {
-          "line": 42,
+          "line": 27,
           "column": 14
         }
       }
@@ -1515,16 +995,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        818,
-        819
+        487,
+        488
       ],
       "loc": {
         "start": {
-          "line": 42,
+          "line": 27,
           "column": 15
         },
         "end": {
-          "line": 42,
+          "line": 27,
           "column": 16
         }
       }
@@ -1534,16 +1014,16 @@
       "value": "\"\"\"a   \t\\\n   b\"\"\"",
       "string": "a   \tb",
       "range": [
-        820,
-        837
+        489,
+        506
       ],
       "loc": {
         "start": {
-          "line": 42,
+          "line": 27,
           "column": 17
         },
         "end": {
-          "line": 43,
+          "line": 28,
           "column": 7
         }
       }
@@ -1552,16 +1032,16 @@
       "type": "Bare",
       "value": "escape-bs-1",
       "range": [
-        839,
-        850
+        508,
+        519
       ],
       "loc": {
         "start": {
-          "line": 45,
+          "line": 30,
           "column": 0
         },
         "end": {
-          "line": 45,
+          "line": 30,
           "column": 11
         }
       }
@@ -1570,16 +1050,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        851,
-        852
+        520,
+        521
       ],
       "loc": {
         "start": {
-          "line": 45,
+          "line": 30,
           "column": 12
         },
         "end": {
-          "line": 45,
+          "line": 30,
           "column": 13
         }
       }
@@ -1589,16 +1069,16 @@
       "value": "\"\"\"a \\\\\nb\"\"\"",
       "string": "a \\\nb",
       "range": [
-        853,
-        865
+        522,
+        534
       ],
       "loc": {
         "start": {
-          "line": 45,
+          "line": 30,
           "column": 14
         },
         "end": {
-          "line": 46,
+          "line": 31,
           "column": 4
         }
       }
@@ -1607,16 +1087,16 @@
       "type": "Bare",
       "value": "escape-bs-2",
       "range": [
-        867,
-        878
+        536,
+        547
       ],
       "loc": {
         "start": {
-          "line": 48,
+          "line": 33,
           "column": 0
         },
         "end": {
-          "line": 48,
+          "line": 33,
           "column": 11
         }
       }
@@ -1625,16 +1105,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        879,
-        880
+        548,
+        549
       ],
       "loc": {
         "start": {
-          "line": 48,
+          "line": 33,
           "column": 12
         },
         "end": {
-          "line": 48,
+          "line": 33,
           "column": 13
         }
       }
@@ -1644,16 +1124,16 @@
       "value": "\"\"\"a \\\\\\\nb\"\"\"",
       "string": "a \\b",
       "range": [
-        881,
-        894
+        550,
+        563
       ],
       "loc": {
         "start": {
-          "line": 48,
+          "line": 33,
           "column": 14
         },
         "end": {
-          "line": 49,
+          "line": 34,
           "column": 4
         }
       }
@@ -1662,16 +1142,16 @@
       "type": "Bare",
       "value": "escape-bs-3",
       "range": [
-        896,
-        907
+        565,
+        576
       ],
       "loc": {
         "start": {
-          "line": 51,
+          "line": 36,
           "column": 0
         },
         "end": {
-          "line": 51,
+          "line": 36,
           "column": 11
         }
       }
@@ -1680,16 +1160,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        908,
-        909
+        577,
+        578
       ],
       "loc": {
         "start": {
-          "line": 51,
+          "line": 36,
           "column": 12
         },
         "end": {
-          "line": 51,
+          "line": 36,
           "column": 13
         }
       }
@@ -1699,16 +1179,16 @@
       "value": "\"\"\"a \\\\\\\\\n  b\"\"\"",
       "string": "a \\\\\n  b",
       "range": [
-        910,
-        926
+        579,
+        595
       ],
       "loc": {
         "start": {
-          "line": 51,
+          "line": 36,
           "column": 14
         },
         "end": {
-          "line": 52,
+          "line": 37,
           "column": 6
         }
       }
@@ -1735,72 +1215,18 @@
     },
     {
       "type": "Block",
-      "value": " A newline immediately following the opening delimiter will be trimmed.",
-      "range": [
-        87,
-        159
-      ],
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 0
-        },
-        "end": {
-          "line": 5,
-          "column": 72
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": " \\ at the end of line trims newlines as well; note that last \\ is followed by",
-      "range": [
-        191,
-        269
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 78
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": " two spaces, which are ignored.",
-      "range": [
-        270,
-        302
-      ],
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 0
-        },
-        "end": {
-          "line": 10,
-          "column": 32
-        }
-      }
-    },
-    {
-      "type": "Block",
       "value": " Has tab character.",
       "range": [
-        782,
-        802
+        451,
+        471
       ],
       "loc": {
         "start": {
-          "line": 41,
+          "line": 26,
           "column": 0
         },
         "end": {
-          "line": 41,
+          "line": 26,
           "column": 20
         }
       }
@@ -1808,7 +1234,7 @@
   ],
   "range": [
     0,
-    927
+    596
   ],
   "loc": {
     "start": {
@@ -1816,7 +1242,7 @@
       "column": 0
     },
     "end": {
-      "line": 53,
+      "line": 38,
       "column": 0
     }
   }

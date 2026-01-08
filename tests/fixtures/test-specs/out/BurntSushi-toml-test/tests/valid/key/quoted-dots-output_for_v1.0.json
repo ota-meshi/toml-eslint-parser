@@ -579,11 +579,88 @@
                   "column": 19
                 }
               }
+            },
+            {
+              "type": "TOMLKeyValue",
+              "key": {
+                "type": "TOMLKey",
+                "keys": [
+                  {
+                    "type": "TOMLQuoted",
+                    "kind": "string",
+                    "value": "escaped.dot",
+                    "style": "basic",
+                    "multiline": false,
+                    "range": [
+                      112,
+                      130
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 0
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 18
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  112,
+                  130
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 18
+                  }
+                }
+              },
+              "value": {
+                "type": "TOMLValue",
+                "kind": "integer",
+                "value": 7,
+                "number": "7",
+                "range": [
+                  133,
+                  134
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 22
+                  }
+                }
+              },
+              "range": [
+                112,
+                134
+              ],
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 0
+                },
+                "end": {
+                  "line": 11,
+                  "column": 22
+                }
+              }
             }
           ],
           "range": [
             66,
-            111
+            134
           ],
           "loc": {
             "start": {
@@ -591,15 +668,15 @@
               "column": 0
             },
             "end": {
-              "line": 10,
-              "column": 19
+              "line": 11,
+              "column": 22
             }
           }
         }
       ],
       "range": [
         0,
-        111
+        134
       ],
       "loc": {
         "start": {
@@ -607,8 +684,8 @@
           "column": 0
         },
         "end": {
-          "line": 10,
-          "column": 19
+          "line": 11,
+          "column": 22
         }
       }
     }
@@ -1091,12 +1168,68 @@
           "column": 19
         }
       }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"escaped\\u002edot\"",
+      "string": "escaped.dot",
+      "range": [
+        112,
+        130
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 18
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        131,
+        132
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 19
+        },
+        "end": {
+          "line": 11,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "Integer",
+      "value": "7",
+      "number": 7,
+      "range": [
+        133,
+        134
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 21
+        },
+        "end": {
+          "line": 11,
+          "column": 22
+        }
+      }
     }
   ],
   "comments": [],
   "range": [
     0,
-    112
+    135
   ],
   "loc": {
     "start": {
@@ -1104,7 +1237,7 @@
       "column": 0
     },
     "end": {
-      "line": 11,
+      "line": 12,
       "column": 0
     }
   }
