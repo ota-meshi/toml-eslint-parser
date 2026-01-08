@@ -1,6 +1,7 @@
 {
   "a b": 1,
   " c d ": 2,
+  "  much \t\t  whitespace  \t\n  \r\n  ": 3,
   " tbl ": {
     "\ttab\ttab\t": "tab"
   }

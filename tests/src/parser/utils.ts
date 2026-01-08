@@ -117,6 +117,7 @@ function* listUpParserFixtures(): Generator<Fixture> {
   }
 }
 
+// eslint-disable-next-line complexity -- OK
 function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
   const BURNTSUSHI_TESTS_ROOTS = [
     {
@@ -141,6 +142,26 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
       ),
     },
   ];
+
+  const testFilesForV1P0 = fs
+    .readFileSync(
+      path.resolve(
+        __dirname,
+        "../../fixtures/test-specs/BurntSushi-toml-test/tests/files-toml-1.0.0",
+      ),
+      "utf8",
+    )
+    .split("\n");
+  const testFilesForV1P1 = fs
+    .readFileSync(
+      path.resolve(
+        __dirname,
+        "../../fixtures/test-specs/BurntSushi-toml-test/tests/files-toml-1.1.0",
+      ),
+      "utf8",
+    )
+    .split("\n");
+
   for (const rootDir of BURNTSUSHI_TESTS_ROOTS) {
     for (const d of recursiveReaddirSync(rootDir.in)) {
       if (!d.name.endsWith(".toml")) {
@@ -148,38 +169,89 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
       }
       const inputFileName = path.join(d.path, d.name);
       const filename = inputFileName.slice(rootDir.in.length + 1);
+      const testFilename = `${rootDir.invalid ? "invalid" : "valid"}/${filename}`;
 
-      const isTOML1P1OnlySpec = [
-        // Spec for TOML 1.1
-        "string/hex-escape.toml",
-        "string/escape-esc.toml",
-        "key/unicode.toml",
-        "inline-table/newline.toml",
-        "datetime/no-seconds.toml",
-      ].includes(filename);
+      const isTOML1P0Spec = testFilesForV1P0.includes(testFilename);
+      const isTOML1P1Spec = testFilesForV1P1.includes(testFilename);
+
+      const validInTOML1P0 =
+        !rootDir.invalid &&
+        !isTOML1P0Spec &&
+        [
+          // Spec for TOML 1.1 but also valid in TOML 1.0
+          "spec-1.1.0/common-0.toml",
+          "spec-1.1.0/common-1.toml",
+          "spec-1.1.0/common-3.toml",
+          "spec-1.1.0/common-4.toml",
+          "spec-1.1.0/common-6.toml",
+          "spec-1.1.0/common-7.toml",
+          "spec-1.1.0/common-8.toml",
+          "spec-1.1.0/common-9.toml",
+          "spec-1.1.0/common-10.toml",
+          "spec-1.1.0/common-11.toml",
+          "spec-1.1.0/common-13.toml",
+          "spec-1.1.0/common-14.toml",
+          "spec-1.1.0/common-15.toml",
+          "spec-1.1.0/common-16.toml",
+          "spec-1.1.0/common-17.toml",
+          "spec-1.1.0/common-18.toml",
+          "spec-1.1.0/common-19.toml",
+          "spec-1.1.0/common-20.toml",
+          "spec-1.1.0/common-21.toml",
+          "spec-1.1.0/common-22.toml",
+          "spec-1.1.0/common-23.toml",
+          "spec-1.1.0/common-24.toml",
+          "spec-1.1.0/common-25.toml",
+          "spec-1.1.0/common-26.toml",
+          "spec-1.1.0/common-27.toml",
+          "spec-1.1.0/common-28.toml",
+          "spec-1.1.0/common-30.toml",
+          "spec-1.1.0/common-32.toml",
+          "spec-1.1.0/common-33.toml",
+          "spec-1.1.0/common-35.toml",
+          "spec-1.1.0/common-36.toml",
+          "spec-1.1.0/common-37.toml",
+          "spec-1.1.0/common-38.toml",
+          "spec-1.1.0/common-39.toml",
+          "spec-1.1.0/common-40.toml",
+          "spec-1.1.0/common-41.toml",
+          "spec-1.1.0/common-42.toml",
+          "spec-1.1.0/common-43.toml",
+          "spec-1.1.0/common-44.toml",
+          "spec-1.1.0/common-45.toml",
+          "spec-1.1.0/common-46.toml",
+          "spec-1.1.0/common-48.toml",
+          "spec-1.1.0/common-49.toml",
+          "spec-1.1.0/common-50.toml",
+          "spec-1.1.0/common-51.toml",
+          "spec-1.1.0/common-52.toml",
+          "spec-1.1.0/common-53.toml",
+        ].includes(filename);
 
       const validInTOML1P1 =
-        rootDir.invalid &&
-        [
-          "string/basic-byte-escapes.toml",
-          "key/special-character.toml",
-          "datetime/no-secs.toml",
-          "local-datetime/no-secs.toml",
-          "local-time/no-secs.toml",
-          "inline-table/linebreak-1.toml",
-          "inline-table/linebreak-2.toml",
-          "inline-table/linebreak-3.toml",
-          "inline-table/linebreak-4.toml",
-          "inline-table/trailing-comma.toml",
-          "control/comment-del.toml",
-          "control/comment-lf.toml",
-          "control/comment-us.toml",
-        ].includes(filename);
+        (!rootDir.invalid &&
+          !isTOML1P1Spec &&
+          // Spec for TOML 1.0 but also valid in TOML 1.1
+          isTOML1P0Spec) ||
+        (rootDir.invalid &&
+          !isTOML1P1Spec &&
+          [
+            // Invalid Spec for TOML 1.0 but valid in TOML 1.1
+            "datetime/no-secs.toml",
+            "local-datetime/no-secs.toml",
+            "local-time/no-secs.toml",
+            "string/basic-byte-escapes.toml",
+            "inline-table/linebreak-01.toml",
+            "inline-table/linebreak-02.toml",
+            "inline-table/linebreak-03.toml",
+            "inline-table/linebreak-04.toml",
+            "inline-table/trailing-comma.toml",
+          ].includes(filename));
 
       const hasCR = [
         "control/bare-cr.toml",
         "control/multi-cr.toml",
-        "control/rawmulti-cd.toml",
+        "control/rawmulti-cr.toml",
       ].includes(filename);
 
       let specAssertion: SpecAssertion | undefined;
@@ -198,8 +270,10 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         };
       }
 
-      const invalidForV1P0 = (rootDir.invalid && !hasCR) || isTOML1P1OnlySpec;
-      const invalidForV1P1 = rootDir.invalid && !hasCR && !validInTOML1P1;
+      const invalidForV1P0 =
+        !validInTOML1P0 && (rootDir.invalid || !isTOML1P0Spec) && !hasCR;
+      const invalidForV1P1 =
+        !validInTOML1P1 && (rootDir.invalid || !isTOML1P1Spec) && !hasCR;
 
       yield {
         filename,

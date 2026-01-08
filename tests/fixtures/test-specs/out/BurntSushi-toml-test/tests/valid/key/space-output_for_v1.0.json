@@ -159,6 +159,83 @@
           }
         },
         {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLQuoted",
+                "kind": "string",
+                "value": "  much \t\t  whitespace  \t\n  \r\n  ",
+                "style": "basic",
+                "multiline": false,
+                "range": [
+                  79,
+                  115
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 36
+                  }
+                }
+              }
+            ],
+            "range": [
+              79,
+              115
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 36
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "integer",
+            "value": 3,
+            "number": "3",
+            "range": [
+              118,
+              119
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 39
+              },
+              "end": {
+                "line": 4,
+                "column": 40
+              }
+            }
+          },
+          "range": [
+            79,
+            119
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 40
+            }
+          }
+        },
+        {
           "type": "TOMLTable",
           "kind": "standard",
           "key": {
@@ -171,32 +248,32 @@
                 "style": "basic",
                 "multiline": false,
                 "range": [
-                  82,
-                  89
+                  123,
+                  130
                 ],
                 "loc": {
                   "start": {
-                    "line": 5,
+                    "line": 6,
                     "column": 2
                   },
                   "end": {
-                    "line": 5,
+                    "line": 6,
                     "column": 9
                   }
                 }
               }
             ],
             "range": [
-              82,
-              89
+              123,
+              130
             ],
             "loc": {
               "start": {
-                "line": 5,
+                "line": 6,
                 "column": 2
               },
               "end": {
-                "line": 5,
+                "line": 6,
                 "column": 9
               }
             }
@@ -217,32 +294,32 @@
                     "style": "basic",
                     "multiline": false,
                     "range": [
-                      92,
-                      106
+                      133,
+                      147
                     ],
                     "loc": {
                       "start": {
-                        "line": 6,
+                        "line": 7,
                         "column": 0
                       },
                       "end": {
-                        "line": 6,
+                        "line": 7,
                         "column": 14
                       }
                     }
                   }
                 ],
                 "range": [
-                  92,
-                  106
+                  133,
+                  147
                 ],
                 "loc": {
                   "start": {
-                    "line": 6,
+                    "line": 7,
                     "column": 0
                   },
                   "end": {
-                    "line": 6,
+                    "line": 7,
                     "column": 14
                   }
                 }
@@ -254,47 +331,47 @@
                 "style": "basic",
                 "multiline": false,
                 "range": [
-                  109,
-                  114
+                  150,
+                  155
                 ],
                 "loc": {
                   "start": {
-                    "line": 6,
+                    "line": 7,
                     "column": 17
                   },
                   "end": {
-                    "line": 6,
+                    "line": 7,
                     "column": 22
                   }
                 }
               },
               "range": [
-                92,
-                114
+                133,
+                155
               ],
               "loc": {
                 "start": {
-                  "line": 6,
+                  "line": 7,
                   "column": 0
                 },
                 "end": {
-                  "line": 6,
+                  "line": 7,
                   "column": 22
                 }
               }
             }
           ],
           "range": [
-            80,
-            114
+            121,
+            155
           ],
           "loc": {
             "start": {
-              "line": 5,
+              "line": 6,
               "column": 0
             },
             "end": {
-              "line": 6,
+              "line": 7,
               "column": 22
             }
           }
@@ -302,7 +379,7 @@
       ],
       "range": [
         55,
-        114
+        155
       ],
       "loc": {
         "start": {
@@ -310,7 +387,7 @@
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 22
         }
       }
@@ -431,19 +508,75 @@
       }
     },
     {
-      "type": "Punctuator",
-      "value": "[",
+      "type": "BasicString",
+      "value": "\"  much \t\t  whitespace  \t\\n  \\r\\n  \"",
+      "string": "  much \t\t  whitespace  \t\n  \r\n  ",
       "range": [
-        80,
-        81
+        79,
+        115
       ],
       "loc": {
         "start": {
-          "line": 5,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 4,
+          "column": 36
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        116,
+        117
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 37
+        },
+        "end": {
+          "line": 4,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": "Integer",
+      "value": "3",
+      "number": 3,
+      "range": [
+        118,
+        119
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 39
+        },
+        "end": {
+          "line": 4,
+          "column": 40
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "[",
+      "range": [
+        121,
+        122
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
           "column": 1
         }
       }
@@ -453,16 +586,16 @@
       "value": "\" tbl \"",
       "string": " tbl ",
       "range": [
-        82,
-        89
+        123,
+        130
       ],
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 2
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 9
         }
       }
@@ -471,16 +604,16 @@
       "type": "Punctuator",
       "value": "]",
       "range": [
-        90,
-        91
+        131,
+        132
       ],
       "loc": {
         "start": {
-          "line": 5,
+          "line": 6,
           "column": 10
         },
         "end": {
-          "line": 5,
+          "line": 6,
           "column": 11
         }
       }
@@ -490,16 +623,16 @@
       "value": "\"\\ttab\\ttab\\t\"",
       "string": "\ttab\ttab\t",
       "range": [
-        92,
-        106
+        133,
+        147
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 14
         }
       }
@@ -508,16 +641,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        107,
-        108
+        148,
+        149
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 15
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 16
         }
       }
@@ -527,16 +660,16 @@
       "value": "\"tab\"",
       "string": "tab",
       "range": [
-        109,
-        114
+        150,
+        155
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 7,
           "column": 17
         },
         "end": {
-          "line": 6,
+          "line": 7,
           "column": 22
         }
       }
@@ -564,7 +697,7 @@
   ],
   "range": [
     0,
-    115
+    156
   ],
   "loc": {
     "start": {
@@ -572,7 +705,7 @@
       "column": 0
     },
     "end": {
-      "line": 7,
+      "line": 8,
       "column": 0
     }
   }

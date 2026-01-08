@@ -8,7 +8,8 @@
   "table": {
     "withdot": {
       "plain": 5,
-      "key.with.dots": 6
+      "key.with.dots": 6,
+      "escaped.dot": 7
     }
   }
 }

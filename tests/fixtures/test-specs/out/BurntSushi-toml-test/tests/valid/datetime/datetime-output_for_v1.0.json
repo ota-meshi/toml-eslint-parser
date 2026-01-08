@@ -87,32 +87,32 @@
                 "type": "TOMLBare",
                 "name": "lower",
                 "range": [
-                  29,
-                  34
+                  94,
+                  99
                 ],
                 "loc": {
                   "start": {
-                    "line": 2,
+                    "line": 4,
                     "column": 0
                   },
                   "end": {
-                    "line": 2,
+                    "line": 4,
                     "column": 5
                   }
                 }
               }
             ],
             "range": [
-              29,
-              34
+              94,
+              99
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 4,
                 "column": 0
               },
               "end": {
-                "line": 2,
+                "line": 4,
                 "column": 5
               }
             }
@@ -123,31 +123,31 @@
             "value": "1987-07-05T17:45:00.000Z",
             "datetime": "1987-07-05t17:45:00z",
             "range": [
-              37,
-              57
+              102,
+              122
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 4,
                 "column": 8
               },
               "end": {
-                "line": 2,
+                "line": 4,
                 "column": 28
               }
             }
           },
           "range": [
-            29,
-            57
+            94,
+            122
           ],
           "loc": {
             "start": {
-              "line": 2,
+              "line": 4,
               "column": 0
             },
             "end": {
-              "line": 2,
+              "line": 4,
               "column": 28
             }
           }
@@ -155,7 +155,7 @@
       ],
       "range": [
         0,
-        57
+        122
       ],
       "loc": {
         "start": {
@@ -163,7 +163,7 @@
           "column": 0
         },
         "end": {
-          "line": 2,
+          "line": 4,
           "column": 28
         }
       }
@@ -230,16 +230,16 @@
       "type": "Bare",
       "value": "lower",
       "range": [
-        29,
-        34
+        94,
+        99
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 2,
+          "line": 4,
           "column": 5
         }
       }
@@ -248,16 +248,16 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        35,
-        36
+        100,
+        101
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 4,
           "column": 6
         },
         "end": {
-          "line": 2,
+          "line": 4,
           "column": 7
         }
       }
@@ -267,25 +267,44 @@
       "value": "1987-07-05t17:45:00z",
       "date": "1987-07-05T17:45:00.000Z",
       "range": [
-        37,
-        57
+        102,
+        122
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 4,
           "column": 8
         },
         "end": {
-          "line": 2,
+          "line": 4,
           "column": 28
         }
       }
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " ABNF is case-insensitive, both \"Z\" and \"z\" must be supported.",
+      "range": [
+        30,
+        93
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 63
+        }
+      }
+    }
+  ],
   "range": [
     0,
-    58
+    123
   ],
   "loc": {
     "start": {
@@ -293,7 +312,7 @@
       "column": 0
     },
     "end": {
-      "line": 3,
+      "line": 5,
       "column": 0
     }
   }

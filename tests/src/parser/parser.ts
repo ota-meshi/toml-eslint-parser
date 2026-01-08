@@ -125,6 +125,12 @@ describe("Check for AST.", () => {
                 "datetime/leap-year.toml",
                 "datetime/edge.toml",
                 "comment/everywhere.toml",
+                "spec-1.0.0/local-date-0.toml",
+                "spec-1.0.0/local-date-time-0.toml",
+                "spec-1.0.0/table-7.toml",
+                "spec-1.1.0/common-30.toml",
+                "spec-1.1.0/common-32.toml",
+                "spec-1.1.0/common-44.toml",
                 // -0
                 // "spec-float-9.toml",
                 // big int
@@ -134,6 +140,7 @@ describe("Check for AST.", () => {
                 // newline
                 "control/rawmulti-cd.toml",
                 "control/multi-cr.toml",
+                "control/rawmulti-cr.toml",
                 // cannot parse
                 "local-time-sample01-input.toml",
                 "sample08-dates-and-times-input.toml",
@@ -147,6 +154,9 @@ describe("Check for AST.", () => {
                 "datetime/local-time.toml",
                 "datetime/datetime.toml",
                 "control/bare-cr.toml",
+                "array/array.toml",
+                "spec-1.0.0/local-time-0.toml",
+                "spec-1.1.0/common-33.toml",
               ].includes(filename)
             ) {
               // There are known differences.

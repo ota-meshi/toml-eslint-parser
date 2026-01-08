@@ -46,27 +46,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \b backspace character.",
+            "value": "|\b.",
             "style": "basic",
             "multiline": false,
             "range": [
-              12,
-              55
+              16,
+              22
             ],
             "loc": {
               "start": {
                 "line": 1,
-                "column": 12
+                "column": 16
               },
               "end": {
                 "line": 1,
-                "column": 55
+                "column": 22
               }
             }
           },
           "range": [
             0,
-            55
+            22
           ],
           "loc": {
             "start": {
@@ -75,7 +75,7 @@
             },
             "end": {
               "line": 1,
-              "column": 55
+              "column": 22
             }
           }
         },
@@ -88,8 +88,8 @@
                 "type": "TOMLBare",
                 "name": "tab",
                 "range": [
-                  56,
-                  59
+                  23,
+                  26
                 ],
                 "loc": {
                   "start": {
@@ -104,8 +104,8 @@
               }
             ],
             "range": [
-              56,
-              59
+              23,
+              26
             ],
             "loc": {
               "start": {
@@ -121,27 +121,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \t tab character.",
+            "value": "|\t.",
             "style": "basic",
             "multiline": false,
             "range": [
-              62,
-              99
+              39,
+              45
             ],
             "loc": {
               "start": {
                 "line": 2,
-                "column": 6
+                "column": 16
               },
               "end": {
                 "line": 2,
-                "column": 43
+                "column": 22
               }
             }
           },
           "range": [
-            56,
-            99
+            23,
+            45
           ],
           "loc": {
             "start": {
@@ -150,7 +150,7 @@
             },
             "end": {
               "line": 2,
-              "column": 43
+              "column": 22
             }
           }
         },
@@ -163,8 +163,8 @@
                 "type": "TOMLBare",
                 "name": "newline",
                 "range": [
-                  100,
-                  107
+                  46,
+                  53
                 ],
                 "loc": {
                   "start": {
@@ -179,8 +179,8 @@
               }
             ],
             "range": [
-              100,
-              107
+              46,
+              53
             ],
             "loc": {
               "start": {
@@ -196,27 +196,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \n new line character.",
+            "value": "|\n.",
             "style": "basic",
             "multiline": false,
             "range": [
-              110,
-              152
+              62,
+              68
             ],
             "loc": {
               "start": {
                 "line": 3,
-                "column": 10
+                "column": 16
               },
               "end": {
                 "line": 3,
-                "column": 52
+                "column": 22
               }
             }
           },
           "range": [
-            100,
-            152
+            46,
+            68
           ],
           "loc": {
             "start": {
@@ -225,7 +225,7 @@
             },
             "end": {
               "line": 3,
-              "column": 52
+              "column": 22
             }
           }
         },
@@ -238,8 +238,8 @@
                 "type": "TOMLBare",
                 "name": "formfeed",
                 "range": [
-                  153,
-                  161
+                  69,
+                  77
                 ],
                 "loc": {
                   "start": {
@@ -254,8 +254,8 @@
               }
             ],
             "range": [
-              153,
-              161
+              69,
+              77
             ],
             "loc": {
               "start": {
@@ -271,27 +271,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \f form feed character.",
+            "value": "|\f.",
             "style": "basic",
             "multiline": false,
             "range": [
-              164,
-              207
+              85,
+              91
             ],
             "loc": {
               "start": {
                 "line": 4,
-                "column": 11
+                "column": 16
               },
               "end": {
                 "line": 4,
-                "column": 54
+                "column": 22
               }
             }
           },
           "range": [
-            153,
-            207
+            69,
+            91
           ],
           "loc": {
             "start": {
@@ -300,7 +300,7 @@
             },
             "end": {
               "line": 4,
-              "column": 54
+              "column": 22
             }
           }
         },
@@ -313,8 +313,8 @@
                 "type": "TOMLBare",
                 "name": "carriage",
                 "range": [
-                  208,
-                  216
+                  92,
+                  100
                 ],
                 "loc": {
                   "start": {
@@ -329,8 +329,8 @@
               }
             ],
             "range": [
-              208,
-              216
+              92,
+              100
             ],
             "loc": {
               "start": {
@@ -346,27 +346,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \r carriage return character.",
+            "value": "|\r.",
             "style": "basic",
             "multiline": false,
             "range": [
-              219,
-              268
+              108,
+              114
             ],
             "loc": {
               "start": {
                 "line": 5,
-                "column": 11
+                "column": 16
               },
               "end": {
                 "line": 5,
-                "column": 60
+                "column": 22
               }
             }
           },
           "range": [
-            208,
-            268
+            92,
+            114
           ],
           "loc": {
             "start": {
@@ -375,7 +375,7 @@
             },
             "end": {
               "line": 5,
-              "column": 60
+              "column": 22
             }
           }
         },
@@ -388,8 +388,8 @@
                 "type": "TOMLBare",
                 "name": "quote",
                 "range": [
-                  269,
-                  274
+                  115,
+                  120
                 ],
                 "loc": {
                   "start": {
@@ -404,8 +404,8 @@
               }
             ],
             "range": [
-              269,
-              274
+              115,
+              120
             ],
             "loc": {
               "start": {
@@ -421,27 +421,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \" quote character.",
+            "value": "|\".",
             "style": "basic",
             "multiline": false,
             "range": [
-              277,
-              316
+              131,
+              137
             ],
             "loc": {
               "start": {
                 "line": 6,
-                "column": 8
+                "column": 16
               },
               "end": {
                 "line": 6,
-                "column": 47
+                "column": 22
               }
             }
           },
           "range": [
-            269,
-            316
+            115,
+            137
           ],
           "loc": {
             "start": {
@@ -450,7 +450,7 @@
             },
             "end": {
               "line": 6,
-              "column": 47
+              "column": 22
             }
           }
         },
@@ -463,8 +463,8 @@
                 "type": "TOMLBare",
                 "name": "backslash",
                 "range": [
-                  317,
-                  326
+                  138,
+                  147
                 ],
                 "loc": {
                   "start": {
@@ -479,8 +479,8 @@
               }
             ],
             "range": [
-              317,
-              326
+              138,
+              147
             ],
             "loc": {
               "start": {
@@ -496,27 +496,27 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \\ backslash character.",
+            "value": "|\\.",
             "style": "basic",
             "multiline": false,
             "range": [
-              329,
-              372
+              154,
+              160
             ],
             "loc": {
               "start": {
                 "line": 7,
-                "column": 12
+                "column": 16
               },
               "end": {
                 "line": 7,
-                "column": 55
+                "column": 22
               }
             }
           },
           "range": [
-            317,
-            372
+            138,
+            160
           ],
           "loc": {
             "start": {
@@ -525,307 +525,7 @@
             },
             "end": {
               "line": 7,
-              "column": 55
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "notunicode1",
-                "range": [
-                  373,
-                  384
-                ],
-                "loc": {
-                  "start": {
-                    "line": 8,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 8,
-                    "column": 11
-                  }
-                }
-              }
-            ],
-            "range": [
-              373,
-              384
-            ],
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 0
-              },
-              "end": {
-                "line": 8,
-                "column": 11
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "This string does not have a unicode \\u escape.",
-            "style": "basic",
-            "multiline": false,
-            "range": [
-              387,
-              436
-            ],
-            "loc": {
-              "start": {
-                "line": 8,
-                "column": 14
-              },
-              "end": {
-                "line": 8,
-                "column": 63
-              }
-            }
-          },
-          "range": [
-            373,
-            436
-          ],
-          "loc": {
-            "start": {
-              "line": 8,
-              "column": 0
-            },
-            "end": {
-              "line": 8,
-              "column": 63
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "notunicode2",
-                "range": [
-                  437,
-                  448
-                ],
-                "loc": {
-                  "start": {
-                    "line": 9,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 9,
-                    "column": 11
-                  }
-                }
-              }
-            ],
-            "range": [
-              437,
-              448
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 0
-              },
-              "end": {
-                "line": 9,
-                "column": 11
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "This string does not have a unicode \\u escape.",
-            "style": "basic",
-            "multiline": false,
-            "range": [
-              451,
-              504
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 14
-              },
-              "end": {
-                "line": 9,
-                "column": 67
-              }
-            }
-          },
-          "range": [
-            437,
-            504
-          ],
-          "loc": {
-            "start": {
-              "line": 9,
-              "column": 0
-            },
-            "end": {
-              "line": 9,
-              "column": 67
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "notunicode3",
-                "range": [
-                  505,
-                  516
-                ],
-                "loc": {
-                  "start": {
-                    "line": 10,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 10,
-                    "column": 11
-                  }
-                }
-              }
-            ],
-            "range": [
-              505,
-              516
-            ],
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 0
-              },
-              "end": {
-                "line": 10,
-                "column": 11
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "This string does not have a unicode \\u0075 escape.",
-            "style": "basic",
-            "multiline": false,
-            "range": [
-              519,
-              572
-            ],
-            "loc": {
-              "start": {
-                "line": 10,
-                "column": 14
-              },
-              "end": {
-                "line": 10,
-                "column": 67
-              }
-            }
-          },
-          "range": [
-            505,
-            572
-          ],
-          "loc": {
-            "start": {
-              "line": 10,
-              "column": 0
-            },
-            "end": {
-              "line": 10,
-              "column": 67
-            }
-          }
-        },
-        {
-          "type": "TOMLKeyValue",
-          "key": {
-            "type": "TOMLKey",
-            "keys": [
-              {
-                "type": "TOMLBare",
-                "name": "notunicode4",
-                "range": [
-                  573,
-                  584
-                ],
-                "loc": {
-                  "start": {
-                    "line": 11,
-                    "column": 0
-                  },
-                  "end": {
-                    "line": 11,
-                    "column": 11
-                  }
-                }
-              }
-            ],
-            "range": [
-              573,
-              584
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 0
-              },
-              "end": {
-                "line": 11,
-                "column": 11
-              }
-            }
-          },
-          "value": {
-            "type": "TOMLValue",
-            "kind": "string",
-            "value": "This string does not have a unicode \\u escape.",
-            "style": "basic",
-            "multiline": false,
-            "range": [
-              587,
-              641
-            ],
-            "loc": {
-              "start": {
-                "line": 11,
-                "column": 14
-              },
-              "end": {
-                "line": 11,
-                "column": 68
-              }
-            }
-          },
-          "range": [
-            573,
-            641
-          ],
-          "loc": {
-            "start": {
-              "line": 11,
-              "column": 0
-            },
-            "end": {
-              "line": 11,
-              "column": 68
+              "column": 22
             }
           }
         },
@@ -838,32 +538,32 @@
                 "type": "TOMLBare",
                 "name": "delete",
                 "range": [
-                  642,
-                  648
+                  161,
+                  167
                 ],
                 "loc": {
                   "start": {
-                    "line": 12,
+                    "line": 8,
                     "column": 0
                   },
                   "end": {
-                    "line": 12,
+                    "line": 8,
                     "column": 6
                   }
                 }
               }
             ],
             "range": [
-              642,
-              648
+              161,
+              167
             ],
             "loc": {
               "start": {
-                "line": 12,
+                "line": 8,
                 "column": 0
               },
               "end": {
-                "line": 12,
+                "line": 8,
                 "column": 6
               }
             }
@@ -871,36 +571,36 @@
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \u007f delete control code.",
+            "value": "|\u007f.",
             "style": "basic",
             "multiline": false,
             "range": [
-              651,
-              698
+              177,
+              187
             ],
             "loc": {
               "start": {
-                "line": 12,
-                "column": 9
+                "line": 8,
+                "column": 16
               },
               "end": {
-                "line": 12,
-                "column": 56
+                "line": 8,
+                "column": 26
               }
             }
           },
           "range": [
-            642,
-            698
+            161,
+            187
           ],
           "loc": {
             "start": {
-              "line": 12,
+              "line": 8,
               "column": 0
             },
             "end": {
-              "line": 12,
-              "column": 56
+              "line": 8,
+              "column": 26
             }
           }
         },
@@ -913,8 +613,158 @@
                 "type": "TOMLBare",
                 "name": "unitseparator",
                 "range": [
-                  699,
-                  712
+                  188,
+                  201
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 13
+                  }
+                }
+              }
+            ],
+            "range": [
+              188,
+              201
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 13
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "|\u001f.",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              204,
+              214
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 16
+              },
+              "end": {
+                "line": 9,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            188,
+            214
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 0
+            },
+            "end": {
+              "line": 9,
+              "column": 26
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "notunicode1",
+                "range": [
+                  278,
+                  289
+                ],
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              278,
+              289
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 0
+              },
+              "end": {
+                "line": 12,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "|\\u.",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              294,
+              301
+            ],
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 16
+              },
+              "end": {
+                "line": 12,
+                "column": 23
+              }
+            }
+          },
+          "range": [
+            278,
+            301
+          ],
+          "loc": {
+            "start": {
+              "line": 12,
+              "column": 0
+            },
+            "end": {
+              "line": 12,
+              "column": 23
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "notunicode2",
+                "range": [
+                  302,
+                  313
                 ],
                 "loc": {
                   "start": {
@@ -923,14 +773,14 @@
                   },
                   "end": {
                     "line": 13,
-                    "column": 13
+                    "column": 11
                   }
                 }
               }
             ],
             "range": [
-              699,
-              712
+              302,
+              313
             ],
             "loc": {
               "start": {
@@ -939,19 +789,19 @@
               },
               "end": {
                 "line": 13,
-                "column": 13
+                "column": 11
               }
             }
           },
           "value": {
             "type": "TOMLValue",
             "kind": "string",
-            "value": "This string has a \u001f unit separator control code.",
+            "value": "|\\u.",
             "style": "basic",
             "multiline": false,
             "range": [
-              715,
-              770
+              318,
+              329
             ],
             "loc": {
               "start": {
@@ -960,13 +810,13 @@
               },
               "end": {
                 "line": 13,
-                "column": 71
+                "column": 27
               }
             }
           },
           "range": [
-            699,
-            770
+            302,
+            329
           ],
           "loc": {
             "start": {
@@ -975,14 +825,164 @@
             },
             "end": {
               "line": 13,
-              "column": 71
+              "column": 27
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "notunicode3",
+                "range": [
+                  330,
+                  341
+                ],
+                "loc": {
+                  "start": {
+                    "line": 14,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              330,
+              341
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 0
+              },
+              "end": {
+                "line": 14,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "|\\u0075.",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              346,
+              357
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 16
+              },
+              "end": {
+                "line": 14,
+                "column": 27
+              }
+            }
+          },
+          "range": [
+            330,
+            357
+          ],
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 14,
+              "column": 27
+            }
+          }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "notunicode4",
+                "range": [
+                  358,
+                  369
+                ],
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 11
+                  }
+                }
+              }
+            ],
+            "range": [
+              358,
+              369
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 0
+              },
+              "end": {
+                "line": 15,
+                "column": 11
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "string",
+            "value": "|\\u.",
+            "style": "basic",
+            "multiline": false,
+            "range": [
+              374,
+              386
+            ],
+            "loc": {
+              "start": {
+                "line": 15,
+                "column": 16
+              },
+              "end": {
+                "line": 15,
+                "column": 28
+              }
+            }
+          },
+          "range": [
+            358,
+            386
+          ],
+          "loc": {
+            "start": {
+              "line": 15,
+              "column": 0
+            },
+            "end": {
+              "line": 15,
+              "column": 28
             }
           }
         }
       ],
       "range": [
         0,
-        770
+        386
       ],
       "loc": {
         "start": {
@@ -990,8 +990,8 @@
           "column": 0
         },
         "end": {
-          "line": 13,
-          "column": 71
+          "line": 15,
+          "column": 28
         }
       }
     }
@@ -1020,36 +1020,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        10,
-        11
+        14,
+        15
       ],
       "loc": {
         "start": {
           "line": 1,
-          "column": 10
+          "column": 14
         },
         "end": {
           "line": 1,
-          "column": 11
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\b backspace character.\"",
-      "string": "This string has a \b backspace character.",
+      "value": "\"|\\b.\"",
+      "string": "|\b.",
       "range": [
-        12,
-        55
+        16,
+        22
       ],
       "loc": {
         "start": {
           "line": 1,
-          "column": 12
+          "column": 16
         },
         "end": {
           "line": 1,
-          "column": 55
+          "column": 22
         }
       }
     },
@@ -1057,8 +1057,8 @@
       "type": "Bare",
       "value": "tab",
       "range": [
-        56,
-        59
+        23,
+        26
       ],
       "loc": {
         "start": {
@@ -1075,36 +1075,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        60,
-        61
+        37,
+        38
       ],
       "loc": {
         "start": {
           "line": 2,
-          "column": 4
+          "column": 14
         },
         "end": {
           "line": 2,
-          "column": 5
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\t tab character.\"",
-      "string": "This string has a \t tab character.",
+      "value": "\"|\\t.\"",
+      "string": "|\t.",
       "range": [
-        62,
-        99
+        39,
+        45
       ],
       "loc": {
         "start": {
           "line": 2,
-          "column": 6
+          "column": 16
         },
         "end": {
           "line": 2,
-          "column": 43
+          "column": 22
         }
       }
     },
@@ -1112,8 +1112,8 @@
       "type": "Bare",
       "value": "newline",
       "range": [
-        100,
-        107
+        46,
+        53
       ],
       "loc": {
         "start": {
@@ -1130,36 +1130,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        108,
-        109
+        60,
+        61
       ],
       "loc": {
         "start": {
           "line": 3,
-          "column": 8
+          "column": 14
         },
         "end": {
           "line": 3,
-          "column": 9
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\n new line character.\"",
-      "string": "This string has a \n new line character.",
+      "value": "\"|\\n.\"",
+      "string": "|\n.",
       "range": [
-        110,
-        152
+        62,
+        68
       ],
       "loc": {
         "start": {
           "line": 3,
-          "column": 10
+          "column": 16
         },
         "end": {
           "line": 3,
-          "column": 52
+          "column": 22
         }
       }
     },
@@ -1167,8 +1167,8 @@
       "type": "Bare",
       "value": "formfeed",
       "range": [
-        153,
-        161
+        69,
+        77
       ],
       "loc": {
         "start": {
@@ -1185,36 +1185,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        162,
-        163
+        83,
+        84
       ],
       "loc": {
         "start": {
           "line": 4,
-          "column": 9
+          "column": 14
         },
         "end": {
           "line": 4,
-          "column": 10
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\f form feed character.\"",
-      "string": "This string has a \f form feed character.",
+      "value": "\"|\\f.\"",
+      "string": "|\f.",
       "range": [
-        164,
-        207
+        85,
+        91
       ],
       "loc": {
         "start": {
           "line": 4,
-          "column": 11
+          "column": 16
         },
         "end": {
           "line": 4,
-          "column": 54
+          "column": 22
         }
       }
     },
@@ -1222,8 +1222,8 @@
       "type": "Bare",
       "value": "carriage",
       "range": [
-        208,
-        216
+        92,
+        100
       ],
       "loc": {
         "start": {
@@ -1240,36 +1240,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        217,
-        218
+        106,
+        107
       ],
       "loc": {
         "start": {
           "line": 5,
-          "column": 9
+          "column": 14
         },
         "end": {
           "line": 5,
-          "column": 10
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\r carriage return character.\"",
-      "string": "This string has a \r carriage return character.",
+      "value": "\"|\\r.\"",
+      "string": "|\r.",
       "range": [
-        219,
-        268
+        108,
+        114
       ],
       "loc": {
         "start": {
           "line": 5,
-          "column": 11
+          "column": 16
         },
         "end": {
           "line": 5,
-          "column": 60
+          "column": 22
         }
       }
     },
@@ -1277,8 +1277,8 @@
       "type": "Bare",
       "value": "quote",
       "range": [
-        269,
-        274
+        115,
+        120
       ],
       "loc": {
         "start": {
@@ -1295,36 +1295,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        275,
-        276
+        129,
+        130
       ],
       "loc": {
         "start": {
           "line": 6,
-          "column": 6
+          "column": 14
         },
         "end": {
           "line": 6,
-          "column": 7
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\\" quote character.\"",
-      "string": "This string has a \" quote character.",
+      "value": "\"|\\\".\"",
+      "string": "|\".",
       "range": [
-        277,
-        316
+        131,
+        137
       ],
       "loc": {
         "start": {
           "line": 6,
-          "column": 8
+          "column": 16
         },
         "end": {
           "line": 6,
-          "column": 47
+          "column": 22
         }
       }
     },
@@ -1332,8 +1332,8 @@
       "type": "Bare",
       "value": "backslash",
       "range": [
-        317,
-        326
+        138,
+        147
       ],
       "loc": {
         "start": {
@@ -1350,256 +1350,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        327,
-        328
+        152,
+        153
       ],
       "loc": {
         "start": {
           "line": 7,
-          "column": 10
+          "column": 14
         },
         "end": {
           "line": 7,
-          "column": 11
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\\\ backslash character.\"",
-      "string": "This string has a \\ backslash character.",
+      "value": "\"|\\\\.\"",
+      "string": "|\\.",
       "range": [
-        329,
-        372
+        154,
+        160
       ],
       "loc": {
         "start": {
           "line": 7,
-          "column": 12
+          "column": 16
         },
         "end": {
           "line": 7,
-          "column": 55
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "notunicode1",
-      "range": [
-        373,
-        384
-      ],
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 0
-        },
-        "end": {
-          "line": 8,
-          "column": 11
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        385,
-        386
-      ],
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 12
-        },
-        "end": {
-          "line": 8,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": "BasicString",
-      "value": "\"This string does not have a unicode \\\\u escape.\"",
-      "string": "This string does not have a unicode \\u escape.",
-      "range": [
-        387,
-        436
-      ],
-      "loc": {
-        "start": {
-          "line": 8,
-          "column": 14
-        },
-        "end": {
-          "line": 8,
-          "column": 63
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "notunicode2",
-      "range": [
-        437,
-        448
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
-        },
-        "end": {
-          "line": 9,
-          "column": 11
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        449,
-        450
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 12
-        },
-        "end": {
-          "line": 9,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": "BasicString",
-      "value": "\"This string does not have a unicode \\u005Cu escape.\"",
-      "string": "This string does not have a unicode \\u escape.",
-      "range": [
-        451,
-        504
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 14
-        },
-        "end": {
-          "line": 9,
-          "column": 67
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "notunicode3",
-      "range": [
-        505,
-        516
-      ],
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 0
-        },
-        "end": {
-          "line": 10,
-          "column": 11
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        517,
-        518
-      ],
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 12
-        },
-        "end": {
-          "line": 10,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": "BasicString",
-      "value": "\"This string does not have a unicode \\\\u0075 escape.\"",
-      "string": "This string does not have a unicode \\u0075 escape.",
-      "range": [
-        519,
-        572
-      ],
-      "loc": {
-        "start": {
-          "line": 10,
-          "column": 14
-        },
-        "end": {
-          "line": 10,
-          "column": 67
-        }
-      }
-    },
-    {
-      "type": "Bare",
-      "value": "notunicode4",
-      "range": [
-        573,
-        584
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 0
-        },
-        "end": {
-          "line": 11,
-          "column": 11
-        }
-      }
-    },
-    {
-      "type": "Punctuator",
-      "value": "=",
-      "range": [
-        585,
-        586
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 12
-        },
-        "end": {
-          "line": 11,
-          "column": 13
-        }
-      }
-    },
-    {
-      "type": "BasicString",
-      "value": "\"This string does not have a unicode \\\\\\u0075 escape.\"",
-      "string": "This string does not have a unicode \\u escape.",
-      "range": [
-        587,
-        641
-      ],
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 14
-        },
-        "end": {
-          "line": 11,
-          "column": 68
+          "column": 22
         }
       }
     },
@@ -1607,16 +1387,16 @@
       "type": "Bare",
       "value": "delete",
       "range": [
-        642,
-        648
+        161,
+        167
       ],
       "loc": {
         "start": {
-          "line": 12,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 12,
+          "line": 8,
           "column": 6
         }
       }
@@ -1625,36 +1405,36 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        649,
-        650
+        175,
+        176
       ],
       "loc": {
         "start": {
-          "line": 12,
-          "column": 7
+          "line": 8,
+          "column": 14
         },
         "end": {
-          "line": 12,
-          "column": 8
+          "line": 8,
+          "column": 15
         }
       }
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\u007F delete control code.\"",
-      "string": "This string has a \u007f delete control code.",
+      "value": "\"|\\u007F.\"",
+      "string": "|\u007f.",
       "range": [
-        651,
-        698
+        177,
+        187
       ],
       "loc": {
         "start": {
-          "line": 12,
-          "column": 9
+          "line": 8,
+          "column": 16
         },
         "end": {
-          "line": 12,
-          "column": 56
+          "line": 8,
+          "column": 26
         }
       }
     },
@@ -1662,16 +1442,16 @@
       "type": "Bare",
       "value": "unitseparator",
       "range": [
-        699,
-        712
+        188,
+        201
       ],
       "loc": {
         "start": {
-          "line": 13,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 13,
+          "line": 9,
           "column": 13
         }
       }
@@ -1680,8 +1460,118 @@
       "type": "Punctuator",
       "value": "=",
       "range": [
-        713,
-        714
+        202,
+        203
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 14
+        },
+        "end": {
+          "line": 9,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"|\\u001F.\"",
+      "string": "|\u001f.",
+      "range": [
+        204,
+        214
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 16
+        },
+        "end": {
+          "line": 9,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "notunicode1",
+      "range": [
+        278,
+        289
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        292,
+        293
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 14
+        },
+        "end": {
+          "line": 12,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"|\\\\u.\"",
+      "string": "|\\u.",
+      "range": [
+        294,
+        301
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 16
+        },
+        "end": {
+          "line": 12,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "notunicode2",
+      "range": [
+        302,
+        313
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        316,
+        317
       ],
       "loc": {
         "start": {
@@ -1696,11 +1586,11 @@
     },
     {
       "type": "BasicString",
-      "value": "\"This string has a \\u001F unit separator control code.\"",
-      "string": "This string has a \u001f unit separator control code.",
+      "value": "\"|\\u005Cu.\"",
+      "string": "|\\u.",
       "range": [
-        715,
-        770
+        318,
+        329
       ],
       "loc": {
         "start": {
@@ -1709,15 +1599,144 @@
         },
         "end": {
           "line": 13,
-          "column": 71
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "notunicode3",
+      "range": [
+        330,
+        341
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        344,
+        345
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 14
+        },
+        "end": {
+          "line": 14,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"|\\\\u0075.\"",
+      "string": "|\\u0075.",
+      "range": [
+        346,
+        357
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 16
+        },
+        "end": {
+          "line": 14,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": "Bare",
+      "value": "notunicode4",
+      "range": [
+        358,
+        369
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 11
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        372,
+        373
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 14
+        },
+        "end": {
+          "line": 15,
+          "column": 15
+        }
+      }
+    },
+    {
+      "type": "BasicString",
+      "value": "\"|\\\\\\u0075.\"",
+      "string": "|\\u.",
+      "range": [
+        374,
+        386
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 16
+        },
+        "end": {
+          "line": 15,
+          "column": 28
         }
       }
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "type": "Block",
+      "value": " \\u is escaped, so should NOT be interperted as a \\u escape.",
+      "range": [
+        216,
+        277
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 61
+        }
+      }
+    }
+  ],
   "range": [
     0,
-    771
+    387
   ],
   "loc": {
     "start": {
@@ -1725,7 +1744,7 @@
       "column": 0
     },
     "end": {
-      "line": 14,
+      "line": 16,
       "column": 0
     }
   }

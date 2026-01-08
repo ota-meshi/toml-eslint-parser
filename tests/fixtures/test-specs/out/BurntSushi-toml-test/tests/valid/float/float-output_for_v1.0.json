@@ -299,11 +299,85 @@
               "column": 20
             }
           }
+        },
+        {
+          "type": "TOMLKeyValue",
+          "key": {
+            "type": "TOMLKey",
+            "keys": [
+              {
+                "type": "TOMLBare",
+                "name": "leading-zero-fractional",
+                "range": [
+                  59,
+                  82
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 0
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 23
+                  }
+                }
+              }
+            ],
+            "range": [
+              59,
+              82
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 5,
+                "column": 23
+              }
+            }
+          },
+          "value": {
+            "type": "TOMLValue",
+            "kind": "float",
+            "value": 0.0123,
+            "number": "0.0123",
+            "range": [
+              85,
+              91
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 26
+              },
+              "end": {
+                "line": 5,
+                "column": 32
+              }
+            }
+          },
+          "range": [
+            59,
+            91
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 32
+            }
+          }
         }
       ],
       "range": [
         0,
-        58
+        91
       ],
       "loc": {
         "start": {
@@ -311,8 +385,8 @@
           "column": 0
         },
         "end": {
-          "line": 4,
-          "column": 20
+          "line": 5,
+          "column": 32
         }
       }
     }
@@ -538,12 +612,67 @@
           "column": 20
         }
       }
+    },
+    {
+      "type": "Bare",
+      "value": "leading-zero-fractional",
+      "range": [
+        59,
+        82
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 23
+        }
+      }
+    },
+    {
+      "type": "Punctuator",
+      "value": "=",
+      "range": [
+        83,
+        84
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 24
+        },
+        "end": {
+          "line": 5,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": "Float",
+      "value": "0.0123",
+      "number": 0.0123,
+      "range": [
+        85,
+        91
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 26
+        },
+        "end": {
+          "line": 5,
+          "column": 32
+        }
+      }
     }
   ],
   "comments": [],
   "range": [
     0,
-    59
+    92
   ],
   "loc": {
     "start": {
@@ -551,7 +680,7 @@
       "column": 0
     },
     "end": {
-      "line": 5,
+      "line": 6,
       "column": 0
     }
   }
