@@ -129,7 +129,6 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         __dirname,
         "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/invalid",
       ),
-      invalid: true,
     },
     {
       in: path.resolve(
@@ -140,6 +139,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         __dirname,
         "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/valid",
       ),
+      valid: true,
     },
   ];
 
@@ -169,74 +169,92 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
       }
       const inputFileName = path.join(d.path, d.name);
       const filename = inputFileName.slice(rootDir.in.length + 1);
-      const testFilename = `${rootDir.invalid ? "invalid" : "valid"}/${filename}`;
+      const testFilename = `${rootDir.valid ? "valid" : "invalid"}/${filename}`;
 
       const isTOML1P0Spec = testFilesForV1P0.includes(testFilename);
       const isTOML1P1Spec = testFilesForV1P1.includes(testFilename);
 
+      const hasCR = [
+        "control/bare-cr.toml",
+        "control/multi-cr.toml",
+        "control/rawmulti-cr.toml",
+      ].includes(filename);
+
       const validInTOML1P0 =
-        !rootDir.invalid &&
-        !isTOML1P0Spec &&
-        [
-          // Spec for TOML 1.1 but also valid in TOML 1.0
-          "spec-1.1.0/common-0.toml",
-          "spec-1.1.0/common-1.toml",
-          "spec-1.1.0/common-3.toml",
-          "spec-1.1.0/common-4.toml",
-          "spec-1.1.0/common-6.toml",
-          "spec-1.1.0/common-7.toml",
-          "spec-1.1.0/common-8.toml",
-          "spec-1.1.0/common-9.toml",
-          "spec-1.1.0/common-10.toml",
-          "spec-1.1.0/common-11.toml",
-          "spec-1.1.0/common-13.toml",
-          "spec-1.1.0/common-14.toml",
-          "spec-1.1.0/common-15.toml",
-          "spec-1.1.0/common-16.toml",
-          "spec-1.1.0/common-17.toml",
-          "spec-1.1.0/common-18.toml",
-          "spec-1.1.0/common-19.toml",
-          "spec-1.1.0/common-20.toml",
-          "spec-1.1.0/common-21.toml",
-          "spec-1.1.0/common-22.toml",
-          "spec-1.1.0/common-23.toml",
-          "spec-1.1.0/common-24.toml",
-          "spec-1.1.0/common-25.toml",
-          "spec-1.1.0/common-26.toml",
-          "spec-1.1.0/common-27.toml",
-          "spec-1.1.0/common-28.toml",
-          "spec-1.1.0/common-30.toml",
-          "spec-1.1.0/common-32.toml",
-          "spec-1.1.0/common-33.toml",
-          "spec-1.1.0/common-35.toml",
-          "spec-1.1.0/common-36.toml",
-          "spec-1.1.0/common-37.toml",
-          "spec-1.1.0/common-38.toml",
-          "spec-1.1.0/common-39.toml",
-          "spec-1.1.0/common-40.toml",
-          "spec-1.1.0/common-41.toml",
-          "spec-1.1.0/common-42.toml",
-          "spec-1.1.0/common-43.toml",
-          "spec-1.1.0/common-44.toml",
-          "spec-1.1.0/common-45.toml",
-          "spec-1.1.0/common-46.toml",
-          "spec-1.1.0/common-48.toml",
-          "spec-1.1.0/common-49.toml",
-          "spec-1.1.0/common-50.toml",
-          "spec-1.1.0/common-51.toml",
-          "spec-1.1.0/common-52.toml",
-          "spec-1.1.0/common-53.toml",
-        ].includes(filename);
+        // Valid spec for TOML 1.0
+        (rootDir.valid && isTOML1P0Spec) ||
+        // Invalid spec for TOML 1.0 but has CR (This parser specially allows CR)
+        (!rootDir.valid && isTOML1P0Spec && hasCR) ||
+        // Spec for TOML 1.1 but valid in TOML 1.0
+        (rootDir.valid &&
+          !isTOML1P0Spec &&
+          [
+            "spec-1.1.0/common-0.toml",
+            "spec-1.1.0/common-1.toml",
+            "spec-1.1.0/common-3.toml",
+            "spec-1.1.0/common-4.toml",
+            "spec-1.1.0/common-6.toml",
+            "spec-1.1.0/common-7.toml",
+            "spec-1.1.0/common-8.toml",
+            "spec-1.1.0/common-9.toml",
+            "spec-1.1.0/common-10.toml",
+            "spec-1.1.0/common-11.toml",
+            "spec-1.1.0/common-13.toml",
+            "spec-1.1.0/common-14.toml",
+            "spec-1.1.0/common-15.toml",
+            "spec-1.1.0/common-16.toml",
+            "spec-1.1.0/common-17.toml",
+            "spec-1.1.0/common-18.toml",
+            "spec-1.1.0/common-19.toml",
+            "spec-1.1.0/common-20.toml",
+            "spec-1.1.0/common-21.toml",
+            "spec-1.1.0/common-22.toml",
+            "spec-1.1.0/common-23.toml",
+            "spec-1.1.0/common-24.toml",
+            "spec-1.1.0/common-25.toml",
+            "spec-1.1.0/common-26.toml",
+            "spec-1.1.0/common-27.toml",
+            "spec-1.1.0/common-28.toml",
+            "spec-1.1.0/common-30.toml",
+            "spec-1.1.0/common-32.toml",
+            "spec-1.1.0/common-33.toml",
+            "spec-1.1.0/common-35.toml",
+            "spec-1.1.0/common-36.toml",
+            "spec-1.1.0/common-37.toml",
+            "spec-1.1.0/common-38.toml",
+            "spec-1.1.0/common-39.toml",
+            "spec-1.1.0/common-40.toml",
+            "spec-1.1.0/common-41.toml",
+            "spec-1.1.0/common-42.toml",
+            "spec-1.1.0/common-43.toml",
+            "spec-1.1.0/common-44.toml",
+            "spec-1.1.0/common-45.toml",
+            "spec-1.1.0/common-46.toml",
+            "spec-1.1.0/common-48.toml",
+            "spec-1.1.0/common-49.toml",
+            "spec-1.1.0/common-50.toml",
+            "spec-1.1.0/common-51.toml",
+            "spec-1.1.0/common-52.toml",
+            "spec-1.1.0/common-53.toml",
+          ].includes(filename)) ||
+        // Invalid spec for TOML 1.1 but has CR (This parser specially allows CR)
+        (!rootDir.valid &&
+          !isTOML1P0Spec &&
+          ["control/multi-cr.toml", "control/rawmulti-cr.toml"].includes(
+            filename,
+          ));
 
       const validInTOML1P1 =
-        (!rootDir.invalid &&
-          !isTOML1P1Spec &&
-          // Spec for TOML 1.0 but also valid in TOML 1.1
-          isTOML1P0Spec) ||
-        (rootDir.invalid &&
+        // Valid spec for TOML 1.1
+        (rootDir.valid && isTOML1P1Spec) ||
+        // Invalid spec for TOML 1.1 but has CR
+        (!rootDir.valid && isTOML1P1Spec && hasCR) ||
+        // Valid spec for TOML 1.0 but also valid in TOML 1.1
+        validInTOML1P0 ||
+        // Invalid spec for TOML 1.0 but valid in TOML 1.1
+        (!rootDir.valid &&
           !isTOML1P1Spec &&
           [
-            // Invalid Spec for TOML 1.0 but valid in TOML 1.1
             "datetime/no-secs.toml",
             "local-datetime/no-secs.toml",
             "local-time/no-secs.toml",
@@ -247,12 +265,6 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
             "inline-table/linebreak-04.toml",
             "inline-table/trailing-comma.toml",
           ].includes(filename));
-
-      const hasCR = [
-        "control/bare-cr.toml",
-        "control/multi-cr.toml",
-        "control/rawmulti-cr.toml",
-      ].includes(filename);
 
       let specAssertion: SpecAssertion | undefined;
 
@@ -270,24 +282,19 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
         };
       }
 
-      const invalidForV1P0 =
-        !validInTOML1P0 && (rootDir.invalid || !isTOML1P0Spec) && !hasCR;
-      const invalidForV1P1 =
-        !validInTOML1P1 && (rootDir.invalid || !isTOML1P1Spec) && !hasCR;
-
       yield {
         filename,
         inputFileName,
         specAssertion,
         v1: {
           ...getOutputs(inputFileName, { ...rootDir, suffix: "_for_v1.0" }),
-          valid: !invalidForV1P0,
-          invalid: invalidForV1P0,
+          valid: validInTOML1P0,
+          invalid: !validInTOML1P0,
         },
         "v1.1": {
           ...getOutputs(inputFileName, { ...rootDir, suffix: "" }),
-          valid: !invalidForV1P1,
-          invalid: invalidForV1P1,
+          valid: validInTOML1P1,
+          invalid: !validInTOML1P1,
         },
       };
     }
