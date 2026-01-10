@@ -1,6 +1,6 @@
 import Benchmark from "benchmark";
 import fs from "fs";
-import { parseForESLint } from "../lib/index.js";
+import { parseForESLint } from "../lib/index.mjs";
 import {
   parseForESLint as parseOld,
   meta as oldMeta,
