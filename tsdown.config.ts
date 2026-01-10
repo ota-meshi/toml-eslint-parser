@@ -7,5 +7,4 @@ export default defineConfig({
   clean: true,
   outDir: "lib",
   platform: "node",
-  outExtension: () => ({ js: ".js", dts: ".d.ts" }),
 });
