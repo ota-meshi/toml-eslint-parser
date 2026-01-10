@@ -1,7 +1,7 @@
 import { parseForESLint } from "./parser";
 import type * as AST from "./ast";
 import { traverseNodes } from "./traverse";
-import { getStaticTOMLValue } from "./utils";
+import { getStaticTOMLValue, generateConvertTOMLValue } from "./utils";
 import { KEYS } from "./visitor-keys";
 import { ParseError } from "./errors";
 import type { ParserOptions } from "./parser-options";
@@ -17,7 +17,7 @@ export { parseForESLint };
 export const VisitorKeys = KEYS;
 
 // tools
-export { traverseNodes, getStaticTOMLValue };
+export { traverseNodes, getStaticTOMLValue, generateConvertTOMLValue };
 
 /**
  * Parse TOML source code

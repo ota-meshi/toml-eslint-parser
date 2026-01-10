@@ -5,7 +5,7 @@ import assert from "assert";
 import { load as loadYaml } from "js-yaml";
 import { toJSON } from "./to-json";
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Remove `parent` properties from the given AST.
@@ -98,7 +98,7 @@ export function* listUpFixtures(): Generator<Fixture> {
 }
 
 function* listUpParserFixtures(): Generator<Fixture> {
-  const AST_FIXTURE_ROOT = path.resolve(__dirname, "../../fixtures/parser/ast");
+  const AST_FIXTURE_ROOT = path.resolve(dirname, "../../fixtures/parser/ast");
   for (const filename of fs
     .readdirSync(AST_FIXTURE_ROOT)
     .filter((f) => f.endsWith("input.toml"))) {
@@ -125,21 +125,21 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
   const BURNTSUSHI_TESTS_ROOTS = [
     {
       in: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/BurntSushi-toml-test/tests/invalid",
       ),
       out: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/invalid",
       ),
     },
     {
       in: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/BurntSushi-toml-test/tests/valid",
       ),
       out: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/out/BurntSushi-toml-test/tests/valid",
       ),
       valid: true,
@@ -149,7 +149,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
   const testFilesForV1P0 = fs
     .readFileSync(
       path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/BurntSushi-toml-test/tests/files-toml-1.0.0",
       ),
       "utf8",
@@ -158,7 +158,7 @@ function* listUpBurntSushiTestSpecsFixtures(): Generator<Fixture> {
   const testFilesForV1P1 = fs
     .readFileSync(
       path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/BurntSushi-toml-test/tests/files-toml-1.1.0",
       ),
       "utf8",
@@ -324,22 +324,22 @@ function* listUpIarnaTestSpecsFixtures(): Generator<Fixture> {
   const IARNA_TESTS_ROOTS = [
     {
       in: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/iarna-toml-spec-tests/errors",
       ),
       out: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/out/iarna-toml-spec-tests/errors",
       ),
       invalid: true,
     },
     {
       in: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/iarna-toml-spec-tests/values",
       ),
       out: path.resolve(
-        __dirname,
+        dirname,
         "../../fixtures/test-specs/out/iarna-toml-spec-tests/values",
       ),
     },

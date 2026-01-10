@@ -25,6 +25,7 @@
     "tests/**/*.ts",
     "tools/**/*.ts",
     "typings/**/*.ts",
-    "benchmark/**/*"
+    "benchmark/**/*",
+    "tsdown.config.ts"
   ]
 }
