@@ -31,6 +31,7 @@ const MESSAGES = {
     "Consecutive dots are not permitted in keys",
   "invalid-code-point": "Invalid code point {{cp}}",
   "invalid-trailing-dot-in-key": "Keys cannot end with a dot",
+  "invalid-leading-dot-in-key": "Keys cannot start with a dot",
 };
 
 /**

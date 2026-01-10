@@ -273,6 +273,9 @@ export class TOMLParser {
     parent: TOMLKey["parent"],
     ctx: Context,
   ): { keyNode: TOMLKey; nextToken: Token | null } {
+    if (isDot(token)) {
+      ctx.reportParseError("invalid-leading-dot-in-key", token);
+    }
     const keyNode: TOMLKey = {
       type: "TOMLKey",
       keys: [],
@@ -283,29 +286,24 @@ export class TOMLParser {
     parent.key = keyNode;
     let targetToken: Token | null = token;
     let dotToken: Token | null = null;
-    while (targetToken) {
+    do {
       if (isBare(targetToken)) {
         this.processBareKey(targetToken, keyNode);
-        dotToken = null;
       } else if (isString(targetToken)) {
         this.processStringKey(targetToken, keyNode);
-        dotToken = null;
       } else {
         break;
       }
+      dotToken = null;
       targetToken = ctx.nextToken({
         needSameLine: "invalid-key-value-newline",
       });
-      if (isDot(targetToken)) {
-        dotToken = targetToken;
-        targetToken = ctx.nextToken({
-          needSameLine: "invalid-key-value-newline",
-        });
-      } else {
-        dotToken = null;
-        break;
-      }
-    }
+      if (!isDot(targetToken)) break;
+      dotToken = targetToken;
+      targetToken = ctx.nextToken({
+        needSameLine: "invalid-key-value-newline",
+      });
+    } while (targetToken);
     if (dotToken) {
       ctx.reportParseError(
         isDot(targetToken)
