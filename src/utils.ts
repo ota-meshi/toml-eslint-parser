@@ -12,8 +12,8 @@ import type {
   TOMLTable,
   TOMLTopLevelTable,
   TOMLValue,
-} from "./ast";
-import { last } from "./internal-utils";
+} from "./ast/index.ts";
+import { last } from "./internal-utils/index.ts";
 
 type TOMLContentValue<V> = V | TOMLContentValue<V>[] | TOMLTableValue<V>;
 

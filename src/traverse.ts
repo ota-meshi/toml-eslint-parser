@@ -1,6 +1,6 @@
 import type { VisitorKeys } from "eslint-visitor-keys";
-import { KEYS } from "./visitor-keys";
-import type { TOMLNode } from "./ast";
+import { KEYS } from "./visitor-keys.ts";
+import type { TOMLNode } from "./ast/index.ts";
 
 /**
  * Check that the given key should be traversed or not.

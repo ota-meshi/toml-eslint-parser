@@ -1,14 +1,14 @@
 import assert from "assert";
 import fs from "fs";
 
-import { KEYS } from "../../../src/visitor-keys";
-import { traverseNodes, getKeys } from "../../../src/traverse";
-import { getStaticTOMLValue } from "../../../src/utils";
-import type { TOMLProgram } from "../../../src/ast";
-import { ParseError, parseTOML } from "../../../src";
+import { KEYS } from "../../../src/visitor-keys.ts";
+import { traverseNodes, getKeys } from "../../../src/traverse.ts";
+import { getStaticTOMLValue } from "../../../src/utils.ts";
+import type { TOMLProgram } from "../../../src/ast/index.ts";
+import { ParseError, parseTOML } from "../../../src/index.ts";
 import * as IarnaTOML from "@iarna/toml";
-import { listUpFixtures, stringify } from "./utils";
-import type { TOMLVersionOption } from "../../../src/parser-options";
+import { listUpFixtures, stringify } from "./utils.ts";
+import type { TOMLVersionOption } from "../../../src/parser-options.ts";
 
 function parse(code: string, filePath: string, v: TOMLVersionOption) {
   return parseTOML(code, { filePath, tomlVersion: v });

@@ -1,5 +1,5 @@
 import assert from "assert";
-import * as parser from "../../../src/index";
+import * as parser from "../../../src/index.ts";
 
 async function createLinter() {
   // eslint-disable-next-line @typescript-eslint/naming-convention -- OK

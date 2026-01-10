@@ -12,12 +12,12 @@ import type {
   StringToken,
   Token,
   TokenType,
-} from "../ast";
-import type { ErrorCode } from "../errors";
-import { ParseError } from "../errors";
-import type { TOMLVer } from "../parser-options";
-import { getTOMLVer, type ParserOptions } from "../parser-options";
-import { CodePointIterator } from "./code-point-iterator";
+} from "../ast/index.ts";
+import type { ErrorCode } from "../errors.ts";
+import { ParseError } from "../errors.ts";
+import type { TOMLVer } from "../parser-options.ts";
+import { getTOMLVer, type ParserOptions } from "../parser-options.ts";
+import { CodePointIterator } from "./code-point-iterator.ts";
 import {
   CodePoint,
   isWhitespace,
@@ -28,7 +28,7 @@ import {
   isControl,
   isOctalDig,
   isUnicodeScalarValue,
-} from "./code-point";
+} from "./code-point.ts";
 
 type TokenizerState =
   | "DATA"

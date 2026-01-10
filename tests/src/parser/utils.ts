@@ -3,7 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import assert from "assert";
 import { load as loadYaml } from "js-yaml";
-import { toJSON } from "./to-json";
+import { toJSON } from "./to-json.ts";
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 

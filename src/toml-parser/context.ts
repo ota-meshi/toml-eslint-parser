@@ -1,6 +1,6 @@
-import { ParseError } from "../errors";
-import type { ErrorCode } from "../errors";
-import { Tokenizer } from "../tokenizer";
+import { ParseError } from "../errors.ts";
+import type { ErrorCode } from "../errors.ts";
+import { Tokenizer } from "../tokenizer/index.ts";
 import type {
   Comment,
   Token,
@@ -10,9 +10,9 @@ import type {
   TOMLNode,
   TOMLTable,
   TOMLTopLevelTable,
-} from "../ast";
-import type { ParserOptions } from "../parser-options";
-import { KeysResolver } from "./keys-resolver";
+} from "../ast/index.ts";
+import type { ParserOptions } from "../parser-options.ts";
+import { KeysResolver } from "./keys-resolver.ts";
 
 export type ValueContainer = {
   parent: TOMLKeyValue | TOMLArray;

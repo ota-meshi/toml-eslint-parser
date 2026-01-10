@@ -1,14 +1,15 @@
-import { parseForESLint } from "./parser";
-import type * as AST from "./ast";
-import { traverseNodes } from "./traverse";
-import { getStaticTOMLValue } from "./utils";
-import { KEYS } from "./visitor-keys";
-import { ParseError } from "./errors";
-import type { ParserOptions } from "./parser-options";
-export * as meta from "./meta";
-export { name } from "./meta";
+import { parseForESLint } from "./parser.ts";
+import type * as AST from "./ast/index.ts";
+import { traverseNodes } from "./traverse.ts";
+import { getStaticTOMLValue } from "./utils.ts";
+import { KEYS } from "./visitor-keys.ts";
+import { ParseError } from "./errors.ts";
+import type { ParserOptions } from "./parser-options.ts";
+export * as meta from "./meta.ts";
+export { name } from "./meta.ts";
 
-export { AST, ParseError };
+export type { AST };
+export { ParseError };
 
 // parser
 export { parseForESLint };
