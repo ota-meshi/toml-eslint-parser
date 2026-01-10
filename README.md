@@ -65,7 +65,7 @@ module.exports = {
 
 #### `parserOptions.tomlVersion`
 
-Select the TOML version by setting `"1.0.0"`, `"1.1.0"`, `"1.0"`, `"1.1"`, `"latest"`, or `"next"`. By default `"1.0.0"` is used.
+Select the TOML version by setting `"1.0.0"`, `"1.1.0"`, `"1.0"`, `"1.1"`, `"latest"`, or `"next"`. By default `"1.1.0"` is used.
 
 - `"1.0.0"` ... Parsed using [TOML v1.0.0 specifications](https://toml.io/en/v1.0.0).
 - `"1.0"` ... Alias for `"1.0.0"`.
