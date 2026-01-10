@@ -20,5 +20,5 @@ skip=(
 )
 
 e=0
-toml-test ${skip[@]} ./toml-test-decode.js || e=1
+toml-test ${skip[@]} -- npx tsx ./toml-test-decode.js || e=1
 exit $e

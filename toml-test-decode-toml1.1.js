@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import * as toml from "./lib/index.mjs";
-import { convertTomlTestValue } from "./toml-test-decode-util.js";
+import { convertTomlTestValue } from "./toml-test-decode-util.mjs";
 
 const ast = toml.parseTOML(fs.readFileSync(0, "utf-8"), { tomlVersion: "1.1" });
 const result = `${JSON.stringify(convertTomlTestValue(ast), null, 2)}\n`;
