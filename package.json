@@ -2,7 +2,15 @@
   "name": "toml-eslint-parser",
   "version": "0.12.0",
   "description": "A TOML parser that produces output compatible with ESLint",
-  "main": "lib/index.js",
+  "type": "module",
+  "main": "lib/index.mjs",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.mts",
+      "default": "./lib/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "lib"
   ],
@@ -12,21 +20,20 @@
   "scripts": {
     "setup": "git submodule update --init",
     "prebuild": "npm run -s clean",
-    "build": "npm run build:meta && npm run build:tsc",
-    "build:meta": "ts-node --transpile-only ./tools/update-meta.ts",
-    "build:tsc": "tsc --project ./tsconfig.build.json",
+    "build": "npm run build:tsdown",
+    "build:tsdown": "tsdown",
     "clean": "rimraf .nyc_output lib coverage",
     "lint": "eslint .",
     "eslint-fix": "npm run lint -- --fix",
-    "test": "env-cmd -e tz -- mocha --require ts-node/register \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
+    "test": "env-cmd -e tz -- tsx ./node_modules/mocha/bin/mocha.js \"tests/src/**/*.ts\" --reporter dot --timeout 60000",
     "cover": "nyc --reporter=lcov npm run test",
-    "debug": "env-cmd -e tz -- mocha --require ts-node/register/transpile-only \"tests/src/**/*.ts\" --reporter dot",
+    "debug": "env-cmd -e tz -- node --experimental-strip-types ./node_modules/mocha/bin/mocha.js \"tests/src/**/*.ts\" --reporter dot",
     "preversion": "npm run lint && npm test",
-    "update-fixtures": "env-cmd -e tz -- ts-node --transpile-only ./tools/update-fixtures.ts",
-    "benchmark": "ts-node --transpile-only benchmark/index.ts",
+    "update-fixtures": "env-cmd -e tz -- tsx ./tools/update-fixtures.ts",
+    "benchmark": "tsx ./benchmark/index.ts",
     "prerelease": "npm run clean && npm run build",
     "release": "changeset publish",
-    "version:ci": "env-cmd -e version-ci -- npm run build:meta && changeset version"
+    "version:ci": "changeset version"
   },
   "repository": {
     "type": "git",
@@ -83,7 +90,8 @@
     "prettier": "^3.0.0",
     "semver": "^7.3.4",
     "toml-eslint-parser": "^0.12.0",
-    "ts-node": "^10.0.0",
+    "tsdown": "^0.19.0-beta.5",
+    "tsx": "^4.21.0",
     "typescript": "~5.9.0",
     "typescript-eslint": "^8.0.0",
     "vue-eslint-parser": "^10.0.0"

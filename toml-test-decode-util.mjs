@@ -1,10 +1,8 @@
-"use strict";
-
-/* eslint n/no-missing-require: off -- ignore */
-const { generateConvertTOMLValue } = require("./lib/utils.js");
+// eslint-disable-next-line n/file-extension-in-import -- Using tsx to run this file
+import { generateConvertTOMLValue } from "./src/utils.ts";
 
 /** Converter for toml-test (https://github.com/toml-lang/toml-test). */
-const convertTomlTestValue = generateConvertTOMLValue((node) => {
+export const convertTomlTestValue = generateConvertTOMLValue((node) => {
   if (node.kind === "boolean") {
     return { type: "bool", value: String(node.value) };
   }
@@ -53,5 +51,3 @@ const convertTomlTestValue = generateConvertTOMLValue((node) => {
   }
   return { type: node.kind, value: node.value };
 });
-
-module.exports = { convertTomlTestValue };

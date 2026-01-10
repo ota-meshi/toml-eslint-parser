@@ -3,7 +3,8 @@
     "target": "es2015",
     "strict": true,
     "lib": ["es2020"],
-    "module": "commonjs",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "declaration": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
@@ -16,6 +17,8 @@
       "*": ["./typings/*"]
     },
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
 
     "skipLibCheck": true
   },
@@ -24,6 +27,7 @@
     "tests/**/*.ts",
     "tools/**/*.ts",
     "typings/**/*.ts",
-    "benchmark/**/*"
+    "benchmark/**/*",
+    "tsdown.config.ts"
   ]
 }

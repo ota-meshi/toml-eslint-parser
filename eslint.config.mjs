@@ -27,7 +27,7 @@ export default [
   {
     languageOptions: {
       ecmaVersion: "latest",
-      sourceType: "script",
+      sourceType: "module",
     },
     rules: {
       "new-cap": "off",
@@ -39,9 +39,13 @@ export default [
     },
   },
   {
-    files: ["**/*.mjs"],
+    files: ["explorer/**/*.js"],
     languageOptions: {
-      sourceType: "module",
+      sourceType: "script",
+      globals: {
+        module: "readonly",
+        require: "readonly",
+      },
     },
   },
   {

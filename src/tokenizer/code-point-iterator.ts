@@ -1,5 +1,5 @@
-import { CodePoint } from "./code-point";
-import { Locations } from "./locs";
+import { CodePoint } from "./code-point.ts";
+import { Locations } from "./locs.ts";
 
 export class CodePointIterator {
   public readonly text: string;

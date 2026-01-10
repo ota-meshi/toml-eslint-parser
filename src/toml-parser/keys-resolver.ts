@@ -7,43 +7,43 @@ import type {
   TOMLQuoted,
   TOMLTable,
   TOMLTopLevelTable,
-} from "../ast";
-import { last, toKeyName } from "../internal-utils";
-import type { Context } from "./context";
+} from "../ast/index.ts";
+import { last, toKeyName } from "../internal-utils/index.ts";
+import type { Context } from "./context.ts";
 
-const enum ValueKind {
-  VALUE,
-  INTERMEDIATE,
-}
+const VALUE_KIND_VALUE = Symbol("VALUE_KIND_VALUE");
+const VALUE_KIND_INTERMEDIATE = Symbol("VALUE_KIND_INTERMEDIATE");
+type ValueKindValue = typeof VALUE_KIND_VALUE;
+type ValueKindIntermediate = typeof VALUE_KIND_INTERMEDIATE;
 
 type StandardTableKeyStore = {
   table: "standard";
-  value?: undefined | ValueKind.INTERMEDIATE;
+  value?: undefined | ValueKindIntermediate;
   node: TOMLBare | TOMLQuoted;
   keys: KeyStores;
 };
 type ArrayTableKeyStore = {
   table: "array";
-  value?: undefined | ValueKind.INTERMEDIATE;
+  value?: undefined | ValueKindIntermediate;
   node: TOMLBare | TOMLQuoted;
   keys: KeyStores;
   peekIndex: number;
 };
 type IntermediateTableKeyStore = {
   table?: undefined;
-  value?: undefined | ValueKind.INTERMEDIATE;
+  value?: undefined | ValueKindIntermediate;
   node: TOMLBare | TOMLQuoted;
   keys: KeyStores;
 };
 type ValueKeyStore = {
   table?: undefined;
-  value: ValueKind.VALUE;
+  value: ValueKindValue;
   node: TOMLBare | TOMLQuoted | TOMLContentNode;
   keys: KeyStores;
 };
 type IntermediateValueKeyStore = {
   table?: undefined;
-  value: ValueKind.INTERMEDIATE;
+  value: ValueKindIntermediate;
   node: TOMLBare | TOMLQuoted;
   keys: KeyStores;
 };
@@ -180,7 +180,7 @@ function verifyDuplicateKeysForKeyValue(
     const key = toKeyName(keyNode);
     let defineKey = keys.get(key);
     if (defineKey) {
-      if (defineKey.value === ValueKind.VALUE) {
+      if (defineKey.value === VALUE_KIND_VALUE) {
         // e.g.
         // key = 42
         // key.foo = 42
@@ -206,18 +206,18 @@ function verifyDuplicateKeysForKeyValue(
           getAfterNode(keyNode, defineKey.node),
         );
       }
-      defineKey.value = ValueKind.INTERMEDIATE;
+      defineKey.value = VALUE_KIND_INTERMEDIATE;
     } else {
       if (lastKey === keyNode) {
         const keyStore: ValueKeyStore = {
-          value: ValueKind.VALUE,
+          value: VALUE_KIND_VALUE,
           node: keyNode,
           keys: new Map(),
         };
         defineKey = keyStore;
       } else {
         const keyStore: IntermediateValueKeyStore = {
-          value: ValueKind.INTERMEDIATE,
+          value: VALUE_KIND_INTERMEDIATE,
           node: keyNode,
           keys: new Map(),
         };
@@ -265,7 +265,7 @@ function verifyDuplicateKeysForArray(
       ctx.reportParseError("dupe-keys", getAfterNode(element, defineKey.node));
     } else {
       defineKey = {
-        value: ValueKind.VALUE,
+        value: VALUE_KIND_VALUE,
         node: element,
         keys: new Map(),
       };

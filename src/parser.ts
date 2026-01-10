@@ -1,8 +1,8 @@
-import { TOMLParser } from "./toml-parser";
+import { TOMLParser } from "./toml-parser/index.ts";
 import type { SourceCode } from "eslint";
-import { KEYS } from "./visitor-keys";
-import type { TOMLProgram } from "./ast";
-import type { ParserOptions } from "./parser-options";
+import { KEYS } from "./visitor-keys.ts";
+import type { TOMLProgram } from "./ast/index.ts";
+import type { ParserOptions } from "./parser-options.ts";
 /**
  * Parse source code
  */

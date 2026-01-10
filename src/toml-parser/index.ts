@@ -24,13 +24,13 @@ import type {
   Range,
   SourceLocation,
   Position,
-} from "../ast";
-import type { ErrorCode } from "../errors";
-import { last } from "../internal-utils";
-import type { TOMLVer } from "../parser-options";
-import { type ParserOptions, getTOMLVer } from "../parser-options";
-import type { ParserState, ValueContainer } from "./context";
-import { Context } from "./context";
+} from "../ast/index.ts";
+import type { ErrorCode } from "../errors.ts";
+import { last } from "../internal-utils/index.ts";
+import type { TOMLVer } from "../parser-options.ts";
+import { type ParserOptions, getTOMLVer } from "../parser-options.ts";
+import type { ParserState, ValueContainer } from "./context.ts";
+import { Context } from "./context.ts";
 
 const STATE_FOR_ERROR: Record<string, ErrorCode> = {
   VALUE: "missing-value",
