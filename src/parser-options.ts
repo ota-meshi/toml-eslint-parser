@@ -32,7 +32,7 @@ class TOMLVerImpl implements TOMLVer {
 }
 const TOML_VERSION_1_0 = new TOMLVerImpl(1, 0);
 const TOML_VERSION_1_1 = new TOMLVerImpl(1, 1);
-const DEFAULT_TOML_VERSION: TOMLVer = TOML_VERSION_1_0;
+const DEFAULT_TOML_VERSION: TOMLVer = TOML_VERSION_1_1;
 const SUPPORTED_TOML_VERSIONS: Record<TOMLVersionOption, TOMLVer> = {
   "1.0": TOML_VERSION_1_0,
   "1.0.0": TOML_VERSION_1_0,
