@@ -1,8 +1,11 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 import assert from "assert";
 import { load as loadYaml } from "js-yaml";
 import { toJSON } from "./to-json";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Remove `parent` properties from the given AST.
