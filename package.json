@@ -1,6 +1,6 @@
 {
   "name": "toml-eslint-parser",
-  "version": "0.12.0",
+  "version": "1.0.0",
   "description": "A TOML parser that produces output compatible with ESLint",
   "type": "module",
   "main": "lib/index.mjs",

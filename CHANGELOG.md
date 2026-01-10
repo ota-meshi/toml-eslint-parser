@@ -1,5 +1,15 @@
 # toml-eslint-parser
 
+## 1.0.0
+
+### Major Changes
+
+- [#261](https://github.com/ota-meshi/toml-eslint-parser/pull/261) [`03ba361`](https://github.com/ota-meshi/toml-eslint-parser/commit/03ba36148e3c2086f108cbe4a8c36b872b6e1c76) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Change to ESM-only package. This is a breaking change that requires Node.js environments that support ESM.
+
+- [#255](https://github.com/ota-meshi/toml-eslint-parser/pull/255) [`9dfd045`](https://github.com/ota-meshi/toml-eslint-parser/commit/9dfd0450ce9dbd3361a7db3e54cb5b0b8d6841fc) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Drop support for Node.js <20
+
+- [#257](https://github.com/ota-meshi/toml-eslint-parser/pull/257) [`863f87a`](https://github.com/ota-meshi/toml-eslint-parser/commit/863f87ada48ef8838fb70e4fdcf6b82f7d48b33e) Thanks [@copilot-swe-agent](https://github.com/apps/copilot-swe-agent)! - Change default tomlVersion to 1.1
+
 ## 0.12.0
 
 ### Minor Changes
