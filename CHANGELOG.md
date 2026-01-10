@@ -1,5 +1,11 @@
 # toml-eslint-parser
 
+## 0.12.0
+
+### Minor Changes
+
+- [#252](https://github.com/ota-meshi/toml-eslint-parser/pull/252) [`af74a2c`](https://github.com/ota-meshi/toml-eslint-parser/commit/af74a2c36098849d1694efdd5704d029ce675654) Thanks [@ota-meshi](https://github.com/ota-meshi)! - feat: add error handling for keys starting with a dot
+
 ## 0.11.0
 
 ### Minor Changes
