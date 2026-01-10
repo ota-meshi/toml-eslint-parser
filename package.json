@@ -33,7 +33,7 @@
     "benchmark": "tsx ./benchmark/index.ts",
     "prerelease": "npm run clean && npm run build",
     "release": "changeset publish",
-    "version:ci": "env-cmd -e version-ci -- npm run build:meta && changeset version"
+    "version:ci": "changeset version"
   },
   "repository": {
     "type": "git",
