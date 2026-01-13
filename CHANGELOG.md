@@ -1,5 +1,11 @@
 # toml-eslint-parser
 
+## 1.0.1
+
+### Patch Changes
+
+- [#263](https://github.com/ota-meshi/toml-eslint-parser/pull/263) [`3d8a87b`](https://github.com/ota-meshi/toml-eslint-parser/commit/3d8a87b8f0a12496014b37706afac0ef5da56fd9) Thanks [@ota-meshi](https://github.com/ota-meshi)! - fix: add TOMLVersionOption type export
+
 ## 1.0.0
 
 ### Major Changes
