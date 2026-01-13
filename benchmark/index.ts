@@ -4,7 +4,7 @@ import { parseForESLint } from "../lib/index.mjs";
 import {
   parseForESLint as parseOld,
   meta as oldMeta,
-} from "../node_modules/toml-eslint-parser/lib/index.js";
+} from "../node_modules/toml-eslint-parser/lib/index.mjs";
 import { parse as parseByIarna } from "@iarna/toml";
 import { listUpFixtures } from "../tests/src/parser/utils";
 const { version: oldV } = oldMeta;
