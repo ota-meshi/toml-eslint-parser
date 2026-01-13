@@ -4,11 +4,11 @@ import { traverseNodes } from "./traverse.ts";
 import { getStaticTOMLValue } from "./utils.ts";
 import { KEYS } from "./visitor-keys.ts";
 import { ParseError } from "./errors.ts";
-import type { ParserOptions } from "./parser-options.ts";
+import type { ParserOptions, TOMLVersionOption } from "./parser-options.ts";
 export * as meta from "./meta.ts";
 export { name } from "./meta.ts";
 
-export type { AST };
+export type { AST, TOMLVersionOption };
 export { ParseError };
 
 // parser
