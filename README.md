@@ -25,42 +25,49 @@ npm install --save-dev toml-eslint-parser
 
 ## Usage
 
+> [!TIP]
+> If you want to lint TOML files, we recommend using [eslint-plugin-toml](https://github.com/ota-meshi/eslint-plugin-toml) together with this parser. The plugin provides useful rules for TOML files and includes this parser as a dependency.
+
 ### Configuration
 
-Use `.eslintrc.*` file to configure parser. See also: [https://eslint.org/docs/user-guide/configuring](https://eslint.org/docs/user-guide/configuring).
+Use `eslint.config.js` (or `eslint.config.mjs`) file to configure parser. See also: [https://eslint.org/docs/latest/use/configure/](https://eslint.org/docs/latest/use/configure/).
 
-Example **.eslintrc.js**:
+Example **eslint.config.js**:
 
 ```js
-module.exports = {
-  overrides: [
-    {
-      files: ["*.toml"],
-      parser: "toml-eslint-parser",
+import tomlParser from "toml-eslint-parser";
+
+export default [
+  {
+    files: ["**/*.toml"],
+    languageOptions: {
+      parser: tomlParser,
     },
-  ],
-};
+  },
+];
 ```
 
 ### Advanced Configuration
 
-The following additional configuration options are available by specifying them in [parserOptions](https://eslint.org/docs/latest/user-guide/configuring/language-options#specifying-parser-options) in your ESLint configuration file.
+The following additional configuration options are available by specifying them in [parserOptions](https://eslint.org/docs/latest/use/configure/language-options#specifying-parser-options) in your ESLint configuration file.
 
-Example **.eslintrc.js**:
+Example **eslint.config.js**:
 
 ```js
-module.exports = {
-  overrides: [
-    {
-      files: ["*.toml"],
-      parser: "toml-eslint-parser",
+import tomlParser from "toml-eslint-parser";
+
+export default [
+  {
+    files: ["**/*.toml"],
+    languageOptions: {
+      parser: tomlParser,
       // Additional configuration options
       parserOptions: {
         tomlVersion: "1.0.0",
       },
     },
-  ],
-};
+  },
+];
 ```
 
 #### `parserOptions.tomlVersion`
