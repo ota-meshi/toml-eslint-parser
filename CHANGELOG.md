@@ -1,5 +1,11 @@
 # toml-eslint-parser
 
+## 1.0.2
+
+### Patch Changes
+
+- [#267](https://github.com/ota-meshi/toml-eslint-parser/pull/267) [`44e71b9`](https://github.com/ota-meshi/toml-eslint-parser/commit/44e71b95323699fe2760aabf3eb7d1ca3c451332) Thanks [@ota-meshi](https://github.com/ota-meshi)! - docs: update usage and configuration examples in README.md
+
 ## 1.0.1
 
 ### Patch Changes
