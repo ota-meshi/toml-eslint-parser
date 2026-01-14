@@ -26,41 +26,19 @@ npm install --save-dev toml-eslint-parser
 ## Usage
 
 > [!TIP]
-> If you want to lint TOML files, we recommend using [eslint-plugin-toml](https://github.com/ota-meshi/eslint-plugin-toml) together with this parser. The plugin provides useful rules for TOML files and includes this parser as a dependency.
+> If you want to lint TOML files, we recommend using [eslint-plugin-toml] together with this parser. The plugin provides useful rules for TOML files and includes this parser as a dependency.
 
-### Configuration
-
-Use `eslint.config.js` (or `eslint.config.mjs`) file to configure parser. See also: [https://eslint.org/docs/latest/use/configure/](https://eslint.org/docs/latest/use/configure/).
-
-Example **eslint.config.js**:
-
-```js
-import tomlParser from "toml-eslint-parser";
-
-export default [
-  {
-    files: ["**/*.toml"],
-    languageOptions: {
-      parser: tomlParser,
-    },
-  },
-];
-```
-
-### Advanced Configuration
+### Parser Configuration
 
 The following additional configuration options are available by specifying them in [parserOptions](https://eslint.org/docs/latest/use/configure/language-options#specifying-parser-options) in your ESLint configuration file.
 
 Example **eslint.config.js**:
 
 ```js
-import tomlParser from "toml-eslint-parser";
-
 export default [
   {
     files: ["**/*.toml"],
     languageOptions: {
-      parser: tomlParser,
       // Additional configuration options
       parserOptions: {
         tomlVersion: "1.0.0",
@@ -80,6 +58,29 @@ Select the TOML version by setting `"1.0.0"`, `"1.1.0"`, `"1.0"`, `"1.1"`, `"lat
 - `"1.1"` ... Alias for `"1.1.0"`.
 - `"latest"` ... Currently an alias for `"1.1.0"`. When a new version of TOML is released, we plan to change to that version in a minor version release of this parser.
 - `"next"` ... Currently an alias for `"1.1.0"`.
+
+### Configuration
+
+> [!TIP]
+> If you want to lint TOML files, we recommend using [eslint-plugin-toml] together with this parser. Using [eslint-plugin-toml] as a language plugin will include this parser as a dependency.
+> The following example shows how to use the parser directly without the language plugin. This is not the recommended approach, but it works. Note that ESLint will perform additional internal processing (such as JavaScript scope analysis).
+
+Use `eslint.config.js` (or `eslint.config.mjs`) file to configure parser. See also: [https://eslint.org/docs/latest/use/configure/](https://eslint.org/docs/latest/use/configure/).
+
+Example **eslint.config.js**:
+
+```js
+import tomlParser from "toml-eslint-parser";
+
+export default [
+  {
+    files: ["**/*.toml"],
+    languageOptions: {
+      parser: tomlParser,
+    },
+  },
+];
+```
 
 ## Usage for Custom Rules / Plugins
 
@@ -183,7 +184,9 @@ This project uses files from [BurntSushi/toml-test](https://github.com/BurntSush
 
 - [eslint-plugin-jsonc](https://github.com/ota-meshi/eslint-plugin-jsonc) ... ESLint plugin for JSON, JSON with comments (JSONC) and JSON5.
 - [eslint-plugin-yml](https://github.com/ota-meshi/eslint-plugin-yml) ... ESLint plugin for YAML.
-- [eslint-plugin-toml](https://github.com/ota-meshi/eslint-plugin-toml) ... ESLint plugin for TOML.
+- [eslint-plugin-toml] ... ESLint plugin for TOML.
 - [eslint-plugin-json-schema-validator](https://github.com/ota-meshi/eslint-plugin-json-schema-validator) ... ESLint plugin that validates data using JSON Schema Validator.
 - [jsonc-eslint-parser](https://github.com/ota-meshi/jsonc-eslint-parser) ... JSON, JSONC and JSON5 parser for use with ESLint plugins.
 - [yaml-eslint-parser](https://github.com/ota-meshi/yaml-eslint-parser) ... YAML parser for use with ESLint plugins.
+
+[eslint-plugin-toml]: https://github.com/ota-meshi/eslint-plugin-toml
