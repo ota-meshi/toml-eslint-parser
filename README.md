@@ -70,7 +70,7 @@ Use `eslint.config.js` (or `eslint.config.mjs`) file to configure parser. See al
 Example **eslint.config.js**:
 
 ```js
-import tomlParser from "toml-eslint-parser";
+import * as tomlParser from "toml-eslint-parser";
 
 export default [
   {
