@@ -1,4 +1,5 @@
-import { parseForESLint } from "./parser.ts";
+import type { SourceCode } from "eslint";
+import { parseTOML } from "./parser.ts";
 import type * as AST from "./ast/index.ts";
 import { traverseNodes } from "./traverse.ts";
 import { getStaticTOMLValue } from "./utils.ts";
@@ -12,7 +13,7 @@ export type { AST, TOMLVersionOption };
 export { ParseError };
 
 // parser
-export { parseForESLint };
+export { parseTOML };
 // Keys
 // eslint-disable-next-line @typescript-eslint/naming-convention -- ignore
 export const VisitorKeys = KEYS;
@@ -21,11 +22,23 @@ export const VisitorKeys = KEYS;
 export { traverseNodes, getStaticTOMLValue };
 
 /**
- * Parse TOML source code
+ * Parse source code
  */
-export function parseTOML(
+export function parseForESLint(
   code: string,
   options?: ParserOptions,
-): AST.TOMLProgram {
-  return parseForESLint(code, options).ast;
+): {
+  ast: AST.TOMLProgram;
+  visitorKeys: SourceCode.VisitorKeys;
+  services: { isTOML: boolean };
+} {
+  const ast = parseTOML(code, options);
+
+  return {
+    ast,
+    visitorKeys: KEYS,
+    services: {
+      isTOML: true,
+    },
+  };
 }

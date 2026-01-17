@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import { parseForESLint } from "../src/parser";
+import { parseForESLint } from "../src/index.ts";
 import { getStaticTOMLValue } from "../src/utils";
 import type { TOMLProgram } from "../src/ast";
 import { listUpFixtures, stringify } from "../tests/src/parser/utils";
