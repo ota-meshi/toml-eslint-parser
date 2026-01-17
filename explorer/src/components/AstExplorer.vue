@@ -93,7 +93,7 @@ role = "backend"
       if (!showValues) {
         const start = Date.now();
         try {
-          ast = tomlEslintParser.parseForESLint(this.tomlValue).ast;
+          ast = tomlEslintParser.parseTOML(this.tomlValue);
         } catch (e) {
           ast = {
             message: e.message,
@@ -105,7 +105,7 @@ role = "backend"
       } else {
         const start = Date.now();
         try {
-          ast = tomlEslintParser.parseForESLint(this.tomlValue).ast;
+          ast = tomlEslintParser.parseTOML(this.tomlValue);
           ast = tomlEslintParser.getStaticTOMLValue(ast);
         } catch (e) {
           ast = {

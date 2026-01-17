@@ -1,8 +1,8 @@
 import Benchmark from "benchmark";
 import fs from "fs";
-import { parseForESLint } from "../lib/index.mjs";
+import { parseTOML } from "../lib/index.mjs";
 import {
-  parseForESLint as parseOld,
+  parseTOML as parseOld,
   meta as oldMeta,
 } from "../node_modules/toml-eslint-parser/lib/index.mjs";
 import { parse as parseByIarna } from "@iarna/toml";
@@ -23,7 +23,7 @@ ${fs
 `;
   try {
     parseByIarna(appended);
-    parseForESLint(appended);
+    parseTOML(appended);
     parseOld(appended);
   } catch {
     continue;
@@ -83,7 +83,7 @@ const suite = new Benchmark.Suite("benchmark", { onCycle, onComplete });
 for (const no of [1, 2, 3]) {
   suite.add(`${no} new   toml-eslint-parser`, function () {
     files.forEach((c) => {
-      parseForESLint(c, {});
+      parseTOML(c, {});
     });
   });
   suite.add(`${no} old   toml-eslint-parser`, function () {
