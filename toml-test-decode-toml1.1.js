@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import fs from "fs";
+import fs from "node:fs";
 import * as toml from "./lib/index.mjs";
 import { convertTomlTestValue } from "./toml-test-decode-util.mjs";
 

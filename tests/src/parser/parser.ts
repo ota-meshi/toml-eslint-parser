@@ -1,5 +1,5 @@
-import assert from "assert";
-import fs from "fs";
+import assert from "node:assert";
+import fs from "node:fs";
 
 import { KEYS } from "../../../src/visitor-keys.ts";
 import { traverseNodes, getKeys } from "../../../src/traverse.ts";

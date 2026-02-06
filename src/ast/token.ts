@@ -1,4 +1,4 @@
-import type { HasLocs } from "./loc";
+import type { HasLocs } from "./loc.ts";
 
 export interface Comment extends HasLocs {
   type: "Block";

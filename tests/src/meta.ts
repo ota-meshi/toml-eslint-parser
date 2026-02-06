@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as parser from "../../src/index.ts";
 import pkg from "../../package.json" with { type: "json" };
 const expectedMeta = {

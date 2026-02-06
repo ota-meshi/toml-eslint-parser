@@ -1,5 +1,5 @@
-import type { HasLocs } from "./loc";
-import type { Comment, Token } from "./token";
+import type { HasLocs } from "./loc.ts";
+import type { Comment, Token } from "./token.ts";
 
 interface BaseTOMLNode extends HasLocs {
   type: string;

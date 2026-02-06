@@ -12,7 +12,7 @@ import type {
   TOMLTable,
   TOMLTopLevelTable,
   TOMLValue,
-} from "./ast";
+} from "./ast/index.ts";
 
 type TomlKeys = {
   [key in TOMLNode["type"]]: string[];

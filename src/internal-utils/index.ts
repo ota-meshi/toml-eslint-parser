@@ -1,4 +1,4 @@
-import type { TOMLBare, TOMLQuoted } from "../ast";
+import type { TOMLBare, TOMLQuoted } from "../ast/index.ts";
 
 /**
  * Get the last element from given array
