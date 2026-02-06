@@ -1,11 +1,11 @@
-import fs from "fs";
+import fs from "node:fs";
 
 import { parseForESLint } from "../src/index.ts";
-import { getStaticTOMLValue } from "../src/utils";
-import type { TOMLProgram } from "../src/ast";
-import { listUpFixtures, stringify } from "../tests/src/parser/utils";
-import path from "path";
-import type { TOMLVersionOption } from "../src/parser-options";
+import { getStaticTOMLValue } from "../src/utils.ts";
+import type { TOMLProgram } from "../src/ast/index.ts";
+import { listUpFixtures, stringify } from "../tests/src/parser/utils.ts";
+import path from "node:path";
+import type { TOMLVersionOption } from "../src/parser-options.ts";
 
 /**
  * Parse

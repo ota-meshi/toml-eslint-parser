@@ -1,4 +1,4 @@
-import assert from "assert";
+import assert from "node:assert";
 import * as parser from "../../../src/index.ts";
 
 async function createLinter() {

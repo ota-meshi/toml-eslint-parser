@@ -1,12 +1,12 @@
 import Benchmark from "benchmark";
-import fs from "fs";
+import fs from "node:fs";
 import { parseTOML } from "../lib/index.mjs";
 import {
   parseTOML as parseOld,
   meta as oldMeta,
 } from "../node_modules/toml-eslint-parser/lib/index.mjs";
 import { parse as parseByIarna } from "@iarna/toml";
-import { listUpFixtures } from "../tests/src/parser/utils";
+import { listUpFixtures } from "../tests/src/parser/utils.ts";
 const { version: oldV } = oldMeta;
 
 const files: string[] = [];

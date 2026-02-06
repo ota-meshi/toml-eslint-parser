@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-import assert from "assert";
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import assert from "node:assert";
 import { load as loadYaml } from "js-yaml";
 import { toJSON } from "./to-json.ts";
 

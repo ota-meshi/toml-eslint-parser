@@ -1,3 +1,3 @@
-export * from "./token";
-export * from "./ast";
-export * from "./loc";
+export * from "./token.ts";
+export * from "./ast.ts";
+export * from "./loc.ts";
