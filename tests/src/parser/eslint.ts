@@ -1,42 +1,45 @@
 import assert from "node:assert";
 import * as parser from "../../../src/index.ts";
+import type { RuleDefinition } from "@eslint/core";
+import { Linter } from "eslint";
 
-async function createLinter() {
-  // eslint-disable-next-line @typescript-eslint/naming-convention -- OK
-  const { Linter } = await import("eslint");
-  const linter = new Linter({ configType: "eslintrc" });
-
-  linter.defineParser("toml-eslint-parser", parser as any);
-  linter.defineRule("test", {
-    create(context) {
-      return {
-        TOMLBare(node: any) {
-          context.report({
-            node,
-            message: "test",
-          });
-        },
-      };
-    },
-  });
-
-  return linter;
-}
+const testRule: RuleDefinition = {
+  create(context) {
+    return {
+      TOMLBare(node: any) {
+        context.report({
+          node,
+          message: "test",
+        });
+      },
+    };
+  },
+};
 
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
 
 describe("eslint custom parser", () => {
-  it("should work with eslint.", async () => {
+  it("should work with eslint.", () => {
     if (parseInt(process.version, 10) < 18) return;
     const code = `Hello="TOML"`;
 
-    const linter = await createLinter();
+    const linter = new Linter();
     const messages = linter.verify(code, {
-      parser: "toml-eslint-parser",
+      files: ["**/*"],
+      languageOptions: {
+        parser,
+      },
+      plugins: {
+        test: {
+          rules: {
+            test: testRule,
+          },
+        },
+      },
       rules: {
-        test: "error",
+        "test/test": "error",
       },
     });
 
