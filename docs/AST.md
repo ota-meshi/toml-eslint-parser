@@ -98,7 +98,7 @@ int = 42
 ```ts
 interface TOMLFloatValue extends BaseTOMLNode {
     type: "TOMLValue"
-    kind: "integer" | "float"
+    kind: "float"
     value: number
     number: string
     parent: TOMLKeyValue | TOMLArray
