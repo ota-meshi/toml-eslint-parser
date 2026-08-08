@@ -15,7 +15,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v6
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "lts/*"
       - name: Install zsh
@@ -42,7 +42,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v6
       - name: Setup Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: "lts/*"
       - name: Install zsh
